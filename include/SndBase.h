@@ -25,6 +25,9 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
 // USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 
+#ifndef _AURORA_SNDBASE_
+#define _AURORA_SNDBASE_
+
 #include <cstdint>
 #include <numeric>
 #include <vector>
@@ -33,51 +36,54 @@ namespace Aurora {
   const int def_vsize = 64;
   const double def_sr = 44100.;
 
-  /** SndBase class
-      Aurora Library base class
+  /** SndBase class \n
+      Aurora Library base class 
   */
   template<typename S> class SndBase {
   protected:
     std::vector<S> sig;
      
   public:
-  /** Constructor
-      vsize: signal vector size
-  */
+    /** Constructor \n
+        vsize: signal vector size 
+    */
   SndBase(std::size_t vsize = def_vsize) : sig(vsize) { };
 
-   /** Vector size query
-       returns the object vector size
-   */ 
-   std::size_t vsize() { return sig.size(); }
+    /** Vector size query \n
+        returns the object vector size 
+    */ 
+    std::size_t vsize() { return sig.size(); }
 
-   /** Vector size setting
-       n: new vector size
-   */
-   void vsize(std::size_t n) { sig.resize(n); }
+    /** Vector size setting \n
+        n: new vector size
+    */
+    void vsize(std::size_t n) { sig.resize(n); }
 
-   /** Vector access
-       returns the object vector
-   */
-   const std::vector<S> & vector() { return sig; }
+    /** Vector access \n
+        returns the object vector
+    */
+    const std::vector<S> & vector() { return sig; }
 
   };
 
+  /** BinOp class \n
+      Binary operations
+  */
   template<typename S> class BinOp : public SndBase<S> {
     using SndBase<S>::sig;
     std::function<S(S,S)> op;
     
   public:
-    /** Constructor
-        f: binary operation function
+    /** Constructor \n
+        f: binary operation function \n
         vsize: signal vector size
     */
   BinOp(std::function<S(S,S)> f, std::size_t vsize = def_vsize)
     : SndBase<S>(vsize), op(f) { };
 
-    /** Binary operation
-        a: scalar input
-        s: signal input
+    /** Binary operation \n
+        a: scalar input \n
+        s: signal input \n
         returns reference to object signal vector
     */
     const std::vector<S> &
@@ -88,9 +94,9 @@ namespace Aurora {
       return sig;
     }
     
-    /** Binary operation
-        s: signal input
-        a: scalar input
+    /** Binary operation \n
+        s: signal input \n
+        a: scalar input \n
         returns reference to object signal vector
     */
     const std::vector<S> &
@@ -101,9 +107,9 @@ namespace Aurora {
       return sig;
     }
     
-    /** Binary operation
-        s1: signal input 1
-        s2: signal input 2
+    /** Binary operation \n
+        s1: signal input 1 \n
+        s2: signal input 2 \n
         returns reference to object signal vector
     */
     const std::vector<S> &
@@ -117,4 +123,6 @@ namespace Aurora {
       return sig;
     }
   };
-};
+}
+
+#endif // _AURORA_SNDBASE_

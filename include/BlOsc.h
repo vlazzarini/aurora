@@ -25,6 +25,9 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
 // USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 
+#ifndef _AURORA_BLOSC_
+#define _AURORA_BLOSC_
+
 #include "Osc.h"
 
 namespace Aurora {
@@ -33,7 +36,7 @@ namespace Aurora {
   const double base = 20;
   const int def_ftlen = 16384;
 
-  /** TableSet class
+  /** TableSet class \n
       Creates a set of tables for BlOsc.
   */
   template<typename S> class TableSet {
@@ -69,7 +72,7 @@ namespace Aurora {
             break;
           default:
             a = 1.;
-            }
+          }
           s += a*fun(n*ol*k++);
         }
       }
@@ -77,14 +80,14 @@ namespace Aurora {
     }
 
   public:
-    /** Constructor
-        type: wave type (SAW, SQUARE, TRIANGLE, PULSE)
-        fs: sampling rate for which these will be built
+    /** Constructor \n
+        type: wave type (SAW, SQUARE, TRIANGLE, PULSE) \n
+        fs: sampling rate for which these will be built \n
         len: table length
-     */  
+    */  
   TableSet(uint32_t type, S fs = def_sr, std::size_t len = def_ftlen)
     : tlen(len), waves(octs,std::vector<S>(len)) {
-      S nyq = fs / 2.;
+      S nyq = fs/2.;
       int i = 0;
       for (auto &wave:waves) {
         double fr = base*pow(2, i++);
@@ -92,7 +95,7 @@ namespace Aurora {
       }
     }
 
-    /** Table selection
+    /** Table selection \n
         f: fundamental frequency used for playback
     */
     const std::vector<S> &select(S f) const {
@@ -101,9 +104,9 @@ namespace Aurora {
     } 
   };
 
-  /** BlOsc class 
+  /** BlOsc class \n
       Bandlimited wavetable oscillator.
-   */
+  */
   template<typename S> class BlOsc : public Osc<S> {
     using Osc<S>::ph;
     using Osc<S>::ts;
@@ -122,13 +125,15 @@ namespace Aurora {
     }
        
   public:
-    /** Constructor
-        t: wavetable set
-        fs: sampling rate
+    /** Constructor \n
+        t: wavetable set \n
+        fs: sampling rate \n
         vsize: vector size
-     */
-    BlOsc(const TableSet<S>& t, S fs = (S) def_sr,
-          std::size_t vsize = def_vsize) :
+    */
+  BlOsc(const TableSet<S>& t, S fs = (S) def_sr,
+        std::size_t vsize = def_vsize) :
     Osc<S>(nullptr,fs,vsize), tset(t) { };
   };
-};
+}
+
+#endif // _AURORA_BLOSC_

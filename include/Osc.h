@@ -24,6 +24,9 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
 // USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 
+#ifndef _AURORA_OSC_
+#define _AURORA_OSC_
+
 #include "SndBase.h"
 #include <cmath>
 #include <functional>
@@ -31,35 +34,35 @@
 namespace Aurora {
   const double twopi = 2*M_PI;
 
-  /** Sine function for Osc
-      ph: normalised phase
+  /** Sine function for Osc \n
+      ph: normalised phase  \n
       returns the sine of ph*2*$M_PI
   */
   template<typename S> S sin(double ph) {
     return (S) std::sin(ph*twopi);
   }
 
-  /** Cosine function for Osc
-      ph: normalised phase
+  /** Cosine function for Osc \n
+      ph: normalised phase \n
       returns the cosine of ph*2*$M_PI
   */
   template<typename S> S cos(double ph) {
     return (S) std::cos(ph*twopi);
   }
 
-  /** Phase function for Osc
-      ph: normalised phase
+  /** Phase function for Osc \n
+      ph: normalised phase \n
       returns ph
   */
   template<typename S> S phase(double ph) {
     return (S) ph;
   }
 
-  /** Osc class
-      Generic oscillator
+  /** Osc class  \n
+      Generic oscillator \n
   */
   template<typename S> class Osc : public SndBase<S> {
-     using SndBase<S>::sig;
+    using SndBase<S>::sig;
   protected:
     double ph;
     S ts;
@@ -76,9 +79,9 @@ namespace Aurora {
     }
 
   public:
-    /** Constructor
-        f: oscillator function
-        fs: sampling rate
+    /** Constructor \n
+        f: oscillator function \n
+        fs: sampling rate \n
         vsize: signal vector size
     */
   Osc(std::function<S(S)> f = cos<S>, S fs = (S) def_sr,
@@ -86,18 +89,18 @@ namespace Aurora {
     SndBase<S>(vsize), ph(0.), ts(1/fs), fun(f) { };
 
 
-   virtual ~Osc() { };
+    virtual ~Osc() { };
 
-   /** Sampling rate query
-       returns sampling rate
-   */
+    /** Sampling rate query \n
+        returns sampling rate 
+    */
     S fs() { return 1/ts; }
 
-   /** Oscillator
-       a: scalar amplitude
-       f: scalar frequency
-       returns reference to object signal vector
-   */
+    /** Oscillator \n
+        a: scalar amplitude \n
+        f: scalar frequency \n
+        returns reference to object signal vector
+    */
     const std::vector<S>& operator()(S a,S f) {
       double phs = ph;
       for (auto& s : sig) 
@@ -106,9 +109,9 @@ namespace Aurora {
       return sig; 
     }
 
-    /** Oscillator
-        a: scalar amplitude
-        fm: frequency signal
+    /** Oscillator \n
+        a: scalar amplitude \n
+        fm: frequency signal \n
         returns reference to object signal vector
     */
     const std::vector<S>& operator()(S a, const std::vector<S> &fm) {
@@ -120,9 +123,9 @@ namespace Aurora {
       return sig; 
     }
 
-    /** Oscillator
-        am: amplitude signal
-        f: scalar frequency
+    /** Oscillator \n
+        am: amplitude signal \n
+        f: scalar frequency \n
         returns reference to object signal vector
     */
     const std::vector<S> &operator()(const std::vector<S> &am, S f) {
@@ -135,9 +138,9 @@ namespace Aurora {
     }
     
 
-    /** Oscillator
-        am: amplitude signal
-        fm: frequency signal
+    /** Oscillator \n
+        am: amplitude signal \n
+        fm: frequency signal \n
         returns reference to object signal vector
     */
     const std::vector<S> &
@@ -153,4 +156,6 @@ namespace Aurora {
       return sig;
     }
   };
-};
+}
+
+#endif // _AURORA_OSC_
