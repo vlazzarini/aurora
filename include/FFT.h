@@ -24,6 +24,9 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
 // USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 
+#ifndef _AURORA_FFT_
+#define _AURORA_FFT_
+
 #include <complex>
 #include <cmath>
 
@@ -167,3 +170,5 @@ namespace Aurora {
     }
   };
 }
+
+#endif // _AURORA_FFT_
