@@ -93,7 +93,7 @@ public:
 
 int main(int argc, const char* argv[]) {
   if(argc > 3) {
-    double sr =argc>4?std::atof(argv[4]):Aurora::def_sr;
+    double sr = argc > 4 ? std::atof(argv[4]) : Aurora::def_sr;
     auto dur = std::atof(argv[1]);
     auto amp = std::atof(argv[2]);
     auto fr = std::atof(argv[3]);

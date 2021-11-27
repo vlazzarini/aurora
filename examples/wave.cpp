@@ -30,8 +30,8 @@
 
 int main(int argc, const char* argv[]) {
   if(argc > 3) {
-    double sr =argc>5?std::atof(argv[5]):Aurora::def_sr;
-    uint32_t ty =argc>4?std::atoi(argv[4]):Aurora::SAW;
+    double sr = argc > 5 ? std::atof(argv[5]) : Aurora::def_sr;
+    uint32_t ty = argc > 4 ? std::atoi(argv[4]) : Aurora::SAW;
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
