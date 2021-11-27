@@ -132,9 +132,9 @@ namespace Aurora {
     }
   };
 
-    /** Table lookup function generator for Osc \n
+  /** Table lookup function generator for Osc \n
       t: function table  \n
-      returns a truncating lookup function
+      returns a truncating table lookup function
   */
   template<typename S> std::function<S(S)>
     lookup_gen(const std::vector<S> &t) {
@@ -143,7 +143,7 @@ namespace Aurora {
 
   /** Table lookup function generator for Osc \n
       t: function table  \n
-      returns an interpolating lookup function
+      returns an interpolating table lookup function
   */
   template<typename S> std::function<S(S)>
     lookupi_gen(const std::vector<S> &t) {

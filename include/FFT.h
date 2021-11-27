@@ -32,6 +32,13 @@
 
 namespace Aurora {
 
+  static inline uint32_t np2(uint32_t n) {
+    uint32_t v = 2;
+    while (v <= n)
+      v <<= 1;
+    return v;
+  }  
+
   /** FFT class  \n
       Radix-2 fast Fourier transform 
   */
@@ -61,12 +68,14 @@ namespace Aurora {
   public:
 
     /** Constructor \n
-        N: transform size (power-of-two) \n
+        N: transform size \n
         packed: complex data format in packed form (true) or not
     */  
-  FFT(std::size_t N, bool packed = true) : c(packed ? N/2 : N/2 + 1),
+  FFT(std::size_t N, bool packed = true) : c(packed ? np2(N)/2 : np2(N)/2 + 1),
       pckd(packed) { };
-     
+
+    std::size_t size() { return 2*c.size(); }
+    
     /** In-place complex-to-complex FFT \n
         data: data to be transformed  \n
         dir: true for forward operation, false for inverse \n
@@ -81,7 +90,7 @@ namespace Aurora {
       reorder(s);
       for (uint32_t n = 1; n < N; n *= 2) {
         o = dir == forward ? -M_PI/n : M_PI/n;
-        wp.real(cos(o)), wp.imag(sin(o));
+        wp.real(std::cos(o)), wp.imag(std::sin(o));
         w = 1.;
         for (uint32_t m = 0; m < n; m++) {
           for (uint32_t k = m; k < N; k += n * 2) {
@@ -109,7 +118,8 @@ namespace Aurora {
       std::complex<S> wp, w = 1., even, odd;
       S o, zro, nyq;
       S *s = reinterpret_cast<S *>(c.data());
-      std::copy(r.begin(), r.end(), s);
+      std::fill(c.begin(),c.end(),std::complex<S>(0,0));
+      std::copy(r.begin(),r.end(),s);
       if (!pckd)
         c.resize(N);
       transform(c, forward);
@@ -117,7 +127,7 @@ namespace Aurora {
       nyq = c[0].real() - c[0].imag();
       c[0].real(zro * .5), c[0].imag(nyq * .5);
       o = -M_PI/N;
-      wp.real(cos(o)), wp.imag(sin(o));
+      wp.real(std::cos(o)), wp.imag(std::sin(o));
       w *= wp;
       for (uint32_t i = 1, j = 0; i < N/2; i++) {
         j = N - i;
@@ -133,6 +143,7 @@ namespace Aurora {
         c[0].imag(0.);
         c[N].imag(0.);
       }
+      return c.data();
     }
 
     /** Complex-to-real inverse FFT \n
@@ -145,14 +156,14 @@ namespace Aurora {
       std::complex<S> wp, w = 1., even, odd;
       S o, zro, nyq;
       S *s = reinterpret_cast<S *>(c.data());
-      std::copy(sp.begin(), sp.end(), c.begin());
+      std::copy(sp.begin(),sp.end(),c.begin());
       if (pckd)
         zro = c[0].real(), nyq = c[0].imag();
       else
         zro = c[0].real(), nyq = c[N].real();
       c[0].real(zro + nyq), c[0].imag(zro - nyq);
       o = M_PI/N;
-      wp.real(cos(o)), wp.imag(sin(o));
+      wp.real(std::cos(o)), wp.imag(std::sin(o));
       w *= wp;
       int j;
       for (uint32_t i = 1; i < N/2; i++) {

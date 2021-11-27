@@ -1,5 +1,5 @@
-// wave.cpp:
-// Bandlimited waveform generation example
+// custom.cpp:
+// Custom bandlimited waveform generation example
 //
 // (c) V Lazzarini, 2021
 //
@@ -30,16 +30,24 @@
 
 int main(int argc, const char* argv[]) {
   if(argc > 3) {
-    double sr =argc>5?std::atof(argv[5]):Aurora::def_sr;
-    uint32_t ty =argc>4?std::atoi(argv[4]):Aurora::SAW;
+    double sr = argc>4?std::atof(argv[4]):Aurora::def_sr;
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
-    Aurora::TableSet<double> wave(ty);
-    Aurora::BlOsc<double> osc(wave,sr);
+    std::vector<double> src(10000);
+    std::size_t n = 0;
+    std::size_t siz = src.size();
+    for(auto &s: src) {
+      if (n < siz/4)
+        s = 1. - (8./siz)*n++;
+      else
+        s = -1.;
+    }
+    Aurora::TableSet<double> wave(src);
+    Aurora::BlOsc<double> osc(wave, sr);
     for(int n = 0; n < osc.fs()*dur; n += osc.vsize()) 
      for(auto s : osc(a,f))
-      std::cout << s << std::endl;
+     std::cout << s << std::endl;
   } else
     std::cout << "usage: " << argv[0] <<
       " dur(s) amp freq(Hz) [type] [sr]" << std::endl;
