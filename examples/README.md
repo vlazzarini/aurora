@@ -9,7 +9,8 @@ c++ -o example example.cpp -I../include -std=c++14
 
 **wave.cpp**: classic bandlimited waveform  
 **custom.cpp**: custom bandlimited waveform  
-**stackedfm.cpp**: stacked frequency modulation
+**stackedfm.cpp**: stacked frequency modulation  
+**oscil.cpp**: table lookup oscillator and envelope  
 
 In addition, there is a utility to convert from ASCII samples to RIFF-Wave files. This
 requires libsndfile to be installed:
