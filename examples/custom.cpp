@@ -35,7 +35,7 @@ int main(int argc, const char *argv[]) {
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
-    std::vector<float> src(10000);
+    std::vector<float> src(Aurora::def_ftlen);
     std::size_t n = 0;
     std::size_t siz = src.size();
     for (auto &s : src) {

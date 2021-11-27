@@ -62,7 +62,7 @@ template <typename S> class TableSet {
     std::vector<std::complex<S>> blsp(fft.size() / 2);
     if (type < 0) {
       auto sp = fft.transform(src);
-      std::copy(sp, sp + tlen / 2, blsp.begin());
+      std::copy(sp, sp + blsp.size(), blsp.begin());
     } else {
       std::size_t n = 0;
       for (auto &s : blsp) {
