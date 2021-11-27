@@ -34,30 +34,6 @@
 namespace Aurora {
   const double twopi = 2*M_PI;
 
-  /** Sine function for Osc \n
-      ph: normalised phase  \n
-      returns the sine of ph*2*$M_PI
-  */
-  template<typename S> S sin(double ph) {
-    return (S) std::sin(ph*twopi);
-  }
-
-  /** Cosine function for Osc \n
-      ph: normalised phase \n
-      returns the cosine of ph*2*$M_PI
-  */
-  template<typename S> S cos(double ph) {
-    return (S) std::cos(ph*twopi);
-  }
-
-  /** Phase function for Osc \n
-      ph: normalised phase \n
-      returns ph
-  */
-  template<typename S> S phase(double ph) {
-    return (S) ph;
-  }
-
   /** Osc class  \n
       Generic oscillator \n
   */
@@ -84,7 +60,7 @@ namespace Aurora {
         fs: sampling rate \n
         vsize: signal vector size
     */
-  Osc(std::function<S(S)> f = cos<S>, S fs = (S) def_sr,
+    Osc(std::function<S(S)> f = cos<S>, S fs = (S) def_sr,
       std::size_t vsize = def_vsize) :
     SndBase<S>(vsize), ph(0.), ts(1/fs), fun(f) { };
 
@@ -156,6 +132,54 @@ namespace Aurora {
       return sig;
     }
   };
+
+    /** Table lookup function generator for Osc \n
+      t: function table  \n
+      returns a truncating lookup function
+  */
+  template<typename S> std::function<S(S)>
+    lookup_gen(const std::vector<S> &t) {
+    return [t](double ph)->S{ t[(std::size_t) (ph*t.size())]; };
+  }
+
+  /** Table lookup function generator for Osc \n
+      t: function table  \n
+      returns an interpolating lookup function
+  */
+  template<typename S> std::function<S(S)>
+    lookupi_gen(const std::vector<S> &t) {
+    return [t](double ph)->S{
+      double pos = ph*t.size();
+      size_t posi = (size_t) pos;
+      double frac = pos - posi;
+      return t[posi] + frac*((posi != t.size() ? t[posi+1] : t[0])
+                             - t[posi]);
+    };
+  }  
+ 
+  /** Sine function for Osc \n
+      ph: normalised phase  \n
+      returns the sine of ph*2*$M_PI
+  */
+  template<typename S> S sin(double ph) {
+    return (S) std::sin(ph*twopi);
+  }
+
+  /** Cosine function for Osc \n
+      ph: normalised phase \n
+      returns the cosine of ph*2*$M_PI
+  */
+  template<typename S> S cos(double ph) {
+    return (S) std::cos(ph*twopi);
+  }
+
+  /** Phase function for Osc \n
+      ph: normalised phase \n
+      returns ph
+  */
+  template<typename S> S phase(double ph) {
+    return (S) ph;
+  }
 }
 
 #endif // _AURORA_OSC_
