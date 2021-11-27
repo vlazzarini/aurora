@@ -131,8 +131,8 @@ namespace Aurora {
       w *= wp;
       for (uint32_t i = 1, j = 0; i < N/2; i++) {
         j = N - i;
-        even = .5 * (c[i] + conj(c[j]));
-        odd = .5i * (conj(c[j]) - c[i]);
+        even = S(.5) * (c[i] + conj(c[j]));
+        odd = std::complex<S>(.5i) * (conj(c[j]) - c[i]);
         c[i] = even + w * odd;
         c[j] = conj(even - w * odd);
         w *= wp;
@@ -168,8 +168,8 @@ namespace Aurora {
       int j;
       for (uint32_t i = 1; i < N/2; i++) {
         j = N - i;
-        even = .5 * (c[i] + conj(c[j]));
-        odd = .5i * (c[i] - conj(c[j]));
+        even = S(.5) * (c[i] + conj(c[j]));
+        odd = std::complex<S>(.5i) * (c[i] - conj(c[j]));
         c[i] = even + w * odd;
         c[j] = conj(even - w * odd);
         w *= wp;

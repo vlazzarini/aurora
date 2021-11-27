@@ -34,7 +34,7 @@ int main(int argc, const char* argv[]) {
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
-    std::vector<double> src(10000);
+    std::vector<float> src(10000);
     std::size_t n = 0;
     std::size_t siz = src.size();
     for(auto &s: src) {
@@ -43,8 +43,8 @@ int main(int argc, const char* argv[]) {
       else
         s = -1.;
     }
-    Aurora::TableSet<double> wave(src);
-    Aurora::BlOsc<double> osc(wave, sr);
+    Aurora::TableSet<float> wave(src);
+    Aurora::BlOsc<float> osc(wave, sr);
     for(int n = 0; n < osc.fs()*dur; n += osc.vsize()) 
      for(auto s : osc(a,f))
      std::cout << s << std::endl;

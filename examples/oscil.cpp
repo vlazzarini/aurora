@@ -27,6 +27,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "Osc.h"
+#include "Envel.h"
 
 int main(int argc, const char* argv[]) {
   if(argc > 3) {
@@ -34,11 +35,11 @@ int main(int argc, const char* argv[]) {
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
-    std::vector<double> wave(16384);
+    std::vector<float> wave(16384);
     std::size_t n = 0;
     for(auto &s:wave)
-      s = Aurora::sin<double>((1./wave.size())*n++);
-    Aurora::Osc<double> osc(Aurora::lookupi_gen(wave), sr);
+      s = Aurora::sin<float>((1./wave.size())*n++);
+    Aurora::Osc<float> osc(Aurora::lookupi_gen(wave), sr);
     for(int n = 0; n < osc.fs()*dur; n += osc.vsize()) 
        for(auto s : osc(a,f))
         std::cout << s << std::endl;
