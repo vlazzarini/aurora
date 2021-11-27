@@ -28,10 +28,7 @@
 #include "BlOsc.h"
 
 namespace Aurora {
-/**
-   Stacked FM template class
-   takes sample type
-*/
+
 template<typename S> class StackedFM {
   Osc<S> mod0; 
   Osc<S> mod1;
@@ -40,10 +37,6 @@ template<typename S> class StackedFM {
   BinOp<S> add;
 
 public:
-  /** 
-      S fs: sampling rate
-      unsigned int vsize: signal vector size
-  */
   StackedFM(S fs = (S) def_sr,
             std::size_t vsize = def_vsize) :
     mod0(cos<S>,fs,vsize),mod1(cos<S>,fs,vsize),
@@ -51,14 +44,8 @@ public:
     amp([](S a, S b)->S{ return a*b; },vsize),
     add([](S a, S b)->S{ return a+b; },vsize) { };
 
-  /**
-     returns signal vector size
-  */
   std::size_t vsize() { return car.vsize(); }
 
-  /** 
-    
-   */
   void vsize(std::size_t n) {
     mod0.vsize(n);
     mod1.vsize(n);
@@ -66,22 +53,9 @@ public:
     amp.vsize(n);
     add.vsize(n);
   }
-  /**
-     returns sampling rate
-  */
+
   S fs() { return car.fs();}
-
-  /**
-     audio synthesis method
-     S a: signal amplitude
-     S fc: carrier freq
-     S fm0: zero-level fm
-     S fm1: first-level fm
-     S z0: zero-level mod index
-     S z1: first-level mod index
-
-     returns the audio signal vector
-  */
+  
   const std::vector<S> &operator()(S a, S fc, S fm0, S fm1,
                               S z0, S z1) {
     auto s0 = add(fm1, mod0(z0*fm0,fm0));
