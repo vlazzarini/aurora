@@ -64,7 +64,6 @@ namespace Aurora {
       std::size_t vsize = def_vsize) :
     SndBase<S>(vsize), ph(0.), ts(1/fs), fun(f) { };
 
-
     virtual ~Osc() { };
 
     /** Sampling rate query \n
@@ -139,7 +138,7 @@ namespace Aurora {
   */
   template<typename S> std::function<S(S)>
     lookup_gen(const std::vector<S> &t) {
-    return [t](double ph)->S{ t[(std::size_t) (ph*t.size())]; };
+    return [t](double ph)->S{ return t[(std::size_t)(ph*t.size())]; };
   }
 
   /** Table lookup function generator for Osc \n
@@ -152,8 +151,7 @@ namespace Aurora {
       double pos = ph*t.size();
       size_t posi = (size_t) pos;
       double frac = pos - posi;
-      return t[posi] + frac*((posi != t.size() ? t[posi+1] : t[0])
-                             - t[posi]);
+      return t[posi] + frac*((posi != t.size() ? t[posi+1] : t[0]) - t[posi]);
     };
   }  
  
