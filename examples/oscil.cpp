@@ -50,8 +50,7 @@ struct Synth {
 
   const std::vector<float> &operator()(float a, float f, bool gate) {
     return env(osc(a, f), gate);
-  }
-       
+  }     
 };
 
 int main(int argc, const char *argv[]) {
