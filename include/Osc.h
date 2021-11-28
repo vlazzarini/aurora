@@ -172,7 +172,7 @@ public:
     return sig;
   }
 
-  void wave(std::function<S(S)> f) { fun = f; }
+  void func(std::function<S(S)> f) { fun = f; }
   
 };
 } // namespace Aurora
