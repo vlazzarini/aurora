@@ -146,10 +146,10 @@ public:
 template <typename S> class BlOsc : public Osc<S> {
   using Osc<S>::ph;
   using Osc<S>::ts;
-  const TableSet<S> &tset;
+  const TableSet<S> *tset;
 
   virtual S synth(S a, S f, double &phs) {
-    const std::vector<S> &t = tset.select(f);
+    const std::vector<S> &t = tset->select(f);
     size_t len = t.size();
     size_t posi = (size_t)phs;
     double frac = phs - posi;
@@ -168,13 +168,13 @@ public:
       fs: sampling rate \n
       vsize: vector size
   */
-  BlOsc(const TableSet<S> &t, S fs = (S)def_sr, std::size_t vsize = def_vsize)
+  BlOsc(const TableSet<S> *t, S fs = (S)def_sr, std::size_t vsize = def_vsize)
       : Osc<S>(nullptr, fs, vsize), tset(t){};
 
   /** Change the wavetable set
       t: wavetable set
    */
-  void waveset(const TableSet<S> &t) { tset = t; }
+  void waveset(const TableSet<S> *t) { tset = t; }
 };
 } // namespace Aurora
 

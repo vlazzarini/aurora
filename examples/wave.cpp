@@ -37,7 +37,7 @@ int main(int argc, const char *argv[]) {
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
     Aurora::TableSet<double> wave(ty);
-    Aurora::BlOsc<double> osc(wave, sr);
+    Aurora::BlOsc<double> osc(&wave, sr);
     osc(a, f);
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
       for (auto s : osc(a, f))
