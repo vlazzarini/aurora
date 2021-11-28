@@ -124,7 +124,7 @@ public:
       fs: sampling rate for which these will be built 
   */
  TableSet(const std::vector<S> &src, S b = def_base, std::size_t octs = def_octs, S fs = def_sr)
-   : tlen(src.size()), waves(octs, std::vector<S>(src.size())), base(b) {
+   : tlen(src.size()), waves(octs, std::vector<S>(src.size())), base(1/(b*tlen/fs)) {
     fourier(src, fs);
   }
 

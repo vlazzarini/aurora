@@ -26,31 +26,22 @@
 // POSSIBILITY OF SUCH DAMAGE
 
 #include "BlOsc.h"
+#include "flute.h"
 #include <cstdlib>
 #include <iostream>
 
 int main(int argc, const char *argv[]) {
   if (argc > 3) {
-    double sr = argc > 4 ? std::atof(argv[4]) : Aurora::def_sr;
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
-    auto f = std::atof(argv[3]);
-    std::vector<float> src(Aurora::def_ftlen);
-    std::size_t n = 0;
-    std::size_t siz = src.size();
-    for (auto &s : src) {
-      if (n < siz / 4)
-        s = 1. - (8. / siz) * n++;
-      else
-        s = -1.;
-    }
-    Aurora::TableSet<float> wave(src,Aurora::def_base,Aurora::def_octs,sr);
-    Aurora::BlOsc<float> osc(wave, sr);
+    auto f = std::atof(argv[3])*flute::ratio;   
+    Aurora::TableSet<float> wave(flute::wave,flute::base,8);
+    Aurora::BlOsc<float> osc(wave);
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
       for (auto s : osc(a, f))
         std::cout << s << std::endl;
   } else
-    std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz) [type] [sr]"
+    std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz)"
               << std::endl;
   return 0;
 }
