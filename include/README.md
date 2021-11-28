@@ -1,4 +1,4 @@
-Aurora headers
+Aurora Headers
 =============
 
 **SndBase.h**: base class and utilities

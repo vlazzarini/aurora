@@ -1,4 +1,4 @@
-Utility programs
+Utility Programs
 =================
 These utilities require libsndfile.
 
