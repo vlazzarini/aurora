@@ -35,8 +35,8 @@
 
 namespace Aurora {
 enum { SAW = 0, SQUARE, TRIANGLE, PULSE };
-const int octs = 10;
-const double base = 20;
+const int def_octs = 14;
+const double def_base = 1.f;
 const int def_ftlen = 16384;
 
 /** TableSet class \n
@@ -45,6 +45,7 @@ const int def_ftlen = 16384;
 template <typename S> class TableSet {
   std::size_t tlen;
   std::vector<std::vector<S>> waves;
+  S base;
 
   void norm(std::vector<S> &wave) {
     S max = 0.;
@@ -74,7 +75,8 @@ template <typename S> class TableSet {
     }
     for (auto &wave : waves) {
       double fr = base * std::pow(2, k++);
-      nh = fs / (2 * fr) + 1;
+      if (fr > fs/2) nh = 2; 
+      else nh = fs / (2 * fr) + 1;
       std::fill(blsp.begin() + nh, blsp.end(), std::complex<S>(0, 0));
       auto wv = fft.transform(blsp);
       std::copy(wv, wv + tlen, wave.begin());
@@ -89,7 +91,7 @@ public:
       len: table length
   */
   TableSet(uint32_t type, S fs = def_sr, std::size_t len = def_ftlen)
-      : tlen(len), waves(octs, std::vector<S>(len)) {
+    : tlen(len), waves(def_octs, std::vector<S>(len)), base((S)def_base) {
 
     std::vector<S> src(tlen / 2);
     std::size_t n = 0;
@@ -117,11 +119,12 @@ public:
 
   /** Constructor \n
       src: source wave table \n
-      fs: sampling rate for which these will be built \n
-      len: table length
+      b: base frequency for wavetables \n
+      octs: number of octaves to generate \n
+      fs: sampling rate for which these will be built 
   */
-  TableSet(const std::vector<S> &src, S fs = def_sr)
-      : tlen(src.size()), waves(octs, std::vector<S>(src.size())) {
+ TableSet(const std::vector<S> &src, S b = def_base, std::size_t octs = def_octs, S fs = def_sr)
+   : tlen(src.size()), waves(octs, std::vector<S>(src.size())), base(b) {
     fourier(src, fs);
   }
 

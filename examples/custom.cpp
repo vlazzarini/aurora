@@ -44,7 +44,7 @@ int main(int argc, const char *argv[]) {
       else
         s = -1.;
     }
-    Aurora::TableSet<float> wave(src);
+    Aurora::TableSet<float> wave(src,Aurora::def_base,Aurora::def_octs,sr);
     Aurora::BlOsc<float> osc(wave, sr);
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
       for (auto s : osc(a, f))
