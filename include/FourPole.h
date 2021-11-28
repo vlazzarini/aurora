@@ -1,5 +1,5 @@
-// wave.cpp:
-// Bandlimited waveform generation example
+// FourPole.h:
+// 4-pole lowpass resonating filter
 //
 // (c) V Lazzarini, 2021
 //
@@ -23,26 +23,74 @@
 // INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGE
 
-#include "BlOsc.h"
-#include <cstdlib>
-#include <iostream>
 
-int main(int argc, const char *argv[]) {
-  if (argc > 3) {
-    double sr = argc > 5 ? std::atof(argv[5]) : Aurora::def_sr;
-    uint32_t ty = argc > 4 ? std::atoi(argv[4]) : Aurora::SAW;
-    auto dur = std::atof(argv[1]);
-    auto a = std::atof(argv[2]);
-    auto f = std::atof(argv[3]);
-    Aurora::TableSet<double> wave(ty);
-    Aurora::BlOsc<double> osc(&wave, sr);
-    for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
-      for (auto s :  osc(a, f))
-        std::cout << s << std::endl;
-  } else
-    std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz) [type] [sr]"
-              << std::endl;
-  return 0;
+#include <cmath>
+#include "SndBase.h"
+
+namespace Aurora {
+
+
+/** FourPole class  \n
+    4-pole lowpass filter
+*/  
+template<typename S>
+class FourPole : public SndBase<S> {
+  using SndBase<S>::sig;
+  double D[4];
+  double A, G[4];
+  S ff;
+  double piosr;
+
+  S filter(S s, double *d, double *g, double a, S k) {
+    S o, u, w;
+    S ss = d[3];
+    for(int j = 0; j < 3; j++) ss += d[j]*g[2-j];
+    o = (g[3]*s + ss)/(1 - k*g[3]);
+    u = g[0]*(s - k*o);
+    for(int j = 0; j < 3; j++) {
+      w = d[j] + u;
+      d[j] = u - a*w;
+      u = g[0]*w;
+    }
+    d[3] = g[0]*w - a*o;
+    return o;
+  }
+
+  void coeffs(S f) {
+    S g;
+    ff = f;
+    g = std::tan(f*piosr);
+    G[0] = g/(1+g);
+    A = A = (g-1)/(1+g);
+    G[1] = G[0]*G[0]; 
+    G[2] = G[0]*G[1]; 
+    G[3] = G[0]*G[2]; 
+  }
+    
+ public:
+
+ /** Constructor
+  sr: sampling rate
+  vsize: vector size
+ */
+ FourPole(S sr = def_sr, int vsize = def_vsize) :
+  SndBase<S>(vsize), piosr(M_PI/sr) { };
+
+  /** Filter
+     in: input
+     f: cutoff frequency
+     r: resonance (0-1)
+  */
+  const std::vector<S> &operator()(const std::vector<S> &in, S f, S r) {
+    if(f != ff) coeffs(f);
+    double *g = G, *d = D, a = A;
+    std::size_t n = 0;
+    r *= 4;
+    for(auto &s:sig) {
+      s = filter(in[n++],d,g,a,r);      
+    }
+    return sig;
+  }
+};
 }

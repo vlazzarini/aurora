@@ -1,5 +1,5 @@
-// wave.cpp:
-// Bandlimited waveform generation example
+// lpwave.cpp:
+// Low pass filter example
 //
 // (c) V Lazzarini, 2021
 //
@@ -26,23 +26,26 @@
 // POSSIBILITY OF SUCH DAMAGE
 
 #include "BlOsc.h"
+#include "FourPole.h"
 #include <cstdlib>
 #include <iostream>
 
 int main(int argc, const char *argv[]) {
-  if (argc > 3) {
-    double sr = argc > 5 ? std::atof(argv[5]) : Aurora::def_sr;
-    uint32_t ty = argc > 4 ? std::atoi(argv[4]) : Aurora::SAW;
+  if (argc > 5) {
+    double sr = argc > 6 ? std::atof(argv[6]) : Aurora::def_sr;
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
-    Aurora::TableSet<double> wave(ty);
+    auto cf = std::atof(argv[4]);
+    auto res = std::atof(argv[5]);
+    Aurora::TableSet<double> wave(Aurora::SAW);
     Aurora::BlOsc<double> osc(&wave, sr);
+    Aurora::FourPole<double> fil(sr);
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
-      for (auto s :  osc(a, f))
+      for (auto s : fil(osc(a, f),cf,res))
         std::cout << s << std::endl;
   } else
-    std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz) [type] [sr]"
+    std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz) cutoff(Hz) res [sr]"
               << std::endl;
   return 0;
 }
