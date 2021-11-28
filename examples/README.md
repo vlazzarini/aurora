@@ -13,17 +13,4 @@ c++ -o example example.cpp -I../include -std=c++14
 **oscil.cpp**: table lookup oscillator and envelope
 **lpwave.cpp**: lowpass filter, bandlimited oscillator, and envelope  
 
-In addition, there is a utility to convert from ASCII samples to RIFF-Wave files. This
-requires libsndfile to be installed:
-
-```
-cc -o towav towav.c -lsndfile
-```
-
-With this, it is possible to produce a soundfile by piping the standard
-output of the example programs, e.g.
-
-```
-./wave 1 1 120 | ./towav out.wav
-```
 
