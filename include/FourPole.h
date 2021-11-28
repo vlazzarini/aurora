@@ -92,5 +92,21 @@ class FourPole : public SndBase<S> {
     }
     return sig;
   }
+
+    /** Filter
+     in: input
+     f: cutoff frequency
+     r: resonance (0-1)
+  */
+  const std::vector<S> &operator()(const std::vector<S> &in, const std::vector<S> &f, S r) {
+    double *g = G, *d = D, a = A;
+    std::size_t n = 0;
+    r *= 4;
+    for(auto &s:sig) {
+      if(f[n] != ff) coeffs(f[n]);
+      s = filter(in[n++],d,g,a,r);      
+    }
+    return sig;
+  }
 };
 }

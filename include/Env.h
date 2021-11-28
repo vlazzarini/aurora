@@ -108,6 +108,24 @@ public:
   }
 
   /** Envelope \n
+      offs: sig offset
+      scal: sig scale
+      gate: envelope gate
+   */
+  const std::vector<S> &operator()(S offs, S scal, bool gate) {
+    double t = time;
+    S e = prev;
+    for (auto &s : sig) {
+      e = synth(e, t, gate);
+      s = e*scal + offs;
+    }
+    prev = e;
+    time = t;
+    return sig;
+  }
+
+  
+  /** Envelope \n
       a: input signal
       gate: envelope gate
    */

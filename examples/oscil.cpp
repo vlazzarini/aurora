@@ -61,12 +61,7 @@ int main(int argc, const char *argv[]) {
     auto f = std::atof(argv[3]);
     float rel = 0.1;
     Synth synth(rel, sr);
-    bool gate = 1;
-
-    // for (auto s : synth.wave) {
-    //std::cout << s << std::endl;
-    //}
-    
+    bool gate = 1;    
     for (int n = 0; n < sr * dur; n += def_vsize) {
       if (n > sr*(dur-rel))
         gate = 0;
