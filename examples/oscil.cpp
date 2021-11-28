@@ -39,7 +39,7 @@ struct Synth {
   Synth(std::vector<float> &w, float rt, float sr) :
     att(0.1f), dec(0.3f), sus(0.7f),
     env(ads_gen(att, dec, sus),rt,sr),
-    osc(Aurora::lookupi_gen(w), sr) { };
+    osc(lookupi_gen(w), sr) { };
 
   const std::vector<float> &operator()(float a, float f, bool gate) {
     return env(osc(a, f), gate);
