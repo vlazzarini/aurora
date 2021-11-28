@@ -6,3 +6,6 @@ Aurora headers
 **BlOsc.h**: bandlimited oscillator
 **Env.h**: generic envelope and function templates  
 **FFT.h**: fast-fourier transform  
+**FourPole.h**: four-pole lowpass filter
+
+
