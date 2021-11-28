@@ -25,6 +25,9 @@ Inherited by \fBAurora::BinOp< S >\fP, \fBAurora::Env< S >\fP, \fBAurora::FourPo
 .ti -1c
 .RI "const std::vector< S > & \fBvector\fP ()"
 .br
+.ti -1c
+.RI "void \fBprealloc\fP (std::size_t size)"
+.br
 .in -1c
 .SS "Protected Attributes"
 
@@ -50,6 +53,12 @@ Constructor
 vsize: signal vector size 
 .SH "Member Function Documentation"
 .PP 
+.SS "template<typename S > void \fBAurora::SndBase\fP< S >::prealloc (std::size_t size)\fC [inline]\fP"
+Preallocate vector memory 
+.br
+size: size of vector to reserve in memory 
+.br
+this method does not change the vector size\&. 
 .SS "template<typename S > const std::vector<S>& \fBAurora::SndBase\fP< S >::vector ()\fC [inline]\fP"
 Vector access 
 .br

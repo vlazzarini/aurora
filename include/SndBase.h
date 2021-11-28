@@ -64,6 +64,12 @@ public:
       returns the object vector
   */
   const std::vector<S> &vector() { return sig; }
+
+  /** Preallocate vector memory \n
+      size: size of vector to reserve in memory \n
+      this method does not change the vector size.
+  */
+  void prealloc(std::size_t size) { sig.reserve(size); }
 };
 
 /** BinOp class \n
