@@ -30,9 +30,26 @@
 #include <cstdlib>
 #include <iostream>
 
+using namespace Aurora;
+struct Synth {
+  float att, dec, sus;
+  Env<float> env;
+  Osc<float> osc;
+
+  Synth(std::vector<float> &w, float rt, float sr) :
+    att(0.1f), dec(0.3f), sus(0.7f),
+    env(ads_gen(att, dec, sus),rt,sr),
+    osc(Aurora::lookupi_gen(w), sr) { };
+
+  const std::vector<float> &operator()(float a, float f, bool gate) {
+    return env(osc(a, f), gate);
+  }
+       
+};
+
 int main(int argc, const char *argv[]) {
   if (argc > 3) {
-    double sr = argc > 4 ? std::atof(argv[4]) : Aurora::def_sr;
+    double sr = argc > 4 ? std::atof(argv[4]) :def_sr;
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
@@ -40,14 +57,13 @@ int main(int argc, const char *argv[]) {
     std::size_t n = 0;
     for (auto &s : wave)
       s = Aurora::sin<float>((1. / wave.size()) * n++);
-    float att = 0.1f, dec = 0.3f, sus = 0.7f, rel = 0.1f;
-    Aurora::Env<float> env(Aurora::ads_gen(att, dec, sus), rel, sr);
-    Aurora::Osc<float> osc(Aurora::lookupi_gen(wave), sr);
+    float rel = 0.1;
+    Synth synth(wave, rel, sr);
     bool gate = 1;
-    for (int n = 0; n < osc.fs() * dur; n += osc.vsize()) {
-      if (n > osc.fs() * (dur - rel))
+    for (int n = 0; n < sr * dur; n += def_vsize) {
+      if (n > sr * (dur - rel))
         gate = 0;
-      for (auto s : env(osc(a, f), gate))
+      for (auto s : synth(a,f,gate))
         std::cout << s << std::endl;
     }
   } else
