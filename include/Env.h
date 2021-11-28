@@ -69,7 +69,7 @@ template <typename S> class Env : public SndBase<S> {
       t += ts;
     } else {
       if (e < 0.00001)
-        e = 0;
+        s = 0;
       else
         s = e * fac;
       t = 0;

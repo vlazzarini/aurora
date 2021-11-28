@@ -61,7 +61,7 @@ int main(int argc, const char *argv[]) {
     Synth synth(wave, rel, sr);
     bool gate = 1;
     for (int n = 0; n < sr * dur; n += def_vsize) {
-      if (n > sr * (dur - rel))
+      if (n > sr )
         gate = 0;
       for (auto s : synth(a,f,gate))
         std::cout << s << std::endl;
