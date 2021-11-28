@@ -171,7 +171,7 @@ public:
   BlOsc(const TableSet<S> &t, S fs = (S)def_sr, std::size_t vsize = def_vsize)
       : Osc<S>(nullptr, fs, vsize), tset(t){};
 
-  void waveset(const TableSet &t) { tset = t; }
+  void waveset(const TableSet<S> &t) { tset = t; }
 };
 } // namespace Aurora
 
