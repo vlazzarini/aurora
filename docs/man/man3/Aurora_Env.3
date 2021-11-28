@@ -1,0 +1,73 @@
+.TH "Aurora::Env< S >" 3 "Sun Nov 28 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::Env< S >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Env\&.h>\fP
+.PP
+Inherits \fBAurora::SndBase< S >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEnv\fP (std::function< S(double, S, S)> f, S rt, S fs=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "void \fBrelease\fP (S rt)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (bool gate)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (S offs, S scal, bool gate)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &a, bool gate)"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S>
+.br
+class Aurora::Env< S >"
+\fBEnv\fP class 
+.br
+Generic envelope 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S > \fBAurora::Env\fP< S >::\fBEnv\fP (std::function< S(double, S, S)> f, S rt, S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+f: envelope function 
+.br
+rt: release time 
+.br
+fs: sampling rate 
+.br
+vsize: signal vector size 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Env\fP< S >::operator() (bool gate)\fC [inline]\fP"
+Envelope 
+.br
+gate: envelope gate 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Env\fP< S >::operator() (S offs, S scal, bool gate)\fC [inline]\fP"
+Envelope 
+.br
+offs: sig offset scal: sig scale gate: envelope gate 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Env\fP< S >::operator() (const std::vector< S > & a, bool gate)\fC [inline]\fP"
+Envelope 
+.br
+a: input signal gate: envelope gate 
+.SS "template<typename S > void \fBAurora::Env\fP< S >::release (S rt)\fC [inline]\fP"
+Release time setter rt: release time 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

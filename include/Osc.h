@@ -52,7 +52,8 @@ template <typename S> std::function<S(S)> lookupi_gen(const std::vector<S> &t) {
     double pos = ph * t.size();
     size_t posi = (size_t)pos;
     double frac = pos - posi;
-    return t[posi] + frac * ((posi != t.size()-1 ? t[posi + 1] : t[0]) - t[posi]);
+    return t[posi] +
+           frac * ((posi != t.size() - 1 ? t[posi + 1] : t[0]) - t[posi]);
   };
 }
 
@@ -176,7 +177,6 @@ public:
      f: oscillator function to be used
   */
   void func(std::function<S(S)> f) { fun = f; }
-  
 };
 } // namespace Aurora
 

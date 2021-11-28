@@ -1,0 +1,123 @@
+.TH "Aurora::Osc< S >" 3 "Sun Nov 28 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::Osc< S >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Osc\&.h>\fP
+.PP
+Inherits \fBAurora::SndBase< S >\fP\&.
+.PP
+Inherited by \fBAurora::BlOsc< S >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBOsc\fP (std::function< S(S)> f=\fBcos\fP< S >, S \fBfs\fP=(S) \fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "virtual \fB~Osc\fP ()"
+.br
+.ti -1c
+.RI "S \fBfs\fP ()"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (S a, S f)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (S a, const std::vector< S > &fm)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &am, S f)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &am, const std::vector< S > &fm)"
+.br
+.ti -1c
+.RI "void \fBfunc\fP (std::function< S(S)> f)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBph\fP"
+.br
+.ti -1c
+.RI "S \fBts\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S>
+.br
+class Aurora::Osc< S >"
+\fBOsc\fP class 
+.br
+Generic oscillator 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S > \fBAurora::Osc\fP< S >::\fBOsc\fP (std::function< S(S)> f = \fC\fBcos\fP<S>\fP, S fs = \fC(S)\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+f: oscillator function 
+.br
+fs: sampling rate 
+.br
+vsize: signal vector size 
+.SS "template<typename S > virtual \fBAurora::Osc\fP< S >::~\fBOsc\fP ()\fC [inline]\fP, \fC [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S > S \fBAurora::Osc\fP< S >::fs ()\fC [inline]\fP"
+Sampling rate query 
+.br
+returns sampling rate 
+.SS "template<typename S > void \fBAurora::Osc\fP< S >::func (std::function< S(S)> f)\fC [inline]\fP"
+set the oscillator function f: oscillator function to be used 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Osc\fP< S >::operator() (S a, S f)\fC [inline]\fP"
+Oscillator 
+.br
+a: scalar amplitude 
+.br
+f: scalar frequency 
+.br
+returns reference to object signal vector 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Osc\fP< S >::operator() (S a, const std::vector< S > & fm)\fC [inline]\fP"
+Oscillator 
+.br
+a: scalar amplitude 
+.br
+fm: frequency signal 
+.br
+returns reference to object signal vector 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Osc\fP< S >::operator() (const std::vector< S > & am, S f)\fC [inline]\fP"
+Oscillator 
+.br
+am: amplitude signal 
+.br
+f: scalar frequency 
+.br
+returns reference to object signal vector 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Osc\fP< S >::operator() (const std::vector< S > & am, const std::vector< S > & fm)\fC [inline]\fP"
+Oscillator 
+.br
+am: amplitude signal 
+.br
+fm: frequency signal 
+.br
+returns reference to object signal vector 
+.SH "Member Data Documentation"
+.PP 
+.SS "template<typename S > double \fBAurora::Osc\fP< S >::ph\fC [protected]\fP"
+
+.SS "template<typename S > S \fBAurora::Osc\fP< S >::ts\fC [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

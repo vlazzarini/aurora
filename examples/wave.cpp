@@ -39,7 +39,7 @@ int main(int argc, const char *argv[]) {
     Aurora::TableSet<double> wave(ty);
     Aurora::BlOsc<double> osc(&wave, sr);
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
-      for (auto s :  osc(a, f))
+      for (auto s : osc(a, f))
         std::cout << s << std::endl;
   } else
     std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz) [type] [sr]"

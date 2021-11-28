@@ -117,14 +117,13 @@ public:
     S e = prev;
     for (auto &s : sig) {
       e = synth(e, t, gate);
-      s = e*scal + offs;
+      s = e * scal + offs;
     }
     prev = e;
     time = t;
     return sig;
   }
 
-  
   /** Envelope \n
       a: input signal
       gate: envelope gate

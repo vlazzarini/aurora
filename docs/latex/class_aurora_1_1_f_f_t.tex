@@ -1,0 +1,80 @@
+\hypertarget{class_aurora_1_1_f_f_t}{}\section{Aurora\+:\+:F\+FT$<$ S $>$ Class Template Reference}
+\label{class_aurora_1_1_f_f_t}\index{Aurora\+::\+F\+F\+T$<$ S $>$@{Aurora\+::\+F\+F\+T$<$ S $>$}}
+
+
+{\ttfamily \#include $<$F\+F\+T.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_aurora_1_1_f_f_t_ab98366f22f4fde5a1b0e32445eedcf3c}{F\+FT} (std\+::size\+\_\+t N, bool packed=true)
+\item 
+std\+::size\+\_\+t \hyperlink{class_aurora_1_1_f_f_t_ad0149c60672d3f4e64850dde22f5b163}{size} ()
+\item 
+void \hyperlink{class_aurora_1_1_f_f_t_a8325de64c8b9f208ed0bc8db3f74e4c7}{transform} (std\+::vector$<$ std\+::complex$<$ S $>$$>$ \&s, bool dir)
+\item 
+const std\+::complex$<$ S $>$ $\ast$ \hyperlink{class_aurora_1_1_f_f_t_a51ed1e25953c12b7f4cc145d19ee5cd8}{transform} (const std\+::vector$<$ S $>$ \&r)
+\item 
+const S $\ast$ \hyperlink{class_aurora_1_1_f_f_t_aa0912d8abdeb15ff84d82a5cc59cb150}{transform} (const std\+::vector$<$ std\+::complex$<$ S $>$$>$ \&sp, bool pckd=true)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename S$>$\newline
+class Aurora\+::\+F\+F\+T$<$ S $>$}
+
+\hyperlink{class_aurora_1_1_f_f_t}{F\+FT} class ~\newline
+Radix-\/2 fast Fourier transform 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_f_f_t_ab98366f22f4fde5a1b0e32445eedcf3c}\label{class_aurora_1_1_f_f_t_ab98366f22f4fde5a1b0e32445eedcf3c}} 
+\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!F\+FT@{F\+FT}}
+\index{F\+FT@{F\+FT}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
+\subsubsection{\texorpdfstring{F\+F\+T()}{FFT()}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::\hyperlink{class_aurora_1_1_f_f_t}{F\+FT} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{N,  }\item[{bool}]{packed = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor ~\newline
+N\+: transform size ~\newline
+packed\+: complex data format in packed form (true) or not 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_f_f_t_ad0149c60672d3f4e64850dde22f5b163}\label{class_aurora_1_1_f_f_t_ad0149c60672d3f4e64850dde22f5b163}} 
+\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!size@{size}}
+\index{size@{size}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+std\+::size\+\_\+t \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_aurora_1_1_f_f_t_a8325de64c8b9f208ed0bc8db3f74e4c7}\label{class_aurora_1_1_f_f_t_a8325de64c8b9f208ed0bc8db3f74e4c7}} 
+\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!transform@{transform}}
+\index{transform@{transform}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
+\subsubsection{\texorpdfstring{transform()}{transform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+void \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::transform (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::complex$<$ S $>$$>$ \&}]{s,  }\item[{bool}]{dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+In-\/place complex-\/to-\/complex \hyperlink{class_aurora_1_1_f_f_t}{F\+FT} ~\newline
+data\+: data to be transformed ~\newline
+dir\+: true for forward operation, false for inverse ~\newline
+pckd\+: true for packed data (first point is DC,Nyq) Size of data is expected to be a power-\/of-\/two. \mbox{\Hypertarget{class_aurora_1_1_f_f_t_a51ed1e25953c12b7f4cc145d19ee5cd8}\label{class_aurora_1_1_f_f_t_a51ed1e25953c12b7f4cc145d19ee5cd8}} 
+\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!transform@{transform}}
+\index{transform@{transform}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
+\subsubsection{\texorpdfstring{transform()}{transform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+const std\+::complex$<$S$>$$\ast$ \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::transform (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Real-\/to-\/complex forward \hyperlink{class_aurora_1_1_f_f_t}{F\+FT} ~\newline
+r\+: input vector (real) returns pointer to complex data containing the transform \mbox{\Hypertarget{class_aurora_1_1_f_f_t_aa0912d8abdeb15ff84d82a5cc59cb150}\label{class_aurora_1_1_f_f_t_aa0912d8abdeb15ff84d82a5cc59cb150}} 
+\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!transform@{transform}}
+\index{transform@{transform}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
+\subsubsection{\texorpdfstring{transform()}{transform()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+const S$\ast$ \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::transform (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::complex$<$ S $>$$>$ \&}]{sp,  }\item[{bool}]{pckd = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Complex-\/to-\/real inverse \hyperlink{class_aurora_1_1_f_f_t}{F\+FT} ~\newline
+sp -\/ input vector (complex) ~\newline
+returns pointer to real data containing the transform 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_f_f_t_8h}{F\+F\+T.\+h}\end{DoxyCompactItemize}

@@ -37,35 +37,33 @@ struct Synth {
   Env<float> env;
   Osc<float> osc;
 
-  Synth(float rt, float sr) :
-    att(0.1f), dec(0.3f), sus(0.7f),
-    wave(def_vsize),
-    env(ads_gen(att, dec, sus),rt,sr),
-    osc(lookupi_gen(wave),sr) {
-     std::size_t n = 0;
-     for (auto &s : wave) {
+  Synth(float rt, float sr)
+      : att(0.1f), dec(0.3f), sus(0.7f), wave(def_vsize),
+        env(ads_gen(att, dec, sus), rt, sr), osc(lookupi_gen(wave), sr) {
+    std::size_t n = 0;
+    for (auto &s : wave) {
       s = sin<float>((1. / wave.size()) * n++);
-     }
-    };
+    }
+  };
 
   const std::vector<float> &operator()(float a, float f, bool gate) {
     return env(osc(a, f), gate);
-  }     
+  }
 };
 
 int main(int argc, const char *argv[]) {
   if (argc > 3) {
-    double sr = argc > 4 ? std::atof(argv[4]) :def_sr;
+    double sr = argc > 4 ? std::atof(argv[4]) : def_sr;
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
     float rel = 0.1;
     Synth synth(rel, sr);
-    bool gate = 1;    
+    bool gate = 1;
     for (int n = 0; n < sr * dur; n += def_vsize) {
-      if (n > sr*(dur-rel))
+      if (n > sr * (dur - rel))
         gate = 0;
-      for (auto s : synth(a,f,gate))
+      for (auto s : synth(a, f, gate))
         std::cout << s << std::endl;
     }
   } else

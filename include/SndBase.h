@@ -1,5 +1,5 @@
-// SndBase.h
-// Base class
+// SndBase.h \n
+// Base class and
 // Binary operations
 //
 // (c) V Lazzarini, 2021

@@ -1,0 +1,62 @@
+.TH "Aurora::TableSet< S >" 3 "Sun Nov 28 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::TableSet< S >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <BlOsc\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTableSet\fP (uint32_t type, S fs=\fBdef_sr\fP, std::size_t len=\fBdef_ftlen\fP)"
+.br
+.ti -1c
+.RI "\fBTableSet\fP (const std::vector< S > &src, S b=\fBdef_base\fP, S fs=\fBdef_sr\fP)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBselect\fP (S f) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S>
+.br
+class Aurora::TableSet< S >"
+\fBTableSet\fP class 
+.br
+Creates a set of tables for \fBBlOsc\fP\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S> \fBAurora::TableSet\fP< S >::\fBTableSet\fP (uint32_t type, S fs = \fC\fBdef_sr\fP\fP, std::size_t len = \fC\fBdef_ftlen\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+type: wave type (SAW, SQUARE, TRIANGLE, PULSE) 
+.br
+fs: sampling rate for which these will be built 
+.br
+len: table length 
+.SS "template<typename S> \fBAurora::TableSet\fP< S >::\fBTableSet\fP (const std::vector< S > & src, S b = \fC\fBdef_base\fP\fP, S fs = \fC\fBdef_sr\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+src: source wave table 
+.br
+b: base frequency for wavetables 
+.br
+octs: number of octaves to generate 
+.br
+fs: sampling rate for which these will be built 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S> const std::vector<S>& \fBAurora::TableSet\fP< S >::select (S f) const\fC [inline]\fP"
+Table selection 
+.br
+f: fundamental frequency used for playback 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

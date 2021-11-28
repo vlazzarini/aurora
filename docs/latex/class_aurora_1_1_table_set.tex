@@ -1,0 +1,62 @@
+\hypertarget{class_aurora_1_1_table_set}{}\section{Aurora\+:\+:Table\+Set$<$ S $>$ Class Template Reference}
+\label{class_aurora_1_1_table_set}\index{Aurora\+::\+Table\+Set$<$ S $>$@{Aurora\+::\+Table\+Set$<$ S $>$}}
+
+
+{\ttfamily \#include $<$Bl\+Osc.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_aurora_1_1_table_set_a0be4528b972606335d73ac312da6337b}{Table\+Set} (uint32\+\_\+t type, S fs=\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}, std\+::size\+\_\+t len=\hyperlink{namespace_aurora_a14dabfd9feedfa09c0e6f86d2627f006}{def\+\_\+ftlen})
+\item 
+\hyperlink{class_aurora_1_1_table_set_a884ecfde480fdac4c32fa10a82286941}{Table\+Set} (const std\+::vector$<$ S $>$ \&src, S b=\hyperlink{namespace_aurora_acb267dff62f74484893c2d5b679b78bf}{def\+\_\+base}, S fs=\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr})
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_table_set_a886edb5453f4e4761f1d6aed7d998da2}{select} (S f) const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename S$>$\newline
+class Aurora\+::\+Table\+Set$<$ S $>$}
+
+\hyperlink{class_aurora_1_1_table_set}{Table\+Set} class ~\newline
+Creates a set of tables for \hyperlink{class_aurora_1_1_bl_osc}{Bl\+Osc}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_table_set_a0be4528b972606335d73ac312da6337b}\label{class_aurora_1_1_table_set_a0be4528b972606335d73ac312da6337b}} 
+\index{Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}!Table\+Set@{Table\+Set}}
+\index{Table\+Set@{Table\+Set}!Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}}
+\subsubsection{\texorpdfstring{Table\+Set()}{TableSet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+\hyperlink{class_aurora_1_1_table_set}{Aurora\+::\+Table\+Set}$<$ S $>$\+::\hyperlink{class_aurora_1_1_table_set}{Table\+Set} (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{type,  }\item[{S}]{fs = {\ttfamily \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}},  }\item[{std\+::size\+\_\+t}]{len = {\ttfamily \hyperlink{namespace_aurora_a14dabfd9feedfa09c0e6f86d2627f006}{def\+\_\+ftlen}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor ~\newline
+type\+: wave type (S\+AW, S\+Q\+U\+A\+RE, T\+R\+I\+A\+N\+G\+LE, P\+U\+L\+SE) ~\newline
+fs\+: sampling rate for which these will be built ~\newline
+len\+: table length \mbox{\Hypertarget{class_aurora_1_1_table_set_a884ecfde480fdac4c32fa10a82286941}\label{class_aurora_1_1_table_set_a884ecfde480fdac4c32fa10a82286941}} 
+\index{Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}!Table\+Set@{Table\+Set}}
+\index{Table\+Set@{Table\+Set}!Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}}
+\subsubsection{\texorpdfstring{Table\+Set()}{TableSet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+\hyperlink{class_aurora_1_1_table_set}{Aurora\+::\+Table\+Set}$<$ S $>$\+::\hyperlink{class_aurora_1_1_table_set}{Table\+Set} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{src,  }\item[{S}]{b = {\ttfamily \hyperlink{namespace_aurora_acb267dff62f74484893c2d5b679b78bf}{def\+\_\+base}},  }\item[{S}]{fs = {\ttfamily \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor ~\newline
+src\+: source wave table ~\newline
+b\+: base frequency for wavetables ~\newline
+octs\+: number of octaves to generate ~\newline
+fs\+: sampling rate for which these will be built 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_table_set_a886edb5453f4e4761f1d6aed7d998da2}\label{class_aurora_1_1_table_set_a886edb5453f4e4761f1d6aed7d998da2}} 
+\index{Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}!select@{select}}
+\index{select@{select}!Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}}
+\subsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_table_set}{Aurora\+::\+Table\+Set}$<$ S $>$\+::select (\begin{DoxyParamCaption}\item[{S}]{f }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Table selection ~\newline
+f\+: fundamental frequency used for playback 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_bl_osc_8h}{Bl\+Osc.\+h}\end{DoxyCompactItemize}

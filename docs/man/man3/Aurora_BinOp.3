@@ -1,0 +1,76 @@
+.TH "Aurora::BinOp< S >" 3 "Sun Nov 28 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::BinOp< S >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <SndBase\&.h>\fP
+.PP
+Inherits \fBAurora::SndBase< S >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBBinOp\fP (std::function< S(S, S)> f, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (S a, const std::vector< S > &s)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &s, S a)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &s1, const std::vector< S > &s2)"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S>
+.br
+class Aurora::BinOp< S >"
+\fBBinOp\fP class 
+.br
+Binary operations 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S > \fBAurora::BinOp\fP< S >::\fBBinOp\fP (std::function< S(S, S)> f, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+f: binary operation function 
+.br
+vsize: signal vector size 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S > const std::vector<S>& \fBAurora::BinOp\fP< S >::operator() (S a, const std::vector< S > & s)\fC [inline]\fP"
+Binary operation 
+.br
+a: scalar input 
+.br
+s: signal input 
+.br
+returns reference to object signal vector 
+.SS "template<typename S > const std::vector<S>& \fBAurora::BinOp\fP< S >::operator() (const std::vector< S > & s, S a)\fC [inline]\fP"
+Binary operation 
+.br
+s: signal input 
+.br
+a: scalar input 
+.br
+returns reference to object signal vector 
+.SS "template<typename S > const std::vector<S>& \fBAurora::BinOp\fP< S >::operator() (const std::vector< S > & s1, const std::vector< S > & s2)\fC [inline]\fP"
+Binary operation 
+.br
+s1: signal input 1 
+.br
+s2: signal input 2 
+.br
+returns reference to object signal vector 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

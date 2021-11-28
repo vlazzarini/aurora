@@ -1,0 +1,166 @@
+.TH "Aurora" 3 "Sun Nov 28 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBBinOp\fP"
+.br
+.ti -1c
+.RI "class \fBBlOsc\fP"
+.br
+.ti -1c
+.RI "class \fBEnv\fP"
+.br
+.ti -1c
+.RI "class \fBFFT\fP"
+.br
+.ti -1c
+.RI "class \fBFourPole\fP"
+.br
+.ti -1c
+.RI "class \fBOsc\fP"
+.br
+.ti -1c
+.RI "class \fBSndBase\fP"
+.br
+.ti -1c
+.RI "class \fBTableSet\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBSAW\fP = 0, \fBSQUARE\fP, \fBTRIANGLE\fP, \fBPULSE\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename S > std::function< S(double, S, S)> \fBads_gen\fP (const S &a, const S &d, const S &s)"
+.br
+.ti -1c
+.RI "static uint32_t \fBnp2\fP (uint32_t n)"
+.br
+.ti -1c
+.RI "template<typename S > std::function< S(S)> \fBlookup_gen\fP (const std::vector< S > &t)"
+.br
+.ti -1c
+.RI "template<typename S > std::function< S(S)> \fBlookupi_gen\fP (const std::vector< S > &t)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBsin\fP (double ph)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBcos\fP (double ph)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBphase\fP (double ph)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const int \fBdef_octs\fP = 14"
+.br
+.ti -1c
+.RI "const double \fBdef_base\fP = 1\&.f"
+.br
+.ti -1c
+.RI "const int \fBdef_ftlen\fP = 16384"
+.br
+.ti -1c
+.RI "const double \fBtwopi\fP = 2 * M_PI"
+.br
+.ti -1c
+.RI "const int \fBdef_vsize\fP = 64"
+.br
+.ti -1c
+.RI "const double \fBdef_sr\fP = 44100\&."
+.br
+.in -1c
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "anonymous enum"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISAW \fP\fP
+.TP
+\fB\fISQUARE \fP\fP
+.TP
+\fB\fITRIANGLE \fP\fP
+.TP
+\fB\fIPULSE \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "template<typename S > std::function<S(double, S, S)> Aurora::ads_gen (const S & a, const S & d, const S & s)"
+ADS function generator for \fBEnv\fP 
+.br
+a: attack 
+.br
+d: decay 
+.br
+s: sustain 
+.br
+returns an ADS envelope function 
+.SS "template<typename S > S Aurora::cos (double ph)"
+Cosine function for \fBOsc\fP 
+.br
+ph: normalised phase 
+.br
+returns the cosine of ph*2*$M_PI 
+.SS "template<typename S > std::function<S(S)> Aurora::lookup_gen (const std::vector< S > & t)"
+Table lookup function generator for \fBOsc\fP 
+.br
+t: function table 
+.br
+returns a truncating table lookup function 
+.SS "template<typename S > std::function<S(S)> Aurora::lookupi_gen (const std::vector< S > & t)"
+Table lookup function generator for \fBOsc\fP 
+.br
+t: function table 
+.br
+returns an interpolating table lookup function 
+.SS "static uint32_t Aurora::np2 (uint32_t n)\fC [inline]\fP, \fC [static]\fP"
+
+.SS "template<typename S > S Aurora::phase (double ph)"
+Phase function for \fBOsc\fP 
+.br
+ph: normalised phase 
+.br
+returns ph 
+.SS "template<typename S > S Aurora::sin (double ph)"
+Sine function for \fBOsc\fP 
+.br
+ph: normalised phase 
+.br
+returns the sine of ph*2*$M_PI 
+.SH "Variable Documentation"
+.PP 
+.SS "const double Aurora::def_base = 1\&.f"
+
+.SS "const int Aurora::def_ftlen = 16384"
+
+.SS "const int Aurora::def_octs = 14"
+
+.SS "const double Aurora::def_sr = 44100\&."
+
+.SS "const int Aurora::def_vsize = 64"
+
+.SS "const double Aurora::twopi = 2 * M_PI"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

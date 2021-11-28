@@ -153,7 +153,8 @@ template <typename S> class BlOsc : public Osc<S> {
     size_t len = t.size();
     size_t posi = (size_t)phs;
     double frac = phs - posi;
-    S s = a * (t[posi] + frac * ((posi != len - 1 ? t[posi + 1] : t[0]) - t[posi]));
+    S s = a *
+          (t[posi] + frac * ((posi != len - 1 ? t[posi + 1] : t[0]) - t[posi]));
     phs += f * ts * len;
     while (phs < 0)
       phs += len;

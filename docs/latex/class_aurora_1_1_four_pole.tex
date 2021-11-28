@@ -1,0 +1,81 @@
+\hypertarget{class_aurora_1_1_four_pole}{}\section{Aurora\+:\+:Four\+Pole$<$ S $>$ Class Template Reference}
+\label{class_aurora_1_1_four_pole}\index{Aurora\+::\+Four\+Pole$<$ S $>$@{Aurora\+::\+Four\+Pole$<$ S $>$}}
+
+
+{\ttfamily \#include $<$Four\+Pole.\+h$>$}
+
+
+
+Inheritance diagram for Aurora\+:\+:Four\+Pole$<$ S $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{class_aurora_1_1_four_pole__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Aurora\+:\+:Four\+Pole$<$ S $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{class_aurora_1_1_four_pole__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_aurora_1_1_four_pole_acd6f1e5b94bdc248e8e955f4ef8f7dcc}{Four\+Pole} (S sr=\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}, int \hyperlink{class_aurora_1_1_snd_base_ad68387541cc3d696d0cf58d474f94b73}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_four_pole_ac3cfee8b5d8f0bf8d0b0c6784eb81fef}{operator()} (const std\+::vector$<$ S $>$ \&in, S f, S r)
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_four_pole_a300ec87b54b5e8c5c76c1005fe31c9d9}{operator()} (const std\+::vector$<$ S $>$ \&in, const std\+::vector$<$ S $>$ \&f, S r)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename S$>$\newline
+class Aurora\+::\+Four\+Pole$<$ S $>$}
+
+\hyperlink{class_aurora_1_1_four_pole}{Four\+Pole} class ~\newline
+4-\/pole lowpass filter 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_four_pole_acd6f1e5b94bdc248e8e955f4ef8f7dcc}\label{class_aurora_1_1_four_pole_acd6f1e5b94bdc248e8e955f4ef8f7dcc}} 
+\index{Aurora\+::\+Four\+Pole@{Aurora\+::\+Four\+Pole}!Four\+Pole@{Four\+Pole}}
+\index{Four\+Pole@{Four\+Pole}!Aurora\+::\+Four\+Pole@{Aurora\+::\+Four\+Pole}}
+\subsubsection{\texorpdfstring{Four\+Pole()}{FourPole()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+\hyperlink{class_aurora_1_1_four_pole}{Aurora\+::\+Four\+Pole}$<$ S $>$\+::\hyperlink{class_aurora_1_1_four_pole}{Four\+Pole} (\begin{DoxyParamCaption}\item[{S}]{sr = {\ttfamily \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}},  }\item[{int}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor ~\newline
+sr\+: sampling rate ~\newline
+vsize\+: vector size 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_four_pole_ac3cfee8b5d8f0bf8d0b0c6784eb81fef}\label{class_aurora_1_1_four_pole_ac3cfee8b5d8f0bf8d0b0c6784eb81fef}} 
+\index{Aurora\+::\+Four\+Pole@{Aurora\+::\+Four\+Pole}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora\+::\+Four\+Pole@{Aurora\+::\+Four\+Pole}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_four_pole}{Aurora\+::\+Four\+Pole}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in,  }\item[{S}]{f,  }\item[{S}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Filter ~\newline
+in\+: input ~\newline
+f\+: cutoff frequency ~\newline
+r\+: resonance (0-\/1) \mbox{\Hypertarget{class_aurora_1_1_four_pole_a300ec87b54b5e8c5c76c1005fe31c9d9}\label{class_aurora_1_1_four_pole_a300ec87b54b5e8c5c76c1005fe31c9d9}} 
+\index{Aurora\+::\+Four\+Pole@{Aurora\+::\+Four\+Pole}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora\+::\+Four\+Pole@{Aurora\+::\+Four\+Pole}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_four_pole}{Aurora\+::\+Four\+Pole}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in,  }\item[{const std\+::vector$<$ S $>$ \&}]{f,  }\item[{S}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Filter ~\newline
+in\+: input ~\newline
+f\+: cutoff frequency ~\newline
+r\+: resonance (0-\/1) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_four_pole_8h}{Four\+Pole.\+h}\end{DoxyCompactItemize}
