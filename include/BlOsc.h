@@ -171,6 +171,9 @@ public:
   BlOsc(const TableSet<S> &t, S fs = (S)def_sr, std::size_t vsize = def_vsize)
       : Osc<S>(nullptr, fs, vsize), tset(t){};
 
+  /** Change the wavetable set
+      t: wavetable set
+   */
   void waveset(const TableSet<S> &t) { tset = t; }
 };
 } // namespace Aurora

@@ -172,6 +172,9 @@ public:
     return sig;
   }
 
+  /** set the oscillator function
+     f: oscillator function to be used
+  */
   void func(std::function<S(S)> f) { fun = f; }
   
 };
