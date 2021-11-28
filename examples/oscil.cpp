@@ -41,12 +41,11 @@ struct Synth {
     att(0.1f), dec(0.3f), sus(0.7f),
     wave(def_vsize),
     env(ads_gen(att, dec, sus),rt,sr),
-    osc(nullptr,sr) {
+    osc(lookupi_gen(wave),sr) {
      std::size_t n = 0;
      for (auto &s : wave) {
       s = sin<float>((1. / wave.size()) * n++);
      }
-     osc.wave(lookupi_gen(wave));
     };
 
   const std::vector<float> &operator()(float a, float f, bool gate) {

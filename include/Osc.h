@@ -40,7 +40,7 @@ const double twopi = 2 * M_PI;
   returns a truncating table lookup function
 */
 template <typename S> std::function<S(S)> lookup_gen(const std::vector<S> &t) {
-  return [t](double ph) -> S { return t[(std::size_t)(ph * t.size())]; };
+  return [&t](double ph) -> S { return t[(std::size_t)(ph * t.size())]; };
 }
 
 /** Table lookup function generator for Osc \n
@@ -48,7 +48,7 @@ template <typename S> std::function<S(S)> lookup_gen(const std::vector<S> &t) {
     returns an interpolating table lookup function
 */
 template <typename S> std::function<S(S)> lookupi_gen(const std::vector<S> &t) {
-  return [t](double ph) -> S {
+  return [&t](double ph) -> S {
     double pos = ph * t.size();
     size_t posi = (size_t)pos;
     double frac = pos - posi;
