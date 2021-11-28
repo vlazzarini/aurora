@@ -24,6 +24,9 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 
+#ifndef _AURORA_FOURPOLE_
+#define _AURORA_FOURPOLE_
+
 #include "SndBase.h"
 #include <cmath>
 
@@ -110,3 +113,5 @@ public:
   }
 };
 } // namespace Aurora
+
+#endif // _AURORA_FOURPOLE_

@@ -13,4 +13,6 @@ Aurora Headers
 
 **FourPole.h**: four-pole lowpass filter
 
+**Func.h**: generic function maps
+
 
