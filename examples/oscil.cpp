@@ -33,13 +33,21 @@
 using namespace Aurora;
 struct Synth {
   float att, dec, sus;
+  std::vector<float> wave;
   Env<float> env;
   Osc<float> osc;
 
-  Synth(std::vector<float> &w, float rt, float sr) :
+  Synth(float rt, float sr) :
     att(0.1f), dec(0.3f), sus(0.7f),
+    wave(def_vsize),
     env(ads_gen(att, dec, sus),rt,sr),
-    osc(lookupi_gen(w), sr) { };
+    osc(nullptr,sr) {
+     std::size_t n = 0;
+     for (auto &s : wave) {
+      s = sin<float>((1. / wave.size()) * n++);
+     }
+     osc.wave(lookupi_gen(wave));
+    };
 
   const std::vector<float> &operator()(float a, float f, bool gate) {
     return env(osc(a, f), gate);
@@ -53,15 +61,16 @@ int main(int argc, const char *argv[]) {
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
-    std::vector<float> wave(16384);
-    std::size_t n = 0;
-    for (auto &s : wave)
-      s = Aurora::sin<float>((1. / wave.size()) * n++);
     float rel = 0.1;
-    Synth synth(wave, rel, sr);
+    Synth synth(rel, sr);
     bool gate = 1;
+
+    // for (auto s : synth.wave) {
+    //std::cout << s << std::endl;
+    //}
+    
     for (int n = 0; n < sr * dur; n += def_vsize) {
-      if (n > sr )
+      if (n > sr*(dur-rel))
         gate = 0;
       for (auto s : synth(a,f,gate))
         std::cout << s << std::endl;

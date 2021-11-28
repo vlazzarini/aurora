@@ -171,6 +171,9 @@ public:
     ph = phs;
     return sig;
   }
+
+  void wave(std::function<S(S)> f) { fun = f; }
+  
 };
 } // namespace Aurora
 
