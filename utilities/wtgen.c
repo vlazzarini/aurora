@@ -1,5 +1,5 @@
 // wtgen.c
-// Soundfile to C++ header wavetable 
+// Soundfile to C++ header wavetable
 // depends on libsndfile
 //
 // (c) V Lazzarini, 2021
@@ -31,7 +31,7 @@
 #include <stdlib.h>
 
 int main(int argc, const char *argv[]) {
-  if(argc > 6) { 
+  if (argc > 6) {
     SNDFILE *fp;
     FILE *fpo;
     SF_INFO sfinfo;
@@ -40,19 +40,20 @@ int main(int argc, const char *argv[]) {
     fp = sf_open(argv[1], SFM_READ, &sfinfo);
     fpo = fopen(argv[2], "w");
     starts = atoi(argv[4]), ends = atoi(argv[5]);
-    sf_seek(fp,starts,SEEK_SET);
+    sf_seek(fp, starts, SEEK_SET);
     cnt = starts;
     fprintf(fpo, "/* Wavetable created by %s */\n", argv[0]);
-    fprintf(fpo, "/* source: %s (%lu - %lu samples) */\n", argv[1], starts, ends);
+    fprintf(fpo, "/* source: %s (%lu - %lu samples) */\n", argv[1], starts,
+            ends);
     fprintf(fpo, "#ifndef _%s_ \n", argv[3]);
     fprintf(fpo, "#define _%s_ \n", argv[3]);
     fprintf(fpo, "#include <vector>\n");
     fprintf(fpo, "namespace %s {\n", argv[3]);
-    fprintf(fpo,"const std::vector<float> wave({\n");
+    fprintf(fpo, "const std::vector<float> wave({\n");
     do {
       n = sf_readf_float(fp, f, 1);
       cnt += n;
-      for(i = 0; i < n; i+=sfinfo.channels){
+      for (i = 0; i < n; i += sfinfo.channels) {
         fprintf(fpo, "%f,\n", f[i]);
       }
     } while (n && cnt < ends);
@@ -60,7 +61,7 @@ int main(int argc, const char *argv[]) {
     fprintf(fpo, "/* base frequency */\n");
     fprintf(fpo, "const float base = %f;\n", atof(argv[6]));
     fprintf(fpo, "/* sampling rate */\n");
-    fprintf(fpo, "const float fs = %f;\n", (float) sfinfo.samplerate);
+    fprintf(fpo, "const float fs = %f;\n", (float)sfinfo.samplerate);
     fprintf(fpo, "/* frequency ratio */\n");
     fprintf(fpo, "const float ratio = 1/(base*wave.size()/fs);\n");
     fprintf(fpo, "}\n");
@@ -68,10 +69,12 @@ int main(int argc, const char *argv[]) {
     sf_close(fp);
     fclose(fpo);
 
-    printf("Wrote %lu samples (%f secs) to wavetable\n", cnt - starts, (float)(cnt-starts)/sfinfo.samplerate);
-  }
-  else 
-    printf("usage: %s infile outfile namespace start(samples) end(samples) basefr\n", argv[0]); 
-  
+    printf("Wrote %lu samples (%f secs) to wavetable\n", cnt - starts,
+           (float)(cnt - starts) / sfinfo.samplerate);
+  } else
+    printf("usage: %s infile outfile namespace start(samples) end(samples) "
+           "basefr\n",
+           argv[0]);
+
   return 0;
 }

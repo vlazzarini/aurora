@@ -34,14 +34,13 @@ int main(int argc, const char *argv[]) {
   if (argc > 3) {
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
-    auto f = std::atof(argv[3])*flute::ratio;   
-    Aurora::TableSet<float> wave(flute::wave,flute::base,8);
-    Aurora::BlOsc<float> osc(wave);
+    auto f = std::atof(argv[3]) * flute::ratio;
+    Aurora::TableSet<float> wave(flute::wave, flute::base, flute::fs);
+    Aurora::BlOsc<float> osc(wave, flute::fs);
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
       for (auto s : osc(a, f))
         std::cout << s << std::endl;
   } else
-    std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz)"
-              << std::endl;
+    std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz)" << std::endl;
   return 0;
 }

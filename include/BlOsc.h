@@ -75,8 +75,10 @@ template <typename S> class TableSet {
     }
     for (auto &wave : waves) {
       double fr = base * std::pow(2, k++);
-      if (fr > fs/2) nh = 2; 
-      else nh = fs / (2 * fr) + 1;
+      if (fr > fs / 2)
+        nh = 2;
+      else
+        nh = fs / (2 * fr) + 1;
       std::fill(blsp.begin() + nh, blsp.end(), std::complex<S>(0, 0));
       auto wv = fft.transform(blsp);
       std::copy(wv, wv + tlen, wave.begin());
@@ -91,7 +93,7 @@ public:
       len: table length
   */
   TableSet(uint32_t type, S fs = def_sr, std::size_t len = def_ftlen)
-    : tlen(len), waves(def_octs, std::vector<S>(len)), base((S)def_base) {
+      : tlen(len), waves(def_octs, std::vector<S>(len)), base((S)def_base) {
 
     std::vector<S> src(tlen / 2);
     std::size_t n = 0;
@@ -121,10 +123,11 @@ public:
       src: source wave table \n
       b: base frequency for wavetables \n
       octs: number of octaves to generate \n
-      fs: sampling rate for which these will be built 
+      fs: sampling rate for which these will be built
   */
- TableSet(const std::vector<S> &src, S b = def_base, std::size_t octs = def_octs, S fs = def_sr)
-   : tlen(src.size()), waves(octs, std::vector<S>(src.size())), base(1/(b*tlen/fs)) {
+  TableSet(const std::vector<S> &src, S b = def_base, S fs = def_sr)
+      : tlen(src.size()), waves((int)std::log2(fs / b), std::vector<S>(tlen)),
+        base(1 / (b * tlen / fs)) {
     fourier(src, fs);
   }
 
