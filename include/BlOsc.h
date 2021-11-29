@@ -58,7 +58,7 @@ template <typename S> class TableSet {
 
   void fourier(const std::vector<S> &src, S fs, int32_t type = -1) {
     std::size_t nh;
-    uint32_t k = 1;
+    uint32_t k = 0;
     FFT<S> fft(tlen);
     std::vector<std::complex<S>> blsp(fft.size() / 2);
     if (type < 0) {
@@ -75,10 +75,10 @@ template <typename S> class TableSet {
     }
     for (auto &wave : waves) {
       double fr = base * std::pow(2, k++);
-      if (fr > fs / 2)
+      if (fr > fs*.375)
         nh = 2;
       else
-        nh = fs / (2 * fr) + 1;
+        nh = .375*fs / fr + 1;
       std::fill(blsp.begin() + nh, blsp.end(), std::complex<S>(0, 0));
       auto wv = fft.transform(blsp);
       std::copy(wv, wv + tlen, wave.begin());
@@ -87,7 +87,7 @@ template <typename S> class TableSet {
   }
 
   const std::vector<S> &select(S f) const {
-    int32_t num = f > base ? (int32_t)std::log2(f / base) : 0;
+    int32_t num = f > base ? (int32_t) round(std::log2(f / base)) : 0;
     return num < waves.size() ? waves[num] : waves.back();
   }
 
