@@ -86,6 +86,12 @@ template <typename S> class TableSet {
     }
   }
 
+  const std::vector<S> &select(S f) const {
+    int32_t num = f > base ? (int32_t)std::log2(f / base) : 0;
+    return num < waves.size() ? waves[num] : waves.back();
+  }
+
+
 public:
   /** Constructor \n
       type: wave type (SAW, SQUARE, TRIANGLE, PULSE) \n
@@ -131,13 +137,13 @@ public:
     fourier(src, fs);
   }
 
-  /** Table selection \n
+  /** Function selection \n
       f: fundamental frequency used for playback
   */
-  const std::vector<S> &select(S f) const {
-    int32_t num = f > base ? (int32_t)std::log2(f / base) : 0;
-    return num < waves.size() ? waves[num] : waves.back();
+  std::function<S(S)> func(S f) const {
+    return lookupi_gen(select(f));
   }
+
 };
 
 /** BlOsc class \n
@@ -146,21 +152,13 @@ public:
 template <typename S> class BlOsc : public Osc<S> {
   using Osc<S>::ph;
   using Osc<S>::ts;
+  using Osc<S>::fun;
   const TableSet<S> *tset;
+  S ff;
 
   virtual S synth(S a, S f, double &phs) {
-    const std::vector<S> &t = tset->select(f);
-    size_t len = t.size();
-    size_t posi = (size_t)phs;
-    double frac = phs - posi;
-    S s = a *
-          (t[posi] + frac * ((posi != len - 1 ? t[posi + 1] : t[0]) - t[posi]));
-    phs += f * ts * len;
-    while (phs < 0)
-      phs += len;
-    while (phs >= len)
-      phs -= len;
-    return s;
+    fun = ff != f ? tset->func(f) : fun;
+    return Osc<S>::synth(a, f, phs);
   }
 
 public:
@@ -170,7 +168,7 @@ public:
       vsize: vector size
   */
   BlOsc(const TableSet<S> *t, S fs = (S)def_sr, std::size_t vsize = def_vsize)
-      : Osc<S>(nullptr, fs, vsize), tset(t){};
+    : Osc<S>(nullptr, fs, vsize), tset(t), ff(0) {};
 
   /** Change the wavetable set
       t: wavetable set

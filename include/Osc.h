@@ -84,8 +84,6 @@ template <typename S> class Osc : public SndBase<S> {
 protected:
   double ph;
   S ts;
-
-private:
   std::function<S(S)> fun;
 
   virtual S synth(S a, S f, double &phs) {
