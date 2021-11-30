@@ -15,4 +15,8 @@ Aurora Headers
 
 **Func.h**: generic function maps
 
+**TwoPole.h**: two-pole state-variable filter with optional
+nonlinearity
+
+
 
