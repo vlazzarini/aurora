@@ -75,10 +75,10 @@ template <typename S> class TableSet {
     }
     for (auto &wave : waves) {
       double fr = base * std::pow(2, k++);
-      if (fr > fs*.375)
+      if (fr > fs * .375)
         nh = 2;
       else
-        nh = .375*fs / fr + 1;
+        nh = .375 * fs / fr + 1;
       std::fill(blsp.begin() + nh, blsp.end(), std::complex<S>(0, 0));
       auto wv = fft.transform(blsp);
       std::copy(wv, wv + tlen, wave.begin());
@@ -87,10 +87,9 @@ template <typename S> class TableSet {
   }
 
   const std::vector<S> &select(S f) const {
-    int32_t num = f > base ? (int32_t) round(std::log2(f / base)) : 0;
+    int32_t num = f > base ? (int32_t)round(std::log2(f / base)) : 0;
     return num < waves.size() ? waves[num] : waves.back();
   }
-
 
 public:
   /** Constructor \n
@@ -140,10 +139,7 @@ public:
   /** Function selection \n
       f: fundamental frequency used for playback
   */
-  std::function<S(S)> func(S f) const {
-    return lookupi_gen(select(f));
-  }
-
+  std::function<S(S)> func(S f) const { return lookupi_gen(select(f)); }
 };
 
 /** BlOsc class \n
@@ -168,7 +164,7 @@ public:
       vsize: vector size
   */
   BlOsc(const TableSet<S> *t, S fs = (S)def_sr, std::size_t vsize = def_vsize)
-    : Osc<S>(nullptr, fs, vsize), tset(t), ff(0) {};
+      : Osc<S>(nullptr, fs, vsize), tset(t), ff(0){};
 
   /** Change the wavetable set
       t: wavetable set

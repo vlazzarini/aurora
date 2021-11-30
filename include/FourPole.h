@@ -33,7 +33,8 @@
 namespace Aurora {
 
 /** FourPole class  \n
-    4-pole lowpass filter
+    4-pole lowpass filter \n
+    S: sample type
 */
 template <typename S> class FourPole : public SndBase<S> {
   using SndBase<S>::sig;
@@ -75,7 +76,7 @@ public:
    vsize: vector size
   */
   FourPole(S sr = def_sr, int vsize = def_vsize)
-      : SndBase<S>(vsize), piosr(M_PI / sr){};
+      : SndBase<S>(vsize), D{0}, A(0), G{0}, ff(0), piosr(M_PI / sr){};
 
   /** Filter \n
      in: input \n
@@ -101,7 +102,7 @@ public:
   */
   const std::vector<S> &operator()(const std::vector<S> &in,
                                    const std::vector<S> &f, S r) {
-    double *g = G, *d = D, a = A;
+    double *g = G, *d = D, &a = A;
     std::size_t n = 0;
     r *= 4;
     for (auto &s : sig) {

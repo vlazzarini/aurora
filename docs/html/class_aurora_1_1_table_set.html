@@ -79,8 +79,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0be4528b972606335d73ac312da6337b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a884ecfde480fdac4c32fa10a82286941"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_table_set.html#a884ecfde480fdac4c32fa10a82286941">TableSet</a> (const std::vector&lt; S &gt; &amp;src, S b=<a class="el" href="namespace_aurora.html#acb267dff62f74484893c2d5b679b78bf">def_base</a>, S fs=<a class="el" href="namespace_aurora.html#ad49263d809bea98dd422e95bc91bc03e">def_sr</a>)</td></tr>
 <tr class="separator:a884ecfde480fdac4c32fa10a82286941"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a886edb5453f4e4761f1d6aed7d998da2"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_table_set.html#a886edb5453f4e4761f1d6aed7d998da2">select</a> (S f) const</td></tr>
-<tr class="separator:a886edb5453f4e4761f1d6aed7d998da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27a325a2c3c4b8cd50e0c86d6ac3c617"><td class="memItemLeft" align="right" valign="top">std::function&lt; S(S)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_table_set.html#a27a325a2c3c4b8cd50e0c86d6ac3c617">func</a> (S f) const</td></tr>
+<tr class="separator:a27a325a2c3c4b8cd50e0c86d6ac3c617"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename S&gt;<br />
@@ -187,8 +187,8 @@ fs: sampling rate for which these will be built </p>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a886edb5453f4e4761f1d6aed7d998da2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a886edb5453f4e4761f1d6aed7d998da2">&#9670;&nbsp;</a></span>select()</h2>
+<a id="a27a325a2c3c4b8cd50e0c86d6ac3c617"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27a325a2c3c4b8cd50e0c86d6ac3c617">&#9670;&nbsp;</a></span>func()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,7 +199,7 @@ template&lt;typename S&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::vector&lt;S&gt;&amp; <a class="el" href="class_aurora_1_1_table_set.html">Aurora::TableSet</a>&lt; S &gt;::select </td>
+          <td class="memname">std::function&lt;S(S)&gt; <a class="el" href="class_aurora_1_1_table_set.html">Aurora::TableSet</a>&lt; S &gt;::func </td>
           <td>(</td>
           <td class="paramtype">S&#160;</td>
           <td class="paramname"><em>f</em></td><td>)</td>
@@ -212,7 +212,7 @@ template&lt;typename S&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Table selection <br />
+<p>Function selection <br />
 f: fundamental frequency used for playback </p>
 
 </div>

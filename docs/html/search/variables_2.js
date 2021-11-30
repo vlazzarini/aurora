@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sig',['sig',['../class_aurora_1_1_snd_base.html#adad6cd3430a1510dc887cc6bd1a45658',1,'Aurora::SndBase']]]
+  ['ph',['ph',['../class_aurora_1_1_osc.html#ac649d41b585b377b17eeba66a18dbcc2',1,'Aurora::Osc']]]
 ];

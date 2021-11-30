@@ -33,7 +33,6 @@
 
 namespace Aurora {
 
-
 /** Func class  \n
     Generic function maps
 */
@@ -47,7 +46,7 @@ public:
       fs: sampling rate \n
       vsize: signal vector size
   */
- Func(std::function<S(S)> f, std::size_t vsize = def_vsize)
+  Func(std::function<S(S)> f, std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), fun(f){};
 
   /** Functional application \n

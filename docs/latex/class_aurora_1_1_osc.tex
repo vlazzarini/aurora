@@ -41,12 +41,19 @@ const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_osc_a06f9ead5fbf828f
 \item 
 void \hyperlink{class_aurora_1_1_osc_a1ffdfa0db8932dbaa7cc96e046a6d461}{func} (std\+::function$<$ S(S)$>$ f)
 \end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual S \hyperlink{class_aurora_1_1_osc_a4e01fb1238c931c944b6b27c3790495e}{synth} (S a, S f, double \&phs)
+\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 double \hyperlink{class_aurora_1_1_osc_ac649d41b585b377b17eeba66a18dbcc2}{ph}
 \item 
 S \hyperlink{class_aurora_1_1_osc_a2c7ae380eade4eee2e6035856ed0dcbe}{ts}
+\item 
+std\+::function$<$ S(S)$>$ \hyperlink{class_aurora_1_1_osc_a18c443a23a6d1fc2e63ba1ee09e97bc4}{fun}
 \end{DoxyCompactItemize}
 
 
@@ -133,9 +140,23 @@ const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_osc}{Aurora\+::\+Osc}$<
 Oscillator ~\newline
 am\+: amplitude signal ~\newline
 fm\+: frequency signal ~\newline
-returns reference to object signal vector 
+returns reference to object signal vector \mbox{\Hypertarget{class_aurora_1_1_osc_a4e01fb1238c931c944b6b27c3790495e}\label{class_aurora_1_1_osc_a4e01fb1238c931c944b6b27c3790495e}} 
+\index{Aurora\+::\+Osc@{Aurora\+::\+Osc}!synth@{synth}}
+\index{synth@{synth}!Aurora\+::\+Osc@{Aurora\+::\+Osc}}
+\subsubsection{\texorpdfstring{synth()}{synth()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+virtual S \hyperlink{class_aurora_1_1_osc}{Aurora\+::\+Osc}$<$ S $>$\+::synth (\begin{DoxyParamCaption}\item[{S}]{a,  }\item[{S}]{f,  }\item[{double \&}]{phs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
 
 \subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_osc_a18c443a23a6d1fc2e63ba1ee09e97bc4}\label{class_aurora_1_1_osc_a18c443a23a6d1fc2e63ba1ee09e97bc4}} 
+\index{Aurora\+::\+Osc@{Aurora\+::\+Osc}!fun@{fun}}
+\index{fun@{fun}!Aurora\+::\+Osc@{Aurora\+::\+Osc}}
+\subsubsection{\texorpdfstring{fun}{fun}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+std\+::function$<$S(S)$>$ \hyperlink{class_aurora_1_1_osc}{Aurora\+::\+Osc}$<$ S $>$\+::fun\hspace{0.3cm}{\ttfamily [protected]}}
+
 \mbox{\Hypertarget{class_aurora_1_1_osc_ac649d41b585b377b17eeba66a18dbcc2}\label{class_aurora_1_1_osc_ac649d41b585b377b17eeba66a18dbcc2}} 
 \index{Aurora\+::\+Osc@{Aurora\+::\+Osc}!ph@{ph}}
 \index{ph@{ph}!Aurora\+::\+Osc@{Aurora\+::\+Osc}}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ph',['ph',['../class_aurora_1_1_osc.html#ac649d41b585b377b17eeba66a18dbcc2',1,'Aurora::Osc']]]
+  ['fun',['fun',['../class_aurora_1_1_osc.html#a18c443a23a6d1fc2e63ba1ee09e97bc4',1,'Aurora::Osc']]]
 ];

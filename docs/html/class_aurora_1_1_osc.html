@@ -65,6 +65,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_aurora_1_1_osc-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -121,12 +122,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5d57c3b735e5d583b4b4ae5f8e9cdf4c inherit pub_methods_class_aurora_1_1_snd_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_snd_base.html#a5d57c3b735e5d583b4b4ae5f8e9cdf4c">prealloc</a> (std::size_t size)</td></tr>
 <tr class="separator:a5d57c3b735e5d583b4b4ae5f8e9cdf4c inherit pub_methods_class_aurora_1_1_snd_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a4e01fb1238c931c944b6b27c3790495e"><td class="memItemLeft" align="right" valign="top">virtual S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_osc.html#a4e01fb1238c931c944b6b27c3790495e">synth</a> (S a, S f, double &amp;phs)</td></tr>
+<tr class="separator:a4e01fb1238c931c944b6b27c3790495e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ac649d41b585b377b17eeba66a18dbcc2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_osc.html#ac649d41b585b377b17eeba66a18dbcc2">ph</a></td></tr>
 <tr class="separator:ac649d41b585b377b17eeba66a18dbcc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c7ae380eade4eee2e6035856ed0dcbe"><td class="memItemLeft" align="right" valign="top">S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_osc.html#a2c7ae380eade4eee2e6035856ed0dcbe">ts</a></td></tr>
 <tr class="separator:a2c7ae380eade4eee2e6035856ed0dcbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18c443a23a6d1fc2e63ba1ee09e97bc4"><td class="memItemLeft" align="right" valign="top">std::function&lt; S(S)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_osc.html#a18c443a23a6d1fc2e63ba1ee09e97bc4">fun</a></td></tr>
+<tr class="separator:a18c443a23a6d1fc2e63ba1ee09e97bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_aurora_1_1_snd_base"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_aurora_1_1_snd_base')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_aurora_1_1_snd_base.html">Aurora::SndBase&lt; S &gt;</a></td></tr>
 <tr class="memitem:adad6cd3430a1510dc887cc6bd1a45658 inherit pro_attribs_class_aurora_1_1_snd_base"><td class="memItemLeft" align="right" valign="top">std::vector&lt; S &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_snd_base.html#adad6cd3430a1510dc887cc6bd1a45658">sig</a></td></tr>
 <tr class="separator:adad6cd3430a1510dc887cc6bd1a45658 inherit pro_attribs_class_aurora_1_1_snd_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -440,7 +448,75 @@ returns reference to object signal vector </p>
 
 </div>
 </div>
+<a id="a4e01fb1238c931c944b6b27c3790495e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e01fb1238c931c944b6b27c3790495e">&#9670;&nbsp;</a></span>synth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual S <a class="el" href="class_aurora_1_1_osc.html">Aurora::Osc</a>&lt; S &gt;::synth </td>
+          <td>(</td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>phs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a18c443a23a6d1fc2e63ba1ee09e97bc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18c443a23a6d1fc2e63ba1ee09e97bc4">&#9670;&nbsp;</a></span>fun</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;S(S)&gt; <a class="el" href="class_aurora_1_1_osc.html">Aurora::Osc</a>&lt; S &gt;::fun</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ac649d41b585b377b17eeba66a18dbcc2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac649d41b585b377b17eeba66a18dbcc2">&#9670;&nbsp;</a></span>ph</h2>
 

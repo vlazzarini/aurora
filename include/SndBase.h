@@ -1,4 +1,4 @@
-// SndBase.h 
+// SndBase.h
 // Base class and
 // Binary operations
 //

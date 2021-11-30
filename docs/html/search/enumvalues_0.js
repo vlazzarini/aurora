@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['pulse',['PULSE',['../namespace_aurora.html#a890b8d3786c8a25750e8097adae3b513aa52ebfb9f31c0d7f0da3f2f66b622928',1,'Aurora']]]
+  ['bp',['BP',['../namespace_aurora.html#a935301c39e9550e3c46ebe8dc165165fae818fb1792095c52b12163ec152896c8',1,'Aurora']]],
+  ['br',['BR',['../namespace_aurora.html#a935301c39e9550e3c46ebe8dc165165fa5077e65e54c48e5c57178b4b99cd3a8c',1,'Aurora']]]
 ];
