@@ -34,7 +34,8 @@
 namespace Aurora {
 
 /** Func class  \n
-    Generic function maps
+    Generic function maps \n
+    S: sample type
 */
 template <typename S> class Func : public SndBase<S> {
   using SndBase<S>::sig;

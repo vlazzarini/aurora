@@ -16,13 +16,13 @@ Inheritance diagram for Aurora\+:\+:Snd\+Base$<$ S $>$\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aurora_1_1_snd_base_a960739d3ae63df581c28f8801e589a3c}{Snd\+Base} (std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_ad68387541cc3d696d0cf58d474f94b73}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\hyperlink{class_aurora_1_1_snd_base_a960739d3ae63df581c28f8801e589a3c}{Snd\+Base} (std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
 \item 
-std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_ad68387541cc3d696d0cf58d474f94b73}{vsize} ()
+std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize} () const
 \item 
 void \hyperlink{class_aurora_1_1_snd_base_a88dacba995eef179f2fc97e11a331913}{vsize} (std\+::size\+\_\+t n)
 \item 
-const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_snd_base_aecf7b916b5b459b5ac2855997fd2aec6}{vector} ()
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_snd_base_acf9171085003208901e23c1f50520345}{vector} () const
 \item 
 void \hyperlink{class_aurora_1_1_snd_base_a5d57c3b735e5d583b4b4ae5f8e9cdf4c}{prealloc} (std\+::size\+\_\+t size)
 \end{DoxyCompactItemize}
@@ -38,7 +38,8 @@ std\+::vector$<$ S $>$ \hyperlink{class_aurora_1_1_snd_base_adad6cd3430a1510dc88
 class Aurora\+::\+Snd\+Base$<$ S $>$}
 
 \hyperlink{class_aurora_1_1_snd_base}{Snd\+Base} class ~\newline
-\hyperlink{namespace_aurora}{Aurora} Library base class 
+\hyperlink{namespace_aurora}{Aurora} Library base class ~\newline
+S\+: sample type 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_aurora_1_1_snd_base_a960739d3ae63df581c28f8801e589a3c}\label{class_aurora_1_1_snd_base_a960739d3ae63df581c28f8801e589a3c}} 
@@ -61,20 +62,20 @@ void \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::pr
 
 Preallocate vector memory ~\newline
 size\+: size of vector to reserve in memory ~\newline
-this method does not change the vector size. \mbox{\Hypertarget{class_aurora_1_1_snd_base_aecf7b916b5b459b5ac2855997fd2aec6}\label{class_aurora_1_1_snd_base_aecf7b916b5b459b5ac2855997fd2aec6}} 
+this method does not change the vector size. \mbox{\Hypertarget{class_aurora_1_1_snd_base_acf9171085003208901e23c1f50520345}\label{class_aurora_1_1_snd_base_acf9171085003208901e23c1f50520345}} 
 \index{Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}!vector@{vector}}
 \index{vector@{vector}!Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}}
 \subsubsection{\texorpdfstring{vector()}{vector()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Vector access ~\newline
-returns the object vector \mbox{\Hypertarget{class_aurora_1_1_snd_base_ad68387541cc3d696d0cf58d474f94b73}\label{class_aurora_1_1_snd_base_ad68387541cc3d696d0cf58d474f94b73}} 
+returns the object vector \mbox{\Hypertarget{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}\label{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}} 
 \index{Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}!vsize@{vsize}}
 \index{vsize@{vsize}!Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}}
 \subsubsection{\texorpdfstring{vsize()}{vsize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::vsize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::vsize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Vector size query ~\newline
 returns the object vector size \mbox{\Hypertarget{class_aurora_1_1_snd_base_a88dacba995eef179f2fc97e11a331913}\label{class_aurora_1_1_snd_base_a88dacba995eef179f2fc97e11a331913}} 

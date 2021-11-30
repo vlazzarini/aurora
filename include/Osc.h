@@ -36,6 +36,7 @@ namespace Aurora {
 const double twopi = 2 * M_PI;
 
 /** Table lookup function generator for Osc \n
+  S: sample type \n
   t: function table  \n
   returns a truncating table lookup function
 */
@@ -44,6 +45,7 @@ template <typename S> std::function<S(S)> lookup_gen(const std::vector<S> &t) {
 }
 
 /** Table lookup function generator for Osc \n
+    S: sample type \n
     t: function table  \n
     returns an interpolating table lookup function
 */
@@ -58,25 +60,29 @@ template <typename S> std::function<S(S)> lookupi_gen(const std::vector<S> &t) {
 }
 
 /** Sine function for Osc \n
+    S: sample type \n
     ph: normalised phase  \n
     returns the sine of ph*2*$M_PI
 */
 template <typename S> S sin(double ph) { return (S)std::sin(ph * twopi); }
 
 /** Cosine function for Osc \n
+    S: sample type \n
     ph: normalised phase \n
     returns the cosine of ph*2*$M_PI
 */
 template <typename S> S cos(double ph) { return (S)std::cos(ph * twopi); }
 
 /** Phase function for Osc \n
+    S: sample type \n
     ph: normalised phase \n
     returns ph
 */
 template <typename S> S phase(double ph) { return (S)ph; }
 
 /** Osc class  \n
-    Generic oscillator
+    Generic oscillator \n
+    S: sample type
 */
 template <typename S> class Osc : public SndBase<S> {
   using SndBase<S>::sig;
@@ -111,7 +117,7 @@ public:
   /** Sampling rate query \n
       returns sampling rate
   */
-  S fs() { return 1 / ts; }
+  S fs() const { return 1 / ts; }
 
   /** Oscillator \n
       a: scalar amplitude \n

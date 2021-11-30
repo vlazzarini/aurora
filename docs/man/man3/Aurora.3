@@ -130,6 +130,8 @@ Aurora
 .SS "template<typename S > std::function<S(double, S, S)> Aurora::ads_gen (const S & a, const S & d, const S & s)"
 ADS function generator for \fBEnv\fP 
 .br
+S: sample type 
+.br
 a: attack 
 .br
 d: decay 
@@ -140,17 +142,23 @@ returns an ADS envelope function
 .SS "template<typename S > S Aurora::cos (double ph)"
 Cosine function for \fBOsc\fP 
 .br
+S: sample type 
+.br
 ph: normalised phase 
 .br
 returns the cosine of ph*2*$M_PI 
 .SS "template<typename S > std::function<S(S)> Aurora::lookup_gen (const std::vector< S > & t)"
 Table lookup function generator for \fBOsc\fP 
 .br
+S: sample type 
+.br
 t: function table 
 .br
 returns a truncating table lookup function 
 .SS "template<typename S > std::function<S(S)> Aurora::lookupi_gen (const std::vector< S > & t)"
 Table lookup function generator for \fBOsc\fP 
+.br
+S: sample type 
 .br
 t: function table 
 .br
@@ -160,11 +168,15 @@ returns an interpolating table lookup function
 .SS "template<typename S > S Aurora::phase (double ph)"
 Phase function for \fBOsc\fP 
 .br
+S: sample type 
+.br
 ph: normalised phase 
 .br
 returns ph 
 .SS "template<typename S > S Aurora::sin (double ph)"
 Sine function for \fBOsc\fP 
+.br
+S: sample type 
 .br
 ph: normalised phase 
 .br

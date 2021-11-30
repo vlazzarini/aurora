@@ -34,6 +34,7 @@
 namespace Aurora {
 
 /** ADS function generator for Env \n
+  S: sample type \n
   a: attack  \n
   d: decay  \n
   s: sustain \n
@@ -52,7 +53,8 @@ std::function<S(double, S, S)> ads_gen(const S &a, const S &d, const S &s) {
 }
 
 /** Env class  \n
-    Generic envelope
+    Generic envelope \n
+    S: sample type
 */
 template <typename S> class Env : public SndBase<S> {
   using SndBase<S>::sig;

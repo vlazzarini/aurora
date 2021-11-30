@@ -41,7 +41,8 @@ static inline uint32_t np2(uint32_t n) {
 }
 
 /** FFT class  \n
-    Radix-2 fast Fourier transform
+    Radix-2 fast Fourier transform \n
+    S: sample type
 */
 template <typename S> class FFT {
 

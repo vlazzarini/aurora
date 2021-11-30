@@ -128,6 +128,7 @@ LP&\\
 std\+::function$<$S(double, S, S)$>$ Aurora\+::ads\+\_\+gen (\begin{DoxyParamCaption}\item[{const S \&}]{a,  }\item[{const S \&}]{d,  }\item[{const S \&}]{s }\end{DoxyParamCaption})}
 
 A\+DS function generator for \hyperlink{class_aurora_1_1_env}{Env} ~\newline
+S\+: sample type ~\newline
 a\+: attack ~\newline
 d\+: decay ~\newline
 s\+: sustain ~\newline
@@ -139,6 +140,7 @@ returns an A\+DS envelope function \mbox{\Hypertarget{namespace_aurora_ab6ef1b96
 S Aurora\+::cos (\begin{DoxyParamCaption}\item[{double}]{ph }\end{DoxyParamCaption})}
 
 Cosine function for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
+S\+: sample type ~\newline
 ph\+: normalised phase ~\newline
 returns the cosine of ph$\ast$2$\ast$\$\+M\+\_\+\+PI \mbox{\Hypertarget{namespace_aurora_ade912bee8dbe0351b2193809ce592d8b}\label{namespace_aurora_ade912bee8dbe0351b2193809ce592d8b}} 
 \index{Aurora@{Aurora}!lookup\+\_\+gen@{lookup\+\_\+gen}}
@@ -148,6 +150,7 @@ returns the cosine of ph$\ast$2$\ast$\$\+M\+\_\+\+PI \mbox{\Hypertarget{namespac
 std\+::function$<$S(S)$>$ Aurora\+::lookup\+\_\+gen (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{t }\end{DoxyParamCaption})}
 
 Table lookup function generator for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
+S\+: sample type ~\newline
 t\+: function table ~\newline
 returns a truncating table lookup function \mbox{\Hypertarget{namespace_aurora_a043c55515e053a8d6f31ed7077a1bea6}\label{namespace_aurora_a043c55515e053a8d6f31ed7077a1bea6}} 
 \index{Aurora@{Aurora}!lookupi\+\_\+gen@{lookupi\+\_\+gen}}
@@ -157,6 +160,7 @@ returns a truncating table lookup function \mbox{\Hypertarget{namespace_aurora_a
 std\+::function$<$S(S)$>$ Aurora\+::lookupi\+\_\+gen (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{t }\end{DoxyParamCaption})}
 
 Table lookup function generator for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
+S\+: sample type ~\newline
 t\+: function table ~\newline
 returns an interpolating table lookup function \mbox{\Hypertarget{namespace_aurora_a49b6f6d92479d80271ced42627154066}\label{namespace_aurora_a49b6f6d92479d80271ced42627154066}} 
 \index{Aurora@{Aurora}!np2@{np2}}
@@ -172,6 +176,7 @@ returns an interpolating table lookup function \mbox{\Hypertarget{namespace_auro
 S Aurora\+::phase (\begin{DoxyParamCaption}\item[{double}]{ph }\end{DoxyParamCaption})}
 
 Phase function for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
+S\+: sample type ~\newline
 ph\+: normalised phase ~\newline
 returns ph \mbox{\Hypertarget{namespace_aurora_a388ea5736944d8887f5586afd45a03b8}\label{namespace_aurora_a388ea5736944d8887f5586afd45a03b8}} 
 \index{Aurora@{Aurora}!sin@{sin}}
@@ -181,6 +186,7 @@ returns ph \mbox{\Hypertarget{namespace_aurora_a388ea5736944d8887f5586afd45a03b8
 S Aurora\+::sin (\begin{DoxyParamCaption}\item[{double}]{ph }\end{DoxyParamCaption})}
 
 Sine function for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
+S\+: sample type ~\newline
 ph\+: normalised phase ~\newline
 returns the sine of ph$\ast$2$\ast$\$\+M\+\_\+\+PI 
 

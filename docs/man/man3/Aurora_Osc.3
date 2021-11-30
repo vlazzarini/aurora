@@ -22,7 +22,7 @@ Inherited by \fBAurora::BlOsc< S >\fP\&.
 .RI "virtual \fB~Osc\fP ()"
 .br
 .ti -1c
-.RI "S \fBfs\fP ()"
+.RI "S \fBfs\fP () const"
 .br
 .ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (S a, S f)"
@@ -69,6 +69,8 @@ class Aurora::Osc< S >"
 \fBOsc\fP class 
 .br
 Generic oscillator 
+.br
+S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<typename S > \fBAurora::Osc\fP< S >::\fBOsc\fP (std::function< S(S)> f = \fC\fBcos\fP<S>\fP, S fs = \fC(S)\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
@@ -83,7 +85,7 @@ vsize: signal vector size
 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S > S \fBAurora::Osc\fP< S >::fs ()\fC [inline]\fP"
+.SS "template<typename S > S \fBAurora::Osc\fP< S >::fs () const\fC [inline]\fP"
 Sampling rate query 
 .br
 returns sampling rate 

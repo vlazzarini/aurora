@@ -40,7 +40,8 @@ const double def_base = 1.f;
 const int def_ftlen = 16384;
 
 /** TableSet class \n
-    Creates a set of tables for BlOsc.
+    Creates a set of tables for BlOsc. \n
+    S: sample type
 */
 template <typename S> class TableSet {
   std::size_t tlen;
@@ -143,7 +144,8 @@ public:
 };
 
 /** BlOsc class \n
-    Bandlimited wavetable oscillator.
+    Bandlimited wavetable oscillator. \n
+    S: sample type
 */
 template <typename S> class BlOsc : public Osc<S> {
   using Osc<S>::ph;
@@ -152,7 +154,7 @@ template <typename S> class BlOsc : public Osc<S> {
   const TableSet<S> *tset;
   S ff;
 
-  virtual S synth(S a, S f, double &phs) {
+  S synth  (S a, S f, double &phs) override {
     fun = ff != f ? tset->func(f) : fun;
     return Osc<S>::synth(a, f, phs);
   }

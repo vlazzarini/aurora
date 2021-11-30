@@ -38,7 +38,8 @@ const int def_vsize = 64;
 const double def_sr = 44100.;
 
 /** SndBase class \n
-    Aurora Library base class
+    Aurora Library base class \n
+    S: sample type
 */
 template <typename S> class SndBase {
 protected:
@@ -53,7 +54,7 @@ public:
   /** Vector size query \n
       returns the object vector size
   */
-  std::size_t vsize() { return sig.size(); }
+  std::size_t vsize() const { return sig.size(); }
 
   /** Vector size setting \n
       n: new vector size
@@ -63,7 +64,7 @@ public:
   /** Vector access \n
       returns the object vector
   */
-  const std::vector<S> &vector() { return sig; }
+  const std::vector<S> &vector() const { return sig; }
 
   /** Preallocate vector memory \n
       size: size of vector to reserve in memory \n
@@ -73,7 +74,8 @@ public:
 };
 
 /** BinOp class \n
-    Binary operations
+    Binary operations \n
+    S: sample type
 */
 template <typename S> class BinOp : public SndBase<S> {
   using SndBase<S>::sig;

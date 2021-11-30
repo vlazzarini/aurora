@@ -17,13 +17,13 @@ Inherited by \fBAurora::BinOp< S >\fP, \fBAurora::Env< S >\fP, \fBAurora::FourPo
 .RI "\fBSndBase\fP (std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
-.RI "std::size_t \fBvsize\fP ()"
+.RI "std::size_t \fBvsize\fP () const"
 .br
 .ti -1c
 .RI "void \fBvsize\fP (std::size_t n)"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBvector\fP ()"
+.RI "const std::vector< S > & \fBvector\fP () const"
 .br
 .ti -1c
 .RI "void \fBprealloc\fP (std::size_t size)"
@@ -45,6 +45,8 @@ class Aurora::SndBase< S >"
 \fBSndBase\fP class 
 .br
 \fBAurora\fP Library base class 
+.br
+S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<typename S > \fBAurora::SndBase\fP< S >::\fBSndBase\fP (std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
@@ -59,11 +61,11 @@ Preallocate vector memory
 size: size of vector to reserve in memory 
 .br
 this method does not change the vector size\&. 
-.SS "template<typename S > const std::vector<S>& \fBAurora::SndBase\fP< S >::vector ()\fC [inline]\fP"
+.SS "template<typename S > const std::vector<S>& \fBAurora::SndBase\fP< S >::vector () const\fC [inline]\fP"
 Vector access 
 .br
 returns the object vector 
-.SS "template<typename S > std::size_t \fBAurora::SndBase\fP< S >::vsize ()\fC [inline]\fP"
+.SS "template<typename S > std::size_t \fBAurora::SndBase\fP< S >::vsize () const\fC [inline]\fP"
 Vector size query 
 .br
 returns the object vector size 
