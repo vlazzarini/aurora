@@ -36,12 +36,14 @@ int main(int argc, const char *argv[]) {
     FILE *fpo;
     SF_INFO sfinfo;
     float f[BUFSIZ];
-    size_t n, i, cnt, ends, starts;
+    int n, i, toread;
+    size_t cnt, ends, starts, remain;
     fp = sf_open(argv[1], SFM_READ, &sfinfo);
     fpo = fopen(argv[2], "w");
     starts = atoi(argv[4]), ends = atoi(argv[5]);
     sf_seek(fp, starts, SEEK_SET);
     cnt = starts;
+    remain = ends - starts;
     fprintf(fpo, "/* Wavetable created by %s */\n", argv[0]);
     fprintf(fpo, "/* source: %s (%lu - %lu samples) */\n", argv[1], starts,
             ends);
@@ -51,12 +53,16 @@ int main(int argc, const char *argv[]) {
     fprintf(fpo, "namespace %s {\n", argv[3]);
     fprintf(fpo, "const std::vector<float> wave({\n");
     do {
-      n = sf_readf_float(fp, f, 1);
+      toread = remain > BUFSIZ ? BUFSIZ : remain;
+      n = sf_readf_float(fp, f, toread);
+      if (n == 0)
+        break;
       cnt += n;
-      for (i = 0; i < n; i += sfinfo.channels) {
+      remain -= n;
+      for (i = 0; i < n * sfinfo.channels; i += sfinfo.channels) {
         fprintf(fpo, "%f,\n", f[i]);
       }
-    } while (n && cnt < ends);
+    } while (remain);
     fprintf(fpo, "});\n");
     fprintf(fpo, "/* base frequency */\n");
     fprintf(fpo, "const float base = %f;\n", atof(argv[6]));
@@ -69,6 +75,8 @@ int main(int argc, const char *argv[]) {
     sf_close(fp);
     fclose(fpo);
 
+    if (remain)
+      printf("could not fully read requested range: end of file reached\n");
     printf("Wrote %lu samples (%f secs) to wavetable\n", cnt - starts,
            (float)(cnt - starts) / sfinfo.samplerate);
   } else
