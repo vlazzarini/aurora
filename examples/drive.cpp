@@ -25,12 +25,12 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
 
-#include "Func.h"
 #include "Env.h"
+#include "Func.h"
 #include "Osc.h"
+#include <cmath>
 #include <cstdlib>
 #include <iostream>
-#include <cmath>
 
 using namespace Aurora;
 struct Synth {
@@ -45,7 +45,7 @@ struct Synth {
       : att(0.1f), dec(0.3f), sus(0.7f), wave(def_vsize),
         env(ads_gen(att, dec, sus), rt, sr), osc(lookupi_gen(wave), sr),
         drive(std::tanhf),
-        amp([](float a, float b)->float{ return a*b;}) {
+        amp([](float a, float b) -> float { return a * b; }) {
     std::size_t n = 0;
     for (auto &s : wave) {
       s = sin<float>((1. / wave.size()) * n++);
@@ -53,7 +53,7 @@ struct Synth {
   };
 
   const std::vector<float> &operator()(float a, float f, float dr, bool gate) {
-    return amp(env(0,a,gate),drive(osc(dr, f)));
+    return amp(env(0, a, gate), drive(osc(dr, f)));
   }
 };
 

@@ -1,4 +1,4 @@
-.TH "Aurora::BinOp< S >" 3 "Tue Nov 30 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::BinOp< S >" 3 "Wed Dec 1 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -25,6 +25,9 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &s1, const std::vector< S > &s2)"
 .br
+.ti -1c
+.RI "void \fBfunc\fP (std::function< S(S, S)> f)"
+.br
 .in -1c
 .SS "Additional Inherited Members"
 .SH "Detailed Description"
@@ -48,6 +51,8 @@ f: binary operation function
 vsize: signal vector size 
 .SH "Member Function Documentation"
 .PP 
+.SS "template<typename S > void \fBAurora::BinOp\fP< S >::func (std::function< S(S, S)> f)\fC [inline]\fP"
+set the operator function f: binary operator function to be used 
 .SS "template<typename S > const std::vector<S>& \fBAurora::BinOp\fP< S >::operator() (S a, const std::vector< S > & s)\fC [inline]\fP"
 Binary operation 
 .br

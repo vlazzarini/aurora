@@ -154,7 +154,7 @@ template <typename S> class BlOsc : public Osc<S> {
   const TableSet<S> *tset;
   S ff;
 
-  S synth  (S a, S f, double &phs) override {
+  S synth(S a, S f, double &phs) override {
     fun = ff != f ? tset->func(f) : fun;
     return Osc<S>::synth(a, f, phs);
   }

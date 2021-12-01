@@ -60,14 +60,13 @@ template <typename S> class FourPole : public SndBase<S> {
   }
 
   void coeffs(S f) {
-    S g;
-    ff = f;
-    g = std::tan(f * piosr);
+    S g = std::tan(f * piosr);
     G[0] = g / (1 + g);
-    A = A = (g - 1) / (1 + g);
+    A = (g - 1) / (1 + g);
     G[1] = G[0] * G[0];
     G[2] = G[0] * G[1];
     G[3] = G[0] * G[2];
+    ff = f;
   }
 
 public:

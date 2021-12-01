@@ -25,10 +25,9 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
 
-#include "TwoPole.h"
 #include "BlOsc.h"
 #include "Env.h"
-#include "FourPole.h"
+#include "TwoPole.h"
 #include <cstdlib>
 #include <iostream>
 
@@ -41,16 +40,16 @@ int main(int argc, const char *argv[]) {
     auto cf = std::atof(argv[4]);
     auto q = std::atof(argv[5]);
     auto drv = std::atof(argv[6]);
-    auto nlm = (double (*)(double)) tanh;
+    auto nlm = (double (*)(double))tanh;
     Aurora::TableSet<double> wave(Aurora::SAW);
-    Aurora::BlOsc<double> osc(&wave,sr);
-    Aurora::TwoPole<double> fil(nlm,sr);
+    Aurora::BlOsc<double> osc(&wave, sr);
+    Aurora::TwoPole<double> fil(nlm, sr);
     double att = 0.1 * dur, dec = 0.2 * dur, sus = 0.7, rt = 0.1;
     Aurora::Env<double> env(Aurora::ads_gen(att, dec, sus), rt, sr);
     bool gate = 1;
     q = q > 0.5 ? q : 0.5;
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
-      for (auto s : fil(osc(a, f), env(cf, 1000, gate),1/q,drv)) {
+      for (auto s : fil(osc(a, f), env(cf, 1000, gate), 1 / q, drv)) {
         if (n > sr * (dur - rt))
           gate = 0;
         std::cout << s << std::endl;

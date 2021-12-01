@@ -127,6 +127,11 @@ public:
     }
     return sig;
   }
+
+  /** set the operator function
+   f: binary operator function to be used
+*/
+  void func(std::function<S(S, S)> f) { op = f; }
 };
 } // namespace Aurora
 

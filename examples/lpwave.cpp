@@ -25,7 +25,6 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
 
-#include "TwoPole.h"
 #include "BlOsc.h"
 #include "Env.h"
 #include "FourPole.h"
@@ -40,12 +39,11 @@ int main(int argc, const char *argv[]) {
     auto f = std::atof(argv[3]);
     auto cf = std::atof(argv[4]);
     auto res = std::atof(argv[5]);
-    std::function<double(double)> fuc = [](double x)->double{ return std::tanh(x);};
-    Aurora::TableSet<double> wave(Aurora::SAW);
-    Aurora::BlOsc<double> osc(&wave, sr);
-    Aurora::FourPole<double> fil(sr);
+    Aurora::TableSet<float> wave(Aurora::SAW);
+    Aurora::BlOsc<float> osc(&wave, sr);
+    Aurora::FourPole<float> fil(sr);
     double att = 0.1 * dur, dec = 0.2 * dur, sus = 0.7, rt = 0.1;
-    Aurora::Env<double> env(Aurora::ads_gen(att, dec, sus), rt, sr);
+    Aurora::Env<float> env(Aurora::ads_gen(att, dec, sus), rt, sr);
     bool gate = 1;
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
       for (auto s : fil(osc(a, f), env(cf, 1000, gate), res)) {
