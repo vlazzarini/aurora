@@ -26,12 +26,12 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
 
+#include "Del.h"
+#include <cmath>
+#include <cstdlib>
+#include <iostream>
 #include <sndfile.h>
 #include <vector>
-#include <cstdlib>
-#include <cmath>
-#include <iostream>
-#include "Del.h"
 
 using namespace Aurora;
 
@@ -40,41 +40,42 @@ int main(int argc, const char **argv) {
   SNDFILE *fpin, *fpout;
   int n;
 
-  if(argc > 4) {
-    if((fpin = sf_open(argv[1], SFM_READ, &sfinfo)) != NULL) {
-      if(sfinfo.channels < 2) {
+  if (argc > 4) {
+    if ((fpin = sf_open(argv[1], SFM_READ, &sfinfo)) != NULL) {
+      if (sfinfo.channels < 2) {
         fpout = sf_open(argv[2], SFM_WRITE, &sfinfo);
         float dt = atof(argv[3]);
         float fdb = atof(argv[4]);
         std::vector<float> buffer(def_vsize);
-        Del<float> delay(dt, fixed_delay<float>, sfinfo.samplerate);
+        Del<float> delay(dt, sfinfo.samplerate);
         do {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
-          if(n) {
-          buffer.resize(n);
-          auto out = delay(buffer, dt, fdb);
-          sf_write_float(fpout, out.data(),n);
-          } else break;
-        } while(1);
+          if (n) {
+            buffer.resize(n);
+            auto out = delay(buffer, dt, fdb);
+            sf_write_float(fpout, out.data(), n);
+          } else
+            break;
+        } while (1);
         buffer.resize(def_vsize);
-        n = -3*sfinfo.samplerate*dt/std::log10(fdb);
-        std::fill(buffer.begin(),buffer.end(),0.f);
+        n = -3 * sfinfo.samplerate * dt / std::log10(fdb);
+        std::fill(buffer.begin(), buffer.end(), 0.f);
         do {
           auto out = delay(buffer, dt, fdb);
-          sf_write_float(fpout, out.data(),def_vsize);
+          sf_write_float(fpout, out.data(), def_vsize);
           n -= def_vsize;
-        } while(n > 0);
+        } while (n > 0);
         sf_close(fpout);
         return 0;
-      } else std::cout <<  "only mono soundfiles permitted\n"; 
+      } else
+        std::cout << "only mono soundfiles permitted\n";
       sf_close(fpin);
       return 1;
-    } else std::cout <<  "could not open " << argv[1] << std::endl;
+    } else
+      std::cout << "could not open " << argv[1] << std::endl;
     return 1;
   }
-  std::cout <<  "usage: " << argv[0] <<
-    " infile outfile delay feedback \n" <<
-    std::endl;
+  std::cout << "usage: " << argv[0] << " infile outfile delay feedback \n"
+            << std::endl;
   return -1;
 }
-  

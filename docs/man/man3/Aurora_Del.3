@@ -14,7 +14,10 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 
 .in +1c
 .ti -1c
-.RI "\fBDel\fP (S maxdt, std::function< S(S, std::size_t, const std::vector< S > &)> f=\fBfixed_delay\fP< S >, S sr=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.RI "\fBDel\fP (S maxdt, std::function< S(S, std::size_t, const std::vector< S > &)> f, S sr=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "\fBDel\fP (S dt, S sr=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S dt, S fdb=0)"
@@ -36,7 +39,7 @@ Generic delay line
 S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S > \fBAurora::Del\fP< S >::\fBDel\fP (S maxdt, std::function< S(S, std::size_t, const std::vector< S > &)> f = \fC\fBfixed_delay\fP<S>\fP, S sr = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S > \fBAurora::Del\fP< S >::\fBDel\fP (S maxdt, std::function< S(S, std::size_t, const std::vector< S > &)> f, S sr = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 maxdt: maximum delay time 
@@ -46,14 +49,34 @@ f: delay lookup function
 sr: sampling rate 
 .br
 vsize: vector size 
+.SS "template<typename S > \fBAurora::Del\fP< S >::\fBDel\fP (S dt, S sr = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
 .br
-
+dt: fixed delay time 
+.br
+f: delay lookup function 
+.br
+sr: sampling rate 
+.br
+vsize: vector size 
 .SH "Member Function Documentation"
 .PP 
 .SS "template<typename S > const std::vector<S>& \fBAurora::Del\fP< S >::operator() (const std::vector< S > & in, S dt, S fdb = \fC0\fP)\fC [inline]\fP"
-Delay in: audio dt: delay time fdb: feedback 
+Delay 
+.br
+in: audio 
+.br
+dt: delay time 
+.br
+fdb: feedback 
 .SS "template<typename S > const std::vector<S>& \fBAurora::Del\fP< S >::operator() (const std::vector< S > & in, const std::vector< S > & dt, S fdb = \fC0\fP)\fC [inline]\fP"
-Delay in: audio dt: delay time fdb: feedback 
+Delay 
+.br
+in: audio 
+.br
+dt: delay time 
+.br
+fdb: feedback 
 
 .SH "Author"
 .PP 

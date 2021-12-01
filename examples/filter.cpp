@@ -26,11 +26,11 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
 
-#include <sndfile.h>
-#include <vector>
+#include "FourPole.h"
 #include <cstdlib>
 #include <iostream>
-#include "FourPole.h"
+#include <sndfile.h>
+#include <vector>
 
 using namespace Aurora;
 
@@ -39,9 +39,9 @@ int main(int argc, const char **argv) {
   SNDFILE *fpin, *fpout;
   int n;
 
-  if(argc > 4) {
-    if((fpin = sf_open(argv[1], SFM_READ, &sfinfo)) != NULL) {
-      if(sfinfo.channels < 2) {
+  if (argc > 4) {
+    if ((fpin = sf_open(argv[1], SFM_READ, &sfinfo)) != NULL) {
+      if (sfinfo.channels < 2) {
         fpout = sf_open(argv[2], SFM_WRITE, &sfinfo);
         float cf = atof(argv[3]);
         float res = atof(argv[4]);
@@ -49,23 +49,24 @@ int main(int argc, const char **argv) {
         FourPole<float> filter(sfinfo.samplerate);
         do {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
-          if(n)  {
-          buffer.resize(n);
-          auto out = filter(buffer, cf, res);
-          sf_write_float(fpout, out.data(),n);
-          } else break;
-        } while(1);
+          if (n) {
+            buffer.resize(n);
+            auto out = filter(buffer, cf, res);
+            sf_write_float(fpout, out.data(), n);
+          } else
+            break;
+        } while (1);
         sf_close(fpout);
         return 0;
-      } else std::cout <<  "only mono soundfiles permitted\n"; 
+      } else
+        std::cout << "only mono soundfiles permitted\n";
       sf_close(fpin);
       return 1;
-    } else std::cout <<  "could not open " << argv[1] << std::endl;
+    } else
+      std::cout << "could not open " << argv[1] << std::endl;
     return 1;
   }
-  std::cout <<  "usage: " << argv[0] <<
-    " infile outfile cutoff(Hz) resonance \n" <<
-    std::endl;
+  std::cout << "usage: " << argv[0] << " infile outfile cutoff(Hz) resonance \n"
+            << std::endl;
   return -1;
 }
-  

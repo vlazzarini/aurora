@@ -1,6 +1,6 @@
 // Del.h
 // Generic delay line and associated functions
-// 
+//
 //
 // (c) V Lazzarini, 2021
 //
@@ -33,113 +33,123 @@
 
 namespace Aurora {
 
-  /** Fixed delay function for Del \n\
-      S: sample type \n
-      rp: no op \n
-      wp: reading position (no bounds check) \n
-      d: delay line \n
-      returns a sample from the delay line
-   */
-  template <typename S>
-    S fixed_delay(S rp,std::size_t wp,const std::vector<S>& d)
-    {
-      return d[wp];
-    }
-
-   /** Truncating delay function for Del \n
-      S: sample type \n
-      rp: reading position \n
-      wp: write position \n
-      d: delay line \n
-      returns a sample from the delay line floor(rp) samples behind wp
-   */
-  template <typename S>
-    S vdelay(S rp, std::size_t wp, const std::vector<S> &del)  
-    {
-      std::size_t ds = del.size();
-      rp = wp - rp;
-      while(rp < 0) rp += ds;
-      while(rp >= ds) rp -= ds;
-      return del[(std::size_t) rp];
-    }
-
-     /** Interpolation delay function for Del \n
-      S: sample type \n
-      rp: reading position \n
-      wp: write position \n
-      d: delay line \n
-      returns a sample from the delay line rp samples behind wp, \n
-      linearly interpolated
-   */
-  template <typename S>
-    S vdelayi(S rp, std::size_t wp, const std::vector<S> &del)  
-    {
-      std::size_t ds = del.size();
-      rp = wp - rp;
-      while(rp < 0) rp += ds;
-      while(rp >= ds) rp -= ds;
-      return linear_interp(rp, del);
-    }
-  /** Del class \n
-      Generic delay line \n
-      S: sample type
-  */
-  template<typename S> class  Del : SndBase<S> {
-    using SndBase<S>::sig;
-    S fs;
-    std::size_t wp;
-    std::vector<S> del;
-    std::function<S(S,std::size_t&,const std::vector<S>&)> fun;
-
-    S delay(S in, S dt, S fdb, std::size_t &p) {
-      S s = fun(dt*fs,p,del);
-      del[p] = in + s*fdb;
-      p = p < del.size() - 1 ? p+1 : 0;
-      return s;
-    }
-
-  public:
-
-    /** Constructor \n
-        maxdt: maximum delay time \n
-        f: delay lookup function \n
-        sr: sampling rate \n
-        vsize: vector size \n
-     */
-    Del(S maxdt, std::function<S(S,std::size_t,const std::vector<S>&)> f = fixed_delay<S>, 
-      S sr = def_sr, std::size_t vsize = def_vsize) : SndBase<S>(vsize), fs(sr), wp(0),
-      del(maxdt*fs), fun(f) { };
-
-    /** Delay
-        in: audio
-        dt: delay time
-        fdb: feedback
-     */
-    const std::vector<S> &operator()(const std::vector<S> &in, S dt, S fdb = 0) {
-      std::size_t n = 0, p = wp;
-      this->vsize(in.size());
-      for(auto &s: sig)
-        s = delay(in[n++],dt,fdb,p);
-      wp = p;
-      return sig;
-    }
-    
-    /** Delay
-        in: audio
-        dt: delay time
-        fdb: feedback
-     */
-    const std::vector<S> &operator()(const std::vector<S> &in, const std::vector<S> &dt, S fdb = 0) {
-      std::size_t n = 0, p = wp;
-      this->vsize(in.size());
-      for(auto &s: sig) {
-        s = delay(in[n],dt[n],fdb,p);
-        n++;
-      }
-      wp = p;
-      return sig;
-    }  
-  };
-
+/** Fixed delay function for Del \n
+    S: sample type \n
+    rp: no op \n
+    wp: reading position (no bounds check) \n
+    d: delay line \n
+    returns a sample from the delay line
+ */
+template <typename S>
+S fixed_delay(S rp, std::size_t wp, const std::vector<S> &d) {
+  return d[wp];
 }
+
+/** Truncating delay function for Del \n
+   S: sample type \n
+   rp: reading position \n
+   wp: write position \n
+   d: delay line \n
+   returns a sample from the delay line floor(rp) samples behind wp
+*/
+template <typename S>
+S vdelay(S rp, std::size_t wp, const std::vector<S> &del) {
+  std::size_t ds = del.size();
+  rp = wp - rp;
+  while (rp < 0)
+    rp += ds;
+  while (rp >= ds)
+    rp -= ds;
+  return del[(std::size_t)rp];
+}
+
+/** Interpolation delay function for Del \n
+ S: sample type \n
+ rp: reading position \n
+ wp: write position \n
+ d: delay line \n
+ returns a sample from the delay line rp samples behind wp, \n
+ linearly interpolated
+*/
+template <typename S>
+S vdelayi(S rp, std::size_t wp, const std::vector<S> &del) {
+  std::size_t ds = del.size();
+  rp = wp - rp;
+  while (rp < 0)
+    rp += ds;
+  while (rp >= ds)
+    rp -= ds;
+  return linear_interp(rp, del);
+}
+/** Del class \n
+    Generic delay line \n
+    S: sample type
+*/
+template <typename S> class Del : SndBase<S> {
+  using SndBase<S>::sig;
+  S fs;
+  std::size_t wp;
+  std::vector<S> del;
+  std::function<S(S, std::size_t &, const std::vector<S> &)> fun;
+
+  S delay(S in, S dt, S fdb, std::size_t &p) {
+    S s = fun(dt * fs, p, del);
+    del[p] = in + s * fdb;
+    p = p < del.size() - 1 ? p + 1 : 0;
+    return s;
+  }
+
+public:
+  /** Constructor \n
+      maxdt: maximum delay time \n
+      f: delay lookup function \n
+      sr: sampling rate \n
+      vsize: vector size
+   */
+  Del(S maxdt, std::function<S(S, std::size_t, const std::vector<S> &)> f,
+      S sr = def_sr, std::size_t vsize = def_vsize)
+      : SndBase<S>(vsize), fs(sr), wp(0), del(maxdt * fs), fun(f){};
+
+  /** Constructor \n
+      dt: fixed delay time \n
+      f: delay lookup function \n
+      sr: sampling rate \n
+      vsize: vector size
+   */
+  Del(S dt, S sr = def_sr, std::size_t vsize = def_vsize)
+      : Del(dt, fixed_delay<S>, sr, vsize){};
+
+  /** Delay \n
+      in: audio \n
+      dt: delay time \n
+      fdb: feedback
+   */
+  const std::vector<S> &operator()(const std::vector<S> &in, S dt, S fdb = 0) {
+    std::size_t n = 0, p = wp;
+    this->vsize(in.size());
+    for (auto &s : sig)
+      s = delay(in[n++], dt, fdb, p);
+    wp = p;
+    return sig;
+  }
+
+  /** Delay \n
+      in: audio \n
+      dt: delay time \n
+      fdb: feedback
+   */
+  const std::vector<S> &operator()(const std::vector<S> &in,
+                                   const std::vector<S> &dt, S fdb = 0) {
+    std::size_t n = 0, p = wp;
+    this->vsize(in.size());
+    for (auto &s : sig) {
+      s = delay(in[n], dt[n], fdb, p);
+      n++;
+    }
+    wp = p;
+    return sig;
+  }
+};
+
+} // namespace Aurora
 #endif // _AURORA_DEL_

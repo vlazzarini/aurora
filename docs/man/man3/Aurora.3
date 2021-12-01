@@ -168,7 +168,7 @@ returns the cosine of ph*2*$M_PI
 .SS "template<typename S > S Aurora::fixed_delay (S rp, std::size_t wp, const std::vector< S > & d)"
 Fixed delay function for \fBDel\fP 
 .br
-\\ S: sample type 
+S: sample type 
 .br
 rp: no op 
 .br
@@ -178,9 +178,13 @@ d: delay line
 .br
 returns a sample from the delay line 
 .SS "template<typename S > S Aurora::linear_interp (double pos, const std::vector< S > & t)"
-linear interpolation table lookup S: sample type 
+linear interpolation table lookup 
 .br
-pos: reading position (no bounds check) t: table 
+S: sample type 
+.br
+pos: reading position (no bounds check) 
+.br
+t: table 
 .SS "template<typename S > std::function<S(S)> Aurora::lookup_gen (const std::vector< S > & t)"
 Table lookup function generator for \fBOsc\fP 
 .br

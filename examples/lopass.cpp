@@ -43,12 +43,13 @@ int main(int argc, const char *argv[]) {
     Aurora::TableSet<Sample> wave(Aurora::SAW);
     Aurora::BlOsc<Sample> osc(&wave, sr);
     Aurora::OnePole<Sample> fil(sr);
-    Aurora::BinOp<Sample> amp([](Sample a, Sample b) -> Sample { return a * b; });
+    Aurora::BinOp<Sample> amp(
+        [](Sample a, Sample b) -> Sample { return a * b; });
     double att = 0.1 * dur, dec = 0.5 * dur, sus = 0.01, rt = 0.1;
     Aurora::Env<Sample> env(Aurora::ads_gen(att, dec, sus), rt, sr);
     bool gate = 1;
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
-      for (auto s : amp(0.1,fil(osc(a, f), env(f, cf, gate)))) {
+      for (auto s : amp(0.1, fil(osc(a, f), env(f, cf, gate)))) {
         if (n > sr * (dur - rt))
           gate = 0;
         std::cout << s << std::endl;

@@ -33,25 +33,25 @@
 #include <functional>
 
 namespace Aurora {
-  const double twopi = 2 * M_PI;
- 
-  /** Table lookup function generator for Osc \n
-      S: sample type \n
-      t: function table  \n
-      returns a truncating table lookup function
-  */
-  template <typename S> std::function<S(S)> lookup_gen(const std::vector<S> &t) {
-    return [&t](double ph) -> S { return t[(std::size_t)(ph * t.size())]; };
-  }
+const double twopi = 2 * M_PI;
 
-  /** Table lookup function generator for Osc \n
-      S: sample type \n
-      t: function table  \n
-      returns an interpolating table lookup function
-  */
-  template <typename S> std::function<S(S)> lookupi_gen(const std::vector<S> &t) {
-    return [&t](double ph) -> S { return linear_interp(ph*t.size(),t); }; 
-  }
+/** Table lookup function generator for Osc \n
+    S: sample type \n
+    t: function table  \n
+    returns a truncating table lookup function
+*/
+template <typename S> std::function<S(S)> lookup_gen(const std::vector<S> &t) {
+  return [&t](double ph) -> S { return t[(std::size_t)(ph * t.size())]; };
+}
+
+/** Table lookup function generator for Osc \n
+    S: sample type \n
+    t: function table  \n
+    returns an interpolating table lookup function
+*/
+template <typename S> std::function<S(S)> lookupi_gen(const std::vector<S> &t) {
+  return [&t](double ph) -> S { return linear_interp(ph * t.size(), t); };
+}
 
 /** Sine function for Osc \n
     S: sample type \n
@@ -81,7 +81,7 @@ template <typename S> S phase(double ph) { return (S)ph; }
 template <typename S> class Osc : public SndBase<S> {
   using SndBase<S>::sig;
 
- protected:
+protected:
   double ph;
   S ts;
   std::function<S(S)> fun;
@@ -96,15 +96,15 @@ template <typename S> class Osc : public SndBase<S> {
     return s;
   }
 
- public:
+public:
   /** Constructor \n
       f: oscillator function \n
       fs: sampling rate \n
       vsize: signal vector size
   */
- Osc(std::function<S(S)> f = cos<S>, S fs = (S)def_sr,
-     std::size_t vsize = def_vsize)
-   : SndBase<S>(vsize), ph(0.), ts(1 / fs), fun(f){};
+  Osc(std::function<S(S)> f = cos<S>, S fs = (S)def_sr,
+      std::size_t vsize = def_vsize)
+      : SndBase<S>(vsize), ph(0.), ts(1 / fs), fun(f){};
 
   virtual ~Osc(){};
 
