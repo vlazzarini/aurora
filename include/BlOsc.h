@@ -31,7 +31,6 @@
 
 #include "FFT.h"
 #include "Osc.h"
-#include <iostream>
 
 namespace Aurora {
 enum { SAW = 0, SQUARE, TRIANGLE, PULSE };

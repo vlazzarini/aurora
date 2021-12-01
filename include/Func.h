@@ -56,6 +56,7 @@ public:
   */
   const std::vector<S> &operator()(const std::vector<S> &in) {
     std::size_t n = 0;
+    this->vsize(in.size());
     for (auto &s : sig)
       s = fun(in[n++]);
     return sig;

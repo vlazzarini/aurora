@@ -98,6 +98,7 @@ public:
     S w = W, fac = Fac;
     std::size_t n = 0;
     drv += 1;
+    this->vsize(in.size());
     for (auto &s : sig) {
       s = filter(in[n++], Y, D, w, fac, d, drv);
       if (o <= BR)
@@ -120,6 +121,7 @@ public:
     S w = W, fac = Fac;
     std::size_t n = 0;
     drv += 1;
+    this->vsize(in.size());
     for (auto &s : sig) {
       s = filter(in[n++], Y, D, w, fac, d, drv) * (1 - m);
       s += Y[HP] * m;
@@ -140,6 +142,7 @@ public:
     S &w = W, &fac = Fac;
     std::size_t n = 0;
     drv += 1;
+    this->vsize(in.size() < f.size() ? in.size() : f.size());
     for (auto &s : sig) {
       if (f[n] != ff || d != dd)
         coeffs(f[n], d);
@@ -162,6 +165,7 @@ public:
     S &w = W, &fac = Fac;
     std::size_t n = 0;
     drv += 1;
+    this->vsize(in.size() < f.size() ? in.size() : f.size());
     for (auto &s : sig) {
       if (f[n] != ff || d != dd)
         coeffs(f[n], d);

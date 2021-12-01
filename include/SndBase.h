@@ -96,6 +96,7 @@ public:
   */
   const std::vector<S> &operator()(S a, const std::vector<S> &s) {
     std::size_t n = 0;
+    this->vsize(s.size());
     for (auto &out : sig)
       out = op(a, s[n++]);
     return sig;
@@ -108,6 +109,7 @@ public:
   */
   const std::vector<S> &operator()(const std::vector<S> &s, S a) {
     std::size_t n = 0;
+    this->vsize(s.size());
     for (auto &out : sig)
       out = op(a, s[n++]);
     return sig;
@@ -121,6 +123,7 @@ public:
   const std::vector<S> &operator()(const std::vector<S> &s1,
                                    const std::vector<S> &s2) {
     std::size_t n = 0;
+    this->vsize(s1.size() < s2.size() ? s1.size() : s2.size());
     for (auto &out : sig) {
       out = op(s1[n], s2[n]);
       n++;

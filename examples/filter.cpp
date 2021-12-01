@@ -1,5 +1,6 @@
-// lpwave.cpp:
-// Low pass filter example
+// filter.cpp:
+// Low pass resonant filter processing example
+// depends on libsndfile
 //
 // (c) V Lazzarini, 2021
 //
@@ -25,36 +26,43 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
 
-#include "BlOsc.h"
-#include "Env.h"
-#include "OnePole.h"
+#include <sndfile.h>
+#include <vector>
 #include <cstdlib>
 #include <iostream>
+#include "FourPole.h"
 
-typedef float Sample;
+using namespace Aurora;
 
-int main(int argc, const char *argv[]) {
-  if (argc > 4) {
-    double sr = argc > 5 ? std::atof(argv[5]) : Aurora::def_sr;
-    auto dur = std::atof(argv[1]);
-    auto a = std::atof(argv[2]);
-    auto f = std::atof(argv[3]);
-    auto cf = std::atof(argv[4]);
-    Aurora::TableSet<Sample> wave(Aurora::SAW);
-    Aurora::BlOsc<Sample> osc(&wave, sr);
-    Aurora::OnePole<Sample> fil(sr);
-    Aurora::BinOp<Sample> amp([](Sample a, Sample b) -> Sample { return a * b; });
-    double att = 0.1 * dur, dec = 0.5 * dur, sus = 0.01, rt = 0.1;
-    Aurora::Env<Sample> env(Aurora::ads_gen(att, dec, sus), rt, sr);
-    bool gate = 1;
-    for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
-      for (auto s : amp(0.1,fil(osc(a, f), env(f, cf, gate)))) {
-        if (n > sr * (dur - rt))
-          gate = 0;
-        std::cout << s << std::endl;
-      }
-  } else
-    std::cout << "usage: " << argv[0]
-              << " dur(s) amp freq(Hz) cutoff_max(Hz) [sr]" << std::endl;
-  return 0;
+int main(int argc, const char **argv) {
+  SF_INFO sfinfo;
+  SNDFILE *fpin, *fpout;
+  int n;
+
+  if(argc > 4) {
+    if((fpin = sf_open(argv[1], SFM_READ, &sfinfo)) != NULL) {
+      if(sfinfo.channels < 2) {
+        fpout = sf_open(argv[2], SFM_WRITE, &sfinfo);
+        float cf = atof(argv[3]);
+        float res = atof(argv[4]);
+        std::vector<float> buffer(def_vsize);
+        FourPole<float> filter(sfinfo.samplerate);
+        do {
+          n = sf_read_float(fpin, buffer.data(), def_vsize);
+          auto out = filter(buffer, cf, res);
+          sf_write_float(fpout, out.data(),n);
+        } while(n);
+        sf_close(fpout);
+        return 0;
+      } else std::cout <<  "only mono soundfiles permitted\n"; 
+      sf_close(fpin);
+      return 1;
+    } else std::cout <<  "could not open " << argv[1] << std::endl;
+    return 1;
+  }
+  std::cout <<  "usage: " << argv[0] <<
+    " infile outfile cutoff(Hz) resonance \n" <<
+    std::endl;
+  return -1;
 }
+  

@@ -45,12 +45,13 @@ int main(int argc, const char *argv[]) {
     double att = 0.1 * dur, dec = 0.2 * dur, sus = 0.7, rt = 0.1;
     Aurora::Env<float> env(Aurora::ads_gen(att, dec, sus), rt, sr);
     bool gate = 1;
-    for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
+    for (int n = 0; n < osc.fs() * dur; n += osc.vsize()) {
       for (auto s : fil(osc(a, f), env(cf, 1000, gate), res)) {
         if (n > sr * (dur - rt))
           gate = 0;
         std::cout << s << std::endl;
       }
+    }
   } else
     std::cout << "usage: " << argv[0]
               << " dur(s) amp freq(Hz) cutoff(Hz) res [sr]" << std::endl;

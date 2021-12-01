@@ -140,6 +140,7 @@ public:
   const std::vector<S> &operator()(S a, const std::vector<S> &fm) {
     double phs = ph;
     std::size_t n = 0;
+    this->vsize(fm.size());
     for (auto &s : sig)
       s = synth(a, fm[n++], phs);
     ph = phs;
@@ -154,6 +155,7 @@ public:
   const std::vector<S> &operator()(const std::vector<S> &am, S f) {
     double phs = ph;
     std::size_t n = 0;
+    this->vsize(am.size());
     for (auto &s : sig)
       s = synth(am[n++], f, phs);
     ph = phs;
@@ -169,6 +171,7 @@ public:
                                    const std::vector<S> &fm) {
     double phs = ph;
     std::size_t n = 0;
+    this->vsize(am.size() < fm.size() ? am.size() : fm.size());
     for (auto &s : sig) {
       s = synth(am[n], fm[n], phs);
       n++;

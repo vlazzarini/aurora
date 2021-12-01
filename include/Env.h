@@ -134,6 +134,7 @@ public:
     double t = time;
     S e = prev;
     std::size_t n = 0;
+    this->vsize(a.size());
     for (auto &s : sig) {
       e = synth(e, t, gate);
       s = e * a[n++];

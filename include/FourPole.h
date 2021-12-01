@@ -88,6 +88,7 @@ public:
     double *g = G, *d = D, a = A;
     std::size_t n = 0;
     r *= 4;
+    this->vsize(in.size());
     for (auto &s : sig) {
       s = filter(in[n++], d, g, a, r);
     }
@@ -104,6 +105,7 @@ public:
     double *g = G, *d = D, &a = A;
     std::size_t n = 0;
     r *= 4;
+    this->vsize(in.size() < f.size() ? in.size() : f.size());
     for (auto &s : sig) {
       if (f[n] != ff)
         coeffs(f[n]);

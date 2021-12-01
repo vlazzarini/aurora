@@ -74,6 +74,7 @@ public:
       coeffs(f);
     double d = D, a = A, g = G;
     std::size_t n = 0;
+    this->vsize(in.size());
     for (auto &s : sig) {
       s = filter(in[n++], d, g, a);
     }
@@ -89,6 +90,7 @@ public:
                                    const std::vector<S> &f) {
     double d = D, &a = A, &g = G;
     std::size_t n = 0;
+    this->vsize(in.size() < f.size() ? in.size() : f.size());
     for (auto &s : sig) {
       if (f[n] != ff)
         coeffs(f[n]);
