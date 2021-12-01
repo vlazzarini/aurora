@@ -1,47 +1,42 @@
-Aurora Examples == == == == == == == ==
-    =
+Aurora Examples
+===
+    
 
-        ASCII output-- -- -- -- -- -These examples write ASCII floats to
-            stdout and can be built using
+ASCII output
+---
 
-``` c++ -
-        o example example.cpp - I../ include -
-        std = c++ 14
+These examples write ASCII floats to stdout and can be built using
+
+```
+c++ -o example example.cpp - I../include -std=c++ 14
 ```
 
-                  * *wave.cpp * * : classic bandlimited waveform
+**wave.cpp** : classic bandlimited waveform
 
-                  * *custom.cpp * * : custom bandlimited waveform
+**custom.cpp** : custom bandlimited waveform
 
-                  * *stackedfm.cpp * * : stacked frequency modulation
+**stackedfm.cpp** : stacked frequency modulation
 
-                  * *oscil.cpp * * : table lookup oscillator and
-              envelope
+**oscil.cpp**: table lookup oscillator and envelope
 
-                  * *lpwave.cpp * * : lowpass filter,
-        bandlimited oscillator,
-        and envelope
+**lpwave.cpp** : lowpass filter,bandlimited oscillator, and envelope
 
-                **drive
-                    .cpp ** : nonlinear distortion
+**drive.cpp** : nonlinear distortion
 
-                                  **svfdrive
-                    .cpp ** : nonlinear svf
+**svfdrive.cpp** : nonlinear svf
 
-                                  **lopass.cpp ** : first -
-            order lowpass filter
+**lopass.cpp** : first-order lowpass filter
 
-                Soundfile output-- -- --
+Soundfile output
+---
 
-            These examples read and write soundfiles.They depend on
-                libsndfile and can be built using
+These examples read and write soundfiles.They depend on libsndfile and can be built using
 
 
-``` c++ - o example example.cpp -
-            I../ include -
-            std = c++ 14 - lsndfile
+```
+c++ -o example example.cpp -I../ include -std = c++ 14 - lsndfile
 ```
 
-                               * *filter.cpp * * : lowpass filter example
+**filter.cpp** : lowpass filter example
 
-                               * *delay.cpp * * : fixed comb filter example
+**delay.cpp** : fixed comb filter example
