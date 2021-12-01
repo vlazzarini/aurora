@@ -18,5 +18,6 @@ Aurora Headers
 **TwoPole.h**: two-pole state-variable filter with optional
 nonlinearity
 
+**OnePole.h**: one-pole lowpass filter
 
 

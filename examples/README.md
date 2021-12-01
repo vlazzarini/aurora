@@ -21,6 +21,7 @@ c++ -o example example.cpp -I../include -std=c++14
 
 **svfdrive.cpp**: nonlinear svf
 
+**lopass.cpp**: first-order lowpass filter
 
 
 
