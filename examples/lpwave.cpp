@@ -42,7 +42,7 @@ int main(int argc, const char *argv[]) {
     Aurora::TableSet<float> wave(Aurora::SAW);
     Aurora::BlOsc<float> osc(&wave, sr);
     Aurora::FourPole<float> fil(sr);
-    double att = 0.1 * dur, dec = 0.2 * dur, sus = 0.7, rt = 0.1;
+    double att = 0.01 * dur, dec = 0.1 * dur, sus = 0.1, rt = 0.1;
     Aurora::Env<float> env(Aurora::ads_gen(att, dec, sus), rt, sr);
     bool gate = 1;
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize()) {

@@ -1,0 +1,63 @@
+.TH "Aurora::Func< S >" 3 "Wed Dec 1 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::Func< S >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Func\&.h>\fP
+.PP
+Inherits \fBAurora::SndBase< S >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFunc\fP (std::function< S(S)> f, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in)"
+.br
+.ti -1c
+.RI "void \fBfunc\fP (std::function< S(S)> f)"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S>
+.br
+class Aurora::Func< S >"
+\fBFunc\fP class 
+.br
+Generic function maps 
+.br
+S: sample type 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S > \fBAurora::Func\fP< S >::\fBFunc\fP (std::function< S(S)> f, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+f: oscillator function 
+.br
+fs: sampling rate 
+.br
+vsize: signal vector size 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S > void \fBAurora::Func\fP< S >::func (std::function< S(S)> f)\fC [inline]\fP"
+set the mapping function 
+.br
+f: mapping function to be used 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Func\fP< S >::operator() (const std::vector< S > & in)\fC [inline]\fP"
+Functional application 
+.br
+in: input signal 
+.br
+returns reference to object signal vector 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

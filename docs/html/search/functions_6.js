@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['np2',['np2',['../namespace_aurora.html#a49b6f6d92479d80271ced42627154066',1,'Aurora']]]
+  ['linear_5finterp',['linear_interp',['../namespace_aurora.html#acdc5f35b9cbf54f7fc84a423d76bd488',1,'Aurora']]],
+  ['lookup_5fgen',['lookup_gen',['../namespace_aurora.html#ade912bee8dbe0351b2193809ce592d8b',1,'Aurora']]],
+  ['lookupi_5fgen',['lookupi_gen',['../namespace_aurora.html#a043c55515e053a8d6f31ed7077a1bea6',1,'Aurora']]]
 ];

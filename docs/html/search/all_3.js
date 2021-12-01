@@ -4,5 +4,8 @@ var searchData=
   ['def_5fftlen',['def_ftlen',['../namespace_aurora.html#a14dabfd9feedfa09c0e6f86d2627f006',1,'Aurora']]],
   ['def_5focts',['def_octs',['../namespace_aurora.html#a09d7b7aef171c72e46db6eac0226636b',1,'Aurora']]],
   ['def_5fsr',['def_sr',['../namespace_aurora.html#ad49263d809bea98dd422e95bc91bc03e',1,'Aurora']]],
-  ['def_5fvsize',['def_vsize',['../namespace_aurora.html#afaaddf667a06e7ce23c667a8b7295263',1,'Aurora']]]
+  ['def_5fvsize',['def_vsize',['../namespace_aurora.html#afaaddf667a06e7ce23c667a8b7295263',1,'Aurora']]],
+  ['del',['Del',['../class_aurora_1_1_del.html',1,'Aurora']]],
+  ['del',['Del',['../class_aurora_1_1_del.html#a387b5f804563f9ec154c26a45ae8aaab',1,'Aurora::Del']]],
+  ['del_2eh',['Del.h',['../_del_8h.html',1,'']]]
 ];

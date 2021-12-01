@@ -49,9 +49,12 @@ int main(int argc, const char **argv) {
         FourPole<float> filter(sfinfo.samplerate);
         do {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
+          if(n)  {
+          buffer.resize(n);
           auto out = filter(buffer, cf, res);
           sf_write_float(fpout, out.data(),n);
-        } while(n);
+          } else break;
+        } while(1);
         sf_close(fpout);
         return 0;
       } else std::cout <<  "only mono soundfiles permitted\n"; 

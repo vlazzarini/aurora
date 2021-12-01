@@ -1,0 +1,80 @@
+\hypertarget{class_aurora_1_1_del}{}\section{Aurora\+:\+:Del$<$ S $>$ Class Template Reference}
+\label{class_aurora_1_1_del}\index{Aurora\+::\+Del$<$ S $>$@{Aurora\+::\+Del$<$ S $>$}}
+
+
+{\ttfamily \#include $<$Del.\+h$>$}
+
+
+
+Inheritance diagram for Aurora\+:\+:Del$<$ S $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{class_aurora_1_1_del__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Aurora\+:\+:Del$<$ S $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{class_aurora_1_1_del__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_aurora_1_1_del_a387b5f804563f9ec154c26a45ae8aaab}{Del} (S maxdt, std\+::function$<$ S(S, std\+::size\+\_\+t, const std\+::vector$<$ S $>$ \&)$>$ f=\hyperlink{namespace_aurora_a62442f237e70fdaac1efc22b4e82e875}{fixed\+\_\+delay}$<$ S $>$, S sr=\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_del_aa45ad145253210b01c24b3d0b82a2dd9}{operator()} (const std\+::vector$<$ S $>$ \&in, S dt, S fdb=0)
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_del_a504900b27ce5849bebe55a675db175bd}{operator()} (const std\+::vector$<$ S $>$ \&in, const std\+::vector$<$ S $>$ \&dt, S fdb=0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename S$>$\newline
+class Aurora\+::\+Del$<$ S $>$}
+
+\hyperlink{class_aurora_1_1_del}{Del} class ~\newline
+Generic delay line ~\newline
+S\+: sample type 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_del_a387b5f804563f9ec154c26a45ae8aaab}\label{class_aurora_1_1_del_a387b5f804563f9ec154c26a45ae8aaab}} 
+\index{Aurora\+::\+Del@{Aurora\+::\+Del}!Del@{Del}}
+\index{Del@{Del}!Aurora\+::\+Del@{Aurora\+::\+Del}}
+\subsubsection{\texorpdfstring{Del()}{Del()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+\hyperlink{class_aurora_1_1_del}{Aurora\+::\+Del}$<$ S $>$\+::\hyperlink{class_aurora_1_1_del}{Del} (\begin{DoxyParamCaption}\item[{S}]{maxdt,  }\item[{std\+::function$<$ S(S, std\+::size\+\_\+t, const std\+::vector$<$ S $>$ \&)$>$}]{f = {\ttfamily \hyperlink{namespace_aurora_a62442f237e70fdaac1efc22b4e82e875}{fixed\+\_\+delay}$<$S$>$},  }\item[{S}]{sr = {\ttfamily \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}},  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor ~\newline
+maxdt\+: maximum delay time ~\newline
+f\+: delay lookup function ~\newline
+sr\+: sampling rate ~\newline
+vsize\+: vector size ~\newline
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_del_aa45ad145253210b01c24b3d0b82a2dd9}\label{class_aurora_1_1_del_aa45ad145253210b01c24b3d0b82a2dd9}} 
+\index{Aurora\+::\+Del@{Aurora\+::\+Del}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora\+::\+Del@{Aurora\+::\+Del}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_del}{Aurora\+::\+Del}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in,  }\item[{S}]{dt,  }\item[{S}]{fdb = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Delay in\+: audio dt\+: delay time fdb\+: feedback \mbox{\Hypertarget{class_aurora_1_1_del_a504900b27ce5849bebe55a675db175bd}\label{class_aurora_1_1_del_a504900b27ce5849bebe55a675db175bd}} 
+\index{Aurora\+::\+Del@{Aurora\+::\+Del}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora\+::\+Del@{Aurora\+::\+Del}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_del}{Aurora\+::\+Del}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in,  }\item[{const std\+::vector$<$ S $>$ \&}]{dt,  }\item[{S}]{fdb = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Delay in\+: audio dt\+: delay time fdb\+: feedback 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_del_8h}{Del.\+h}\end{DoxyCompactItemize}

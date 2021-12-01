@@ -7,6 +7,8 @@ class \hyperlink{class_aurora_1_1_bin_op}{Bin\+Op}
 \item 
 class \hyperlink{class_aurora_1_1_bl_osc}{Bl\+Osc}
 \item 
+class \hyperlink{class_aurora_1_1_del}{Del}
+\item 
 class \hyperlink{class_aurora_1_1_env}{Env}
 \item 
 class \hyperlink{class_aurora_1_1_f_f_t}{F\+FT}
@@ -43,6 +45,12 @@ enum \+: uint32\+\_\+t \{ \hyperlink{namespace_aurora_a935301c39e9550e3c46ebe8dc
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a62442f237e70fdaac1efc22b4e82e875}{fixed\+\_\+delay} (S rp, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&d)
+\item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_ab93392950e0b9ae8fbbccf7cc1b55a13}{vdelay} (S rp, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&del)
+\item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a5318ddb492590ada5dc40ba80bbf655b}{vdelayi} (S rp, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&del)
+\item 
 {\footnotesize template$<$typename S $>$ }\\std\+::function$<$ S(double, S, S)$>$ \hyperlink{namespace_aurora_a966a076f1768216bd9c2d6a07aebf034}{ads\+\_\+gen} (const S \&a, const S \&d, const S \&s)
 \item 
 static uint32\+\_\+t \hyperlink{namespace_aurora_a49b6f6d92479d80271ced42627154066}{np2} (uint32\+\_\+t n)
@@ -56,6 +64,8 @@ static uint32\+\_\+t \hyperlink{namespace_aurora_a49b6f6d92479d80271ced426271540
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_ab6ef1b966b8f27d107fcabe1027a677a}{cos} (double ph)
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a2fab91108d29c7101741bcd2ebe1ba72}{phase} (double ph)
+\item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_acdc5f35b9cbf54f7fc84a423d76bd488}{linear\+\_\+interp} (double pos, const std\+::vector$<$ S $>$ \&t)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -144,7 +154,27 @@ S Aurora\+::cos (\begin{DoxyParamCaption}\item[{double}]{ph }\end{DoxyParamCapti
 Cosine function for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
 S\+: sample type ~\newline
 ph\+: normalised phase ~\newline
-returns the cosine of ph$\ast$2$\ast$\$\+M\+\_\+\+PI \mbox{\Hypertarget{namespace_aurora_ade912bee8dbe0351b2193809ce592d8b}\label{namespace_aurora_ade912bee8dbe0351b2193809ce592d8b}} 
+returns the cosine of ph$\ast$2$\ast$\$\+M\+\_\+\+PI \mbox{\Hypertarget{namespace_aurora_a62442f237e70fdaac1efc22b4e82e875}\label{namespace_aurora_a62442f237e70fdaac1efc22b4e82e875}} 
+\index{Aurora@{Aurora}!fixed\+\_\+delay@{fixed\+\_\+delay}}
+\index{fixed\+\_\+delay@{fixed\+\_\+delay}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{fixed\+\_\+delay()}{fixed\_delay()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::fixed\+\_\+delay (\begin{DoxyParamCaption}\item[{S}]{rp,  }\item[{std\+::size\+\_\+t}]{wp,  }\item[{const std\+::vector$<$ S $>$ \&}]{d }\end{DoxyParamCaption})}
+
+Fixed delay function for \hyperlink{class_aurora_1_1_del}{Del} ~\newline
+\textbackslash{} S\+: sample type ~\newline
+rp\+: no op ~\newline
+wp\+: reading position (no bounds check) ~\newline
+d\+: delay line ~\newline
+returns a sample from the delay line \mbox{\Hypertarget{namespace_aurora_acdc5f35b9cbf54f7fc84a423d76bd488}\label{namespace_aurora_acdc5f35b9cbf54f7fc84a423d76bd488}} 
+\index{Aurora@{Aurora}!linear\+\_\+interp@{linear\+\_\+interp}}
+\index{linear\+\_\+interp@{linear\+\_\+interp}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{linear\+\_\+interp()}{linear\_interp()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::linear\+\_\+interp (\begin{DoxyParamCaption}\item[{double}]{pos,  }\item[{const std\+::vector$<$ S $>$ \&}]{t }\end{DoxyParamCaption})}
+
+linear interpolation table lookup S\+: sample type ~\newline
+pos\+: reading position (no bounds check) t\+: table \mbox{\Hypertarget{namespace_aurora_ade912bee8dbe0351b2193809ce592d8b}\label{namespace_aurora_ade912bee8dbe0351b2193809ce592d8b}} 
 \index{Aurora@{Aurora}!lookup\+\_\+gen@{lookup\+\_\+gen}}
 \index{lookup\+\_\+gen@{lookup\+\_\+gen}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{lookup\+\_\+gen()}{lookup\_gen()}}
@@ -190,7 +220,32 @@ S Aurora\+::sin (\begin{DoxyParamCaption}\item[{double}]{ph }\end{DoxyParamCapti
 Sine function for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
 S\+: sample type ~\newline
 ph\+: normalised phase ~\newline
-returns the sine of ph$\ast$2$\ast$\$\+M\+\_\+\+PI 
+returns the sine of ph$\ast$2$\ast$\$\+M\+\_\+\+PI \mbox{\Hypertarget{namespace_aurora_ab93392950e0b9ae8fbbccf7cc1b55a13}\label{namespace_aurora_ab93392950e0b9ae8fbbccf7cc1b55a13}} 
+\index{Aurora@{Aurora}!vdelay@{vdelay}}
+\index{vdelay@{vdelay}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{vdelay()}{vdelay()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::vdelay (\begin{DoxyParamCaption}\item[{S}]{rp,  }\item[{std\+::size\+\_\+t}]{wp,  }\item[{const std\+::vector$<$ S $>$ \&}]{del }\end{DoxyParamCaption})}
+
+Truncating delay function for \hyperlink{class_aurora_1_1_del}{Del} ~\newline
+S\+: sample type ~\newline
+rp\+: reading position ~\newline
+wp\+: write position ~\newline
+d\+: delay line ~\newline
+returns a sample from the delay line floor(rp) samples behind wp \mbox{\Hypertarget{namespace_aurora_a5318ddb492590ada5dc40ba80bbf655b}\label{namespace_aurora_a5318ddb492590ada5dc40ba80bbf655b}} 
+\index{Aurora@{Aurora}!vdelayi@{vdelayi}}
+\index{vdelayi@{vdelayi}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{vdelayi()}{vdelayi()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::vdelayi (\begin{DoxyParamCaption}\item[{S}]{rp,  }\item[{std\+::size\+\_\+t}]{wp,  }\item[{const std\+::vector$<$ S $>$ \&}]{del }\end{DoxyParamCaption})}
+
+Interpolation delay function for \hyperlink{class_aurora_1_1_del}{Del} ~\newline
+S\+: sample type ~\newline
+rp\+: reading position ~\newline
+wp\+: write position ~\newline
+d\+: delay line ~\newline
+returns a sample from the delay line rp samples behind wp, ~\newline
+linearly interpolated 
 
 \subsection{Variable Documentation}
 \mbox{\Hypertarget{namespace_aurora_acb267dff62f74484893c2d5b679b78bf}\label{namespace_aurora_acb267dff62f74484893c2d5b679b78bf}} 

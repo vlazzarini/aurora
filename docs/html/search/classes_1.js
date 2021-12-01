@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['env',['Env',['../class_aurora_1_1_env.html',1,'Aurora']]]
+  ['del',['Del',['../class_aurora_1_1_del.html',1,'Aurora']]]
 ];

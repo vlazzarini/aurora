@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]]
+  ['onepole_2eh',['OnePole.h',['../_one_pole_8h.html',1,'']]],
+  ['osc_2eh',['Osc.h',['../_osc_8h.html',1,'']]]
 ];

@@ -1,7 +1,9 @@
 Aurora Examples
 =================
 
-Examples can be built using
+ASCII output
+-----------
+These examples write ASCII floats to stdout and can be built using
 
 ```
 c++ -o example example.cpp -I../include -std=c++14
@@ -23,6 +25,17 @@ c++ -o example example.cpp -I../include -std=c++14
 
 **lopass.cpp**: first-order lowpass filter
 
+Soundfile output
+------
+
+These examples read and write soundfiles. They depend on libsndfile and can be built using
 
 
+```
+c++ -o example example.cpp -I../include -std=c++14 -lsndfile
+```
+
+**filter.cpp**: lowpass filter example
+
+**delay.cpp**: fixed comb filter example
 

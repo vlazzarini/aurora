@@ -75,6 +75,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_bl_osc.html">BlOsc</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_del.html">Del</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_env.html">Env</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_f_f_t.html">FFT</a></td></tr>
@@ -111,6 +113,15 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a62442f237e70fdaac1efc22b4e82e875"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:a62442f237e70fdaac1efc22b4e82e875"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a62442f237e70fdaac1efc22b4e82e875">fixed_delay</a> (S rp, std::size_t wp, const std::vector&lt; S &gt; &amp;d)</td></tr>
+<tr class="separator:a62442f237e70fdaac1efc22b4e82e875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab93392950e0b9ae8fbbccf7cc1b55a13"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:ab93392950e0b9ae8fbbccf7cc1b55a13"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#ab93392950e0b9ae8fbbccf7cc1b55a13">vdelay</a> (S rp, std::size_t wp, const std::vector&lt; S &gt; &amp;del)</td></tr>
+<tr class="separator:ab93392950e0b9ae8fbbccf7cc1b55a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5318ddb492590ada5dc40ba80bbf655b"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:a5318ddb492590ada5dc40ba80bbf655b"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a5318ddb492590ada5dc40ba80bbf655b">vdelayi</a> (S rp, std::size_t wp, const std::vector&lt; S &gt; &amp;del)</td></tr>
+<tr class="separator:a5318ddb492590ada5dc40ba80bbf655b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a966a076f1768216bd9c2d6a07aebf034"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
 <tr class="memitem:a966a076f1768216bd9c2d6a07aebf034"><td class="memTemplItemLeft" align="right" valign="top">std::function&lt; S(double, S, S)&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a966a076f1768216bd9c2d6a07aebf034">ads_gen</a> (const S &amp;a, const S &amp;d, const S &amp;s)</td></tr>
 <tr class="separator:a966a076f1768216bd9c2d6a07aebf034"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,6 +142,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a2fab91108d29c7101741bcd2ebe1ba72"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
 <tr class="memitem:a2fab91108d29c7101741bcd2ebe1ba72"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a2fab91108d29c7101741bcd2ebe1ba72">phase</a> (double ph)</td></tr>
 <tr class="separator:a2fab91108d29c7101741bcd2ebe1ba72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdc5f35b9cbf54f7fc84a423d76bd488"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:acdc5f35b9cbf54f7fc84a423d76bd488"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#acdc5f35b9cbf54f7fc84a423d76bd488">linear_interp</a> (double pos, const std::vector&lt; S &gt; &amp;t)</td></tr>
+<tr class="separator:acdc5f35b9cbf54f7fc84a423d76bd488"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -255,6 +269,80 @@ returns the cosine of ph*2*$M_PI </p>
 
 </div>
 </div>
+<a id="a62442f237e70fdaac1efc22b4e82e875"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62442f237e70fdaac1efc22b4e82e875">&#9670;&nbsp;</a></span>fixed_delay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">S Aurora::fixed_delay </td>
+          <td>(</td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>rp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>wp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; S &gt; &amp;&#160;</td>
+          <td class="paramname"><em>d</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Fixed delay function for <a class="el" href="class_aurora_1_1_del.html">Del</a> <br />
+\ S: sample type <br />
+rp: no op <br />
+wp: reading position (no bounds check) <br />
+d: delay line <br />
+returns a sample from the delay line </p>
+
+</div>
+</div>
+<a id="acdc5f35b9cbf54f7fc84a423d76bd488"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdc5f35b9cbf54f7fc84a423d76bd488">&#9670;&nbsp;</a></span>linear_interp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">S Aurora::linear_interp </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; S &gt; &amp;&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>linear interpolation table lookup S: sample type <br />
+pos: reading position (no bounds check) t: table </p>
+
+</div>
+</div>
 <a id="ade912bee8dbe0351b2193809ce592d8b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ade912bee8dbe0351b2193809ce592d8b">&#9670;&nbsp;</a></span>lookup_gen()</h2>
 
@@ -374,6 +462,91 @@ template&lt;typename S &gt; </div>
 S: sample type <br />
 ph: normalised phase <br />
 returns the sine of ph*2*$M_PI </p>
+
+</div>
+</div>
+<a id="ab93392950e0b9ae8fbbccf7cc1b55a13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab93392950e0b9ae8fbbccf7cc1b55a13">&#9670;&nbsp;</a></span>vdelay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">S Aurora::vdelay </td>
+          <td>(</td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>rp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>wp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; S &gt; &amp;&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Truncating delay function for <a class="el" href="class_aurora_1_1_del.html">Del</a> <br />
+S: sample type <br />
+rp: reading position <br />
+wp: write position <br />
+d: delay line <br />
+returns a sample from the delay line floor(rp) samples behind wp </p>
+
+</div>
+</div>
+<a id="a5318ddb492590ada5dc40ba80bbf655b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5318ddb492590ada5dc40ba80bbf655b">&#9670;&nbsp;</a></span>vdelayi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">S Aurora::vdelayi </td>
+          <td>(</td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>rp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>wp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; S &gt; &amp;&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Interpolation delay function for <a class="el" href="class_aurora_1_1_del.html">Del</a> <br />
+S: sample type <br />
+rp: reading position <br />
+wp: write position <br />
+d: delay line <br />
+returns a sample from the delay line rp samples behind wp, <br />
+linearly interpolated </p>
 
 </div>
 </div>

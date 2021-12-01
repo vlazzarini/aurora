@@ -1,6 +1,6 @@
 // SndBase.h
-// Base class and
-// Binary operations
+// Base class 
+// Binary operations, utilities
 //
 // (c) V Lazzarini, 2021
 //
@@ -34,108 +34,124 @@
 #include <vector>
 
 namespace Aurora {
-const int def_vsize = 64;
-const double def_sr = 44100.;
+  const int def_vsize = 64;
+  const double def_sr = 44100.;
 
-/** SndBase class \n
-    Aurora Library base class \n
-    S: sample type
-*/
-template <typename S> class SndBase {
-protected:
-  std::vector<S> sig;
-
-public:
-  /** Constructor \n
-      vsize: signal vector size
+  /** SndBase class \n
+      Aurora Library base class \n
+      S: sample type
   */
+  template <typename S> class SndBase {
+  protected:
+    std::vector<S> sig;
+
+  public:
+    /** Constructor \n
+        vsize: signal vector size
+    */
   SndBase(std::size_t vsize = def_vsize) : sig(vsize){};
 
-  /** Vector size query \n
-      returns the object vector size
-  */
-  std::size_t vsize() const { return sig.size(); }
+    /** Vector size query \n
+        returns the object vector size
+    */
+    std::size_t vsize() const { return sig.size(); }
 
-  /** Vector size setting \n
-      n: new vector size
-  */
-  void vsize(std::size_t n) { sig.resize(n); }
+    /** Vector size setting \n
+        n: new vector size
+    */
+    void vsize(std::size_t n) { sig.resize(n); }
 
-  /** Vector access \n
-      returns the object vector
-  */
-  const std::vector<S> &vector() const { return sig; }
+    /** Vector access \n
+        returns the object vector
+    */
+    const std::vector<S> &vector() const { return sig; }
 
-  /** Preallocate vector memory \n
-      size: size of vector to reserve in memory \n
-      this method does not change the vector size.
-  */
-  void prealloc(std::size_t size) { sig.reserve(size); }
-};
+    /** Preallocate vector memory \n
+        size: size of vector to reserve in memory \n
+        this method does not change the vector size.
+    */
+    void prealloc(std::size_t size) { sig.reserve(size); }
+  };
 
-/** BinOp class \n
-    Binary operations \n
-    S: sample type
-*/
-template <typename S> class BinOp : public SndBase<S> {
-  using SndBase<S>::sig;
-  std::function<S(S, S)> op;
-
-public:
-  /** Constructor \n
-      f: binary operation function \n
-      vsize: signal vector size
+  /** BinOp class \n
+      Binary operations \n
+      S: sample type
   */
+  template <typename S> class BinOp : public SndBase<S> {
+    using SndBase<S>::sig;
+    std::function<S(S, S)> op;
+
+  public:
+    /** Constructor \n
+        f: binary operation function \n
+        vsize: signal vector size
+    */
   BinOp(std::function<S(S, S)> f, std::size_t vsize = def_vsize)
-      : SndBase<S>(vsize), op(f){};
+    : SndBase<S>(vsize), op(f){};
 
-  /** Binary operation \n
-      a: scalar input \n
-      s: signal input \n
-      returns reference to object signal vector
-  */
-  const std::vector<S> &operator()(S a, const std::vector<S> &s) {
-    std::size_t n = 0;
-    this->vsize(s.size());
-    for (auto &out : sig)
-      out = op(a, s[n++]);
-    return sig;
-  }
-
-  /** Binary operation \n
-      s: signal input \n
-      a: scalar input \n
-      returns reference to object signal vector
-  */
-  const std::vector<S> &operator()(const std::vector<S> &s, S a) {
-    std::size_t n = 0;
-    this->vsize(s.size());
-    for (auto &out : sig)
-      out = op(a, s[n++]);
-    return sig;
-  }
-
-  /** Binary operation \n
-      s1: signal input 1 \n
-      s2: signal input 2 \n
-      returns reference to object signal vector
-  */
-  const std::vector<S> &operator()(const std::vector<S> &s1,
-                                   const std::vector<S> &s2) {
-    std::size_t n = 0;
-    this->vsize(s1.size() < s2.size() ? s1.size() : s2.size());
-    for (auto &out : sig) {
-      out = op(s1[n], s2[n]);
-      n++;
+    /** Binary operation \n
+        a: scalar input \n
+        s: signal input \n
+        returns reference to object signal vector
+    */
+    const std::vector<S> &operator()(S a, const std::vector<S> &s) {
+      std::size_t n = 0;
+      this->vsize(s.size());
+      for (auto &out : sig)
+        out = op(a, s[n++]);
+      return sig;
     }
-    return sig;
+
+    /** Binary operation \n
+        s: signal input \n
+        a: scalar input \n
+        returns reference to object signal vector
+    */
+    const std::vector<S> &operator()(const std::vector<S> &s, S a) {
+      std::size_t n = 0;
+      this->vsize(s.size());
+      for (auto &out : sig)
+        out = op(a, s[n++]);
+      return sig;
+    }
+
+    /** Binary operation \n
+        s1: signal input 1 \n
+        s2: signal input 2 \n
+        returns reference to object signal vector
+    */
+    const std::vector<S> &operator()(const std::vector<S> &s1,
+                                     const std::vector<S> &s2) {
+      std::size_t n = 0;
+      this->vsize(s1.size() < s2.size() ? s1.size() : s2.size());
+      for (auto &out : sig) {
+        out = op(s1[n], s2[n]);
+        n++;
+      }
+      return sig;
+    }
+
+    /** set the operator function
+        f: binary operator function to be used
+    */
+    void func(std::function<S(S, S)> f) { op = f; }
+  };
+
+
+  /** linear interpolation table lookup
+      S: sample type \n
+      pos: reading position (no bounds check)
+      t: table
+   */
+  template <typename S>
+    S linear_interp(double pos, const std::vector<S> &t) {
+    size_t posi = (size_t)pos;
+    double frac = pos - posi;
+    return t[posi] +
+      frac * ((posi != t.size() - 1 ? t[posi + 1] : t[0]) - t[posi]);
   }
 
-  /** set the operator function
-   f: binary operator function to be used
-*/
-  void func(std::function<S(S, S)> f) { op = f; }
-};
+ 
 } // namespace Aurora
 
 #endif // _AURORA_SNDBASE_

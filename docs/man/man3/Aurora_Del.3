@@ -1,0 +1,60 @@
+.TH "Aurora::Del< S >" 3 "Wed Dec 1 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::Del< S >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Del\&.h>\fP
+.PP
+Inherits \fBAurora::SndBase< S >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDel\fP (S maxdt, std::function< S(S, std::size_t, const std::vector< S > &)> f=\fBfixed_delay\fP< S >, S sr=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S dt, S fdb=0)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > &dt, S fdb=0)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S>
+.br
+class Aurora::Del< S >"
+\fBDel\fP class 
+.br
+Generic delay line 
+.br
+S: sample type 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S > \fBAurora::Del\fP< S >::\fBDel\fP (S maxdt, std::function< S(S, std::size_t, const std::vector< S > &)> f = \fC\fBfixed_delay\fP<S>\fP, S sr = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+maxdt: maximum delay time 
+.br
+f: delay lookup function 
+.br
+sr: sampling rate 
+.br
+vsize: vector size 
+.br
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Del\fP< S >::operator() (const std::vector< S > & in, S dt, S fdb = \fC0\fP)\fC [inline]\fP"
+Delay in: audio dt: delay time fdb: feedback 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Del\fP< S >::operator() (const std::vector< S > & in, const std::vector< S > & dt, S fdb = \fC0\fP)\fC [inline]\fP"
+Delay in: audio dt: delay time fdb: feedback 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.
