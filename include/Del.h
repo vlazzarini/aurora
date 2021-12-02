@@ -30,6 +30,7 @@
 #define _AURORA_DEL_
 #include "SndBase.h"
 #include <functional>
+#include <iostream>
 
 namespace Aurora {
 
@@ -81,6 +82,23 @@ S vdelayi(S rp, std::size_t wp, const std::vector<S> &del) {
     rp -= ds;
   return linear_interp(rp, del);
 }
+
+/** Generating function for lpf delay function  \n
+    s: externally-defined filter state \n
+    c: lp filter coef [c = sqrt(a*a - 1) - a, with a  = 2 - cos(w)] \n
+    f: delay function
+    returns a delay function for use in Del
+ */
+template <typename S>
+std::function<S(S, std::size_t, const std::vector<S> &)>
+lpdelay_gen(S &s, double &c,
+            std::function<S(S, std::size_t, const std::vector<S> &)> f) {
+  return [&](S rp, std::size_t wp, const std::vector<S> &d) -> S {
+    auto o = f(rp, wp, d);
+    return (s = o * (1 + c) - s * c);
+  };
+}
+
 /** Del class \n
     Generic delay line \n
     S: sample type
@@ -90,7 +108,7 @@ template <typename S> class Del : SndBase<S> {
   S fs;
   std::size_t wp;
   std::vector<S> del;
-  std::function<S(S, std::size_t &, const std::vector<S> &)> fun;
+  std::function<S(S, std::size_t, const std::vector<S> &)> fun;
 
   S delay(S in, S dt, S fdb, S fwd, std::size_t &p) {
     S s = fun(dt * fs, p, del);

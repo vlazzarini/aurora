@@ -10,6 +10,8 @@ Del.h
 .br
 \fC#include <functional>\fP
 .br
+\fC#include <iostream>\fP
+.br
 
 .SS "Classes"
 
@@ -36,6 +38,9 @@ Del.h
 .br
 .ti -1c
 .RI "template<typename S > S \fBAurora::vdelayi\fP (S rp, std::size_t wp, const std::vector< S > &del)"
+.br
+.ti -1c
+.RI "template<typename S > std::function< S(S, std::size_t, const std::vector< S > &)> \fBAurora::lpdelay_gen\fP (S &s, double &c, std::function< S(S, std::size_t, const std::vector< S > &)> f)"
 .br
 .in -1c
 .SH "Author"

@@ -40,14 +40,20 @@ int main(int argc, const char **argv) {
   SNDFILE *fpin, *fpout;
   int n;
 
-  if (argc > 4) {
+  if (argc > 5) {
     if ((fpin = sf_open(argv[1], SFM_READ, &sfinfo)) != NULL) {
       if (sfinfo.channels < 2) {
         fpout = sf_open(argv[2], SFM_WRITE, &sfinfo);
         float dt = atof(argv[3]);
-        float fdb = atof(argv[4]);
+        float rvt = atof(argv[4]);
+        float cf = atof(argv[5]);
+        float d = 0.f;
+        double c = 2. - std::cos(2 * M_PI * cf / sfinfo.samplerate);
+        c = sqrt(c * c - 1.f) - c;
+        float fdb = std::pow(.001, dt / rvt);
         std::vector<float> buffer(def_vsize);
-        Del<float> delay(dt, sfinfo.samplerate);
+        auto delf = lpdelay_gen<float>(d, c, fixed_delay<float>);
+        Del<float> delay(dt, delf, sfinfo.samplerate);
         do {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
           if (n) {
@@ -58,7 +64,7 @@ int main(int argc, const char **argv) {
             break;
         } while (1);
         buffer.resize(def_vsize);
-        n = -3 * sfinfo.samplerate * dt / std::log10(fdb);
+        n = sfinfo.samplerate * rvt;
         std::fill(buffer.begin(), buffer.end(), 0.f);
         do {
           auto out = delay(buffer, dt, fdb);
@@ -75,7 +81,8 @@ int main(int argc, const char **argv) {
       std::cout << "could not open " << argv[1] << std::endl;
     return 1;
   }
-  std::cout << "usage: " << argv[0] << " infile outfile delay feedback \n"
+  std::cout << "usage: " << argv[0]
+            << " infile outfile delay reverb_time lpf \n"
             << std::endl;
   return -1;
 }

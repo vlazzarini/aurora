@@ -69,6 +69,9 @@ Aurora
 .RI "template<typename S > S \fBvdelayi\fP (S rp, std::size_t wp, const std::vector< S > &del)"
 .br
 .ti -1c
+.RI "template<typename S > std::function< S(S, std::size_t, const std::vector< S > &)> \fBlpdelay_gen\fP (S &s, double &c, std::function< S(S, std::size_t, const std::vector< S > &)> f)"
+.br
+.ti -1c
 .RI "template<typename S > std::function< S(double, S, S)> \fBads_gen\fP (const S &a, const S &d, const S &s)"
 .br
 .ti -1c
@@ -199,6 +202,14 @@ S: sample type
 t: function table 
 .br
 returns an interpolating table lookup function 
+.SS "template<typename S > std::function<S(S, std::size_t, const std::vector<S> &)> Aurora::lpdelay_gen (S & s, double & c, std::function< S(S, std::size_t, const std::vector< S > &)> f)"
+Generating function for lpf delay function 
+.br
+s: externally-defined filter state 
+.br
+c: lp filter coef [c = sqrt(a*a - 1) - a, with a = 2 - cos(w)] 
+.br
+f: delay function returns a delay function for use in \fBDel\fP 
 .SS "static uint32_t Aurora::np2 (uint32_t n)\fC [inline]\fP, \fC [static]\fP"
 
 .SS "template<typename S > S Aurora::phase (double ph)"

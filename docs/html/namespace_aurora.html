@@ -121,6 +121,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5318ddb492590ada5dc40ba80bbf655b"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
 <tr class="memitem:a5318ddb492590ada5dc40ba80bbf655b"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a5318ddb492590ada5dc40ba80bbf655b">vdelayi</a> (S rp, std::size_t wp, const std::vector&lt; S &gt; &amp;del)</td></tr>
 <tr class="separator:a5318ddb492590ada5dc40ba80bbf655b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a142312f627aaa19ba0e8a87f33d00b"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:a8a142312f627aaa19ba0e8a87f33d00b"><td class="memTemplItemLeft" align="right" valign="top">std::function&lt; S(S, std::size_t, const std::vector&lt; S &gt; &amp;)&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a8a142312f627aaa19ba0e8a87f33d00b">lpdelay_gen</a> (S &amp;s, double &amp;c, std::function&lt; S(S, std::size_t, const std::vector&lt; S &gt; &amp;)&gt; f)</td></tr>
+<tr class="separator:a8a142312f627aaa19ba0e8a87f33d00b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a966a076f1768216bd9c2d6a07aebf034"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
 <tr class="memitem:a966a076f1768216bd9c2d6a07aebf034"><td class="memTemplItemLeft" align="right" valign="top">std::function&lt; S(double, S, S)&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a966a076f1768216bd9c2d6a07aebf034">ads_gen</a> (const S &amp;a, const S &amp;d, const S &amp;s)</td></tr>
 <tr class="separator:a966a076f1768216bd9c2d6a07aebf034"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -388,6 +391,46 @@ template&lt;typename S &gt; </div>
 S: sample type <br />
 t: function table <br />
 returns an interpolating table lookup function </p>
+
+</div>
+</div>
+<a id="a8a142312f627aaa19ba0e8a87f33d00b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a142312f627aaa19ba0e8a87f33d00b">&#9670;&nbsp;</a></span>lpdelay_gen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;S(S, std::size_t, const std::vector&lt;S&gt; &amp;)&gt; Aurora::lpdelay_gen </td>
+          <td>(</td>
+          <td class="paramtype">S &amp;&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; S(S, std::size_t, const std::vector&lt; S &gt; &amp;)&gt;&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Generating function for lpf delay function <br />
+s: externally-defined filter state <br />
+c: lp filter coef [c = sqrt(a*a - 1) - a, with a = 2 - cos(w)] <br />
+f: delay function returns a delay function for use in <a class="el" href="class_aurora_1_1_del.html">Del</a> </p>
 
 </div>
 </div>

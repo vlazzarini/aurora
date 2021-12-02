@@ -50,6 +50,8 @@ enum \+: int32\+\_\+t \{ \hyperlink{namespace_aurora_a963f359f40fdbc5f4dbe404353
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a5318ddb492590ada5dc40ba80bbf655b}{vdelayi} (S rp, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&del)
 \item 
+{\footnotesize template$<$typename S $>$ }\\std\+::function$<$ S(S, std\+::size\+\_\+t, const std\+::vector$<$ S $>$ \&)$>$ \hyperlink{namespace_aurora_a8a142312f627aaa19ba0e8a87f33d00b}{lpdelay\+\_\+gen} (S \&s, double \&c, std\+::function$<$ S(S, std\+::size\+\_\+t, const std\+::vector$<$ S $>$ \&)$>$ f)
+\item 
 {\footnotesize template$<$typename S $>$ }\\std\+::function$<$ S(double, S, S)$>$ \hyperlink{namespace_aurora_a966a076f1768216bd9c2d6a07aebf034}{ads\+\_\+gen} (const S \&a, const S \&d, const S \&s)
 \item 
 static uint32\+\_\+t \hyperlink{namespace_aurora_a49b6f6d92479d80271ced42627154066}{np2} (uint32\+\_\+t n)
@@ -191,7 +193,17 @@ std\+::function$<$S(S)$>$ Aurora\+::lookupi\+\_\+gen (\begin{DoxyParamCaption}\i
 Table lookup function generator for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
 S\+: sample type ~\newline
 t\+: function table ~\newline
-returns an interpolating table lookup function \mbox{\Hypertarget{namespace_aurora_a49b6f6d92479d80271ced42627154066}\label{namespace_aurora_a49b6f6d92479d80271ced42627154066}} 
+returns an interpolating table lookup function \mbox{\Hypertarget{namespace_aurora_a8a142312f627aaa19ba0e8a87f33d00b}\label{namespace_aurora_a8a142312f627aaa19ba0e8a87f33d00b}} 
+\index{Aurora@{Aurora}!lpdelay\+\_\+gen@{lpdelay\+\_\+gen}}
+\index{lpdelay\+\_\+gen@{lpdelay\+\_\+gen}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{lpdelay\+\_\+gen()}{lpdelay\_gen()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+std\+::function$<$S(S, std\+::size\+\_\+t, const std\+::vector$<$S$>$ \&)$>$ Aurora\+::lpdelay\+\_\+gen (\begin{DoxyParamCaption}\item[{S \&}]{s,  }\item[{double \&}]{c,  }\item[{std\+::function$<$ S(S, std\+::size\+\_\+t, const std\+::vector$<$ S $>$ \&)$>$}]{f }\end{DoxyParamCaption})}
+
+Generating function for lpf delay function ~\newline
+s\+: externally-\/defined filter state ~\newline
+c\+: lp filter coef \mbox{[}c = sqrt(a$\ast$a -\/ 1) -\/ a, with a = 2 -\/ cos(w)\mbox{]} ~\newline
+f\+: delay function returns a delay function for use in \hyperlink{class_aurora_1_1_del}{Del} \mbox{\Hypertarget{namespace_aurora_a49b6f6d92479d80271ced42627154066}\label{namespace_aurora_a49b6f6d92479d80271ced42627154066}} 
 \index{Aurora@{Aurora}!np2@{np2}}
 \index{np2@{np2}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{np2()}{np2()}}
