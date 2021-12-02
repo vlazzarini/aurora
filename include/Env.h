@@ -57,7 +57,7 @@ std::function<S(double, S, S)> ads_gen(const S &a, const S &d, const S &s) {
     S: sample type
 */
 template <typename S> class Env : public SndBase<S> {
-  using SndBase<S>::sig;
+  using SndBase<S>::process;
   double time;
   S prev;
   S ts;
@@ -102,11 +102,11 @@ public:
   const std::vector<S> &operator()(bool gate) {
     double t = time;
     S e = prev;
-    for (auto &s : sig)
-      e = s = synth(e, t, gate);
+    const std::vector<S> &s =
+        process([&]() { return (e = synth(e, t, gate)); }, 0);
     prev = e;
     time = t;
-    return sig;
+    return s;
   }
 
   /** Envelope \n
@@ -117,13 +117,15 @@ public:
   const std::vector<S> &operator()(S offs, S scal, bool gate) {
     double t = time;
     S e = prev;
-    for (auto &s : sig) {
-      e = synth(e, t, gate);
-      s = e * scal + offs;
-    }
+    const std::vector<S> &s = process(
+        [&]() {
+          e = synth(e, t, gate);
+          return (e * scal + offs);
+        },
+        0);
     prev = e;
     time = t;
-    return sig;
+    return s;
   }
 
   /** Envelope \n
@@ -134,14 +136,15 @@ public:
     double t = time;
     S e = prev;
     std::size_t n = 0;
-    this->vsize(a.size());
-    for (auto &s : sig) {
-      e = synth(e, t, gate);
-      s = e * a[n++];
-    }
+    const std::vector<S> &s = process(
+        [&]() {
+          e = synth(e, t, gate);
+          return e * a[n++];
+        },
+        a.size());
     prev = e;
     time = t;
-    return sig;
+    return s;
   }
 };
 

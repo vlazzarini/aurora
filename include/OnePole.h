@@ -37,7 +37,7 @@ namespace Aurora {
     S: sample type
 */
 template <typename S> class OnePole : public SndBase<S> {
-  using SndBase<S>::sig;
+  using SndBase<S>::process;
   double D;
   double A, G;
   S ff;
@@ -70,16 +70,14 @@ public:
      f: cutoff frequency \n
   */
   const std::vector<S> &operator()(const std::vector<S> &in, S f) {
+    double d = D;
+    std::size_t n = 0;
     if (f != ff)
       coeffs(f);
-    double d = D, a = A, g = G;
-    std::size_t n = 0;
-    this->vsize(in.size());
-    for (auto &s : sig) {
-      s = filter(in[n++], d, g, a);
-    }
+    const std::vector<S> &s =
+        process([&]() { return filter(in[n++], d, G, A); }, in.size());
     D = d;
-    return sig;
+    return s;
   }
 
   /** Filter \n
@@ -88,16 +86,17 @@ public:
   */
   const std::vector<S> &operator()(const std::vector<S> &in,
                                    const std::vector<S> &f) {
-    double d = D, &a = A, &g = G;
+    double d = D;
     std::size_t n = 0;
-    this->vsize(in.size() < f.size() ? in.size() : f.size());
-    for (auto &s : sig) {
-      if (f[n] != ff)
-        coeffs(f[n]);
-      s = filter(in[n++], d, g, a);
-    }
+    const std::vector<S> &s = process(
+        [&]() {
+          if (f[n] != ff)
+            coeffs(f[n]);
+          return filter(in[n++], d, G, A);
+        },
+        in.size() < f.size() ? in.size() : f.size());
     D = d;
-    return sig;
+    return s;
   }
 };
 } // namespace Aurora

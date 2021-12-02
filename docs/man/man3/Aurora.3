@@ -1,4 +1,4 @@
-.TH "Aurora" 3 "Wed Dec 1 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora" 3 "Thu Dec 2 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -53,7 +53,7 @@ Aurora
 .RI "enum { \fBSAW\fP = 0, \fBSQUARE\fP, \fBTRIANGLE\fP, \fBPULSE\fP }"
 .br
 .ti -1c
-.RI "enum : uint32_t { \fBHP\fP = 0, \fBBP\fP, \fBBR\fP, \fBLP\fP }"
+.RI "enum : int32_t { \fBLP\fP = -1, \fBHP\fP, \fBBP\fP }"
 .br
 .in -1c
 .SS "Functions"
@@ -130,19 +130,17 @@ Aurora
 \fB\fITRIANGLE \fP\fP
 .TP
 \fB\fIPULSE \fP\fP
-.SS "anonymous enum : uint32_t"
+.SS "anonymous enum : int32_t"
 
 .PP
 \fBEnumerator\fP
 .in +1c
 .TP
+\fB\fILP \fP\fP
+.TP
 \fB\fIHP \fP\fP
 .TP
 \fB\fIBP \fP\fP
-.TP
-\fB\fIBR \fP\fP
-.TP
-\fB\fILP \fP\fP
 .SH "Function Documentation"
 .PP 
 .SS "template<typename S > std::function<S(double, S, S)> Aurora::ads_gen (const S & a, const S & d, const S & s)"

@@ -37,7 +37,7 @@ namespace Aurora {
     S: sample type
 */
 template <typename S> class FourPole : public SndBase<S> {
-  using SndBase<S>::sig;
+  using SndBase<S>::process;
   double D[4];
   double A, G[4];
   S ff;
@@ -83,16 +83,11 @@ public:
      r: resonance (0-1)
   */
   const std::vector<S> &operator()(const std::vector<S> &in, S f, S r) {
+    std::size_t n = 0;
     if (f != ff)
       coeffs(f);
-    double *g = G, *d = D, a = A;
-    std::size_t n = 0;
-    r *= 4;
-    this->vsize(in.size());
-    for (auto &s : sig) {
-      s = filter(in[n++], d, g, a, r);
-    }
-    return sig;
+    auto pf = [&]() { return filter(in[n++], G, D, A, r * 4); };
+    return process(pf, in.size());
   }
 
   /** Filter \n
@@ -102,16 +97,13 @@ public:
   */
   const std::vector<S> &operator()(const std::vector<S> &in,
                                    const std::vector<S> &f, S r) {
-    double *g = G, *d = D, &a = A;
     std::size_t n = 0;
-    r *= 4;
-    this->vsize(in.size() < f.size() ? in.size() : f.size());
-    for (auto &s : sig) {
+    auto pf = [&]() {
       if (f[n] != ff)
         coeffs(f[n]);
-      s = filter(in[n++], d, g, a, r);
-    }
-    return sig;
+      return filter(in[n++], D, G, A, r * 4);
+    };
+    return process(pf, in.size() < f.size() ? in.size() : f.size());
   }
 };
 } // namespace Aurora

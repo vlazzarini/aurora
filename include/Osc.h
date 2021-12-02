@@ -79,7 +79,7 @@ template <typename S> S phase(double ph) { return (S)ph; }
     S: sample type
 */
 template <typename S> class Osc : public SndBase<S> {
-  using SndBase<S>::sig;
+  using SndBase<S>::process;
 
 protected:
   double ph;
@@ -120,10 +120,9 @@ public:
   */
   const std::vector<S> &operator()(S a, S f) {
     double phs = ph;
-    for (auto &s : sig)
-      s = synth(a, f, phs);
+    const std::vector<S> &s = process([&]() { return synth(a, f, phs); }, 0);
     ph = phs;
-    return sig;
+    return s;
   }
 
   /** Oscillator \n
@@ -134,11 +133,10 @@ public:
   const std::vector<S> &operator()(S a, const std::vector<S> &fm) {
     double phs = ph;
     std::size_t n = 0;
-    this->vsize(fm.size());
-    for (auto &s : sig)
-      s = synth(a, fm[n++], phs);
+    const std::vector<S> &s =
+        process([&]() { return synth(a, fm[n++], phs); }, 0);
     ph = phs;
-    return sig;
+    return s;
   }
 
   /** Oscillator \n
@@ -149,11 +147,10 @@ public:
   const std::vector<S> &operator()(const std::vector<S> &am, S f) {
     double phs = ph;
     std::size_t n = 0;
-    this->vsize(am.size());
-    for (auto &s : sig)
-      s = synth(am[n++], f, phs);
+    const std::vector<S> &s =
+        process([&]() { return synth(am[n++], f, phs); }, 0);
     ph = phs;
-    return sig;
+    return s;
   }
 
   /** Oscillator \n
@@ -165,13 +162,15 @@ public:
                                    const std::vector<S> &fm) {
     double phs = ph;
     std::size_t n = 0;
-    this->vsize(am.size() < fm.size() ? am.size() : fm.size());
-    for (auto &s : sig) {
-      s = synth(am[n], fm[n], phs);
-      n++;
-    }
+    const std::vector<S> &s = process(
+        [&]() {
+          auto s = synth(am[n], fm[n], phs);
+          n++;
+          return s;
+        },
+        am.size() < fm.size() ? am.size() : fm.size());
     ph = phs;
-    return sig;
+    return s;
   }
 
   /** set the oscillator function

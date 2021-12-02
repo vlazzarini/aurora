@@ -1,4 +1,4 @@
-.TH "Aurora::TwoPole< S >" 3 "Wed Dec 1 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::TwoPole< S >" 3 "Thu Dec 2 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -20,16 +20,10 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .RI "\fBTwoPole\fP (S fs=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S f, S d, S drv, uint32_t o=\fBLP\fP)"
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S f, S d, S drv=0, S m=0)"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S f, S d, S drv, S m)"
-.br
-.ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > &f, S d, S drv, uint32_t o=\fBLP\fP)"
-.br
-.ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > &f, S d, S drv, S m)"
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > &f, S d, S drv=0, S m=0)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -61,7 +55,7 @@ sr: sampling rate
 vsize: vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S > const std::vector<S>& \fBAurora::TwoPole\fP< S >::operator() (const std::vector< S > & in, S f, S d, S drv, uint32_t o = \fC\fBLP\fP\fP)\fC [inline]\fP"
+.SS "template<typename S > const std::vector<S>& \fBAurora::TwoPole\fP< S >::operator() (const std::vector< S > & in, S f, S d, S drv = \fC0\fP, S m = \fC0\fP)\fC [inline]\fP"
 Filter 
 .br
 in: input 
@@ -72,8 +66,8 @@ d: damping factor (Q reciprocal)
 .br
 drv: overdrive amount 
 .br
-o: output type (LP,HP,BP,BR) 
-.SS "template<typename S > const std::vector<S>& \fBAurora::TwoPole\fP< S >::operator() (const std::vector< S > & in, S f, S d, S drv, S m)\fC [inline]\fP"
+S: output type (0 - 4: LP(0), HP(1), BP(1), BR(3)) 
+.SS "template<typename S > const std::vector<S>& \fBAurora::TwoPole\fP< S >::operator() (const std::vector< S > & in, const std::vector< S > & f, S d, S drv = \fC0\fP, S m = \fC0\fP)\fC [inline]\fP"
 Filter 
 .br
 in: input 
@@ -84,35 +78,7 @@ d: damping factor (Q reciprocal)
 .br
 drv: overdrive amount 
 .br
-o: output type (LP,HP,BP,BR) 
-.SS "template<typename S > const std::vector<S>& \fBAurora::TwoPole\fP< S >::operator() (const std::vector< S > & in, const std::vector< S > & f, S d, S drv, uint32_t o = \fC\fBLP\fP\fP)\fC [inline]\fP"
-Filter 
-.br
-in: input 
-.br
-f: frequency 
-.br
-d: damping factor (Q reciprocal) 
-.br
-drv: overdrive amount 
-.br
-m: lowpass - band reject - highpass mix (0-1) 
-.br
-
-.SS "template<typename S > const std::vector<S>& \fBAurora::TwoPole\fP< S >::operator() (const std::vector< S > & in, const std::vector< S > & f, S d, S drv, S m)\fC [inline]\fP"
-Filter 
-.br
-in: input 
-.br
-f: frequency 
-.br
-d: damping factor (Q reciprocal) 
-.br
-drv: overdrive amount 
-.br
-m: lowpass - band reject - highpass mix (0-1) 
-.br
-
+S: output type (0 - 2: LP(0), HP(1), BP(2)) 
 
 .SH "Author"
 .PP 

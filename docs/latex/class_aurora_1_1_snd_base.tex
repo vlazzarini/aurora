@@ -26,10 +26,10 @@ const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_snd_base_acf91710850
 \item 
 void \hyperlink{class_aurora_1_1_snd_base_a5d57c3b735e5d583b4b4ae5f8e9cdf4c}{prealloc} (std\+::size\+\_\+t size)
 \end{DoxyCompactItemize}
-\subsection*{Protected Attributes}
+\subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-std\+::vector$<$ S $>$ \hyperlink{class_aurora_1_1_snd_base_adad6cd3430a1510dc887cc6bd1a45658}{sig}
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_snd_base_a1601dc3f75fac1979d028bb7477d2544}{process} (std\+::function$<$ S()$>$ f, std\+::size\+\_\+t sz)
 \end{DoxyCompactItemize}
 
 
@@ -62,7 +62,14 @@ void \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::pr
 
 Preallocate vector memory ~\newline
 size\+: size of vector to reserve in memory ~\newline
-this method does not change the vector size. \mbox{\Hypertarget{class_aurora_1_1_snd_base_acf9171085003208901e23c1f50520345}\label{class_aurora_1_1_snd_base_acf9171085003208901e23c1f50520345}} 
+this method does not change the vector size. \mbox{\Hypertarget{class_aurora_1_1_snd_base_a1601dc3f75fac1979d028bb7477d2544}\label{class_aurora_1_1_snd_base_a1601dc3f75fac1979d028bb7477d2544}} 
+\index{Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}!process@{process}}
+\index{process@{process}!Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}}
+\subsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::process (\begin{DoxyParamCaption}\item[{std\+::function$<$ S()$>$}]{f,  }\item[{std\+::size\+\_\+t}]{sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_aurora_1_1_snd_base_acf9171085003208901e23c1f50520345}\label{class_aurora_1_1_snd_base_acf9171085003208901e23c1f50520345}} 
 \index{Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}!vector@{vector}}
 \index{vector@{vector}!Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}}
 \subsubsection{\texorpdfstring{vector()}{vector()}}
@@ -87,16 +94,6 @@ void \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::vs
 
 Vector size setting ~\newline
 n\+: new vector size 
-
-\subsection{Member Data Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_snd_base_adad6cd3430a1510dc887cc6bd1a45658}\label{class_aurora_1_1_snd_base_adad6cd3430a1510dc887cc6bd1a45658}} 
-\index{Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}!sig@{sig}}
-\index{sig@{sig}!Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}}
-\subsubsection{\texorpdfstring{sig}{sig}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-std\+::vector$<$S$>$ \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::sig\hspace{0.3cm}{\ttfamily [protected]}}
-
-
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

@@ -1,4 +1,4 @@
-.TH "Aurora::Del< S >" 3 "Wed Dec 1 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Del< S >" 3 "Thu Dec 2 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -20,10 +20,10 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .RI "\fBDel\fP (S dt, S sr=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S dt, S fdb=0)"
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S dt, S fdb=0, S fwd=0)"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > &dt, S fdb=0)"
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > &dt, S fdb=0, S fwd=0)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -61,22 +61,26 @@ sr: sampling rate
 vsize: vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S > const std::vector<S>& \fBAurora::Del\fP< S >::operator() (const std::vector< S > & in, S dt, S fdb = \fC0\fP)\fC [inline]\fP"
+.SS "template<typename S > const std::vector<S>& \fBAurora::Del\fP< S >::operator() (const std::vector< S > & in, S dt, S fdb = \fC0\fP, S fwd = \fC0\fP)\fC [inline]\fP"
 Delay 
 .br
 in: audio 
 .br
 dt: delay time 
 .br
-fdb: feedback 
-.SS "template<typename S > const std::vector<S>& \fBAurora::Del\fP< S >::operator() (const std::vector< S > & in, const std::vector< S > & dt, S fdb = \fC0\fP)\fC [inline]\fP"
+fdb: feedback gain 
+.br
+fwd: feedforward gain 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Del\fP< S >::operator() (const std::vector< S > & in, const std::vector< S > & dt, S fdb = \fC0\fP, S fwd = \fC0\fP)\fC [inline]\fP"
 Delay 
 .br
 in: audio 
 .br
 dt: delay time 
 .br
-fdb: feedback 
+fdb: feedback gain 
+.br
+fwd: feedforward gain 
 
 .SH "Author"
 .PP 

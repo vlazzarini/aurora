@@ -38,7 +38,7 @@ namespace Aurora {
     S: sample type
 */
 template <typename S> class Func : public SndBase<S> {
-  using SndBase<S>::sig;
+  using SndBase<S>::process;
   std::function<S(S)> fun;
 
 public:
@@ -56,10 +56,8 @@ public:
   */
   const std::vector<S> &operator()(const std::vector<S> &in) {
     std::size_t n = 0;
-    this->vsize(in.size());
-    for (auto &s : sig)
-      s = fun(in[n++]);
-    return sig;
+    auto fp = [&]() { return fun(in[n++]); };
+    return process(fp, in.size());
   }
 
   /** set the mapping function \n

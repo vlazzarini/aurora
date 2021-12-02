@@ -42,8 +42,16 @@ const double def_sr = 44100.;
     S: sample type
 */
 template <typename S> class SndBase {
-protected:
   std::vector<S> sig;
+
+protected:
+  const std::vector<S> &process(std::function<S()> f, std::size_t sz) {
+    if (sz)
+      vsize(sz);
+    for (auto &s : sig)
+      s = f();
+    return sig;
+  }
 
 public:
   /** Constructor \n
@@ -78,7 +86,7 @@ public:
     S: sample type
 */
 template <typename S> class BinOp : public SndBase<S> {
-  using SndBase<S>::sig;
+  using SndBase<S>::process;
   std::function<S(S, S)> op;
 
 public:
@@ -96,10 +104,7 @@ public:
   */
   const std::vector<S> &operator()(S a, const std::vector<S> &s) {
     std::size_t n = 0;
-    this->vsize(s.size());
-    for (auto &out : sig)
-      out = op(a, s[n++]);
-    return sig;
+    return process([&]() { return op(a, s[n++]); }, s.size());
   }
 
   /** Binary operation \n
@@ -109,10 +114,7 @@ public:
   */
   const std::vector<S> &operator()(const std::vector<S> &s, S a) {
     std::size_t n = 0;
-    this->vsize(s.size());
-    for (auto &out : sig)
-      out = op(a, s[n++]);
-    return sig;
+    return process([&]() -> S { return op(a, s[n++]); }, s.size());
   }
 
   /** Binary operation \n
@@ -123,12 +125,13 @@ public:
   const std::vector<S> &operator()(const std::vector<S> &s1,
                                    const std::vector<S> &s2) {
     std::size_t n = 0;
-    this->vsize(s1.size() < s2.size() ? s1.size() : s2.size());
-    for (auto &out : sig) {
-      out = op(s1[n], s2[n]);
-      n++;
-    }
-    return sig;
+    return process(
+        [&]() -> S {
+          auto s = op(s1[n], s1[n]);
+          n++;
+          return s;
+        },
+        s1.size() < s2.size() ? s1.size() : s2.size());
   }
 
   /** set the operator function \n

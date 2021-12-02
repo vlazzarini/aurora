@@ -95,10 +95,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afd16ac7a75350b2c3971ffed64b6ef18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7ee559e909a215a6d8248d9c9a0ced8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_del.html#ae7ee559e909a215a6d8248d9c9a0ced8">Del</a> (S dt, S sr=<a class="el" href="namespace_aurora.html#ad49263d809bea98dd422e95bc91bc03e">def_sr</a>, std::size_t <a class="el" href="class_aurora_1_1_snd_base.html#af9e21aaf411b17f7a8221c991ce5d291">vsize</a>=<a class="el" href="namespace_aurora.html#afaaddf667a06e7ce23c667a8b7295263">def_vsize</a>)</td></tr>
 <tr class="separator:ae7ee559e909a215a6d8248d9c9a0ced8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa45ad145253210b01c24b3d0b82a2dd9"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_del.html#aa45ad145253210b01c24b3d0b82a2dd9">operator()</a> (const std::vector&lt; S &gt; &amp;in, S dt, S fdb=0)</td></tr>
-<tr class="separator:aa45ad145253210b01c24b3d0b82a2dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a504900b27ce5849bebe55a675db175bd"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_del.html#a504900b27ce5849bebe55a675db175bd">operator()</a> (const std::vector&lt; S &gt; &amp;in, const std::vector&lt; S &gt; &amp;dt, S fdb=0)</td></tr>
-<tr class="separator:a504900b27ce5849bebe55a675db175bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7061e3fc28fa7c9cace2f194c0c2933b"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_del.html#a7061e3fc28fa7c9cace2f194c0c2933b">operator()</a> (const std::vector&lt; S &gt; &amp;in, S dt, S fdb=0, S fwd=0)</td></tr>
+<tr class="separator:a7061e3fc28fa7c9cace2f194c0c2933b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b07356cf07e48791929e7c99c907650"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_del.html#a7b07356cf07e48791929e7c99c907650">operator()</a> (const std::vector&lt; S &gt; &amp;in, const std::vector&lt; S &gt; &amp;dt, S fdb=0, S fwd=0)</td></tr>
+<tr class="separator:a7b07356cf07e48791929e7c99c907650"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename S&gt;<br />
@@ -213,8 +213,8 @@ vsize: vector size </p>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa45ad145253210b01c24b3d0b82a2dd9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa45ad145253210b01c24b3d0b82a2dd9">&#9670;&nbsp;</a></span>operator()() <span class="overload">[1/2]</span></h2>
+<a id="a7061e3fc28fa7c9cace2f194c0c2933b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7061e3fc28fa7c9cace2f194c0c2933b">&#9670;&nbsp;</a></span>operator()() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -240,7 +240,13 @@ template&lt;typename S &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">S&#160;</td>
-          <td class="paramname"><em>fdb</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>fdb</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>fwd</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -257,12 +263,13 @@ template&lt;typename S &gt; </div>
 <p>Delay <br />
 in: audio <br />
 dt: delay time <br />
-fdb: feedback </p>
+fdb: feedback gain <br />
+fwd: feedforward gain </p>
 
 </div>
 </div>
-<a id="a504900b27ce5849bebe55a675db175bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a504900b27ce5849bebe55a675db175bd">&#9670;&nbsp;</a></span>operator()() <span class="overload">[2/2]</span></h2>
+<a id="a7b07356cf07e48791929e7c99c907650"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b07356cf07e48791929e7c99c907650">&#9670;&nbsp;</a></span>operator()() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,7 +295,13 @@ template&lt;typename S &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">S&#160;</td>
-          <td class="paramname"><em>fdb</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>fdb</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>fwd</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -305,7 +318,8 @@ template&lt;typename S &gt; </div>
 <p>Delay <br />
 in: audio <br />
 dt: delay time <br />
-fdb: feedback </p>
+fdb: feedback gain <br />
+fwd: feedforward gain </p>
 
 </div>
 </div>

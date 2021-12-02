@@ -86,17 +86,18 @@ S vdelayi(S rp, std::size_t wp, const std::vector<S> &del) {
     S: sample type
 */
 template <typename S> class Del : SndBase<S> {
-  using SndBase<S>::sig;
+  using SndBase<S>::process;
   S fs;
   std::size_t wp;
   std::vector<S> del;
   std::function<S(S, std::size_t &, const std::vector<S> &)> fun;
 
-  S delay(S in, S dt, S fdb, std::size_t &p) {
+  S delay(S in, S dt, S fdb, S fwd, std::size_t &p) {
     S s = fun(dt * fs, p, del);
-    del[p] = in + s * fdb;
+    S w = in + s * fdb;
+    del[p] = w;
     p = p < del.size() - 1 ? p + 1 : 0;
-    return s;
+    return w * fwd + s;
   }
 
 public:
@@ -122,32 +123,37 @@ public:
   /** Delay \n
       in: audio \n
       dt: delay time \n
-      fdb: feedback
+      fdb: feedback gain \n
+      fwd: feedforward gain
    */
-  const std::vector<S> &operator()(const std::vector<S> &in, S dt, S fdb = 0) {
+  const std::vector<S> &operator()(const std::vector<S> &in, S dt, S fdb = 0,
+                                   S fwd = 0) {
     std::size_t n = 0, p = wp;
-    this->vsize(in.size());
-    for (auto &s : sig)
-      s = delay(in[n++], dt, fdb, p);
+    const std::vector<S> &s =
+        process([&]() { return delay(in[n++], dt, fdb, fwd, p); }, in.size());
     wp = p;
-    return sig;
+    return s;
   }
 
   /** Delay \n
       in: audio \n
       dt: delay time \n
-      fdb: feedback
+      fdb: feedback gain \n
+      fwd: feedforward gain
    */
   const std::vector<S> &operator()(const std::vector<S> &in,
-                                   const std::vector<S> &dt, S fdb = 0) {
+                                   const std::vector<S> &dt, S fdb = 0,
+                                   S fwd = 0) {
     std::size_t n = 0, p = wp;
-    this->vsize(in.size());
-    for (auto &s : sig) {
-      s = delay(in[n], dt[n], fdb, p);
-      n++;
-    }
+    const std::vector<S> &s = process(
+        [&]() {
+          auto s = delay(in[n], dt[n], fdb, fwd, p);
+          n++;
+          return s;
+        },
+        in.size() < dt.size() ? in.size() : dt.size());
     wp = p;
-    return sig;
+    return s;
   }
 };
 

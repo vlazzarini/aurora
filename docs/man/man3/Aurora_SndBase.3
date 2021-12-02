@@ -1,4 +1,4 @@
-.TH "Aurora::SndBase< S >" 3 "Wed Dec 1 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::SndBase< S >" 3 "Thu Dec 2 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -29,11 +29,11 @@ Inherited by \fBAurora::BinOp< S >\fP, \fBAurora::Del< S >\fP\fC [private]\fP, \
 .RI "void \fBprealloc\fP (std::size_t size)"
 .br
 .in -1c
-.SS "Protected Attributes"
+.SS "Protected Member Functions"
 
 .in +1c
 .ti -1c
-.RI "std::vector< S > \fBsig\fP"
+.RI "const std::vector< S > & \fBprocess\fP (std::function< S()> f, std::size_t sz)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -61,6 +61,8 @@ Preallocate vector memory
 size: size of vector to reserve in memory 
 .br
 this method does not change the vector size\&. 
+.SS "template<typename S > const std::vector<S>& \fBAurora::SndBase\fP< S >::process (std::function< S()> f, std::size_t sz)\fC [inline]\fP, \fC [protected]\fP"
+
 .SS "template<typename S > const std::vector<S>& \fBAurora::SndBase\fP< S >::vector () const\fC [inline]\fP"
 Vector access 
 .br
@@ -73,10 +75,6 @@ returns the object vector size
 Vector size setting 
 .br
 n: new vector size 
-.SH "Member Data Documentation"
-.PP 
-.SS "template<typename S > std::vector<S> \fBAurora::SndBase\fP< S >::sig\fC [protected]\fP"
-
 
 .SH "Author"
 .PP 

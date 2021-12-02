@@ -31,22 +31,23 @@
 #include <functional>
 
 namespace Aurora {
-enum : uint32_t { HP = 0, BP, BR, LP };
+enum : int32_t { LP = -1, HP, BP };
 
 /** TwoPole class  \n
     2-pole state-variable filter \n
     S: sample type
 */
 template <typename S> class TwoPole : SndBase<S> {
-  using SndBase<S>::sig;
-  S Y[3];
+  using SndBase<S>::process;
+  S Y[2];
   double D[2];
   S W, Fac;
   S ff, dd;
   double piosr;
   std::function<S(S)> fun;
 
-  S filter(S in, S *y, double *s, double w, double fac, double d, S drv) {
+  S filter(S in, S *y, double *s, double w, double fac, double d, S drv,
+           int32_t typ, S m) {
     S lp;
     y[HP] = (in - (d + w) * s[0] - s[1]) * fac;
     S u = w * fun(y[0] * drv) * 1 / drv;
@@ -55,8 +56,7 @@ template <typename S> class TwoPole : SndBase<S> {
     u = w * fun(y[1] * drv) * 1 / drv;
     lp = u + s[1];
     s[1] = lp + u;
-    y[BR] = y[HP] + lp;
-    return lp;
+    return typ == -1 ? lp * (1 - m) + Y[HP] * m : Y[HP] * (1 - m) + Y[BP] * m;
   }
 
   void coeffs(S f, S d) {
@@ -89,90 +89,41 @@ public:
      f: frequency \n
      d: damping factor (Q reciprocal) \n
      drv: overdrive amount \n
-     o: output type (LP,HP,BP,BR)
+     S: output type (0 - 4: LP(0), HP(1), BP(1), BR(3))
   */
-  const std::vector<S> &operator()(const std::vector<S> &in, S f, S d, S drv,
-                                   uint32_t o = LP) {
+  const std::vector<S> &operator()(const std::vector<S> &in, S f, S d,
+                                   S drv = 0, S m = 0) {
+    std::size_t n = 0;
+    int32_t typ = m < 1 ? -1 : (m < 2 ? 0 : 1);
+    m = m < 0 ? 0 : (m < 1 ? m : (m < 2 ? m - 1 : 1));
     if (f != ff || d != dd)
       coeffs(f, d);
-    S w = W, fac = Fac;
-    std::size_t n = 0;
-    drv += 1;
-    this->vsize(in.size());
-    for (auto &s : sig) {
-      s = filter(in[n++], Y, D, w, fac, d, drv);
-      if (o <= BR)
-        s = Y[o];
-    }
-    return sig;
+    auto pf = [&]() {
+      return filter(in[n++], Y, D, W, Fac, d, drv + 1, typ, m);
+    };
+    return process(pf, in.size());
   }
 
   /** Filter \n
-  in: input \n
-  f: frequency  \n
-  d: damping factor (Q reciprocal) \n
-  drv: overdrive amount \n
-  o: output type (LP,HP,BP,BR)
- */
-  const std::vector<S> &operator()(const std::vector<S> &in, S f, S d, S drv,
-                                   S m) {
-    if (f != ff || d != dd)
-      coeffs(f, d);
-    S w = W, fac = Fac;
-    std::size_t n = 0;
-    drv += 1;
-    this->vsize(in.size());
-    for (auto &s : sig) {
-      s = filter(in[n++], Y, D, w, fac, d, drv) * (1 - m);
-      s += Y[HP] * m;
-    }
-    return sig;
-  }
-
-  /** Filter \n
-   in: input \n
-   f: frequency  \n
-   d: damping factor (Q reciprocal) \n
-   drv: overdrive amount \n
-   m: lowpass - band reject - highpass mix (0-1) \n
+     in: input \n
+     f: frequency \n
+     d: damping factor (Q reciprocal) \n
+     drv: overdrive amount \n
+     S: output type (0 - 2: LP(0), HP(1), BP(2))
   */
   const std::vector<S> &operator()(const std::vector<S> &in,
-                                   const std::vector<S> &f, S d, S drv,
-                                   uint32_t o = LP) {
-    S &w = W, &fac = Fac;
-    std::size_t n = 0;
-    drv += 1;
-    this->vsize(in.size() < f.size() ? in.size() : f.size());
-    for (auto &s : sig) {
-      if (f[n] != ff || d != dd)
-        coeffs(f[n], d);
-      s = filter(in[n++], Y, D, w, fac, d, drv);
-      if (o <= BR)
-        s = Y[o];
-    }
-    return sig;
-  }
+                                   const std::vector<S> &f, S d, S drv = 0,
+                                   S m = 0) {
 
-  /** Filter \n
-  in: input \n
-  f: frequency  \n
-  d: damping factor (Q reciprocal) \n
-  drv: overdrive amount \n
-  m: lowpass - band reject - highpass mix (0-1) \n
- */
-  const std::vector<S> &operator()(const std::vector<S> &in,
-                                   const std::vector<S> &f, S d, S drv, S m) {
-    S &w = W, &fac = Fac;
     std::size_t n = 0;
-    drv += 1;
-    this->vsize(in.size() < f.size() ? in.size() : f.size());
-    for (auto &s : sig) {
+    int32_t typ = m < 1 ? -1 : (m < 2 ? 0 : 1);
+    m = m < 0 ? 0 : (m < 1 ? m : (m < 2 ? m - 1 : 1));
+    auto pf = [&]() {
       if (f[n] != ff || d != dd)
         coeffs(f[n], d);
-      s = filter(in[n++], Y, D, w, fac, d, drv) * (1 - m);
-      s += Y[HP] * m;
-    }
-    return sig;
+      return filter(in[n++], Y, D, W, Fac, d, drv + 1, typ, m);
+    };
+    return process(pf, in.size() < f.size() ? in.size() : f.size());
   }
 };
 } // namespace Aurora

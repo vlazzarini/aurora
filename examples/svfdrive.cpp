@@ -32,14 +32,15 @@
 #include <iostream>
 
 int main(int argc, const char *argv[]) {
-  if (argc > 6) {
-    double sr = argc > 7 ? std::atof(argv[67]) : Aurora::def_sr;
+  if (argc > 7) {
+    double sr = argc > 8 ? std::atof(argv[8]) : Aurora::def_sr;
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
     auto cf = std::atof(argv[4]);
     auto q = std::atof(argv[5]);
     auto drv = std::atof(argv[6]);
+    auto typ = std::atof(argv[7]);
     auto nlm = (double (*)(double))tanh;
     Aurora::TableSet<double> wave(Aurora::SAW);
     Aurora::BlOsc<double> osc(&wave, sr);
@@ -49,13 +50,13 @@ int main(int argc, const char *argv[]) {
     bool gate = 1;
     q = q > 0.5 ? q : 0.5;
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
-      for (auto s : fil(osc(a, f), env(cf, 1000, gate), 1 / q, drv)) {
+      for (auto s : fil(osc(a, f), env(cf, 1000, gate), 1 / q, drv, typ)) {
         if (n > sr * (dur - rt))
           gate = 0;
         std::cout << s << std::endl;
       }
   } else
     std::cout << "usage: " << argv[0]
-              << " dur(s) amp freq(Hz) cutoff(Hz) Q drv [sr]" << std::endl;
+              << " dur(s) amp freq(Hz) cutoff(Hz) Q drv typ [sr]" << std::endl;
   return 0;
 }

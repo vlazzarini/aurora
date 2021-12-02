@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['sig',['sig',['../class_aurora_1_1_snd_base.html#adad6cd3430a1510dc887cc6bd1a45658',1,'Aurora::SndBase']]]
+  ['ts',['ts',['../class_aurora_1_1_osc.html#a2c7ae380eade4eee2e6035856ed0dcbe',1,'Aurora::Osc']]],
+  ['twopi',['twopi',['../namespace_aurora.html#a4c08f8416c2b35d5001062f121459b5a',1,'Aurora']]]
 ];
