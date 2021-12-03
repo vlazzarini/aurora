@@ -30,6 +30,7 @@
 
 #include <cmath>
 #include <complex>
+#include <iostream>
 
 namespace Aurora {
 
@@ -55,6 +56,8 @@ template <typename S> class FFT {
   static constexpr bool inverse = false;
   std::vector<std::complex<S>> c;
   bool pckd;
+  std::size_t sz;
+  bool norm;
 
   void reorder(std::vector<std::complex<S>> &s) {
     uint32_t N = s.size();
@@ -77,8 +80,9 @@ public:
       N: transform size \n
       packed: complex data format in packed form (true) or not
   */
-  FFT(std::size_t N, bool packd = packed)
-      : c(packed ? np2(N) / 2 : np2(N) / 2 + 1), pckd(packd){};
+  FFT(std::size_t N, bool packd = packed, bool nm = 0)
+      : c(packd ? np2(N) / 2 : np2(N) / 2 + 1), pckd(packd), sz(np2(N) / 2),
+        norm(nm){};
 
   std::size_t size() { return 2 * c.size(); }
 
@@ -109,6 +113,7 @@ public:
         w *= wp;
       }
     }
+    dir = norm ? !dir : dir;
     if (dir == forward)
       for (uint32_t n = 0; n < N; n++)
         s[n] /= N;
@@ -120,7 +125,7 @@ public:
   */
   const std::complex<S> *transform(const std::vector<S> &r) {
     using namespace std::complex_literals;
-    uint32_t N = c.size() - (pckd ? 0 : 1);
+    uint32_t N = sz;
     std::complex<S> wp, w = 1., even, odd;
     S o, zro, nyq;
     S *s = reinterpret_cast<S *>(c.data());
@@ -158,15 +163,19 @@ public:
   */
   const S *transform(const std::vector<std::complex<S>> &sp) {
     using namespace std::complex_literals;
-    uint32_t N = c.size() - (pckd ? 0 : 1);
+    std::fill(c.begin(), c.end(), std::complex<S>(0, 0));
+    std::copy(sp.begin(), sp.end(), c.begin());
+    uint32_t N = sz;
     std::complex<S> wp, w = 1., even, odd;
     S o, zro, nyq;
     S *s = reinterpret_cast<S *>(c.data());
     std::copy(sp.begin(), sp.end(), c.begin());
     if (pckd)
       zro = c[0].real(), nyq = c[0].imag();
-    else
-      zro = c[0].real(), nyq = c[N].real();
+    else {
+      zro = c[0].real();
+      nyq = c[N].real();
+    }
     c[0].real(zro + nyq), c[0].imag(zro - nyq);
     o = M_PI / N;
     wp.real(std::cos(o)), wp.imag(std::sin(o));
@@ -188,7 +197,7 @@ public:
 
   const std::vector<std::complex<S>> &vector() const { return c; }
 
-  const S *data() const { return reinterpret_cast<S *>(c.data()); }
+  const S *data() const { return reinterpret_cast<const S *>(c.data()); }
 };
 } // namespace Aurora
 

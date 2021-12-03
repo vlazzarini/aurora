@@ -3,6 +3,9 @@ project(Aurora_Examples)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror")
+
 find_library(LIBSNDFILE_LIBRARY NAMES sndfile libsndfile-1 libsndfile)
 find_path(LIBSNDFILE_INCLUDE_DIRECTORY sndfile.h)
 
@@ -35,9 +38,11 @@ add_program(wave)
 add_program(svfdrive)
 add_program(oscil)
 
+
 if(LIBSNDFILE_LIBRARY)
  add_program(delay ${LIBSNDFILE_LIBRARY} ${LIBSNDFILE_INCLUDE_DIRECTORY})
  add_program(filter ${LIBSNDFILE_LIBRARY} ${LIBSNDFILE_INCLUDE_DIRECTORY})
+ add_program(reverb ${LIBSNDFILE_LIBRARY} ${LIBSNDFILE_INCLUDE_DIRECTORY})
  add_cutil(towav ${LIBSNDFILE_LIBRARY} ${LIBSNDFILE_INCLUDE_DIRECTORY})
  add_cutil(wtgen ${LIBSNDFILE_LIBRARY} ${LIBSNDFILE_INCLUDE_DIRECTORY})
 endif() 

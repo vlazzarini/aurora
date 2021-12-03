@@ -58,11 +58,11 @@ std::function<S(double, S, S)> ads_gen(const S &a, const S &d, const S &s) {
 */
 template <typename S> class Env : public SndBase<S> {
   using SndBase<S>::process;
+  std::function<S(double, S, S)> func;
   double time;
   S prev;
   S ts;
   S fac;
-  std::function<S(double, S, S)> func;
 
   S synth(S e, double &t, bool gate) {
     S s;

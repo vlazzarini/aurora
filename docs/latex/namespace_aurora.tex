@@ -48,6 +48,10 @@ enum \+: int32\+\_\+t \{ \hyperlink{namespace_aurora_a963f359f40fdbc5f4dbe404353
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a7ec189488ba66508d8df1c1670823365}{ols} (S in, S $\ast$bufin, const S $\ast$bufout, S $\ast$unused, std\+::size\+\_\+t p, std\+::size\+\_\+t psz)
+\item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a8617b2b6ccb5009afc6b66c97435354f}{ola} (S in, S $\ast$bufin, const S $\ast$bufout, S $\ast$olabuf, std\+::size\+\_\+t cnt, std\+::size\+\_\+t psz)
+\item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a62442f237e70fdaac1efc22b4e82e875}{fixed\+\_\+delay} (S rp, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&d)
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_ab93392950e0b9ae8fbbccf7cc1b55a13}{vdelay} (S rp, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&del)
@@ -80,6 +84,8 @@ const int \hyperlink{namespace_aurora_a09d7b7aef171c72e46db6eac0226636b}{def\+\_
 const double \hyperlink{namespace_aurora_acb267dff62f74484893c2d5b679b78bf}{def\+\_\+base} = 1.f
 \item 
 const int \hyperlink{namespace_aurora_a14dabfd9feedfa09c0e6f86d2627f006}{def\+\_\+ftlen} = 16384
+\item 
+const std\+::size\+\_\+t \hyperlink{namespace_aurora_a080d03c33477d9c6322278722ca8e472}{def\+\_\+psize} = 2048
 \item 
 const bool \hyperlink{namespace_aurora_a3e70ffc9ea5c526dcd66b1b14e43f175}{packed} = true
 \item 
@@ -215,7 +221,35 @@ f\+: delay function returns a delay function for use in \hyperlink{class_aurora_
 \subsubsection{\texorpdfstring{np2()}{np2()}}
 {\footnotesize\ttfamily static uint32\+\_\+t Aurora\+::np2 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
-\mbox{\Hypertarget{namespace_aurora_a2fab91108d29c7101741bcd2ebe1ba72}\label{namespace_aurora_a2fab91108d29c7101741bcd2ebe1ba72}} 
+\mbox{\Hypertarget{namespace_aurora_a8617b2b6ccb5009afc6b66c97435354f}\label{namespace_aurora_a8617b2b6ccb5009afc6b66c97435354f}} 
+\index{Aurora@{Aurora}!ola@{ola}}
+\index{ola@{ola}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{ola()}{ola()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::ola (\begin{DoxyParamCaption}\item[{S}]{in,  }\item[{S $\ast$}]{bufin,  }\item[{const S $\ast$}]{bufout,  }\item[{S $\ast$}]{olabuf,  }\item[{std\+::size\+\_\+t}]{cnt,  }\item[{std\+::size\+\_\+t}]{psz }\end{DoxyParamCaption})}
+
+Overlap-\/add function for \hyperlink{class_aurora_1_1_conv}{Conv} ~\newline
+in\+: input ~\newline
+bufin\+: convolution input buffer ~\newline
+bufout\+: convolution output buffer ~\newline
+olabuf\+: overlap-\/add buffer ~\newline
+p\+: read/write pos ~\newline
+psz\+: partition size ~\newline
+returns convolution sample \mbox{\Hypertarget{namespace_aurora_a7ec189488ba66508d8df1c1670823365}\label{namespace_aurora_a7ec189488ba66508d8df1c1670823365}} 
+\index{Aurora@{Aurora}!ols@{ols}}
+\index{ols@{ols}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{ols()}{ols()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::ols (\begin{DoxyParamCaption}\item[{S}]{in,  }\item[{S $\ast$}]{bufin,  }\item[{const S $\ast$}]{bufout,  }\item[{S $\ast$}]{unused,  }\item[{std\+::size\+\_\+t}]{p,  }\item[{std\+::size\+\_\+t}]{psz }\end{DoxyParamCaption})}
+
+Overlap-\/save function for \hyperlink{class_aurora_1_1_conv}{Conv} ~\newline
+in\+: input ~\newline
+bufin\+: convolution input buffer ~\newline
+bufout\+: convolution output buffer ~\newline
+unused\+: not used ~\newline
+p\+: read/write pos ~\newline
+psz\+: partition size ~\newline
+returns convolution sample \mbox{\Hypertarget{namespace_aurora_a2fab91108d29c7101741bcd2ebe1ba72}\label{namespace_aurora_a2fab91108d29c7101741bcd2ebe1ba72}} 
 \index{Aurora@{Aurora}!phase@{phase}}
 \index{phase@{phase}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{phase()}{phase()}}
@@ -280,6 +314,12 @@ linearly interpolated
 \index{def\+\_\+octs@{def\+\_\+octs}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{def\+\_\+octs}{def\_octs}}
 {\footnotesize\ttfamily const int Aurora\+::def\+\_\+octs = 14}
+
+\mbox{\Hypertarget{namespace_aurora_a080d03c33477d9c6322278722ca8e472}\label{namespace_aurora_a080d03c33477d9c6322278722ca8e472}} 
+\index{Aurora@{Aurora}!def\+\_\+psize@{def\+\_\+psize}}
+\index{def\+\_\+psize@{def\+\_\+psize}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{def\+\_\+psize}{def\_psize}}
+{\footnotesize\ttfamily const std\+::size\+\_\+t Aurora\+::def\+\_\+psize = 2048}
 
 \mbox{\Hypertarget{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}\label{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}} 
 \index{Aurora@{Aurora}!def\+\_\+sr@{def\+\_\+sr}}

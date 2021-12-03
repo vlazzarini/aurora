@@ -116,6 +116,12 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a7ec189488ba66508d8df1c1670823365"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:a7ec189488ba66508d8df1c1670823365"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a7ec189488ba66508d8df1c1670823365">ols</a> (S in, S *bufin, const S *bufout, S *unused, std::size_t p, std::size_t psz)</td></tr>
+<tr class="separator:a7ec189488ba66508d8df1c1670823365"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8617b2b6ccb5009afc6b66c97435354f"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:a8617b2b6ccb5009afc6b66c97435354f"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a8617b2b6ccb5009afc6b66c97435354f">ola</a> (S in, S *bufin, const S *bufout, S *olabuf, std::size_t cnt, std::size_t psz)</td></tr>
+<tr class="separator:a8617b2b6ccb5009afc6b66c97435354f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62442f237e70fdaac1efc22b4e82e875"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
 <tr class="memitem:a62442f237e70fdaac1efc22b4e82e875"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a62442f237e70fdaac1efc22b4e82e875">fixed_delay</a> (S rp, std::size_t wp, const std::vector&lt; S &gt; &amp;d)</td></tr>
 <tr class="separator:a62442f237e70fdaac1efc22b4e82e875"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,6 +166,8 @@ Variables</h2></td></tr>
 <tr class="separator:acb267dff62f74484893c2d5b679b78bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14dabfd9feedfa09c0e6f86d2627f006"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a14dabfd9feedfa09c0e6f86d2627f006">def_ftlen</a> = 16384</td></tr>
 <tr class="separator:a14dabfd9feedfa09c0e6f86d2627f006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a080d03c33477d9c6322278722ca8e472"><td class="memItemLeft" align="right" valign="top">const std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a080d03c33477d9c6322278722ca8e472">def_psize</a> = 2048</td></tr>
+<tr class="separator:a080d03c33477d9c6322278722ca8e472"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e70ffc9ea5c526dcd66b1b14e43f175"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a3e70ffc9ea5c526dcd66b1b14e43f175">packed</a> = true</td></tr>
 <tr class="separator:a3e70ffc9ea5c526dcd66b1b14e43f175"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c08f8416c2b35d5001062f121459b5a"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a4c08f8416c2b35d5001062f121459b5a">twopi</a> = 2 * M_PI</td></tr>
@@ -466,6 +474,130 @@ f: delay function returns a delay function for use in <a class="el" href="class_
 
 </div>
 </div>
+<a id="a8617b2b6ccb5009afc6b66c97435354f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8617b2b6ccb5009afc6b66c97435354f">&#9670;&nbsp;</a></span>ola()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">S Aurora::ola </td>
+          <td>(</td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S *&#160;</td>
+          <td class="paramname"><em>bufin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const S *&#160;</td>
+          <td class="paramname"><em>bufout</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S *&#160;</td>
+          <td class="paramname"><em>olabuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>cnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>psz</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Overlap-add function for <a class="el" href="class_aurora_1_1_conv.html">Conv</a> <br />
+in: input <br />
+bufin: convolution input buffer <br />
+bufout: convolution output buffer <br />
+olabuf: overlap-add buffer <br />
+p: read/write pos <br />
+psz: partition size <br />
+returns convolution sample </p>
+
+</div>
+</div>
+<a id="a7ec189488ba66508d8df1c1670823365"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ec189488ba66508d8df1c1670823365">&#9670;&nbsp;</a></span>ols()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">S Aurora::ols </td>
+          <td>(</td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S *&#160;</td>
+          <td class="paramname"><em>bufin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const S *&#160;</td>
+          <td class="paramname"><em>bufout</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S *&#160;</td>
+          <td class="paramname"><em>unused</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>psz</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Overlap-save function for <a class="el" href="class_aurora_1_1_conv.html">Conv</a> <br />
+in: input <br />
+bufin: convolution input buffer <br />
+bufout: convolution output buffer <br />
+unused: not used <br />
+p: read/write pos <br />
+psz: partition size <br />
+returns convolution sample </p>
+
+</div>
+</div>
 <a id="a2fab91108d29c7101741bcd2ebe1ba72"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2fab91108d29c7101741bcd2ebe1ba72">&#9670;&nbsp;</a></span>phase()</h2>
 
@@ -636,6 +768,20 @@ linearly interpolated </p>
       <table class="memname">
         <tr>
           <td class="memname">const int Aurora::def_octs = 14</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a080d03c33477d9c6322278722ca8e472"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a080d03c33477d9c6322278722ca8e472">&#9670;&nbsp;</a></span>def_psize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::size_t Aurora::def_psize = 2048</td>
         </tr>
       </table>
 </div><div class="memdoc">

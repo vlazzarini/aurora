@@ -73,8 +73,6 @@ int main(int argc, const char *argv[]) {
     Aurora::StackedFM<double> fm(sr);
     for (int n = 0; n < fm.fs() * dur; n += fm.vsize()) {
       const std::vector<double> &out = fm(amp, fr, fr, fr, 3, 2);
-      const double *p = out.data();
-
       for (auto s : out)
         std::cout << s << std::endl;
     }

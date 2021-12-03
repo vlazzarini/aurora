@@ -66,6 +66,12 @@ Aurora
 
 .in +1c
 .ti -1c
+.RI "template<typename S > S \fBols\fP (S in, S *bufin, const S *bufout, S *unused, std::size_t p, std::size_t psz)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBola\fP (S in, S *bufin, const S *bufout, S *olabuf, std::size_t cnt, std::size_t psz)"
+.br
+.ti -1c
 .RI "template<typename S > S \fBfixed_delay\fP (S rp, std::size_t wp, const std::vector< S > &d)"
 .br
 .ti -1c
@@ -113,6 +119,9 @@ Aurora
 .br
 .ti -1c
 .RI "const int \fBdef_ftlen\fP = 16384"
+.br
+.ti -1c
+.RI "const std::size_t \fBdef_psize\fP = 2048"
 .br
 .ti -1c
 .RI "const bool \fBpacked\fP = true"
@@ -221,6 +230,38 @@ c: lp filter coef [c = sqrt(a*a - 1) - a, with a = 2 - cos(w)]
 f: delay function returns a delay function for use in \fBDel\fP 
 .SS "static uint32_t Aurora::np2 (uint32_t n)\fC [inline]\fP, \fC [static]\fP"
 
+.SS "template<typename S > S Aurora::ola (S in, S * bufin, const S * bufout, S * olabuf, std::size_t cnt, std::size_t psz)"
+Overlap-add function for \fBConv\fP 
+.br
+in: input 
+.br
+bufin: convolution input buffer 
+.br
+bufout: convolution output buffer 
+.br
+olabuf: overlap-add buffer 
+.br
+p: read/write pos 
+.br
+psz: partition size 
+.br
+returns convolution sample 
+.SS "template<typename S > S Aurora::ols (S in, S * bufin, const S * bufout, S * unused, std::size_t p, std::size_t psz)"
+Overlap-save function for \fBConv\fP 
+.br
+in: input 
+.br
+bufin: convolution input buffer 
+.br
+bufout: convolution output buffer 
+.br
+unused: not used 
+.br
+p: read/write pos 
+.br
+psz: partition size 
+.br
+returns convolution sample 
 .SS "template<typename S > S Aurora::phase (double ph)"
 Phase function for \fBOsc\fP 
 .br
@@ -270,6 +311,8 @@ linearly interpolated
 .SS "const int Aurora::def_ftlen = 16384"
 
 .SS "const int Aurora::def_octs = 14"
+
+.SS "const std::size_t Aurora::def_psize = 2048"
 
 .SS "const double Aurora::def_sr = 44100\&."
 

@@ -127,7 +127,7 @@ public:
     std::size_t n = 0;
     return process(
         [&]() -> S {
-          auto s = op(s1[n], s1[n]);
+          auto s = op(s1[n], s2[n]);
           n++;
           return s;
         },
