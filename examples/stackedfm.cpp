@@ -57,8 +57,8 @@ public:
   S fs() { return car.fs(); }
 
   const std::vector<S> &operator()(S a, S fc, S fm0, S fm1, S z0, S z1) {
-    auto s0 = add(fm1, mod0(z0 * fm0, fm0));
-    auto s1 = add(fc, mod1(amp(z1, s0), s0));
+    auto &s0 = add(fm1, mod0(z0 * fm0, fm0));
+    auto &s1 = add(fc, mod1(amp(z1, s0), s0));
     return car(a, s1);
   }
 };

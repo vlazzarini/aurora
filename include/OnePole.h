@@ -74,8 +74,7 @@ public:
     std::size_t n = 0;
     if (f != ff)
       coeffs(f);
-    const std::vector<S> &s =
-        process([&]() { return filter(in[n++], d, G, A); }, in.size());
+    auto &s = process([&]() { return filter(in[n++], d, G, A); }, in.size());
     D = d;
     return s;
   }
@@ -88,7 +87,7 @@ public:
                                    const std::vector<S> &f) {
     double d = D;
     std::size_t n = 0;
-    const std::vector<S> &s = process(
+    auto &s = process(
         [&]() {
           if (f[n] != ff)
             coeffs(f[n]);

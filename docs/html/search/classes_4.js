@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['onepole',['OnePole',['../class_aurora_1_1_one_pole.html',1,'Aurora']]],
-  ['osc',['Osc',['../class_aurora_1_1_osc.html',1,'Aurora']]]
+  ['fft',['FFT',['../class_aurora_1_1_f_f_t.html',1,'Aurora']]],
+  ['fourpole',['FourPole',['../class_aurora_1_1_four_pole.html',1,'Aurora']]],
+  ['func',['Func',['../class_aurora_1_1_func.html',1,'Aurora']]]
 ];

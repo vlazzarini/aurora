@@ -1,4 +1,4 @@
-.TH "Aurora" 3 "Thu Dec 2 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora" 3 "Fri Dec 3 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -16,6 +16,9 @@ Aurora
 .RI "class \fBBlOsc\fP"
 .br
 .ti -1c
+.RI "class \fBConv\fP"
+.br
+.ti -1c
 .RI "class \fBDel\fP"
 .br
 .ti -1c
@@ -29,6 +32,9 @@ Aurora
 .br
 .ti -1c
 .RI "class \fBFunc\fP"
+.br
+.ti -1c
+.RI "class \fBIR\fP"
 .br
 .ti -1c
 .RI "class \fBOnePole\fP"
@@ -107,6 +113,9 @@ Aurora
 .br
 .ti -1c
 .RI "const int \fBdef_ftlen\fP = 16384"
+.br
+.ti -1c
+.RI "const bool \fBpacked\fP = true"
 .br
 .ti -1c
 .RI "const double \fBtwopi\fP = 2 * M_PI"
@@ -266,6 +275,8 @@ linearly interpolated
 
 .SS "const int Aurora::def_vsize = 64"
 
+.SS "const bool Aurora::packed = true"
+constant indicating packed \fBFFT\fP format 
 .SS "const double Aurora::twopi = 2 * M_PI"
 
 .SH "Author"

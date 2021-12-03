@@ -7,7 +7,7 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aurora_1_1_f_f_t_ab98366f22f4fde5a1b0e32445eedcf3c}{F\+FT} (std\+::size\+\_\+t N, bool packed=true)
+\hyperlink{class_aurora_1_1_f_f_t_a89e14a054e328bd8a0d477691f690135}{F\+FT} (std\+::size\+\_\+t N, bool packd=\hyperlink{namespace_aurora_a3e70ffc9ea5c526dcd66b1b14e43f175}{packed})
 \item 
 std\+::size\+\_\+t \hyperlink{class_aurora_1_1_f_f_t_ad0149c60672d3f4e64850dde22f5b163}{size} ()
 \item 
@@ -15,7 +15,11 @@ void \hyperlink{class_aurora_1_1_f_f_t_a8325de64c8b9f208ed0bc8db3f74e4c7}{transf
 \item 
 const std\+::complex$<$ S $>$ $\ast$ \hyperlink{class_aurora_1_1_f_f_t_a51ed1e25953c12b7f4cc145d19ee5cd8}{transform} (const std\+::vector$<$ S $>$ \&r)
 \item 
-const S $\ast$ \hyperlink{class_aurora_1_1_f_f_t_aa0912d8abdeb15ff84d82a5cc59cb150}{transform} (const std\+::vector$<$ std\+::complex$<$ S $>$$>$ \&sp, bool pckd=true)
+const S $\ast$ \hyperlink{class_aurora_1_1_f_f_t_a9331bca89f3782409a7587611f1e4bab}{transform} (const std\+::vector$<$ std\+::complex$<$ S $>$$>$ \&sp)
+\item 
+const std\+::vector$<$ std\+::complex$<$ S $>$ $>$ \& \hyperlink{class_aurora_1_1_f_f_t_a67003935e240d8b4cf858430f6063913}{vector} () const
+\item 
+const S $\ast$ \hyperlink{class_aurora_1_1_f_f_t_a7462e77c06228475f0f491d7a25d7bba}{data} () const
 \end{DoxyCompactItemize}
 
 
@@ -28,18 +32,25 @@ Radix-\/2 fast Fourier transform ~\newline
 S\+: sample type 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_f_f_t_ab98366f22f4fde5a1b0e32445eedcf3c}\label{class_aurora_1_1_f_f_t_ab98366f22f4fde5a1b0e32445eedcf3c}} 
+\mbox{\Hypertarget{class_aurora_1_1_f_f_t_a89e14a054e328bd8a0d477691f690135}\label{class_aurora_1_1_f_f_t_a89e14a054e328bd8a0d477691f690135}} 
 \index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!F\+FT@{F\+FT}}
 \index{F\+FT@{F\+FT}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
 \subsubsection{\texorpdfstring{F\+F\+T()}{FFT()}}
 {\footnotesize\ttfamily template$<$typename S$>$ \\
-\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::\hyperlink{class_aurora_1_1_f_f_t}{F\+FT} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{N,  }\item[{bool}]{packed = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::\hyperlink{class_aurora_1_1_f_f_t}{F\+FT} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{N,  }\item[{bool}]{packd = {\ttfamily \hyperlink{namespace_aurora_a3e70ffc9ea5c526dcd66b1b14e43f175}{packed}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor ~\newline
 N\+: transform size ~\newline
 packed\+: complex data format in packed form (true) or not 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_f_f_t_a7462e77c06228475f0f491d7a25d7bba}\label{class_aurora_1_1_f_f_t_a7462e77c06228475f0f491d7a25d7bba}} 
+\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!data@{data}}
+\index{data@{data}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
+\subsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+const S$\ast$ \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{class_aurora_1_1_f_f_t_ad0149c60672d3f4e64850dde22f5b163}\label{class_aurora_1_1_f_f_t_ad0149c60672d3f4e64850dde22f5b163}} 
 \index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!size@{size}}
 \index{size@{size}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
@@ -65,16 +76,23 @@ pckd\+: true for packed data (first point is DC,Nyq) Size of data is expected to
 const std\+::complex$<$S$>$$\ast$ \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::transform (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Real-\/to-\/complex forward \hyperlink{class_aurora_1_1_f_f_t}{F\+FT} ~\newline
-r\+: input vector (real) returns pointer to complex data containing the transform \mbox{\Hypertarget{class_aurora_1_1_f_f_t_aa0912d8abdeb15ff84d82a5cc59cb150}\label{class_aurora_1_1_f_f_t_aa0912d8abdeb15ff84d82a5cc59cb150}} 
+r\+: input vector (real) returns pointer to complex data containing the transform \mbox{\Hypertarget{class_aurora_1_1_f_f_t_a9331bca89f3782409a7587611f1e4bab}\label{class_aurora_1_1_f_f_t_a9331bca89f3782409a7587611f1e4bab}} 
 \index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!transform@{transform}}
 \index{transform@{transform}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
 \subsubsection{\texorpdfstring{transform()}{transform()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily template$<$typename S$>$ \\
-const S$\ast$ \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::transform (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::complex$<$ S $>$$>$ \&}]{sp,  }\item[{bool}]{pckd = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+const S$\ast$ \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::transform (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::complex$<$ S $>$$>$ \&}]{sp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Complex-\/to-\/real inverse \hyperlink{class_aurora_1_1_f_f_t}{F\+FT} ~\newline
 sp -\/ input vector (complex) ~\newline
-returns pointer to real data containing the transform 
+returns pointer to real data containing the transform \mbox{\Hypertarget{class_aurora_1_1_f_f_t_a67003935e240d8b4cf858430f6063913}\label{class_aurora_1_1_f_f_t_a67003935e240d8b4cf858430f6063913}} 
+\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!vector@{vector}}
+\index{vector@{vector}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
+\subsubsection{\texorpdfstring{vector()}{vector()}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+const std\+::vector$<$std\+::complex$<$S$>$ $>$\& \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

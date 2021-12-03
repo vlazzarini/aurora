@@ -94,7 +94,7 @@ public:
       f: binary operation function \n
       vsize: signal vector size
   */
-  BinOp(std::function<S(S, S)> f, std::size_t vsize = def_vsize)
+  BinOp(const std::function<S(S, S)> &f, std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), op(f){};
 
   /** Binary operation \n
@@ -137,7 +137,7 @@ public:
   /** set the operator function \n
       f: binary operator function to be used
   */
-  void func(std::function<S(S, S)> f) { op = f; }
+  void func(const std::function<S(S, S)> &f) { op = f; }
 };
 
 /** linear interpolation table lookup \n

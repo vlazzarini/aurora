@@ -6,6 +6,7 @@ var searchData=
   ['sndbase',['SndBase',['../class_aurora_1_1_snd_base.html#a960739d3ae63df581c28f8801e589a3c',1,'Aurora::SndBase']]],
   ['sndbase',['SndBase',['../class_aurora_1_1_snd_base.html',1,'Aurora']]],
   ['sndbase_2eh',['SndBase.h',['../_snd_base_8h.html',1,'']]],
+  ['spectrum',['spectrum',['../class_aurora_1_1_i_r.html#a2463850b1167583c7338025b204ed631',1,'Aurora::IR']]],
   ['square',['SQUARE',['../namespace_aurora.html#a890b8d3786c8a25750e8097adae3b513ad12f117b00f964cb4de3809ca2e2fa2b',1,'Aurora']]],
   ['synth',['synth',['../class_aurora_1_1_osc.html#a4e01fb1238c931c944b6b27c3790495e',1,'Aurora::Osc']]]
 ];

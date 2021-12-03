@@ -1,10 +1,11 @@
 <map id="SndBase.h" name="SndBase.h">
 <area shape="rect" id="node2" href="$_osc_8h.html" title="Osc.h" alt="" coords="11,80,68,107"/>
-<area shape="rect" id="node4" href="$_del_8h.html" title="Del.h" alt="" coords="93,80,147,107"/>
-<area shape="rect" id="node5" href="$_env_8h.html" title="Env.h" alt="" coords="171,80,227,107"/>
-<area shape="rect" id="node6" href="$_four_pole_8h.html" title="FourPole.h" alt="" coords="251,80,337,107"/>
-<area shape="rect" id="node7" href="$_func_8h.html" title="Func.h" alt="" coords="362,80,424,107"/>
-<area shape="rect" id="node8" href="$_one_pole_8h.html" title="OnePole.h" alt="" coords="449,80,535,107"/>
-<area shape="rect" id="node9" href="$_two_pole_8h.html" title="TwoPole.h" alt="" coords="559,80,644,107"/>
+<area shape="rect" id="node4" href="$_conv_8h.html" title="Conv.h" alt="" coords="93,80,157,107"/>
+<area shape="rect" id="node5" href="$_del_8h.html" title="Del.h" alt="" coords="181,80,235,107"/>
+<area shape="rect" id="node6" href="$_env_8h.html" title="Env.h" alt="" coords="259,80,315,107"/>
+<area shape="rect" id="node7" href="$_four_pole_8h.html" title="FourPole.h" alt="" coords="339,80,425,107"/>
+<area shape="rect" id="node8" href="$_func_8h.html" title="Func.h" alt="" coords="450,80,512,107"/>
+<area shape="rect" id="node9" href="$_one_pole_8h.html" title="OnePole.h" alt="" coords="537,80,623,107"/>
+<area shape="rect" id="node10" href="$_two_pole_8h.html" title="TwoPole.h" alt="" coords="647,80,732,107"/>
 <area shape="rect" id="node3" href="$_bl_osc_8h.html" title="BlOsc.h" alt="" coords="5,155,75,181"/>
 </map>

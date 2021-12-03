@@ -25,11 +25,11 @@ Collaboration diagram for Aurora\+:\+:Func$<$ S $>$\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aurora_1_1_func_a4d45462ffab2c3a5172042411634539e}{Func} (std\+::function$<$ S(S)$>$ f, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\hyperlink{class_aurora_1_1_func_a87eaf7fa6fffaa73ed7a87e62138afc8}{Func} (const std\+::function$<$ S(S)$>$ \&f, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
 \item 
 const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_func_a60e9dad421d80a9f9eb99cfbac104729}{operator()} (const std\+::vector$<$ S $>$ \&in)
 \item 
-void \hyperlink{class_aurora_1_1_func_ac0bab9c63c823a9fc2058b9ce41e8da6}{func} (std\+::function$<$ S(S)$>$ f)
+void \hyperlink{class_aurora_1_1_func_a3e5734a709e472de5b5cbc1f8bfdf371}{func} (const std\+::function$<$ S(S)$>$ \&f)
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -43,12 +43,12 @@ Generic function maps ~\newline
 S\+: sample type 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_func_a4d45462ffab2c3a5172042411634539e}\label{class_aurora_1_1_func_a4d45462ffab2c3a5172042411634539e}} 
+\mbox{\Hypertarget{class_aurora_1_1_func_a87eaf7fa6fffaa73ed7a87e62138afc8}\label{class_aurora_1_1_func_a87eaf7fa6fffaa73ed7a87e62138afc8}} 
 \index{Aurora\+::\+Func@{Aurora\+::\+Func}!Func@{Func}}
 \index{Func@{Func}!Aurora\+::\+Func@{Aurora\+::\+Func}}
 \subsubsection{\texorpdfstring{Func()}{Func()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-\hyperlink{class_aurora_1_1_func}{Aurora\+::\+Func}$<$ S $>$\+::\hyperlink{class_aurora_1_1_func}{Func} (\begin{DoxyParamCaption}\item[{std\+::function$<$ S(S)$>$}]{f,  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\hyperlink{class_aurora_1_1_func}{Aurora\+::\+Func}$<$ S $>$\+::\hyperlink{class_aurora_1_1_func}{Func} (\begin{DoxyParamCaption}\item[{const std\+::function$<$ S(S)$>$ \&}]{f,  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor ~\newline
 f\+: oscillator function ~\newline
@@ -56,12 +56,12 @@ fs\+: sampling rate ~\newline
 vsize\+: signal vector size 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_func_ac0bab9c63c823a9fc2058b9ce41e8da6}\label{class_aurora_1_1_func_ac0bab9c63c823a9fc2058b9ce41e8da6}} 
+\mbox{\Hypertarget{class_aurora_1_1_func_a3e5734a709e472de5b5cbc1f8bfdf371}\label{class_aurora_1_1_func_a3e5734a709e472de5b5cbc1f8bfdf371}} 
 \index{Aurora\+::\+Func@{Aurora\+::\+Func}!func@{func}}
 \index{func@{func}!Aurora\+::\+Func@{Aurora\+::\+Func}}
 \subsubsection{\texorpdfstring{func()}{func()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-void \hyperlink{class_aurora_1_1_func}{Aurora\+::\+Func}$<$ S $>$\+::func (\begin{DoxyParamCaption}\item[{std\+::function$<$ S(S)$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \hyperlink{class_aurora_1_1_func}{Aurora\+::\+Func}$<$ S $>$\+::func (\begin{DoxyParamCaption}\item[{const std\+::function$<$ S(S)$>$ \&}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 set the mapping function ~\newline
 f\+: mapping function to be used \mbox{\Hypertarget{class_aurora_1_1_func_a60e9dad421d80a9f9eb99cfbac104729}\label{class_aurora_1_1_func_a60e9dad421d80a9f9eb99cfbac104729}} 

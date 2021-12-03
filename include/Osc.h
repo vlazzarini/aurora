@@ -102,7 +102,7 @@ public:
       fs: sampling rate \n
       vsize: signal vector size
   */
-  Osc(std::function<S(S)> f = cos<S>, S fs = (S)def_sr,
+  Osc(const std::function<S(S)> &f = cos<S>, S fs = (S)def_sr,
       std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), ph(0.), ts(1 / fs), fun(f){};
 
@@ -120,7 +120,7 @@ public:
   */
   const std::vector<S> &operator()(S a, S f) {
     double phs = ph;
-    const std::vector<S> &s = process([&]() { return synth(a, f, phs); }, 0);
+    auto &s = process([&]() { return synth(a, f, phs); }, 0);
     ph = phs;
     return s;
   }
@@ -133,8 +133,7 @@ public:
   const std::vector<S> &operator()(S a, const std::vector<S> &fm) {
     double phs = ph;
     std::size_t n = 0;
-    const std::vector<S> &s =
-        process([&]() { return synth(a, fm[n++], phs); }, 0);
+    auto &s = process([&]() { return synth(a, fm[n++], phs); }, 0);
     ph = phs;
     return s;
   }
@@ -147,8 +146,7 @@ public:
   const std::vector<S> &operator()(const std::vector<S> &am, S f) {
     double phs = ph;
     std::size_t n = 0;
-    const std::vector<S> &s =
-        process([&]() { return synth(am[n++], f, phs); }, 0);
+    auto &s = process([&]() { return synth(am[n++], f, phs); }, 0);
     ph = phs;
     return s;
   }
@@ -162,7 +160,7 @@ public:
                                    const std::vector<S> &fm) {
     double phs = ph;
     std::size_t n = 0;
-    const std::vector<S> &s = process(
+    auto &s = process(
         [&]() {
           auto s = synth(am[n], fm[n], phs);
           n++;
@@ -176,7 +174,7 @@ public:
   /** set the oscillator function
       f: oscillator function to be used
   */
-  void func(std::function<S(S)> f) { fun = f; }
+  void func(const std::function<S(S)> &f) { fun = f; }
 };
 } // namespace Aurora
 

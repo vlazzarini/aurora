@@ -125,7 +125,8 @@ public:
       sr: sampling rate \n
       vsize: vector size
    */
-  Del(S maxdt, std::function<S(S, std::size_t, const std::vector<S> &)> f,
+  Del(S maxdt,
+      const std::function<S(S, std::size_t, const std::vector<S> &)> &f,
       S sr = def_sr, std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), fs(sr), wp(0), del(maxdt * fs), fun(f){};
 
@@ -147,7 +148,7 @@ public:
   const std::vector<S> &operator()(const std::vector<S> &in, S dt, S fdb = 0,
                                    S fwd = 0) {
     std::size_t n = 0, p = wp;
-    const std::vector<S> &s =
+    auto &s =
         process([&]() { return delay(in[n++], dt, fdb, fwd, p); }, in.size());
     wp = p;
     return s;
@@ -163,7 +164,7 @@ public:
                                    const std::vector<S> &dt, S fdb = 0,
                                    S fwd = 0) {
     std::size_t n = 0, p = wp;
-    const std::vector<S> &s = process(
+    auto &s = process(
         [&]() {
           auto s = delay(in[n], dt[n], fdb, fwd, p);
           n++;
@@ -172,6 +173,13 @@ public:
         in.size() < dt.size() ? in.size() : dt.size());
     wp = p;
     return s;
+  }
+
+  /** set the delay function \n
+   f: delay function to be used
+*/
+  void func(const std::function<S(S, std::size_t, const std::vector<S> &)> &f) {
+    fun = f;
   }
 };
 

@@ -58,7 +58,7 @@ int main(int argc, const char **argv) {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
           if (n) {
             buffer.resize(n);
-            auto out = delay(buffer, dt, fdb);
+            auto &out = delay(buffer, dt, fdb);
             sf_write_float(fpout, out.data(), n);
           } else
             break;
@@ -67,7 +67,7 @@ int main(int argc, const char **argv) {
         n = sfinfo.samplerate * rvt;
         std::fill(buffer.begin(), buffer.end(), 0.f);
         do {
-          auto out = delay(buffer, dt, fdb);
+          auto &out = delay(buffer, dt, fdb);
           sf_write_float(fpout, out.data(), def_vsize);
           n -= def_vsize;
         } while (n > 0);

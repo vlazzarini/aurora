@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sndbase',['SndBase',['../class_aurora_1_1_snd_base.html',1,'Aurora']]]
+  ['ir',['IR',['../class_aurora_1_1_i_r.html',1,'Aurora']]]
 ];

@@ -25,7 +25,7 @@ Collaboration diagram for Aurora\+:\+:Bin\+Op$<$ S $>$\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aurora_1_1_bin_op_aa4d342b5e98bd21ba48d3c29500a9978}{Bin\+Op} (std\+::function$<$ S(S, S)$>$ f, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\hyperlink{class_aurora_1_1_bin_op_aa8b5c6b77e89f4c73847716a695be047}{Bin\+Op} (const std\+::function$<$ S(S, S)$>$ \&f, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
 \item 
 const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_bin_op_aef7a0a9a5daa40c22e540f08ca928fab}{operator()} (S a, const std\+::vector$<$ S $>$ \&s)
 \item 
@@ -33,7 +33,7 @@ const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_bin_op_a488095df0eb9
 \item 
 const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_bin_op_abe8a0b7666caeda012d9ac18f889e116}{operator()} (const std\+::vector$<$ S $>$ \&s1, const std\+::vector$<$ S $>$ \&s2)
 \item 
-void \hyperlink{class_aurora_1_1_bin_op_a200e19232db44814c4977be0b33654b7}{func} (std\+::function$<$ S(S, S)$>$ f)
+void \hyperlink{class_aurora_1_1_bin_op_aa440ae97cd1e9f0e1aaa077a57850f3d}{func} (const std\+::function$<$ S(S, S)$>$ \&f)
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -47,24 +47,24 @@ Binary operations ~\newline
 S\+: sample type 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_bin_op_aa4d342b5e98bd21ba48d3c29500a9978}\label{class_aurora_1_1_bin_op_aa4d342b5e98bd21ba48d3c29500a9978}} 
+\mbox{\Hypertarget{class_aurora_1_1_bin_op_aa8b5c6b77e89f4c73847716a695be047}\label{class_aurora_1_1_bin_op_aa8b5c6b77e89f4c73847716a695be047}} 
 \index{Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}!Bin\+Op@{Bin\+Op}}
 \index{Bin\+Op@{Bin\+Op}!Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}}
 \subsubsection{\texorpdfstring{Bin\+Op()}{BinOp()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-\hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S $>$\+::\hyperlink{class_aurora_1_1_bin_op}{Bin\+Op} (\begin{DoxyParamCaption}\item[{std\+::function$<$ S(S, S)$>$}]{f,  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S $>$\+::\hyperlink{class_aurora_1_1_bin_op}{Bin\+Op} (\begin{DoxyParamCaption}\item[{const std\+::function$<$ S(S, S)$>$ \&}]{f,  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor ~\newline
 f\+: binary operation function ~\newline
 vsize\+: signal vector size 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_bin_op_a200e19232db44814c4977be0b33654b7}\label{class_aurora_1_1_bin_op_a200e19232db44814c4977be0b33654b7}} 
+\mbox{\Hypertarget{class_aurora_1_1_bin_op_aa440ae97cd1e9f0e1aaa077a57850f3d}\label{class_aurora_1_1_bin_op_aa440ae97cd1e9f0e1aaa077a57850f3d}} 
 \index{Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}!func@{func}}
 \index{func@{func}!Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}}
 \subsubsection{\texorpdfstring{func()}{func()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-void \hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S $>$\+::func (\begin{DoxyParamCaption}\item[{std\+::function$<$ S(S, S)$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S $>$\+::func (\begin{DoxyParamCaption}\item[{const std\+::function$<$ S(S, S)$>$ \&}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 set the operator function ~\newline
 f\+: binary operator function to be used \mbox{\Hypertarget{class_aurora_1_1_bin_op_aef7a0a9a5daa40c22e540f08ca928fab}\label{class_aurora_1_1_bin_op_aef7a0a9a5daa40c22e540f08ca928fab}} 

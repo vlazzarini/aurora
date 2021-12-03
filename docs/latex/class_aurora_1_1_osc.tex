@@ -25,7 +25,7 @@ Collaboration diagram for Aurora\+:\+:Osc$<$ S $>$\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aurora_1_1_osc_ac97decabac1a41e2556039548f8feab4}{Osc} (std\+::function$<$ S(S)$>$ f=\hyperlink{namespace_aurora_ab6ef1b966b8f27d107fcabe1027a677a}{cos}$<$ S $>$, S \hyperlink{class_aurora_1_1_osc_a9ac3aa9006fc98588b2163e0e56f6e30}{fs}=(S) \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\hyperlink{class_aurora_1_1_osc_a573db635ae7ae8fba798d572ee4b992e}{Osc} (const std\+::function$<$ S(S)$>$ \&f=\hyperlink{namespace_aurora_ab6ef1b966b8f27d107fcabe1027a677a}{cos}$<$ S $>$, S \hyperlink{class_aurora_1_1_osc_a9ac3aa9006fc98588b2163e0e56f6e30}{fs}=(S) \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
 \item 
 virtual \hyperlink{class_aurora_1_1_osc_a95062ac1670f5de00a27c33bfb4eb117}{$\sim$\+Osc} ()
 \item 
@@ -39,7 +39,7 @@ const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_osc_a28fe97e5634b8a0
 \item 
 const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_osc_a06f9ead5fbf828f7ebb8617ac6cb24b4}{operator()} (const std\+::vector$<$ S $>$ \&am, const std\+::vector$<$ S $>$ \&fm)
 \item 
-void \hyperlink{class_aurora_1_1_osc_a1ffdfa0db8932dbaa7cc96e046a6d461}{func} (std\+::function$<$ S(S)$>$ f)
+void \hyperlink{class_aurora_1_1_osc_a3e20a4f476e10209533a25d2abfc2af8}{func} (const std\+::function$<$ S(S)$>$ \&f)
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -66,12 +66,12 @@ Generic oscillator ~\newline
 S\+: sample type 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_osc_ac97decabac1a41e2556039548f8feab4}\label{class_aurora_1_1_osc_ac97decabac1a41e2556039548f8feab4}} 
+\mbox{\Hypertarget{class_aurora_1_1_osc_a573db635ae7ae8fba798d572ee4b992e}\label{class_aurora_1_1_osc_a573db635ae7ae8fba798d572ee4b992e}} 
 \index{Aurora\+::\+Osc@{Aurora\+::\+Osc}!Osc@{Osc}}
 \index{Osc@{Osc}!Aurora\+::\+Osc@{Aurora\+::\+Osc}}
 \subsubsection{\texorpdfstring{Osc()}{Osc()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-\hyperlink{class_aurora_1_1_osc}{Aurora\+::\+Osc}$<$ S $>$\+::\hyperlink{class_aurora_1_1_osc}{Osc} (\begin{DoxyParamCaption}\item[{std\+::function$<$ S(S)$>$}]{f = {\ttfamily \hyperlink{namespace_aurora_ab6ef1b966b8f27d107fcabe1027a677a}{cos}$<$S$>$},  }\item[{S}]{fs = {\ttfamily (S)\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}},  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\hyperlink{class_aurora_1_1_osc}{Aurora\+::\+Osc}$<$ S $>$\+::\hyperlink{class_aurora_1_1_osc}{Osc} (\begin{DoxyParamCaption}\item[{const std\+::function$<$ S(S)$>$ \&}]{f = {\ttfamily \hyperlink{namespace_aurora_ab6ef1b966b8f27d107fcabe1027a677a}{cos}$<$S$>$},  }\item[{S}]{fs = {\ttfamily (S)\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}},  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor ~\newline
 f\+: oscillator function ~\newline
@@ -94,12 +94,12 @@ virtual \hyperlink{class_aurora_1_1_osc}{Aurora\+::\+Osc}$<$ S $>$\+::$\sim$\hyp
 S \hyperlink{class_aurora_1_1_osc}{Aurora\+::\+Osc}$<$ S $>$\+::fs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Sampling rate query ~\newline
-returns sampling rate \mbox{\Hypertarget{class_aurora_1_1_osc_a1ffdfa0db8932dbaa7cc96e046a6d461}\label{class_aurora_1_1_osc_a1ffdfa0db8932dbaa7cc96e046a6d461}} 
+returns sampling rate \mbox{\Hypertarget{class_aurora_1_1_osc_a3e20a4f476e10209533a25d2abfc2af8}\label{class_aurora_1_1_osc_a3e20a4f476e10209533a25d2abfc2af8}} 
 \index{Aurora\+::\+Osc@{Aurora\+::\+Osc}!func@{func}}
 \index{func@{func}!Aurora\+::\+Osc@{Aurora\+::\+Osc}}
 \subsubsection{\texorpdfstring{func()}{func()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-void \hyperlink{class_aurora_1_1_osc}{Aurora\+::\+Osc}$<$ S $>$\+::func (\begin{DoxyParamCaption}\item[{std\+::function$<$ S(S)$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \hyperlink{class_aurora_1_1_osc}{Aurora\+::\+Osc}$<$ S $>$\+::func (\begin{DoxyParamCaption}\item[{const std\+::function$<$ S(S)$>$ \&}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 set the oscillator function f\+: oscillator function to be used \mbox{\Hypertarget{class_aurora_1_1_osc_a2a36c0afda86b6fabad4ed3ca0f510af}\label{class_aurora_1_1_osc_a2a36c0afda86b6fabad4ed3ca0f510af}} 
 \index{Aurora\+::\+Osc@{Aurora\+::\+Osc}!operator()@{operator()}}

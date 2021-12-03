@@ -33,6 +33,11 @@
 
 namespace Aurora {
 
+/**
+   constant indicating packed FFT format
+ */
+const bool packed = true;
+
 static inline uint32_t np2(uint32_t n) {
   uint32_t v = 2;
   while (v < n)
@@ -72,8 +77,8 @@ public:
       N: transform size \n
       packed: complex data format in packed form (true) or not
   */
-  FFT(std::size_t N, bool packed = true)
-      : c(packed ? np2(N) / 2 : np2(N) / 2 + 1), pckd(packed){};
+  FFT(std::size_t N, bool packd = packed)
+      : c(packed ? np2(N) / 2 : np2(N) / 2 + 1), pckd(packd){};
 
   std::size_t size() { return 2 * c.size(); }
 
@@ -151,7 +156,7 @@ public:
       sp - input vector (complex) \n
       returns pointer to real data containing the transform
   */
-  const S *transform(const std::vector<std::complex<S>> &sp, bool pckd = true) {
+  const S *transform(const std::vector<std::complex<S>> &sp) {
     using namespace std::complex_literals;
     uint32_t N = c.size() - (pckd ? 0 : 1);
     std::complex<S> wp, w = 1., even, odd;
@@ -180,6 +185,10 @@ public:
     transform(c, inverse);
     return s;
   }
+
+  const std::vector<std::complex<S>> &vector() const { return c; }
+
+  const S *data() const { return reinterpret_cast<S *>(c.data()); }
 };
 } // namespace Aurora
 

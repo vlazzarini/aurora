@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['tableset',['TableSet',['../class_aurora_1_1_table_set.html#a0be4528b972606335d73ac312da6337b',1,'Aurora::TableSet::TableSet(uint32_t type, S fs=def_sr, std::size_t len=def_ftlen)'],['../class_aurora_1_1_table_set.html#a884ecfde480fdac4c32fa10a82286941',1,'Aurora::TableSet::TableSet(const std::vector&lt; S &gt; &amp;src, S b=def_base, S fs=def_sr)']]],
-  ['transform',['transform',['../class_aurora_1_1_f_f_t.html#a8325de64c8b9f208ed0bc8db3f74e4c7',1,'Aurora::FFT::transform(std::vector&lt; std::complex&lt; S &gt;&gt; &amp;s, bool dir)'],['../class_aurora_1_1_f_f_t.html#a51ed1e25953c12b7f4cc145d19ee5cd8',1,'Aurora::FFT::transform(const std::vector&lt; S &gt; &amp;r)'],['../class_aurora_1_1_f_f_t.html#aa0912d8abdeb15ff84d82a5cc59cb150',1,'Aurora::FFT::transform(const std::vector&lt; std::complex&lt; S &gt;&gt; &amp;sp, bool pckd=true)']]],
-  ['twopole',['TwoPole',['../class_aurora_1_1_two_pole.html#a0545f0b722b88873bb798b6c0f2112e8',1,'Aurora::TwoPole::TwoPole(std::function&lt; S(S)&gt; f, S fs=def_sr, std::size_t vsize=def_vsize)'],['../class_aurora_1_1_two_pole.html#afb7af09d7f8a80b18d875e78f4bcb419',1,'Aurora::TwoPole::TwoPole(S fs=def_sr, std::size_t vsize=def_vsize)']]]
+  ['sin',['sin',['../namespace_aurora.html#a388ea5736944d8887f5586afd45a03b8',1,'Aurora']]],
+  ['size',['size',['../class_aurora_1_1_f_f_t.html#ad0149c60672d3f4e64850dde22f5b163',1,'Aurora::FFT']]],
+  ['sndbase',['SndBase',['../class_aurora_1_1_snd_base.html#a960739d3ae63df581c28f8801e589a3c',1,'Aurora::SndBase']]],
+  ['spectrum',['spectrum',['../class_aurora_1_1_i_r.html#a2463850b1167583c7338025b204ed631',1,'Aurora::IR']]],
+  ['synth',['synth',['../class_aurora_1_1_osc.html#a4e01fb1238c931c944b6b27c3790495e',1,'Aurora::Osc']]]
 ];

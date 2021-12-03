@@ -51,7 +51,7 @@ int main(int argc, const char **argv) {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
           if (n) {
             buffer.resize(n);
-            auto out = filter(buffer, cf, res);
+            auto &out = filter(buffer, cf, res);
             sf_write_float(fpout, out.data(), n);
           } else
             break;

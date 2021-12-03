@@ -102,8 +102,7 @@ public:
   const std::vector<S> &operator()(bool gate) {
     double t = time;
     S e = prev;
-    const std::vector<S> &s =
-        process([&]() { return (e = synth(e, t, gate)); }, 0);
+    auto &s = process([&]() { return (e = synth(e, t, gate)); }, 0);
     prev = e;
     time = t;
     return s;
@@ -117,7 +116,7 @@ public:
   const std::vector<S> &operator()(S offs, S scal, bool gate) {
     double t = time;
     S e = prev;
-    const std::vector<S> &s = process(
+    auto &s = process(
         [&]() {
           e = synth(e, t, gate);
           return (e * scal + offs);
@@ -136,7 +135,7 @@ public:
     double t = time;
     S e = prev;
     std::size_t n = 0;
-    const std::vector<S> &s = process(
+    auto &s = process(
         [&]() {
           e = synth(e, t, gate);
           return e * a[n++];

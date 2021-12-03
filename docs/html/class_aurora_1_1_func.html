@@ -91,12 +91,12 @@ Collaboration diagram for Aurora::Func&lt; S &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4d45462ffab2c3a5172042411634539e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_func.html#a4d45462ffab2c3a5172042411634539e">Func</a> (std::function&lt; S(S)&gt; f, std::size_t <a class="el" href="class_aurora_1_1_snd_base.html#af9e21aaf411b17f7a8221c991ce5d291">vsize</a>=<a class="el" href="namespace_aurora.html#afaaddf667a06e7ce23c667a8b7295263">def_vsize</a>)</td></tr>
-<tr class="separator:a4d45462ffab2c3a5172042411634539e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87eaf7fa6fffaa73ed7a87e62138afc8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_func.html#a87eaf7fa6fffaa73ed7a87e62138afc8">Func</a> (const std::function&lt; S(S)&gt; &amp;f, std::size_t <a class="el" href="class_aurora_1_1_snd_base.html#af9e21aaf411b17f7a8221c991ce5d291">vsize</a>=<a class="el" href="namespace_aurora.html#afaaddf667a06e7ce23c667a8b7295263">def_vsize</a>)</td></tr>
+<tr class="separator:a87eaf7fa6fffaa73ed7a87e62138afc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60e9dad421d80a9f9eb99cfbac104729"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_func.html#a60e9dad421d80a9f9eb99cfbac104729">operator()</a> (const std::vector&lt; S &gt; &amp;in)</td></tr>
 <tr class="separator:a60e9dad421d80a9f9eb99cfbac104729"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0bab9c63c823a9fc2058b9ce41e8da6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_func.html#ac0bab9c63c823a9fc2058b9ce41e8da6">func</a> (std::function&lt; S(S)&gt; f)</td></tr>
-<tr class="separator:ac0bab9c63c823a9fc2058b9ce41e8da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e5734a709e472de5b5cbc1f8bfdf371"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_func.html#a3e5734a709e472de5b5cbc1f8bfdf371">func</a> (const std::function&lt; S(S)&gt; &amp;f)</td></tr>
+<tr class="separator:a3e5734a709e472de5b5cbc1f8bfdf371"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_aurora_1_1_snd_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_aurora_1_1_snd_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_aurora_1_1_snd_base.html">Aurora::SndBase&lt; S &gt;</a></td></tr>
 <tr class="memitem:a960739d3ae63df581c28f8801e589a3c inherit pub_methods_class_aurora_1_1_snd_base"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_snd_base.html#a960739d3ae63df581c28f8801e589a3c">SndBase</a> (std::size_t <a class="el" href="class_aurora_1_1_snd_base.html#af9e21aaf411b17f7a8221c991ce5d291">vsize</a>=<a class="el" href="namespace_aurora.html#afaaddf667a06e7ce23c667a8b7295263">def_vsize</a>)</td></tr>
 <tr class="separator:a960739d3ae63df581c28f8801e589a3c inherit pub_methods_class_aurora_1_1_snd_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,8 +123,8 @@ class Aurora::Func&lt; S &gt;</h3>
 Generic function maps <br />
 S: sample type </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a4d45462ffab2c3a5172042411634539e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d45462ffab2c3a5172042411634539e">&#9670;&nbsp;</a></span>Func()</h2>
+<a id="a87eaf7fa6fffaa73ed7a87e62138afc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87eaf7fa6fffaa73ed7a87e62138afc8">&#9670;&nbsp;</a></span>Func()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -137,7 +137,7 @@ template&lt;typename S &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="class_aurora_1_1_func.html">Aurora::Func</a>&lt; S &gt;::<a class="el" href="class_aurora_1_1_func.html">Func</a> </td>
           <td>(</td>
-          <td class="paramtype">std::function&lt; S(S)&gt;&#160;</td>
+          <td class="paramtype">const std::function&lt; S(S)&gt; &amp;&#160;</td>
           <td class="paramname"><em>f</em>, </td>
         </tr>
         <tr>
@@ -166,8 +166,8 @@ vsize: signal vector size </p>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac0bab9c63c823a9fc2058b9ce41e8da6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0bab9c63c823a9fc2058b9ce41e8da6">&#9670;&nbsp;</a></span>func()</h2>
+<a id="a3e5734a709e472de5b5cbc1f8bfdf371"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e5734a709e472de5b5cbc1f8bfdf371">&#9670;&nbsp;</a></span>func()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -180,7 +180,7 @@ template&lt;typename S &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="class_aurora_1_1_func.html">Aurora::Func</a>&lt; S &gt;::func </td>
           <td>(</td>
-          <td class="paramtype">std::function&lt; S(S)&gt;&#160;</td>
+          <td class="paramtype">const std::function&lt; S(S)&gt; &amp;&#160;</td>
           <td class="paramname"><em>f</em></td><td>)</td>
           <td></td>
         </tr>
