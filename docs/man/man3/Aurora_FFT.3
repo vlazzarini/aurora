@@ -12,7 +12,7 @@ Aurora::FFT< S >
 
 .in +1c
 .ti -1c
-.RI "\fBFFT\fP (std::size_t N, bool packd=\fBpacked\fP, bool nm=0)"
+.RI "\fBFFT\fP (std::size_t N, bool packd=\fBpacked\fP, bool nm=\fBforward\fP)"
 .br
 .ti -1c
 .RI "std::size_t \fBsize\fP ()"
@@ -46,12 +46,14 @@ Radix-2 fast Fourier transform
 S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S> \fBAurora::FFT\fP< S >::\fBFFT\fP (std::size_t N, bool packd = \fC\fBpacked\fP\fP, bool nm = \fC0\fP)\fC [inline]\fP"
+.SS "template<typename S> \fBAurora::FFT\fP< S >::\fBFFT\fP (std::size_t N, bool packd = \fC\fBpacked\fP\fP, bool nm = \fC\fBforward\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 N: transform size 
 .br
 packed: complex data format in packed form (true) or not 
+.br
+nm: normalisation mode (forward or inverse transforms) 
 .SH "Member Function Documentation"
 .PP 
 .SS "template<typename S> const S* \fBAurora::FFT\fP< S >::data () const\fC [inline]\fP"

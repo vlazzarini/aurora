@@ -30,7 +30,6 @@
 
 #include <cmath>
 #include <complex>
-#include <iostream>
 
 namespace Aurora {
 
@@ -38,6 +37,16 @@ namespace Aurora {
    constant indicating packed FFT format
  */
 const bool packed = true;
+
+/**
+   constant indicating forward FFT direction
+*/
+static bool forward = true;
+
+/**
+   constant indicating inverse FFT direction
+*/
+static bool inverse = false;
 
 static inline uint32_t np2(uint32_t n) {
   uint32_t v = 2;
@@ -51,9 +60,6 @@ static inline uint32_t np2(uint32_t n) {
     S: sample type
 */
 template <typename S> class FFT {
-
-  static constexpr bool forward = true;
-  static constexpr bool inverse = false;
   std::vector<std::complex<S>> c;
   bool pckd;
   std::size_t sz;
@@ -78,9 +84,10 @@ template <typename S> class FFT {
 public:
   /** Constructor \n
       N: transform size \n
-      packed: complex data format in packed form (true) or not
+      packed: complex data format in packed form (true) or not \n
+      nm: normalisation mode (forward or inverse transforms)
   */
-  FFT(std::size_t N, bool packd = packed, bool nm = 0)
+  FFT(std::size_t N, bool packd = packed, bool nm = forward)
       : c(packd ? np2(N) / 2 : np2(N) / 2 + 1), pckd(packd), sz(np2(N) / 2),
         norm(nm){};
 
@@ -113,7 +120,7 @@ public:
         w *= wp;
       }
     }
-    dir = norm ? !dir : dir;
+    dir = norm ? dir : !dir;
     if (dir == forward)
       for (uint32_t n = 0; n < N; n++)
         s[n] /= N;

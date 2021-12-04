@@ -7,7 +7,7 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aurora_1_1_f_f_t_ab96506ecc02bbba26403e0a8def83f8d}{F\+FT} (std\+::size\+\_\+t N, bool packd=\hyperlink{namespace_aurora_a3e70ffc9ea5c526dcd66b1b14e43f175}{packed}, bool nm=0)
+\hyperlink{class_aurora_1_1_f_f_t_a358d44bb84dac04a3f6ab13aefdceaf4}{F\+FT} (std\+::size\+\_\+t N, bool packd=\hyperlink{namespace_aurora_a3e70ffc9ea5c526dcd66b1b14e43f175}{packed}, bool nm=\hyperlink{namespace_aurora_a20b1bd3f1b34b8676e26d07718dac352}{forward})
 \item 
 std\+::size\+\_\+t \hyperlink{class_aurora_1_1_f_f_t_ad0149c60672d3f4e64850dde22f5b163}{size} ()
 \item 
@@ -32,16 +32,17 @@ Radix-\/2 fast Fourier transform ~\newline
 S\+: sample type 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_f_f_t_ab96506ecc02bbba26403e0a8def83f8d}\label{class_aurora_1_1_f_f_t_ab96506ecc02bbba26403e0a8def83f8d}} 
+\mbox{\Hypertarget{class_aurora_1_1_f_f_t_a358d44bb84dac04a3f6ab13aefdceaf4}\label{class_aurora_1_1_f_f_t_a358d44bb84dac04a3f6ab13aefdceaf4}} 
 \index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!F\+FT@{F\+FT}}
 \index{F\+FT@{F\+FT}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
 \subsubsection{\texorpdfstring{F\+F\+T()}{FFT()}}
 {\footnotesize\ttfamily template$<$typename S$>$ \\
-\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::\hyperlink{class_aurora_1_1_f_f_t}{F\+FT} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{N,  }\item[{bool}]{packd = {\ttfamily \hyperlink{namespace_aurora_a3e70ffc9ea5c526dcd66b1b14e43f175}{packed}},  }\item[{bool}]{nm = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::\hyperlink{class_aurora_1_1_f_f_t}{F\+FT} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{N,  }\item[{bool}]{packd = {\ttfamily \hyperlink{namespace_aurora_a3e70ffc9ea5c526dcd66b1b14e43f175}{packed}},  }\item[{bool}]{nm = {\ttfamily \hyperlink{namespace_aurora_a20b1bd3f1b34b8676e26d07718dac352}{forward}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor ~\newline
 N\+: transform size ~\newline
-packed\+: complex data format in packed form (true) or not 
+packed\+: complex data format in packed form (true) or not ~\newline
+nm\+: normalisation mode (forward or inverse transforms) 
 
 \subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_aurora_1_1_f_f_t_a7462e77c06228475f0f491d7a25d7bba}\label{class_aurora_1_1_f_f_t_a7462e77c06228475f0f491d7a25d7bba}} 

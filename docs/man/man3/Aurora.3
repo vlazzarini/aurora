@@ -124,6 +124,12 @@ Aurora
 .RI "const bool \fBpacked\fP = true"
 .br
 .ti -1c
+.RI "static bool \fBforward\fP = true"
+.br
+.ti -1c
+.RI "static bool \fBinverse\fP = false"
+.br
+.ti -1c
 .RI "const double \fBtwopi\fP = 2 * M_PI"
 .br
 .ti -1c
@@ -313,6 +319,10 @@ linearly interpolated
 
 .SS "const int Aurora::def_vsize = 64"
 
+.SS "bool Aurora::forward = true\fC [static]\fP"
+constant indicating forward \fBFFT\fP direction 
+.SS "bool Aurora::inverse = false\fC [static]\fP"
+constant indicating inverse \fBFFT\fP direction 
 .SS "const bool Aurora::packed = true"
 constant indicating packed \fBFFT\fP format 
 .SS "const double Aurora::twopi = 2 * M_PI"

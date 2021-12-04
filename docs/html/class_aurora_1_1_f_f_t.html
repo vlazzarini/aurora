@@ -75,8 +75,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab96506ecc02bbba26403e0a8def83f8d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_f_f_t.html#ab96506ecc02bbba26403e0a8def83f8d">FFT</a> (std::size_t N, bool packd=<a class="el" href="namespace_aurora.html#a3e70ffc9ea5c526dcd66b1b14e43f175">packed</a>, bool nm=0)</td></tr>
-<tr class="separator:ab96506ecc02bbba26403e0a8def83f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a358d44bb84dac04a3f6ab13aefdceaf4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_f_f_t.html#a358d44bb84dac04a3f6ab13aefdceaf4">FFT</a> (std::size_t N, bool packd=<a class="el" href="namespace_aurora.html#a3e70ffc9ea5c526dcd66b1b14e43f175">packed</a>, bool nm=<a class="el" href="namespace_aurora.html#a20b1bd3f1b34b8676e26d07718dac352">forward</a>)</td></tr>
+<tr class="separator:a358d44bb84dac04a3f6ab13aefdceaf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0149c60672d3f4e64850dde22f5b163"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_f_f_t.html#ad0149c60672d3f4e64850dde22f5b163">size</a> ()</td></tr>
 <tr class="separator:ad0149c60672d3f4e64850dde22f5b163"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8325de64c8b9f208ed0bc8db3f74e4c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_f_f_t.html#a8325de64c8b9f208ed0bc8db3f74e4c7">transform</a> (std::vector&lt; std::complex&lt; S &gt;&gt; &amp;s, bool dir)</td></tr>
@@ -98,8 +98,8 @@ class Aurora::FFT&lt; S &gt;</h3>
 Radix-2 fast Fourier transform <br />
 S: sample type </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab96506ecc02bbba26403e0a8def83f8d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab96506ecc02bbba26403e0a8def83f8d">&#9670;&nbsp;</a></span>FFT()</h2>
+<a id="a358d44bb84dac04a3f6ab13aefdceaf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a358d44bb84dac04a3f6ab13aefdceaf4">&#9670;&nbsp;</a></span>FFT()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,7 +125,7 @@ template&lt;typename S&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>nm</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>nm</em> = <code><a class="el" href="namespace_aurora.html#a20b1bd3f1b34b8676e26d07718dac352">forward</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -141,7 +141,8 @@ template&lt;typename S&gt; </div>
 </div><div class="memdoc">
 <p>Constructor <br />
 N: transform size <br />
-packed: complex data format in packed form (true) or not </p>
+packed: complex data format in packed form (true) or not <br />
+nm: normalisation mode (forward or inverse transforms) </p>
 
 </div>
 </div>

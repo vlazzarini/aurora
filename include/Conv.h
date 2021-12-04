@@ -42,7 +42,7 @@ template <typename S> class IR {
   void create(const std::vector<S> &s, std::size_t psize) {
     std::vector<S> buffer(psize);
     std::size_t n = 0, k = 0, cnt = s.size();
-    FFT<S> fft(2 * psize, !packed, 1);
+    FFT<S> fft(2 * psize, !packed, inverse);
 
     while (cnt) {
       cnt = cnt > psize ? psize : cnt;
@@ -182,7 +182,7 @@ public:
       : SndBase<S>(vsize), ir(imp),
         del(imp->nparts(), std::vector<std::complex<S>>(imp->psize() + 1)),
         mix(imp->psize() + 1), inbuf(2 * imp->psize()), olabuf(imp->psize()),
-        p(0), sn(0), fft(imp->psize() * 2, !packed, 1), fun(f){};
+        p(0), sn(0), fft(imp->psize() * 2, !packed, inverse), fun(f){};
 
   /** Convolution \n
     in: input \n

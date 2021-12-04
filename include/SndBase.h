@@ -30,6 +30,7 @@
 #define _AURORA_SNDBASE_
 
 #include <cstdint>
+#include <iostream>
 #include <numeric>
 #include <vector>
 
