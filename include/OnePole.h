@@ -50,20 +50,20 @@ template <typename S> class OnePole : public SndBase<S> {
     return y;
   }
 
-  void coeffs(S f) {
-    S g = std::tan(f * piosr);
-    G = g / (1 + g);
-    A = (g - 1) / (1 + g);
-    ff = f;
+  void coeffs(S f, double &g, double &a, S &of, double ts) {
+    S w = std::tan(f * ts);
+    g = w / (1 + w);
+    a = (w - 1) / (1 + w);
+    of = f;
   }
 
 public:
   /** Constructor \n
-   sr: sampling rate \n
+   fs: sampling rate \n
    vsize: vector size
   */
-  OnePole(S sr = def_sr, int vsize = def_vsize)
-      : SndBase<S>(vsize), D(0), A(0), G(0), ff(0), piosr(M_PI / sr){};
+  OnePole(S fs = def_sr, int vsize = def_vsize)
+      : SndBase<S>(vsize), D(0), A(0), G(0), ff(0), piosr(M_PI / fs){};
 
   /** Filter \n
      in: input \n
@@ -73,7 +73,7 @@ public:
     double d = D;
     std::size_t n = 0;
     if (f != ff)
-      coeffs(f);
+      coeffs(f, G, A, ff, piosr);
     auto &s = process([&]() { return filter(in[n++], d, G, A); }, in.size());
     D = d;
     return s;
@@ -90,12 +90,21 @@ public:
     auto &s = process(
         [&]() {
           if (f[n] != ff)
-            coeffs(f[n]);
+            coeffs(f[n], G, A, ff, piosr);
           return filter(in[n++], d, G, A);
         },
         in.size() < f.size() ? in.size() : f.size());
     D = d;
     return s;
+  }
+
+  /** reset the filter \n
+       fs: sampling rate
+    */
+  void reset(S fs) {
+    D = 0;
+    piosr = M_PI / fs;
+    coeffs(ff, G, A, ff, piosr);
   }
 };
 } // namespace Aurora

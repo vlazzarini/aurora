@@ -47,7 +47,7 @@ public:
       fs: sampling rate \n
       vsize: signal vector size
   */
-  Func(const std::function<S(S)> &f, std::size_t vsize = def_vsize)
+  Func(const std::function<S(S)> f, std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), fun(f){};
 
   /** Functional application \n
@@ -63,7 +63,7 @@ public:
   /** set the mapping function \n
      f: mapping function to be used
   */
-  void func(const std::function<S(S)> &f) { fun = f; }
+  void func(const std::function<S(S)> f) { fun = f; }
 };
 } // namespace Aurora
 

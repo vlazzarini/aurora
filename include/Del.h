@@ -110,8 +110,9 @@ template <typename S> class Del : SndBase<S> {
   std::vector<S> del;
   std::function<S(S, std::size_t, const std::vector<S> &)> fun;
 
-  S delay(S in, S dt, S fdb, S fwd, std::size_t &p) {
-    S s = fun(dt * fs, p, del);
+  S delay(S in, S dt, S fdb, S fwd, std::size_t &p,
+          std::function<S(S, std::size_t, const std::vector<S> &)> fn) {
+    S s = fn(dt * fs, p, del);
     S w = in + s * fdb;
     del[p] = w;
     p = p < del.size() - 1 ? p + 1 : 0;
@@ -125,8 +126,7 @@ public:
       sr: sampling rate \n
       vsize: vector size
    */
-  Del(S maxdt,
-      const std::function<S(S, std::size_t, const std::vector<S> &)> &f,
+  Del(S maxdt, const std::function<S(S, std::size_t, const std::vector<S> &)> f,
       S sr = def_sr, std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), fs(sr), wp(0), del(maxdt * fs), fun(f){};
 
@@ -148,8 +148,8 @@ public:
   const std::vector<S> &operator()(const std::vector<S> &in, S dt, S fdb = 0,
                                    S fwd = 0) {
     std::size_t n = 0, p = wp;
-    auto &s =
-        process([&]() { return delay(in[n++], dt, fdb, fwd, p); }, in.size());
+    auto &s = process([&]() { return delay(in[n++], dt, fdb, fwd, p, fun); },
+                      in.size());
     wp = p;
     return s;
   }
@@ -166,7 +166,7 @@ public:
     std::size_t n = 0, p = wp;
     auto &s = process(
         [&]() {
-          auto s = delay(in[n], dt[n], fdb, fwd, p);
+          auto s = delay(in[n], dt[n], fdb, fwd, p, fun);
           n++;
           return s;
         },
@@ -178,8 +178,19 @@ public:
   /** set the delay function \n
    f: delay function to be used
 */
-  void func(const std::function<S(S, std::size_t, const std::vector<S> &)> &f) {
+  void func(const std::function<S(S, std::size_t, const std::vector<S> &)> f) {
     fun = f;
+  }
+
+  /** reset the delayline object \n
+   maxdt: max delay time \n
+   sr: sampling rate
+  */
+  void reset(S maxdt, S sr) {
+    fs = sr;
+    wp = 0;
+    del.clear();
+    del.resize(fs * maxdt);
   }
 };
 

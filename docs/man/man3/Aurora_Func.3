@@ -1,4 +1,4 @@
-.TH "Aurora::Func< S >" 3 "Fri Dec 3 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Func< S >" 3 "Sat Dec 4 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -14,13 +14,13 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 
 .in +1c
 .ti -1c
-.RI "\fBFunc\fP (const std::function< S(S)> &f, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.RI "\fBFunc\fP (const std::function< S(S)> f, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in)"
 .br
 .ti -1c
-.RI "void \fBfunc\fP (const std::function< S(S)> &f)"
+.RI "void \fBfunc\fP (const std::function< S(S)> f)"
 .br
 .in -1c
 .SS "Additional Inherited Members"
@@ -37,7 +37,7 @@ Generic function maps
 S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S > \fBAurora::Func\fP< S >::\fBFunc\fP (const std::function< S(S)> & f, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S > \fBAurora::Func\fP< S >::\fBFunc\fP (const std::function< S(S)> f, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 f: oscillator function 
@@ -47,7 +47,7 @@ fs: sampling rate
 vsize: signal vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S > void \fBAurora::Func\fP< S >::func (const std::function< S(S)> & f)\fC [inline]\fP"
+.SS "template<typename S > void \fBAurora::Func\fP< S >::func (const std::function< S(S)> f)\fC [inline]\fP"
 set the mapping function 
 .br
 f: mapping function to be used 

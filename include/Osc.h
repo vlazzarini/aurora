@@ -86,8 +86,8 @@ protected:
   S ts;
   std::function<S(S)> fun;
 
-  virtual S synth(S a, S f, double &phs) {
-    S s = (S)(a * fun(phs));
+  virtual S synth(S a, S f, double &phs, std::function<S(S)> fn) {
+    S s = (S)(a * fn(phs));
     phs += f * ts;
     while (phs < 0)
       phs += 1.;
@@ -102,7 +102,7 @@ public:
       fs: sampling rate \n
       vsize: signal vector size
   */
-  Osc(const std::function<S(S)> &f = cos<S>, S fs = (S)def_sr,
+  Osc(const std::function<S(S)> f = cos<S>, S fs = (S)def_sr,
       std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), ph(0.), ts(1 / fs), fun(f){};
 
@@ -120,7 +120,7 @@ public:
   */
   const std::vector<S> &operator()(S a, S f) {
     double phs = ph;
-    auto &s = process([&]() { return synth(a, f, phs); }, 0);
+    auto &s = process([&]() { return synth(a, f, phs, fun); }, 0);
     ph = phs;
     return s;
   }
@@ -133,7 +133,7 @@ public:
   const std::vector<S> &operator()(S a, const std::vector<S> &fm) {
     double phs = ph;
     std::size_t n = 0;
-    auto &s = process([&]() { return synth(a, fm[n++], phs); }, 0);
+    auto &s = process([&]() { return synth(a, fm[n++], phs, fun); }, 0);
     ph = phs;
     return s;
   }
@@ -146,7 +146,7 @@ public:
   const std::vector<S> &operator()(const std::vector<S> &am, S f) {
     double phs = ph;
     std::size_t n = 0;
-    auto &s = process([&]() { return synth(am[n++], f, phs); }, 0);
+    auto &s = process([&]() { return synth(am[n++], f, phs, fun); }, 0);
     ph = phs;
     return s;
   }
@@ -162,7 +162,7 @@ public:
     std::size_t n = 0;
     auto &s = process(
         [&]() {
-          auto s = synth(am[n], fm[n], phs);
+          auto s = synth(am[n], fm[n], phs, fun);
           n++;
           return s;
         },
@@ -171,10 +171,15 @@ public:
     return s;
   }
 
-  /** set the oscillator function
+  /** set the oscillator function \n
       f: oscillator function to be used
   */
-  void func(const std::function<S(S)> &f) { fun = f; }
+  void func(const std::function<S(S)> f) { fun = f; }
+
+  /** reset the oscillator \n
+      fs: sampling rate
+   */
+  void reset(S fs) { ts = 1 / fs; }
 };
 } // namespace Aurora
 

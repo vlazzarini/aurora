@@ -99,6 +99,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7582c69b4c221f81f25c650d9c643157"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a860a443654a353bb8c40927f8a45aa46"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_two_pole.html#a860a443654a353bb8c40927f8a45aa46">operator()</a> (const std::vector&lt; S &gt; &amp;in, const std::vector&lt; S &gt; &amp;f, S d, S drv=0, S m=0)</td></tr>
 <tr class="separator:a860a443654a353bb8c40927f8a45aa46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fe6512d7e1e6fbc3bca49de8ecc2f95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_two_pole.html#a7fe6512d7e1e6fbc3bca49de8ecc2f95">reset</a> (S fs)</td></tr>
+<tr class="separator:a7fe6512d7e1e6fbc3bca49de8ecc2f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename S&gt;<br />
@@ -319,6 +321,36 @@ f: frequency <br />
 d: damping factor (Q reciprocal) <br />
 drv: overdrive amount <br />
 S: output type (0 - 2: LP(0), HP(1), BP(2)) </p>
+
+</div>
+</div>
+<a id="a7fe6512d7e1e6fbc3bca49de8ecc2f95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fe6512d7e1e6fbc3bca49de8ecc2f95">&#9670;&nbsp;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_aurora_1_1_two_pole.html">Aurora::TwoPole</a>&lt; S &gt;::reset </td>
+          <td>(</td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>fs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>reset the filter <br />
+fs: sampling rate </p>
 
 </div>
 </div>

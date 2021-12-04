@@ -1,4 +1,4 @@
-.TH "Aurora::Del< S >" 3 "Fri Dec 3 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Del< S >" 3 "Sat Dec 4 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -14,7 +14,7 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 
 .in +1c
 .ti -1c
-.RI "\fBDel\fP (S maxdt, const std::function< S(S, std::size_t, const std::vector< S > &)> &f, S sr=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.RI "\fBDel\fP (S maxdt, const std::function< S(S, std::size_t, const std::vector< S > &)> f, S sr=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
 .RI "\fBDel\fP (S dt, S sr=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
@@ -26,7 +26,10 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > &dt, S fdb=0, S fwd=0)"
 .br
 .ti -1c
-.RI "void \fBfunc\fP (const std::function< S(S, std::size_t, const std::vector< S > &)> &f)"
+.RI "void \fBfunc\fP (const std::function< S(S, std::size_t, const std::vector< S > &)> f)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (S maxdt, S sr)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -42,7 +45,7 @@ Generic delay line
 S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S > \fBAurora::Del\fP< S >::\fBDel\fP (S maxdt, const std::function< S(S, std::size_t, const std::vector< S > &)> & f, S sr = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S > \fBAurora::Del\fP< S >::\fBDel\fP (S maxdt, const std::function< S(S, std::size_t, const std::vector< S > &)> f, S sr = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 maxdt: maximum delay time 
@@ -64,7 +67,7 @@ sr: sampling rate
 vsize: vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S > void \fBAurora::Del\fP< S >::func (const std::function< S(S, std::size_t, const std::vector< S > &)> & f)\fC [inline]\fP"
+.SS "template<typename S > void \fBAurora::Del\fP< S >::func (const std::function< S(S, std::size_t, const std::vector< S > &)> f)\fC [inline]\fP"
 set the delay function 
 .br
 f: delay function to be used 
@@ -88,6 +91,12 @@ dt: delay time
 fdb: feedback gain 
 .br
 fwd: feedforward gain 
+.SS "template<typename S > void \fBAurora::Del\fP< S >::reset (S maxdt, S sr)\fC [inline]\fP"
+reset the delayline object 
+.br
+maxdt: max delay time 
+.br
+sr: sampling rate 
 
 .SH "Author"
 .PP 

@@ -59,14 +59,14 @@ template <typename S> class FourPole : public SndBase<S> {
     return o;
   }
 
-  void coeffs(S f) {
-    S g = std::tan(f * piosr);
-    G[0] = g / (1 + g);
-    A = (g - 1) / (1 + g);
-    G[1] = G[0] * G[0];
-    G[2] = G[0] * G[1];
-    G[3] = G[0] * G[2];
-    ff = f;
+  void coeffs(S f, double *g, double &a, S &of, double ts) {
+    S w = std::tan(f * ts);
+    g[0] = w / (1 + w);
+    a = (w - 1) / (1 + w);
+    g[1] = g[0] * g[0];
+    g[2] = g[0] * g[1];
+    g[3] = g[0] * g[2];
+    of = f;
   }
 
 public:
@@ -85,7 +85,7 @@ public:
   const std::vector<S> &operator()(const std::vector<S> &in, S f, S r) {
     std::size_t n = 0;
     if (f != ff)
-      coeffs(f);
+      coeffs(f, G, A, ff, piosr);
     auto pf = [&]() { return filter(in[n++], G, D, A, r * 4); };
     return process(pf, in.size());
   }
@@ -100,10 +100,19 @@ public:
     std::size_t n = 0;
     auto pf = [&]() {
       if (f[n] != ff)
-        coeffs(f[n]);
+        coeffs(f[n], G, A, ff, piosr);
       return filter(in[n++], D, G, A, r * 4);
     };
     return process(pf, in.size() < f.size() ? in.size() : f.size());
+  }
+
+  /** reset the filter \n
+    fs: sampling rate
+ */
+  void reset(S fs) {
+    piosr = M_PI / fs;
+    D[0] = D[1] = D[2] = D[3];
+    coeffs(ff, G, A, ff, piosr);
   }
 };
 } // namespace Aurora

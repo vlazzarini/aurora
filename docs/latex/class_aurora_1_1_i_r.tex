@@ -14,6 +14,8 @@ const std\+::vector$<$ std\+::vector$<$ std\+::complex$<$ S $>$ $>$ $>$ \& \hype
 const std\+::size\+\_\+t \hyperlink{class_aurora_1_1_i_r_a6243d747aeccbe57b2e18cb34a806d70}{psize} () const
 \item 
 const std\+::size\+\_\+t \hyperlink{class_aurora_1_1_i_r_a77d0fec4d82334a2f5533b4c8044c4e1}{nparts} () const
+\item 
+void \hyperlink{class_aurora_1_1_i_r_a78acfa992e609aee2661a2c72c7bbd8f}{reset} (const std\+::vector$<$ S $>$ \&s, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_i_r_a6243d747aeccbe57b2e18cb34a806d70}{psize}=\hyperlink{namespace_aurora_a080d03c33477d9c6322278722ca8e472}{def\+\_\+psize})
 \end{DoxyCompactItemize}
 
 
@@ -44,7 +46,8 @@ psize\+: partition size
 {\footnotesize\ttfamily template$<$typename S$>$ \\
 const std\+::size\+\_\+t \hyperlink{class_aurora_1_1_i_r}{Aurora\+::\+IR}$<$ S $>$\+::nparts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\hyperlink{class_aurora_1_1_i_r}{IR} length returns the number of partitions \mbox{\Hypertarget{class_aurora_1_1_i_r_a6243d747aeccbe57b2e18cb34a806d70}\label{class_aurora_1_1_i_r_a6243d747aeccbe57b2e18cb34a806d70}} 
+\hyperlink{class_aurora_1_1_i_r}{IR} length ~\newline
+returns the number of partitions \mbox{\Hypertarget{class_aurora_1_1_i_r_a6243d747aeccbe57b2e18cb34a806d70}\label{class_aurora_1_1_i_r_a6243d747aeccbe57b2e18cb34a806d70}} 
 \index{Aurora\+::\+IR@{Aurora\+::\+IR}!psize@{psize}}
 \index{psize@{psize}!Aurora\+::\+IR@{Aurora\+::\+IR}}
 \subsubsection{\texorpdfstring{psize()}{psize()}}
@@ -52,7 +55,16 @@ const std\+::size\+\_\+t \hyperlink{class_aurora_1_1_i_r}{Aurora\+::\+IR}$<$ S $
 const std\+::size\+\_\+t \hyperlink{class_aurora_1_1_i_r}{Aurora\+::\+IR}$<$ S $>$\+::psize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \hyperlink{class_aurora_1_1_i_r}{IR} partition size ~\newline
-returns the size of each partition \mbox{\Hypertarget{class_aurora_1_1_i_r_a2463850b1167583c7338025b204ed631}\label{class_aurora_1_1_i_r_a2463850b1167583c7338025b204ed631}} 
+returns the size of each partition \mbox{\Hypertarget{class_aurora_1_1_i_r_a78acfa992e609aee2661a2c72c7bbd8f}\label{class_aurora_1_1_i_r_a78acfa992e609aee2661a2c72c7bbd8f}} 
+\index{Aurora\+::\+IR@{Aurora\+::\+IR}!reset@{reset}}
+\index{reset@{reset}!Aurora\+::\+IR@{Aurora\+::\+IR}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+void \hyperlink{class_aurora_1_1_i_r}{Aurora\+::\+IR}$<$ S $>$\+::reset (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{s,  }\item[{std\+::size\+\_\+t}]{psize = {\ttfamily \hyperlink{namespace_aurora_a080d03c33477d9c6322278722ca8e472}{def\+\_\+psize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Reset the \hyperlink{class_aurora_1_1_i_r}{IR} table ~\newline
+s\+: impulse response ~\newline
+psize\+: partition size \mbox{\Hypertarget{class_aurora_1_1_i_r_a2463850b1167583c7338025b204ed631}\label{class_aurora_1_1_i_r_a2463850b1167583c7338025b204ed631}} 
 \index{Aurora\+::\+IR@{Aurora\+::\+IR}!spectrum@{spectrum}}
 \index{spectrum@{spectrum}!Aurora\+::\+IR@{Aurora\+::\+IR}}
 \subsubsection{\texorpdfstring{spectrum()}{spectrum()}}

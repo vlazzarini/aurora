@@ -41,13 +41,13 @@ template <typename S> class TwoPole : SndBase<S> {
   using SndBase<S>::process;
   S Y[2];
   double D[2];
-  S W, Fac;
+  double W, Fac;
   S ff, dd;
   double piosr;
   std::function<S(S)> fun;
 
-  S filter(S in, S *y, double *s, double w, double fac, double d, S drv,
-           int32_t typ, S m) {
+  S filter(S in, S *y, double *s, double w, double fac, S d, S drv, int32_t typ,
+           S m) {
     S lp;
     y[HP] = (in - (d + w) * s[0] - s[1]) * fac;
     S u = w * fun(y[0] * drv) * 1 / drv;
@@ -59,12 +59,11 @@ template <typename S> class TwoPole : SndBase<S> {
     return typ == -1 ? lp * (1 - m) + Y[HP] * m : Y[HP] * (1 - m) + Y[BP] * m;
   }
 
-  void coeffs(S f, S d) {
-    S w = std::tan(f * piosr);
-    Fac = 1. / (1. + w * d + w * w);
-    ff = f;
-    dd = d;
-    W = w;
+  void coeffs(S f, S d, S &od, double &w, double &fac, S &of, double ts) {
+    w = std::tan(f * ts);
+    fac = 1. / (1. + w * d + w * w);
+    of = f;
+    od = d;
   }
 
 public:
@@ -97,7 +96,7 @@ public:
     int32_t typ = m < 1 ? -1 : (m < 2 ? 0 : 1);
     m = m < 0 ? 0 : (m < 1 ? m : (m < 2 ? m - 1 : 1));
     if (f != ff || d != dd)
-      coeffs(f, d);
+      coeffs(f, d, dd, W, Fac, ff, piosr);
     auto pf = [&]() {
       return filter(in[n++], Y, D, W, Fac, d, drv + 1, typ, m);
     };
@@ -120,10 +119,20 @@ public:
     m = m < 0 ? 0 : (m < 1 ? m : (m < 2 ? m - 1 : 1));
     auto pf = [&]() {
       if (f[n] != ff || d != dd)
-        coeffs(f[n], d);
+        coeffs(f[n], d, dd, W, Fac, ff, piosr);
       return filter(in[n++], Y, D, W, Fac, d, drv + 1, typ, m);
     };
     return process(pf, in.size() < f.size() ? in.size() : f.size());
+  }
+
+  /** reset the filter \n
+      fs: sampling rate
+   */
+  void reset(S fs) {
+    piosr = M_PI / fs;
+    Y[0] = Y[1] = 0;
+    D[0] = D[1] = 0;
+    coeffs(ff, dd, dd, W, Fac, ff, piosr);
   }
 };
 } // namespace Aurora

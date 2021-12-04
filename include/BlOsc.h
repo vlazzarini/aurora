@@ -34,8 +34,7 @@
 
 namespace Aurora {
 enum { SAW = 0, SQUARE, TRIANGLE, PULSE };
-const int def_octs = 14;
-const double def_base = 1.f;
+const double def_base = 16.;
 const int def_ftlen = 16384;
 
 /** TableSet class \n
@@ -86,9 +85,44 @@ template <typename S> class TableSet {
     }
   }
 
+  void create(S fs, uint32_t type) {
+    std::vector<S> src(tlen / 2);
+    if (type >= 0) {
+      std::size_t n = 0;
+      for (auto &s : src) {
+        switch (type) {
+        case SAW:
+          if (n)
+            s = (S)1. / n;
+          break;
+        case SQUARE:
+          if (n % 2)
+            s = (S)1. / n;
+          break;
+        case TRIANGLE:
+          if (n % 2)
+            s = (S)1. / (n * n);
+          break;
+        default:
+          s = (S)1.;
+        }
+        n++;
+      }
+    }
+    fourier(src, fs, type);
+  }
+
   const std::vector<S> &select(S f) const {
     int32_t num = f > base ? (int32_t)round(std::log2(f / base)) : 0;
     return num < waves.size() ? waves[num] : waves.back();
+  }
+
+  void resize(std::size_t len, S fs) {
+    tlen = len;
+    waves.resize((int)std::log2(fs / base));
+    waves.clear();
+    for (auto &w : waves)
+      w = std::vector<S>(tlen);
   }
 
 public:
@@ -98,37 +132,15 @@ public:
       len: table length
   */
   TableSet(uint32_t type, S fs = def_sr, std::size_t len = def_ftlen)
-      : tlen(len), waves(def_octs, std::vector<S>(len)), base((S)def_base) {
-
-    std::vector<S> src(tlen / 2);
-    std::size_t n = 0;
-    for (auto &s : src) {
-      switch (type) {
-      case SAW:
-        if (n)
-          s = (S)1. / n;
-        break;
-      case SQUARE:
-        if (n % 2)
-          s = (S)1. / n;
-        break;
-      case TRIANGLE:
-        if (n % 2)
-          s = (S)1. / (n * n);
-        break;
-      default:
-        s = (S)1.;
-      }
-      n++;
-    }
-    fourier(src, fs, type);
+      : tlen(len), waves((int)std::log2(fs / def_base), std::vector<S>(len)),
+        base((S)def_base) {
+    create(fs, type);
   }
 
   /** Constructor \n
       src: source wave table \n
-      b: base frequency for wavetables \n
-      octs: number of octaves to generate \n
-      fs: sampling rate for which these will be built
+      b:  source table base frequency \n
+      fs: source table sampling rate
   */
   TableSet(const std::vector<S> &src, S b = def_base, S fs = def_sr)
       : tlen(src.size()), waves((int)std::log2(fs / b), std::vector<S>(tlen)),
@@ -140,6 +152,27 @@ public:
       f: fundamental frequency used for playback
   */
   std::function<S(S)> func(S f) const { return lookupi_gen(select(f)); }
+
+  /** reset the table set \n
+      type: wave type (SAW, SQUARE, TRIANGLE, PULSE) \n
+      fs: sampling rate for which these will be built
+      tlen: table size
+   */
+  void reset(uint32_t type, S fs, std::size_t len = def_ftlen) {
+    resize(len, fs);
+    create(std::vector<S>(tlen / 2), fs, type);
+  }
+  /** reset the table set \n
+     src: source wave table \n
+     b:  source table base frequency \n
+     fs: source table sampling rate \n
+     tlen: table size
+  */
+  void reset(const std::vector<S> &src, S b, S fs) {
+    base(1 / (b * src.size() / fs));
+    resize(src.size(), fs);
+    fourier(src, fs);
+  }
 };
 
 /** BlOsc class \n
@@ -153,9 +186,9 @@ template <typename S> class BlOsc : public Osc<S> {
   const TableSet<S> *tset;
   S ff;
 
-  S synth(S a, S f, double &phs) override {
-    fun = ff != f ? tset->func(f) : fun;
-    return Osc<S>::synth(a, f, phs);
+  S synth(S a, S f, double &phs, std::function<S(S)> fn) override {
+    fn = ff != f ? tset->func(f) : fn;
+    return Osc<S>::synth(a, f, phs, fn);
   }
 
 public:
@@ -169,7 +202,7 @@ public:
 
   /** Change the wavetable set
       t: wavetable set
-   */
+  */
   void waveset(const TableSet<S> *t) { tset = t; }
 };
 } // namespace Aurora

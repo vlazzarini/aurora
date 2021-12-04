@@ -1,4 +1,4 @@
-.TH "Aurora::TableSet< S >" 3 "Fri Dec 3 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::TableSet< S >" 3 "Sat Dec 4 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -19,6 +19,12 @@ Aurora::TableSet< S >
 .br
 .ti -1c
 .RI "std::function< S(S)> \fBfunc\fP (S f) const"
+.br
+.ti -1c
+.RI "void \fBreset\fP (uint32_t type, S fs, std::size_t len=\fBdef_ftlen\fP)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (const std::vector< S > &src, S b, S fs)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -47,17 +53,31 @@ Constructor
 .br
 src: source wave table 
 .br
-b: base frequency for wavetables 
+b: source table base frequency 
 .br
-octs: number of octaves to generate 
-.br
-fs: sampling rate for which these will be built 
+fs: source table sampling rate 
 .SH "Member Function Documentation"
 .PP 
 .SS "template<typename S> std::function<S(S)> \fBAurora::TableSet\fP< S >::func (S f) const\fC [inline]\fP"
 Function selection 
 .br
 f: fundamental frequency used for playback 
+.SS "template<typename S> void \fBAurora::TableSet\fP< S >::reset (uint32_t type, S fs, std::size_t len = \fC\fBdef_ftlen\fP\fP)\fC [inline]\fP"
+reset the table set 
+.br
+type: wave type (SAW, SQUARE, TRIANGLE, PULSE) 
+.br
+fs: sampling rate for which these will be built tlen: table size 
+.SS "template<typename S> void \fBAurora::TableSet\fP< S >::reset (const std::vector< S > & src, S b, S fs)\fC [inline]\fP"
+reset the table set 
+.br
+src: source wave table 
+.br
+b: source table base frequency 
+.br
+fs: source table sampling rate 
+.br
+tlen: table size 
 
 .SH "Author"
 .PP 

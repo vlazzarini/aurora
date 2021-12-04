@@ -46,7 +46,8 @@ int main(int argc, const char *argv[]) {
     Aurora::BlOsc<double> osc(&wave, sr);
     Aurora::TwoPole<double> fil(nlm, sr);
     double att = 0.1 * dur, dec = 0.2 * dur, sus = 0.7, rt = 0.1;
-    Aurora::Env<double> env(Aurora::ads_gen(att, dec, sus), rt, sr);
+    auto func = Aurora::ads_gen<double>(att, dec, sus);
+    Aurora::Env<double> env(func, rt, sr);
     bool gate = 1;
     q = q > 0.5 ? q : 0.5;
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())

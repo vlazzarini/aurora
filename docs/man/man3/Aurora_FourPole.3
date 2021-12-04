@@ -1,4 +1,4 @@
-.TH "Aurora::FourPole< S >" 3 "Fri Dec 3 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::FourPole< S >" 3 "Sat Dec 4 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -21,6 +21,9 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .br
 .ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > &f, S r)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (S fs)"
 .br
 .in -1c
 .SS "Additional Inherited Members"
@@ -61,6 +64,10 @@ in: input
 f: cutoff frequency 
 .br
 r: resonance (0-1) 
+.SS "template<typename S > void \fBAurora::FourPole\fP< S >::reset (S fs)\fC [inline]\fP"
+reset the filter 
+.br
+fs: sampling rate 
 
 .SH "Author"
 .PP 

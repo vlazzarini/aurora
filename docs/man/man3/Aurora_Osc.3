@@ -1,4 +1,4 @@
-.TH "Aurora::Osc< S >" 3 "Fri Dec 3 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Osc< S >" 3 "Sat Dec 4 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -16,7 +16,7 @@ Inherited by \fBAurora::BlOsc< S >\fP\&.
 
 .in +1c
 .ti -1c
-.RI "\fBOsc\fP (const std::function< S(S)> &f=\fBcos\fP< S >, S \fBfs\fP=(S) \fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.RI "\fBOsc\fP (const std::function< S(S)> f=\fBcos\fP< S >, S \fBfs\fP=(S) \fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
 .RI "virtual \fB~Osc\fP ()"
@@ -37,14 +37,17 @@ Inherited by \fBAurora::BlOsc< S >\fP\&.
 .RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &am, const std::vector< S > &fm)"
 .br
 .ti -1c
-.RI "void \fBfunc\fP (const std::function< S(S)> &f)"
+.RI "void \fBfunc\fP (const std::function< S(S)> f)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (S \fBfs\fP)"
 .br
 .in -1c
 .SS "Protected Member Functions"
 
 .in +1c
 .ti -1c
-.RI "virtual S \fBsynth\fP (S a, S f, double &phs)"
+.RI "virtual S \fBsynth\fP (S a, S f, double &phs, std::function< S(S)> fn)"
 .br
 .in -1c
 .SS "Protected Attributes"
@@ -73,7 +76,7 @@ Generic oscillator
 S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S > \fBAurora::Osc\fP< S >::\fBOsc\fP (const std::function< S(S)> & f = \fC\fBcos\fP<S>\fP, S fs = \fC(S)\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S > \fBAurora::Osc\fP< S >::\fBOsc\fP (const std::function< S(S)> f = \fC\fBcos\fP<S>\fP, S fs = \fC(S)\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 f: oscillator function 
@@ -89,8 +92,10 @@ vsize: signal vector size
 Sampling rate query 
 .br
 returns sampling rate 
-.SS "template<typename S > void \fBAurora::Osc\fP< S >::func (const std::function< S(S)> & f)\fC [inline]\fP"
-set the oscillator function f: oscillator function to be used 
+.SS "template<typename S > void \fBAurora::Osc\fP< S >::func (const std::function< S(S)> f)\fC [inline]\fP"
+set the oscillator function 
+.br
+f: oscillator function to be used 
 .SS "template<typename S > const std::vector<S>& \fBAurora::Osc\fP< S >::operator() (S a, S f)\fC [inline]\fP"
 Oscillator 
 .br
@@ -123,7 +128,11 @@ am: amplitude signal
 fm: frequency signal 
 .br
 returns reference to object signal vector 
-.SS "template<typename S > virtual S \fBAurora::Osc\fP< S >::synth (S a, S f, double & phs)\fC [inline]\fP, \fC [protected]\fP, \fC [virtual]\fP"
+.SS "template<typename S > void \fBAurora::Osc\fP< S >::reset (S fs)\fC [inline]\fP"
+reset the oscillator 
+.br
+fs: sampling rate 
+.SS "template<typename S > virtual S \fBAurora::Osc\fP< S >::synth (S a, S f, double & phs, std::function< S(S)> fn)\fC [inline]\fP, \fC [protected]\fP, \fC [virtual]\fP"
 
 .SH "Member Data Documentation"
 .PP 

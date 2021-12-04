@@ -12,6 +12,10 @@
 \hyperlink{class_aurora_1_1_table_set_a884ecfde480fdac4c32fa10a82286941}{Table\+Set} (const std\+::vector$<$ S $>$ \&src, S b=\hyperlink{namespace_aurora_acb267dff62f74484893c2d5b679b78bf}{def\+\_\+base}, S fs=\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr})
 \item 
 std\+::function$<$ S(S)$>$ \hyperlink{class_aurora_1_1_table_set_a27a325a2c3c4b8cd50e0c86d6ac3c617}{func} (S f) const
+\item 
+void \hyperlink{class_aurora_1_1_table_set_ac2c945c49d53f60fd909dc771a6ff7e5}{reset} (uint32\+\_\+t type, S fs, std\+::size\+\_\+t len=\hyperlink{namespace_aurora_a14dabfd9feedfa09c0e6f86d2627f006}{def\+\_\+ftlen})
+\item 
+void \hyperlink{class_aurora_1_1_table_set_afec852dca45285ec57b6a4a97dffac36}{reset} (const std\+::vector$<$ S $>$ \&src, S b, S fs)
 \end{DoxyCompactItemize}
 
 
@@ -43,9 +47,8 @@ len\+: table length \mbox{\Hypertarget{class_aurora_1_1_table_set_a884ecfde480fd
 
 Constructor ~\newline
 src\+: source wave table ~\newline
-b\+: base frequency for wavetables ~\newline
-octs\+: number of octaves to generate ~\newline
-fs\+: sampling rate for which these will be built 
+b\+: source table base frequency ~\newline
+fs\+: source table sampling rate 
 
 \subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_aurora_1_1_table_set_a27a325a2c3c4b8cd50e0c86d6ac3c617}\label{class_aurora_1_1_table_set_a27a325a2c3c4b8cd50e0c86d6ac3c617}} 
@@ -56,7 +59,27 @@ fs\+: sampling rate for which these will be built
 std\+::function$<$S(S)$>$ \hyperlink{class_aurora_1_1_table_set}{Aurora\+::\+Table\+Set}$<$ S $>$\+::func (\begin{DoxyParamCaption}\item[{S}]{f }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Function selection ~\newline
-f\+: fundamental frequency used for playback 
+f\+: fundamental frequency used for playback \mbox{\Hypertarget{class_aurora_1_1_table_set_ac2c945c49d53f60fd909dc771a6ff7e5}\label{class_aurora_1_1_table_set_ac2c945c49d53f60fd909dc771a6ff7e5}} 
+\index{Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}!reset@{reset}}
+\index{reset@{reset}!Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+void \hyperlink{class_aurora_1_1_table_set}{Aurora\+::\+Table\+Set}$<$ S $>$\+::reset (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{type,  }\item[{S}]{fs,  }\item[{std\+::size\+\_\+t}]{len = {\ttfamily \hyperlink{namespace_aurora_a14dabfd9feedfa09c0e6f86d2627f006}{def\+\_\+ftlen}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+reset the table set ~\newline
+type\+: wave type (S\+AW, S\+Q\+U\+A\+RE, T\+R\+I\+A\+N\+G\+LE, P\+U\+L\+SE) ~\newline
+fs\+: sampling rate for which these will be built tlen\+: table size \mbox{\Hypertarget{class_aurora_1_1_table_set_afec852dca45285ec57b6a4a97dffac36}\label{class_aurora_1_1_table_set_afec852dca45285ec57b6a4a97dffac36}} 
+\index{Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}!reset@{reset}}
+\index{reset@{reset}!Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+void \hyperlink{class_aurora_1_1_table_set}{Aurora\+::\+Table\+Set}$<$ S $>$\+::reset (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{src,  }\item[{S}]{b,  }\item[{S}]{fs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+reset the table set ~\newline
+src\+: source wave table ~\newline
+b\+: source table base frequency ~\newline
+fs\+: source table sampling rate ~\newline
+tlen\+: table size 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

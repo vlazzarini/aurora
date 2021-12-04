@@ -58,16 +58,16 @@ std::function<S(double, S, S)> ads_gen(const S &a, const S &d, const S &s) {
 */
 template <typename S> class Env : public SndBase<S> {
   using SndBase<S>::process;
-  std::function<S(double, S, S)> func;
+  std::function<S(double, S, S)> fun;
   double time;
   S prev;
   S ts;
   S fac;
 
-  S synth(S e, double &t, bool gate) {
+  S synth(S e, double &t, bool gate, std::function<S(double, S, S)> fn) {
     S s;
     if (gate) {
-      s = func(t, e, ts);
+      s = fn(t, e, ts);
       t += ts;
     } else {
       if (e < 0.00001)
@@ -88,7 +88,7 @@ public:
   */
   Env(std::function<S(double, S, S)> f, S rt, S fs = def_sr,
       std::size_t vsize = def_vsize)
-      : SndBase<S>(vsize), func(f), prev(0), ts(1. / fs),
+      : SndBase<S>(vsize), fun(f), prev(0), ts(1. / fs),
         fac(std::pow(0.001, ts / rt)){};
 
   /** Release time setter
@@ -102,7 +102,7 @@ public:
   const std::vector<S> &operator()(bool gate) {
     double t = time;
     S e = prev;
-    auto &s = process([&]() { return (e = synth(e, t, gate)); }, 0);
+    auto &s = process([&]() { return (e = synth(e, t, gate, fun)); }, 0);
     prev = e;
     time = t;
     return s;
@@ -118,7 +118,7 @@ public:
     S e = prev;
     auto &s = process(
         [&]() {
-          e = synth(e, t, gate);
+          e = synth(e, t, gate, fun);
           return (e * scal + offs);
         },
         0);
@@ -137,7 +137,7 @@ public:
     std::size_t n = 0;
     auto &s = process(
         [&]() {
-          e = synth(e, t, gate);
+          e = synth(e, t, gate, fun);
           return e * a[n++];
         },
         a.size());
@@ -145,8 +145,26 @@ public:
     time = t;
     return s;
   }
-};
 
+  /** Sampling rate query \n
+      returns sampling rate
+  */
+  S fs() const { return 1 / ts; }
+
+  /** reset the envelope \n
+     fs: sampling rate
+  */
+  void reset(S fs) {
+    time = 0;
+    prev = 0;
+    ts = 1 / fs;
+  }
+
+  /** set the envelope function \n
+      f: envelope function to be used
+   */
+  void func(const std::function<S(double, S, S)> f) { fun = f; }
+};
 } // namespace Aurora
 
 #endif // _AURORA_ENV_

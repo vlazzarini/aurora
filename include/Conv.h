@@ -41,7 +41,6 @@ template <typename S> class IR {
 
   void create(const std::vector<S> &s, std::size_t psize) {
     std::vector<S> buffer(psize);
-
     std::size_t n = 0, k = 0, cnt = s.size();
     FFT<S> fft(2 * psize, !packed, 1);
 
@@ -82,10 +81,22 @@ public:
   */
   const std::size_t psize() const { return parts[0].size() - 1; }
 
-  /** IR length
+  /** IR length \n
       returns the number of partitions
   */
   const std::size_t nparts() const { return parts.size(); }
+
+  /** Reset the IR table \n
+     s: impulse response \n
+     psize: partition size
+  */
+  void reset(const std::vector<S> &s, std::size_t psize = def_psize) {
+    parts.clear();
+    parts.resize(ceil((float)s.size() / psize));
+    for (auto &part : parts)
+      part(std::vector<std::complex<S>>(psize + 1));
+    create(s, psize);
+  }
 };
 
 /** Overlap-save function for Conv \n

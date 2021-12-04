@@ -1,4 +1,4 @@
-.TH "Aurora::TwoPole< S >" 3 "Fri Dec 3 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::TwoPole< S >" 3 "Sat Dec 4 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -24,6 +24,9 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .br
 .ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > &f, S d, S drv=0, S m=0)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (S fs)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -79,6 +82,10 @@ d: damping factor (Q reciprocal)
 drv: overdrive amount 
 .br
 S: output type (0 - 2: LP(0), HP(1), BP(2)) 
+.SS "template<typename S > void \fBAurora::TwoPole\fP< S >::reset (S fs)\fC [inline]\fP"
+reset the filter 
+.br
+fs: sampling rate 
 
 .SH "Author"
 .PP 

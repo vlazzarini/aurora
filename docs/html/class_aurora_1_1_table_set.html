@@ -81,6 +81,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a884ecfde480fdac4c32fa10a82286941"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27a325a2c3c4b8cd50e0c86d6ac3c617"><td class="memItemLeft" align="right" valign="top">std::function&lt; S(S)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_table_set.html#a27a325a2c3c4b8cd50e0c86d6ac3c617">func</a> (S f) const</td></tr>
 <tr class="separator:a27a325a2c3c4b8cd50e0c86d6ac3c617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2c945c49d53f60fd909dc771a6ff7e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_table_set.html#ac2c945c49d53f60fd909dc771a6ff7e5">reset</a> (uint32_t type, S fs, std::size_t len=<a class="el" href="namespace_aurora.html#a14dabfd9feedfa09c0e6f86d2627f006">def_ftlen</a>)</td></tr>
+<tr class="separator:ac2c945c49d53f60fd909dc771a6ff7e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afec852dca45285ec57b6a4a97dffac36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_table_set.html#afec852dca45285ec57b6a4a97dffac36">reset</a> (const std::vector&lt; S &gt; &amp;src, S b, S fs)</td></tr>
+<tr class="separator:afec852dca45285ec57b6a4a97dffac36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename S&gt;<br />
@@ -181,9 +185,8 @@ template&lt;typename S&gt; </div>
 </div><div class="memdoc">
 <p>Constructor <br />
 src: source wave table <br />
-b: base frequency for wavetables <br />
-octs: number of octaves to generate <br />
-fs: sampling rate for which these will be built </p>
+b: source table base frequency <br />
+fs: source table sampling rate </p>
 
 </div>
 </div>
@@ -215,6 +218,102 @@ template&lt;typename S&gt; </div>
 </div><div class="memdoc">
 <p>Function selection <br />
 f: fundamental frequency used for playback </p>
+
+</div>
+</div>
+<a id="ac2c945c49d53f60fd909dc771a6ff7e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2c945c49d53f60fd909dc771a6ff7e5">&#9670;&nbsp;</a></span>reset() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_aurora_1_1_table_set.html">Aurora::TableSet</a>&lt; S &gt;::reset </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>fs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>len</em> = <code><a class="el" href="namespace_aurora.html#a14dabfd9feedfa09c0e6f86d2627f006">def_ftlen</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>reset the table set <br />
+type: wave type (SAW, SQUARE, TRIANGLE, PULSE) <br />
+fs: sampling rate for which these will be built tlen: table size </p>
+
+</div>
+</div>
+<a id="afec852dca45285ec57b6a4a97dffac36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afec852dca45285ec57b6a4a97dffac36">&#9670;&nbsp;</a></span>reset() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_aurora_1_1_table_set.html">Aurora::TableSet</a>&lt; S &gt;::reset </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; S &gt; &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>fs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>reset the table set <br />
+src: source wave table <br />
+b: source table base frequency <br />
+fs: source table sampling rate <br />
+tlen: table size </p>
 
 </div>
 </div>

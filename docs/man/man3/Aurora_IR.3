@@ -1,4 +1,4 @@
-.TH "Aurora::IR< S >" 3 "Fri Dec 3 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::IR< S >" 3 "Sat Dec 4 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -23,6 +23,9 @@ Aurora::IR< S >
 .ti -1c
 .RI "const std::size_t \fBnparts\fP () const"
 .br
+.ti -1c
+.RI "void \fBreset\fP (const std::vector< S > &s, std::size_t \fBpsize\fP=\fBdef_psize\fP)"
+.br
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -44,11 +47,19 @@ psize: partition size
 .SH "Member Function Documentation"
 .PP 
 .SS "template<typename S> const std::size_t \fBAurora::IR\fP< S >::nparts () const\fC [inline]\fP"
-\fBIR\fP length returns the number of partitions 
+\fBIR\fP length 
+.br
+returns the number of partitions 
 .SS "template<typename S> const std::size_t \fBAurora::IR\fP< S >::psize () const\fC [inline]\fP"
 \fBIR\fP partition size 
 .br
 returns the size of each partition 
+.SS "template<typename S> void \fBAurora::IR\fP< S >::reset (const std::vector< S > & s, std::size_t psize = \fC\fBdef_psize\fP\fP)\fC [inline]\fP"
+Reset the \fBIR\fP table 
+.br
+s: impulse response 
+.br
+psize: partition size 
 .SS "template<typename S> const std::vector<std::vector<std::complex<S> > >& \fBAurora::IR\fP< S >::spectrum () const\fC [inline]\fP"
 \fBIR\fP spectrum access 
 .br

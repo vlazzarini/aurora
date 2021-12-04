@@ -32,6 +32,8 @@ Collaboration diagram for Aurora\+:\+:Two\+Pole$<$ S $>$\+:\nopagebreak
 const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_two_pole_a7582c69b4c221f81f25c650d9c643157}{operator()} (const std\+::vector$<$ S $>$ \&in, S f, S d, S drv=0, S m=0)
 \item 
 const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_two_pole_a860a443654a353bb8c40927f8a45aa46}{operator()} (const std\+::vector$<$ S $>$ \&in, const std\+::vector$<$ S $>$ \&f, S d, S drv=0, S m=0)
+\item 
+void \hyperlink{class_aurora_1_1_two_pole_a7fe6512d7e1e6fbc3bca49de8ecc2f95}{reset} (S fs)
 \end{DoxyCompactItemize}
 
 
@@ -90,7 +92,15 @@ in\+: input ~\newline
 f\+: frequency ~\newline
 d\+: damping factor (Q reciprocal) ~\newline
 drv\+: overdrive amount ~\newline
-S\+: output type (0 -\/ 2\+: L\+P(0), H\+P(1), B\+P(2)) 
+S\+: output type (0 -\/ 2\+: L\+P(0), H\+P(1), B\+P(2)) \mbox{\Hypertarget{class_aurora_1_1_two_pole_a7fe6512d7e1e6fbc3bca49de8ecc2f95}\label{class_aurora_1_1_two_pole_a7fe6512d7e1e6fbc3bca49de8ecc2f95}} 
+\index{Aurora\+::\+Two\+Pole@{Aurora\+::\+Two\+Pole}!reset@{reset}}
+\index{reset@{reset}!Aurora\+::\+Two\+Pole@{Aurora\+::\+Two\+Pole}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+void \hyperlink{class_aurora_1_1_two_pole}{Aurora\+::\+Two\+Pole}$<$ S $>$\+::reset (\begin{DoxyParamCaption}\item[{S}]{fs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+reset the filter ~\newline
+fs\+: sampling rate 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
