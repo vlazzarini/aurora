@@ -134,6 +134,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a8a142312f627aaa19ba0e8a87f33d00b"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
 <tr class="memitem:a8a142312f627aaa19ba0e8a87f33d00b"><td class="memTemplItemLeft" align="right" valign="top">std::function&lt; S(S, std::size_t, const std::vector&lt; S &gt; &amp;)&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a8a142312f627aaa19ba0e8a87f33d00b">lpdelay_gen</a> (S &amp;s, double &amp;c, std::function&lt; S(S, std::size_t, const std::vector&lt; S &gt; &amp;)&gt; f)</td></tr>
 <tr class="separator:a8a142312f627aaa19ba0e8a87f33d00b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf3b452f54db43f366b261c3702b0c0b"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:abf3b452f54db43f366b261c3702b0c0b"><td class="memTemplItemLeft" align="right" valign="top">std::function&lt; S(S, std::size_t, const std::vector&lt; S &gt; &amp;)&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#abf3b452f54db43f366b261c3702b0c0b">fir_gen</a> (const std::vector&lt; S &gt; &amp;ir)</td></tr>
+<tr class="separator:abf3b452f54db43f366b261c3702b0c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a966a076f1768216bd9c2d6a07aebf034"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
 <tr class="memitem:a966a076f1768216bd9c2d6a07aebf034"><td class="memTemplItemLeft" align="right" valign="top">std::function&lt; S(double, S, S)&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a966a076f1768216bd9c2d6a07aebf034">ads_gen</a> (const S &amp;a, const S &amp;d, const S &amp;s)</td></tr>
 <tr class="separator:a966a076f1768216bd9c2d6a07aebf034"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -283,6 +286,29 @@ template&lt;typename S &gt; </div>
 S: sample type <br />
 ph: normalised phase <br />
 returns the cosine of ph*2*$M_PI </p>
+
+</div>
+</div>
+<a id="abf3b452f54db43f366b261c3702b0c0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf3b452f54db43f366b261c3702b0c0b">&#9670;&nbsp;</a></span>fir_gen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;S(S, std::size_t, const std::vector&lt;S&gt; &amp;)&gt; Aurora::fir_gen </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; S &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ir</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Generating function for FIR/convolution function <br />
+ir: impulse response <br />
+returns a delay function for use in <a class="el" href="class_aurora_1_1_del.html">Del</a> </p>
 
 </div>
 </div>

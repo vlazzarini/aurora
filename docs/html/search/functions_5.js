@@ -1,6 +1,7 @@
 var searchData=
 [
   ['fft',['FFT',['../class_aurora_1_1_f_f_t.html#a358d44bb84dac04a3f6ab13aefdceaf4',1,'Aurora::FFT']]],
+  ['fir_5fgen',['fir_gen',['../namespace_aurora.html#abf3b452f54db43f366b261c3702b0c0b',1,'Aurora']]],
   ['fixed_5fdelay',['fixed_delay',['../namespace_aurora.html#a62442f237e70fdaac1efc22b4e82e875',1,'Aurora']]],
   ['fourpole',['FourPole',['../class_aurora_1_1_four_pole.html#acd6f1e5b94bdc248e8e955f4ef8f7dcc',1,'Aurora::FourPole']]],
   ['fs',['fs',['../class_aurora_1_1_env.html#a82aa0806fae0fac3e527f30b4c2fccc1',1,'Aurora::Env::fs()'],['../class_aurora_1_1_osc.html#a9ac3aa9006fc98588b2163e0e56f6e30',1,'Aurora::Osc::fs()']]],

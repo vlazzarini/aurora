@@ -60,6 +60,8 @@ enum \+: int32\+\_\+t \{ \hyperlink{namespace_aurora_a963f359f40fdbc5f4dbe404353
 \item 
 {\footnotesize template$<$typename S $>$ }\\std\+::function$<$ S(S, std\+::size\+\_\+t, const std\+::vector$<$ S $>$ \&)$>$ \hyperlink{namespace_aurora_a8a142312f627aaa19ba0e8a87f33d00b}{lpdelay\+\_\+gen} (S \&s, double \&c, std\+::function$<$ S(S, std\+::size\+\_\+t, const std\+::vector$<$ S $>$ \&)$>$ f)
 \item 
+{\footnotesize template$<$typename S $>$ }\\std\+::function$<$ S(S, std\+::size\+\_\+t, const std\+::vector$<$ S $>$ \&)$>$ \hyperlink{namespace_aurora_abf3b452f54db43f366b261c3702b0c0b}{fir\+\_\+gen} (const std\+::vector$<$ S $>$ \&ir)
+\item 
 {\footnotesize template$<$typename S $>$ }\\std\+::function$<$ S(double, S, S)$>$ \hyperlink{namespace_aurora_a966a076f1768216bd9c2d6a07aebf034}{ads\+\_\+gen} (const S \&a, const S \&d, const S \&s)
 \item 
 static uint32\+\_\+t \hyperlink{namespace_aurora_a49b6f6d92479d80271ced42627154066}{np2} (uint32\+\_\+t n)
@@ -165,7 +167,16 @@ S Aurora\+::cos (\begin{DoxyParamCaption}\item[{double}]{ph }\end{DoxyParamCapti
 Cosine function for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
 S\+: sample type ~\newline
 ph\+: normalised phase ~\newline
-returns the cosine of ph$\ast$2$\ast$\$\+M\+\_\+\+PI \mbox{\Hypertarget{namespace_aurora_a62442f237e70fdaac1efc22b4e82e875}\label{namespace_aurora_a62442f237e70fdaac1efc22b4e82e875}} 
+returns the cosine of ph$\ast$2$\ast$\$\+M\+\_\+\+PI \mbox{\Hypertarget{namespace_aurora_abf3b452f54db43f366b261c3702b0c0b}\label{namespace_aurora_abf3b452f54db43f366b261c3702b0c0b}} 
+\index{Aurora@{Aurora}!fir\+\_\+gen@{fir\+\_\+gen}}
+\index{fir\+\_\+gen@{fir\+\_\+gen}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{fir\+\_\+gen()}{fir\_gen()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+std\+::function$<$S(S, std\+::size\+\_\+t, const std\+::vector$<$S$>$ \&)$>$ Aurora\+::fir\+\_\+gen (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{ir }\end{DoxyParamCaption})}
+
+Generating function for F\+I\+R/convolution function ~\newline
+ir\+: impulse response ~\newline
+returns a delay function for use in \hyperlink{class_aurora_1_1_del}{Del} \mbox{\Hypertarget{namespace_aurora_a62442f237e70fdaac1efc22b4e82e875}\label{namespace_aurora_a62442f237e70fdaac1efc22b4e82e875}} 
 \index{Aurora@{Aurora}!fixed\+\_\+delay@{fixed\+\_\+delay}}
 \index{fixed\+\_\+delay@{fixed\+\_\+delay}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{fixed\+\_\+delay()}{fixed\_delay()}}

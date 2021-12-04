@@ -84,6 +84,9 @@ Aurora
 .RI "template<typename S > std::function< S(S, std::size_t, const std::vector< S > &)> \fBlpdelay_gen\fP (S &s, double &c, std::function< S(S, std::size_t, const std::vector< S > &)> f)"
 .br
 .ti -1c
+.RI "template<typename S > std::function< S(S, std::size_t, const std::vector< S > &)> \fBfir_gen\fP (const std::vector< S > &ir)"
+.br
+.ti -1c
 .RI "template<typename S > std::function< S(double, S, S)> \fBads_gen\fP (const S &a, const S &d, const S &s)"
 .br
 .ti -1c
@@ -187,6 +190,12 @@ S: sample type
 ph: normalised phase 
 .br
 returns the cosine of ph*2*$M_PI 
+.SS "template<typename S > std::function<S(S, std::size_t, const std::vector<S> &)> Aurora::fir_gen (const std::vector< S > & ir)"
+Generating function for FIR/convolution function 
+.br
+ir: impulse response 
+.br
+returns a delay function for use in \fBDel\fP 
 .SS "template<typename S > S Aurora::fixed_delay (S rp, std::size_t wp, const std::vector< S > & d)"
 Fixed delay function for \fBDel\fP 
 .br
