@@ -1,5 +1,8 @@
 Aurora Examples
 ===
+
+Examples can be built using CMake at the top-level sources
+directory. They can also be built individually as shown below.
     
 
 ASCII output
@@ -40,3 +43,6 @@ c++ -o example example.cpp -I../ include -std = c++ 14 - lsndfile
 **filter.cpp** : lowpass filter example
 
 **delay.cpp** : fixed comb filter example
+
+**reverb.cpp**: convolution reverb
+
