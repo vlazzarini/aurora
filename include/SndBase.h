@@ -90,6 +90,45 @@ public:
   void copy(S *out) { std::copy(sig.begin(), sig.end(), out); }
 };
 
+/** Buff class \n
+    circular buffer \n
+    S: sample type
+*/
+template <typename S> class Buff : public SndBase<S> {
+  using SndBase<S>::get_sig;
+  std::size_t p;
+
+public:
+  /** Constructor \n
+      vsize: signal vector size
+  */
+  Buff(std::size_t vsize = def_vsize) : SndBase<S>(vsize), p(0){};
+
+  /** Buffer \n
+      in: audio input array \n
+      n: number of samples in audio input array \n
+      a: scaling factor \n
+      returns reference to object signal vector
+  */
+  const std::vector<S> &operator()(S *in, std::size_t n = def_vsize,
+                                   S scal = 1.f) {
+    auto &s = get_sig();
+    auto vs = this->vsize();
+    if (n == vs)
+      std::copy(in, in + n, s.begin());
+    else {
+      std::size_t k = 0;
+      std::size_t i = p;
+      for (std::size_t k = 0; k < n; k++) {
+        s[i] = in[k] * scal;
+        i = i != vs - 1 ? i + 1 : 0;
+      }
+      p = i;
+    }
+    return s;
+  }
+};
+
 /** BinOp class \n
     Binary operations \n
     S: sample type
@@ -153,7 +192,7 @@ public:
     S: sample type \n
     pos: reading position (no bounds check) \n
     t: table
- */
+*/
 template <typename S> S linear_interp(double pos, const std::vector<S> &t) {
   size_t posi = (size_t)pos;
   double frac = pos - posi;
@@ -196,7 +235,7 @@ public:
   /** Mixer \n
       in: first input signal \n
       args: any number of other signal inputs
- */
+  */
   template <typename... Ts>
   const std::vector<S> &operator()(const std::vector<S> &in, Ts... args) {
     auto &s = get_sig();
