@@ -78,12 +78,15 @@ into a synthesis class:
 ```
 using namespace Aurora;
 struct Synth {
-  float att, dec, sus;
-  std::vector<float> wave;
-  Env<float> env;
-  Osc<float> osc;
+  float att, dec, sus; // envelope parameters
+  std::vector<float> wave; // wavetable
+  Env<float> env;  // envelope object
+  Osc<float> osc;  // oscillator object
 
-  Synth(float rt, float sr)
+ // Synth constructor
+ // rt: release time
+ // sr: sampling rate
+  Synth(float rt, float sr = def_sr)
       : att(0.f), dec(0.f), sus(0.f), wave(def_vsize),
         env(ads_gen(att, dec, sus), rt, sr), osc(lookupi_gen(wave), sr) {
     std::size_t n = 0;
@@ -92,6 +95,10 @@ struct Synth {
     }
   };
 
+  // synth function
+  // a: amplitude
+  // f: frequency
+  // gate: envelope gate 
   const std::vector<float> &operator()(float a, float f, bool gate) {
     return env(osc(a, f), gate);
   }
