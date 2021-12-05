@@ -27,6 +27,7 @@
 // POSSIBILITY OF SUCH DAMAGE
 
 #include "Del.h"
+#include "Osc.h"
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
@@ -40,37 +41,32 @@ int main(int argc, const char **argv) {
   SNDFILE *fpin, *fpout;
   int n;
 
-  if (argc > 5) {
+  if (argc > 6) {
     if ((fpin = sf_open(argv[1], SFM_READ, &sfinfo)) != NULL) {
       if (sfinfo.channels < 2) {
         fpout = sf_open(argv[2], SFM_WRITE, &sfinfo);
-        float dt = atof(argv[3]);
-        float rvt = atof(argv[4]);
-        float cf = atof(argv[5]);
-        float d = 0.f;
-        double c = 2. - std::cos(2 * M_PI * cf / sfinfo.samplerate);
-        c = sqrt(c * c - 1.f) - c;
-        float fdb = std::pow(.001, dt / rvt);
+        float mxdel = atof(argv[3]) / 1000.;
+        float fr = atof(argv[4]);
+        float fdb = atof(argv[5]);
+        float g = atof(argv[6]);
         std::vector<float> buffer(def_vsize);
-        auto delf = lpdelay_gen<float>(d, c, fixed_delay<float>);
-        Del<float> delay(dt, delf, sfinfo.samplerate);
+        auto lfofun = [](float x) -> float {
+          return Aurora::cos<float>(x) * 0.49 + 0.51;
+        };
+        Osc<float> lfo(lfofun, sfinfo.samplerate);
+        auto delf = vdelayi<float>;
+        Del<float> delay(1, delf, sfinfo.samplerate);
+        BinOp<float> gain([](float a, float b) -> float { return a * b; });
         do {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
           if (n) {
             buffer.resize(n);
-            auto &out = delay(buffer, dt, fdb, 1.f);
+            auto &dlt = lfo(mxdel, fr);
+            auto &out = gain(delay(buffer, dlt, fdb), g);
             sf_write_float(fpout, out.data(), n);
           } else
             break;
         } while (1);
-        buffer.resize(def_vsize);
-        n = sfinfo.samplerate * rvt;
-        std::fill(buffer.begin(), buffer.end(), 0.f);
-        do {
-          auto &out = delay(buffer, dt, fdb);
-          sf_write_float(fpout, out.data(), def_vsize);
-          n -= def_vsize;
-        } while (n > 0);
         sf_close(fpout);
         return 0;
       } else
@@ -82,7 +78,7 @@ int main(int argc, const char **argv) {
     return 1;
   }
   std::cout << "usage: " << argv[0]
-            << " infile outfile delay reverb_time lpf \n"
+            << " infile outfile maxdel(ms) lfofr(Hz) fdb gain \n"
             << std::endl;
   return -1;
 }
