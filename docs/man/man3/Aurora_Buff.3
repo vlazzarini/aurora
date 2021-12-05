@@ -17,7 +17,7 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .RI "\fBBuff\fP (std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (S *in, std::size_t n=\fBdef_vsize\fP)"
+.RI "const std::vector< S > & \fBoperator()\fP (const S *in, std::size_t n=\fBdef_vsize\fP)"
 .br
 .in -1c
 .SS "Additional Inherited Members"
@@ -40,7 +40,7 @@ Constructor
 vsize: signal vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S > const std::vector<S>& \fBAurora::Buff\fP< S >::operator() (S * in, std::size_t n = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S > const std::vector<S>& \fBAurora::Buff\fP< S >::operator() (const S * in, std::size_t n = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Buffer 
 .br
 in: audio input array 

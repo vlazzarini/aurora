@@ -108,7 +108,7 @@ public:
       n: number of samples in audio input array \n
       returns reference to object signal vector
   */
-  const std::vector<S> &operator()(S *in, std::size_t n = def_vsize) {
+  const std::vector<S> &operator()(const S *in, std::size_t n = def_vsize) {
     auto &s = get_sig();
     this->resize(n);
     std::copy(in, in + n, s.begin());
