@@ -71,6 +71,32 @@ dependencies and output ASCII floating-point samples to the standard
 output. Others make use of libsndfile to access soundfiles of various
 formats.
 
+A simple usage example is given by the following code employing
+a wavetable oscillator and an ADSR envelope, which are composed
+into a synthesis class:
+
+```
+using namespace Aurora;
+struct Synth {
+  float att, dec, sus;
+  std::vector<float> wave;
+  Env<float> env;
+  Osc<float> osc;
+
+  Synth(float rt, float sr)
+      : att(0.f), dec(0.f), sus(0.f), wave(def_vsize),
+        env(ads_gen(att, dec, sus), rt, sr), osc(lookupi_gen(wave), sr) {
+    std::size_t n = 0;
+    for (auto &s : wave) {
+      s = sin<float>((1. / wave.size()) * n++);
+    }
+  };
+
+  const std::vector<float> &operator()(float a, float f, bool gate) {
+    return env(osc(a, f), gate);
+  }
+};
+```
 
 
 
