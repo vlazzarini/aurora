@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
-  ['release',['release',['../class_aurora_1_1_env.html#a6591658018e04100709018bc86e94f31',1,'Aurora::Env']]],
-  ['reset',['reset',['../class_aurora_1_1_table_set.html#ac2c945c49d53f60fd909dc771a6ff7e5',1,'Aurora::TableSet::reset(uint32_t type, S fs, std::size_t len=def_ftlen)'],['../class_aurora_1_1_table_set.html#afec852dca45285ec57b6a4a97dffac36',1,'Aurora::TableSet::reset(const std::vector&lt; S &gt; &amp;src, S b, S fs)'],['../class_aurora_1_1_i_r.html#a78acfa992e609aee2661a2c72c7bbd8f',1,'Aurora::IR::reset()'],['../class_aurora_1_1_del.html#a1d5f6aa043e47077b3c1654d884c77f1',1,'Aurora::Del::reset()'],['../class_aurora_1_1_env.html#ac97ef83c828c1ebf2527be51f457eab8',1,'Aurora::Env::reset()'],['../class_aurora_1_1_four_pole.html#a5de080ccd74617a6bfba13d3d76bcb4b',1,'Aurora::FourPole::reset()'],['../class_aurora_1_1_one_pole.html#ab9d69c4ceb9dbf5017fd800844f54dbf',1,'Aurora::OnePole::reset()'],['../class_aurora_1_1_osc.html#a74abc44400ec00c9ff1dad13cdb24000',1,'Aurora::Osc::reset()'],['../class_aurora_1_1_two_pole.html#a7fe6512d7e1e6fbc3bca49de8ecc2f95',1,'Aurora::TwoPole::reset()']]]
+  ['saw',['SAW',['../namespace_aurora.html#a890b8d3786c8a25750e8097adae3b513ad47a607309b6d737bba699a295e5e814',1,'Aurora']]],
+  ['sin',['sin',['../namespace_aurora.html#a388ea5736944d8887f5586afd45a03b8',1,'Aurora']]],
+  ['size',['size',['../class_aurora_1_1_f_f_t.html#ad0149c60672d3f4e64850dde22f5b163',1,'Aurora::FFT']]],
+  ['sndbase',['SndBase',['../class_aurora_1_1_snd_base.html#a960739d3ae63df581c28f8801e589a3c',1,'Aurora::SndBase']]],
+  ['sndbase',['SndBase',['../class_aurora_1_1_snd_base.html',1,'Aurora']]],
+  ['sndbase_2eh',['SndBase.h',['../_snd_base_8h.html',1,'']]],
+  ['spectrum',['spectrum',['../class_aurora_1_1_i_r.html#a2463850b1167583c7338025b204ed631',1,'Aurora::IR']]],
+  ['square',['SQUARE',['../namespace_aurora.html#a890b8d3786c8a25750e8097adae3b513ad12f117b00f964cb4de3809ca2e2fa2b',1,'Aurora']]]
 ];

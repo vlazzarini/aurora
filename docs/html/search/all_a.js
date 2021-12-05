@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['mix',['Mix',['../class_aurora_1_1_mix.html',1,'Aurora']]],
-  ['mix',['Mix',['../class_aurora_1_1_mix.html#aa3b9e9322e58a0b47d4ed3a12fbe2b94',1,'Aurora::Mix']]]
+  ['np2',['np2',['../namespace_aurora.html#a49b6f6d92479d80271ced42627154066',1,'Aurora']]],
+  ['nparts',['nparts',['../class_aurora_1_1_i_r.html#a77d0fec4d82334a2f5533b4c8044c4e1',1,'Aurora::IR']]]
 ];

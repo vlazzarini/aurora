@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['hp',['HP',['../namespace_aurora.html#a963f359f40fdbc5f4dbe4043534de9eba404a7e9d666dc8dc6a9492163a8f3d49',1,'Aurora']]]
+  ['inverse',['inverse',['../namespace_aurora.html#ac22c4e2e10572cbb6f64f3bd1cd595b5',1,'Aurora']]],
+  ['ir',['IR',['../class_aurora_1_1_i_r.html',1,'Aurora']]],
+  ['ir',['IR',['../class_aurora_1_1_i_r.html#a2efce1ea1cacb440e68195209fb2e5e2',1,'Aurora::IR']]],
+  ['readme_2emd',['README.md',['../include_2_r_e_a_d_m_e_8md.html',1,'']]]
 ];

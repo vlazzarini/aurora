@@ -43,26 +43,6 @@ Inherited by \fBAurora::BlOsc< S >\fP\&.
 .RI "void \fBreset\fP (S \fBfs\fP)"
 .br
 .in -1c
-.SS "Protected Member Functions"
-
-.in +1c
-.ti -1c
-.RI "virtual S \fBsynth\fP (S a, S f, double &phs, std::function< S(S)> fn)"
-.br
-.in -1c
-.SS "Protected Attributes"
-
-.in +1c
-.ti -1c
-.RI "double \fBph\fP"
-.br
-.ti -1c
-.RI "S \fBts\fP"
-.br
-.ti -1c
-.RI "std::function< S(S)> \fBfun\fP"
-.br
-.in -1c
 .SH "Detailed Description"
 .PP 
 
@@ -132,16 +112,6 @@ returns reference to object signal vector
 reset the oscillator 
 .br
 fs: sampling rate 
-.SS "template<typename S > virtual S \fBAurora::Osc\fP< S >::synth (S a, S f, double & phs, std::function< S(S)> fn)\fC [inline]\fP, \fC [protected]\fP, \fC [virtual]\fP"
-
-.SH "Member Data Documentation"
-.PP 
-.SS "template<typename S > std::function<S(S)> \fBAurora::Osc\fP< S >::fun\fC [protected]\fP"
-
-.SS "template<typename S > double \fBAurora::Osc\fP< S >::ph\fC [protected]\fP"
-
-.SS "template<typename S > S \fBAurora::Osc\fP< S >::ts\fC [protected]\fP"
-
 
 .SH "Author"
 .PP 

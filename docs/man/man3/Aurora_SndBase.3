@@ -32,16 +32,6 @@ Inherited by \fBAurora::BinOp< S >\fP, \fBAurora::Buff< S >\fP, \fBAurora::Conv<
 .RI "void \fBcopy_out\fP (S *out)"
 .br
 .in -1c
-.SS "Protected Member Functions"
-
-.in +1c
-.ti -1c
-.RI "const std::vector< S > & \fBprocess\fP (std::function< S()> f, std::size_t sz)"
-.br
-.ti -1c
-.RI "std::vector< S > & \fBget_sig\fP ()"
-.br
-.in -1c
 .SH "Detailed Description"
 .PP 
 
@@ -67,16 +57,12 @@ Copy sample data to out
 out: buffer receiving the audio data 
 .br
 output buffer needs to have space for \fBvsize()\fP samples\&. 
-.SS "template<typename S > std::vector<S>& \fBAurora::SndBase\fP< S >::get_sig ()\fC [inline]\fP, \fC [protected]\fP"
-
 .SS "template<typename S > void \fBAurora::SndBase\fP< S >::prealloc (std::size_t size)\fC [inline]\fP"
 Preallocate vector memory 
 .br
 size: size of vector to reserve in memory 
 .br
 this method does not change the vector size\&. 
-.SS "template<typename S > const std::vector<S>& \fBAurora::SndBase\fP< S >::process (std::function< S()> f, std::size_t sz)\fC [inline]\fP, \fC [protected]\fP"
-
 .SS "template<typename S > const std::vector<S>& \fBAurora::SndBase\fP< S >::vector () const\fC [inline]\fP"
 Vector access 
 .br

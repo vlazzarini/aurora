@@ -28,13 +28,6 @@ void \hyperlink{class_aurora_1_1_snd_base_a5d57c3b735e5d583b4b4ae5f8e9cdf4c}{pre
 \item 
 void \hyperlink{class_aurora_1_1_snd_base_af976d3953e96cf9b4f9ac2ca617c9d87}{copy\+\_\+out} (S $\ast$out)
 \end{DoxyCompactItemize}
-\subsection*{Protected Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_snd_base_a1601dc3f75fac1979d028bb7477d2544}{process} (std\+::function$<$ S()$>$ f, std\+::size\+\_\+t sz)
-\item 
-std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_snd_base_a96bccaaa1d5d3a78c4560b37af973696}{get\+\_\+sig} ()
-\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -66,14 +59,7 @@ void \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::co
 
 Copy sample data to out ~\newline
 out\+: buffer receiving the audio data ~\newline
-output buffer needs to have space for \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize()} samples. \mbox{\Hypertarget{class_aurora_1_1_snd_base_a96bccaaa1d5d3a78c4560b37af973696}\label{class_aurora_1_1_snd_base_a96bccaaa1d5d3a78c4560b37af973696}} 
-\index{Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}!get\+\_\+sig@{get\+\_\+sig}}
-\index{get\+\_\+sig@{get\+\_\+sig}!Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}}
-\subsubsection{\texorpdfstring{get\+\_\+sig()}{get\_sig()}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::get\+\_\+sig (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
-
-\mbox{\Hypertarget{class_aurora_1_1_snd_base_a5d57c3b735e5d583b4b4ae5f8e9cdf4c}\label{class_aurora_1_1_snd_base_a5d57c3b735e5d583b4b4ae5f8e9cdf4c}} 
+output buffer needs to have space for \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize()} samples. \mbox{\Hypertarget{class_aurora_1_1_snd_base_a5d57c3b735e5d583b4b4ae5f8e9cdf4c}\label{class_aurora_1_1_snd_base_a5d57c3b735e5d583b4b4ae5f8e9cdf4c}} 
 \index{Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}!prealloc@{prealloc}}
 \index{prealloc@{prealloc}!Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}}
 \subsubsection{\texorpdfstring{prealloc()}{prealloc()}}
@@ -82,14 +68,7 @@ void \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::pr
 
 Preallocate vector memory ~\newline
 size\+: size of vector to reserve in memory ~\newline
-this method does not change the vector size. \mbox{\Hypertarget{class_aurora_1_1_snd_base_a1601dc3f75fac1979d028bb7477d2544}\label{class_aurora_1_1_snd_base_a1601dc3f75fac1979d028bb7477d2544}} 
-\index{Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}!process@{process}}
-\index{process@{process}!Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}}
-\subsubsection{\texorpdfstring{process()}{process()}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_snd_base}{Aurora\+::\+Snd\+Base}$<$ S $>$\+::process (\begin{DoxyParamCaption}\item[{std\+::function$<$ S()$>$}]{f,  }\item[{std\+::size\+\_\+t}]{sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
-
-\mbox{\Hypertarget{class_aurora_1_1_snd_base_acf9171085003208901e23c1f50520345}\label{class_aurora_1_1_snd_base_acf9171085003208901e23c1f50520345}} 
+this method does not change the vector size. \mbox{\Hypertarget{class_aurora_1_1_snd_base_acf9171085003208901e23c1f50520345}\label{class_aurora_1_1_snd_base_acf9171085003208901e23c1f50520345}} 
 \index{Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}!vector@{vector}}
 \index{vector@{vector}!Aurora\+::\+Snd\+Base@{Aurora\+::\+Snd\+Base}}
 \subsubsection{\texorpdfstring{vector()}{vector()}}
