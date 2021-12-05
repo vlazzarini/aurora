@@ -3,7 +3,6 @@ Aurora
 
 A minimal header-only C++ audio synthesis and processing toolkit.
 
-
 Getting Started
 ------
 
@@ -24,9 +23,9 @@ objects).
 Multichannel audio data needs to be managed by keeping separate
 audio streams.
 
-- The audio processing interface employs functional operators with
+- The audio processing interface employs *functional* operators with
 various types of parameters, which depend on the kind of processing
-object used.  These functions always return  a read-only reference to
+object used.  These functions always return a read-only reference to
 the audio data object held by the processing object.
 
 - The sample type is a template argument for all libraries. These are
@@ -42,21 +41,25 @@ always ensure that vector sizes match.
 
 - Vector sizes of objects can be changed during processing without
 reallocation provided that they have enough capacity.
-If necessary, this can be ensured by reserving memory through the `prealloc()`
+If necessary, this can be ensured by reserving memory by means of the `prealloc()`
 method.
 
 - Some objects provide a `reset()` method as part of their interface.
 These methods should be invoked whenever the sampling rate changes.
+
+- As with the standard C++ library, users are not supposed to derive
+classes from the ones provided by Aurora, but use them to create
+different types of signal processing graphs by composition.
 
 Generic Interface
 ----------
 
 Some of the classes in Aurora provide a generic interface that makes
 use of processing functions supplied to objects. For example, the
-Osc class can be used to construct various types of oscillators,
+`Osc` class can be used to construct various types of oscillators,
 depending on the oscillator function employed. Functions for the
-most common forms of objects are supplied. User-defined functions
-can also be employed to extend these classes, also with the use of lambda
+most common forms of processing are supplied. User-defined functions
+can also be employed to extend these generic classes, with the use of lambda
 functions and closures. Some examples of these can be found in the
 relevant header files.
 
@@ -67,6 +70,7 @@ A variety of basic examples are provided. Some of these have no
 dependencies and output ASCII floating-point samples to the standard
 output. Others make use of libsndfile to access soundfiles of various
 formats.
+
 
 
 
