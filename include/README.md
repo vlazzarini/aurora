@@ -9,13 +9,13 @@ Aurora Headers
 
 **Env.h** : generic envelope and function templates
 
-**FFT.h** : fast -fourier transform
+**FFT.h** : fast fourier transform
 
-**FourPole.h** : four - pole lowpass filter
+**FourPole.h** : four-pole lowpass filter
 
 **Func.h** : generic function maps
 
-**TwoPole.h** : two-pole state-variable filter with optional nonlinearity
+**TwoPole.h** : two-pole state variable filter with optional nonlinearity
 
 **OnePole.h** : one-pole lowpass filter
 
