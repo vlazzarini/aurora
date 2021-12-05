@@ -83,48 +83,35 @@ public:
   */
   void prealloc(std::size_t size) { sig.reserve(size); }
 
-  /** Copy sample data \n
+  /** Copy sample data to out \n
       out: buffer receiving the audio data \n
       output buffer needs to have space for vsize() samples.
   */
-  void copy(S *out) { std::copy(sig.begin(), sig.end(), out); }
+  void copy_out(S *out) { std::copy(sig.begin(), sig.end(), out); }
 };
 
 /** Buff class \n
-    circular buffer \n
+    sample buffer \n
     S: sample type
 */
 template <typename S> class Buff : public SndBase<S> {
   using SndBase<S>::get_sig;
-  std::size_t p;
 
 public:
   /** Constructor \n
       vsize: signal vector size
   */
-  Buff(std::size_t vsize = def_vsize) : SndBase<S>(vsize), p(0){};
+  Buff(std::size_t vsize = def_vsize) : SndBase<S>(vsize){};
 
   /** Buffer \n
       in: audio input array \n
       n: number of samples in audio input array \n
-      a: scaling factor \n
       returns reference to object signal vector
   */
-  const std::vector<S> &operator()(S *in, std::size_t n = def_vsize,
-                                   S scal = 1.f) {
+  const std::vector<S> &operator()(S *in, std::size_t n = def_vsize) {
     auto &s = get_sig();
-    auto vs = this->vsize();
-    if (n == vs)
-      std::copy(in, in + n, s.begin());
-    else {
-      std::size_t k = 0;
-      std::size_t i = p;
-      for (std::size_t k = 0; k < n; k++) {
-        s[i] = in[k] * scal;
-        i = i != vs - 1 ? i + 1 : 0;
-      }
-      p = i;
-    }
+    this->resize(n);
+    std::copy(in, in + n, s.begin());
     return s;
   }
 };
