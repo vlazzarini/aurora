@@ -42,7 +42,7 @@ always ensure that vector sizes match.
 
 - Vector sizes of objects can be changed during processing without
 reallocation provided that they have enough capacity.
-This can be ensured by reserving memory through the `reserve()`
+If necessary, this can be ensured by reserving memory through the `prealloc()`
 method.
 
 - Some objects provide a `reset()` method as part of their interface.
