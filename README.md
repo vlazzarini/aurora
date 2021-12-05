@@ -12,7 +12,7 @@ generic forms of the most common synthesis and transformation
 components. The underlying principles of Aurora are:
 
 - Signals are passed to and from processing objects as `std::vector`
-objects holding audio samples.
+objects holding a vector size (`vsize`) of  audio samples.
 
 - Inputs are always read-only.
 
