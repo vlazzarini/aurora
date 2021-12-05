@@ -38,7 +38,7 @@ struct Synth {
   Osc<float> osc;
 
   Synth(float rt, float sr)
-      : att(0.1f), dec(0.3f), sus(0.7f), wave(def_vsize),
+      : att(0.f), dec(0.f), sus(0.f), wave(def_vsize),
         env(ads_gen(att, dec, sus), rt, sr), osc(lookupi_gen(wave), sr) {
     std::size_t n = 0;
     for (auto &s : wave) {
@@ -59,6 +59,9 @@ int main(int argc, const char *argv[]) {
     auto f = std::atof(argv[3]);
     float rel = 0.1;
     Synth synth(rel, sr);
+    synth.att = .1f;
+    synth.dec = .3f;
+    synth.sus = .7f;
     bool gate = 1;
     for (int n = 0; n < sr * dur; n += def_vsize) {
       if (n > sr * (dur - rel))

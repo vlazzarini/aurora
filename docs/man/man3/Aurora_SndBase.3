@@ -1,4 +1,4 @@
-.TH "Aurora::SndBase< S >" 3 "Sat Dec 4 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::SndBase< S >" 3 "Sun Dec 5 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,7 +9,7 @@ Aurora::SndBase< S >
 .PP
 \fC#include <SndBase\&.h>\fP
 .PP
-Inherited by \fBAurora::BinOp< S >\fP, \fBAurora::Conv< S >\fP, \fBAurora::Del< S >\fP\fC [private]\fP, \fBAurora::Env< S >\fP, \fBAurora::FourPole< S >\fP, \fBAurora::Func< S >\fP, \fBAurora::OnePole< S >\fP, \fBAurora::Osc< S >\fP, and \fBAurora::TwoPole< S >\fP\fC [private]\fP\&.
+Inherited by \fBAurora::BinOp< S >\fP, \fBAurora::Conv< S >\fP, \fBAurora::Del< S >\fP\fC [private]\fP, \fBAurora::Env< S >\fP, \fBAurora::FourPole< S >\fP, \fBAurora::Func< S >\fP, \fBAurora::Mix< S >\fP, \fBAurora::OnePole< S >\fP, \fBAurora::Osc< S >\fP, and \fBAurora::TwoPole< S >\fP\fC [private]\fP\&.
 .SS "Public Member Functions"
 
 .in +1c
@@ -28,12 +28,18 @@ Inherited by \fBAurora::BinOp< S >\fP, \fBAurora::Conv< S >\fP, \fBAurora::Del< 
 .ti -1c
 .RI "void \fBprealloc\fP (std::size_t size)"
 .br
+.ti -1c
+.RI "void \fBcopy\fP (S *out)"
+.br
 .in -1c
 .SS "Protected Member Functions"
 
 .in +1c
 .ti -1c
 .RI "const std::vector< S > & \fBprocess\fP (std::function< S()> f, std::size_t sz)"
+.br
+.ti -1c
+.RI "std::vector< S > & \fBget_sig\fP ()"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -55,6 +61,14 @@ Constructor
 vsize: signal vector size 
 .SH "Member Function Documentation"
 .PP 
+.SS "template<typename S > void \fBAurora::SndBase\fP< S >::copy (S * out)\fC [inline]\fP"
+Copy sample data 
+.br
+out: buffer receiving the audio data 
+.br
+output buffer needs to have space for \fBvsize()\fP samples\&. 
+.SS "template<typename S > std::vector<S>& \fBAurora::SndBase\fP< S >::get_sig ()\fC [inline]\fP, \fC [protected]\fP"
+
 .SS "template<typename S > void \fBAurora::SndBase\fP< S >::prealloc (std::size_t size)\fC [inline]\fP"
 Preallocate vector memory 
 .br

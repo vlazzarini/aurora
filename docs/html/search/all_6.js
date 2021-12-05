@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hp',['HP',['../namespace_aurora.html#a963f359f40fdbc5f4dbe4043534de9eba404a7e9d666dc8dc6a9492163a8f3d49',1,'Aurora']]]
+  ['get_5fsig',['get_sig',['../class_aurora_1_1_snd_base.html#a96bccaaa1d5d3a78c4560b37af973696',1,'Aurora::SndBase']]]
 ];

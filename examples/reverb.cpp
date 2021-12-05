@@ -75,7 +75,7 @@ int main(int argc, const char **argv) {
         std::vector<float> buffer(def_vsize);
         IR<float> ir(impulse, 512);
         Conv<float> delay(&ir);
-        BinOp<float> mix([](float a, float b) -> float { return a + b; });
+        Mix<float> mix;
         do {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
           if (n) {

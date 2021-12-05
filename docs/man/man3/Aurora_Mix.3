@@ -1,0 +1,52 @@
+.TH "Aurora::Mix< S >" 3 "Sun Dec 5 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::Mix< S >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <SndBase\&.h>\fP
+.PP
+Inherits \fBAurora::SndBase< S >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMix\fP (std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "template<typename\&.\&.\&. Ts> const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, Ts\&.\&.\&. args)"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S>
+.br
+class Aurora::Mix< S >"
+\fBMix\fP class 
+.br
+n-signal mixer 
+.br
+S: sample type 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S > \fBAurora::Mix\fP< S >::\fBMix\fP (std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+vsize: signal vector size 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S > template<typename\&.\&.\&. Ts> const std::vector<S>& \fBAurora::Mix\fP< S >::operator() (const std::vector< S > & in, Ts\&.\&.\&. args)\fC [inline]\fP"
+Mixer 
+.br
+in: first input signal 
+.br
+args: any number of other signal inputs 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

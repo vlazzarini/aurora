@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 3.13)
 project(Aurora_Examples)
-set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror")
 
 find_library(LIBSNDFILE_LIBRARY NAMES sndfile libsndfile-1 libsndfile)

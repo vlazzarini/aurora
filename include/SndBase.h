@@ -54,6 +54,8 @@ protected:
     return sig;
   }
 
+  std::vector<S> &get_sig() { return sig; };
+
 public:
   /** Constructor \n
       vsize: signal vector size
@@ -80,6 +82,12 @@ public:
       this method does not change the vector size.
   */
   void prealloc(std::size_t size) { sig.reserve(size); }
+
+  /** Copy sample data \n
+      out: buffer receiving the audio data \n
+      output buffer needs to have space for vsize() samples.
+  */
+  void copy(S *out) { std::copy(sig.begin(), sig.end(), out); }
 };
 
 /** BinOp class \n
@@ -152,6 +160,50 @@ template <typename S> S linear_interp(double pos, const std::vector<S> &t) {
   return t[posi] +
          frac * ((posi != t.size() - 1 ? t[posi + 1] : t[0]) - t[posi]);
 }
+
+/** Mix class \n
+    n-signal mixer \n
+    S: sample type
+*/
+template <typename S> class Mix : public SndBase<S> {
+  using SndBase<S>::process;
+  using SndBase<S>::get_sig;
+
+  const std::vector<S> &mix(std::vector<S> &out, const std::vector<S> &in) {
+    std::size_t n = 0;
+    return process(
+        [&]() {
+          auto s = out[n] + in[n];
+          n++;
+          return s;
+        },
+        in.size() < this->vsize() ? in.size() : this->vsize());
+  }
+
+  template <typename... Ts>
+  const std::vector<S> &mix(std::vector<S> &out, const std::vector<S> &in,
+                            Ts... args) {
+    mix(out, in);
+    return mix(out, args...);
+  }
+
+public:
+  /** Constructor \n
+      vsize: signal vector size
+  */
+  Mix(std::size_t vsize = def_vsize) : SndBase<S>(vsize){};
+
+  /** Mixer \n
+      in: first input signal \n
+      args: any number of other signal inputs
+ */
+  template <typename... Ts>
+  const std::vector<S> &operator()(const std::vector<S> &in, Ts... args) {
+    auto &s = get_sig();
+    std::fill(s.begin(), s.end(), 0);
+    return mix(s, in, args...);
+  }
+};
 
 } // namespace Aurora
 

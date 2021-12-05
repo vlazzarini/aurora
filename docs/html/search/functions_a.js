@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['phase',['phase',['../namespace_aurora.html#a2fab91108d29c7101741bcd2ebe1ba72',1,'Aurora']]],
-  ['prealloc',['prealloc',['../class_aurora_1_1_snd_base.html#a5d57c3b735e5d583b4b4ae5f8e9cdf4c',1,'Aurora::SndBase']]],
-  ['process',['process',['../class_aurora_1_1_snd_base.html#a1601dc3f75fac1979d028bb7477d2544',1,'Aurora::SndBase']]],
-  ['psize',['psize',['../class_aurora_1_1_i_r.html#a6243d747aeccbe57b2e18cb34a806d70',1,'Aurora::IR']]]
+  ['np2',['np2',['../namespace_aurora.html#a49b6f6d92479d80271ced42627154066',1,'Aurora']]],
+  ['nparts',['nparts',['../class_aurora_1_1_i_r.html#a77d0fec4d82334a2f5533b4c8044c4e1',1,'Aurora::IR']]]
 ];
