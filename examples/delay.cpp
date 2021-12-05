@@ -52,13 +52,14 @@ int main(int argc, const char **argv) {
         c = sqrt(c * c - 1.f) - c;
         float fdb = std::pow(.001, dt / rvt);
         std::vector<float> buffer(def_vsize);
-        auto delf = lpdelay_gen<float>(d, c, fixed_delay<float>);
+        auto delf = lpdelay_gen<float>(d, c, vdelay<float>);
         Del<float> delay(dt, delf, sfinfo.samplerate);
+        Mix<float> mix;
         do {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
           if (n) {
             buffer.resize(n);
-            auto &out = delay(buffer, dt, fdb);
+            auto &out = mix(delay(buffer, dt, fdb), buffer);
             sf_write_float(fpout, out.data(), n);
           } else
             break;
