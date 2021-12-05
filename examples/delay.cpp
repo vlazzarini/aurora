@@ -52,7 +52,7 @@ int main(int argc, const char **argv) {
         c = sqrt(c * c - 1.f) - c;
         float fdb = std::pow(.001, dt / rvt);
         std::vector<float> buffer(def_vsize);
-        auto delf = lpdelay_gen<float>(d, c, vdelayi<float>);
+        auto delf = lpdelay_gen<float>(d, c, vdelay<float>);
         Del<float> delay(dt, delf, sfinfo.samplerate);
         do {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
