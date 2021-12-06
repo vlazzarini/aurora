@@ -175,18 +175,6 @@ public:
   void func(const std::function<S(S, S)> &f) { op = f; }
 };
 
-/** linear interpolation table lookup \n
-    S: sample type \n
-    pos: reading position (no bounds check) \n
-    t: table
-*/
-template <typename S> S linear_interp(double pos, const std::vector<S> &t) {
-  size_t posi = (size_t)pos;
-  double frac = pos - posi;
-  return t[posi] +
-         frac * ((posi != t.size() - 1 ? t[posi + 1] : t[0]) - t[posi]);
-}
-
 /** Mix class \n
     n-signal mixer \n
     S: sample type
@@ -230,6 +218,38 @@ public:
     return mix(s, in, args...);
   }
 };
+
+/** linear interpolation table lookup \n
+    S: sample type \n
+    pos: reading position (no bounds check) \n
+    t: table
+*/
+template <typename S> S linear_interp(double pos, const std::vector<S> &t) {
+  size_t posi = (size_t)pos;
+  double frac = pos - posi;
+  return t[posi] +
+         frac * ((posi != t.size() - 1 ? t[posi + 1] : t[0]) - t[posi]);
+}
+
+/** cubic interpolation table lookup \n
+    S: sample type \n
+    pos: reading position (no bounds check) \n
+    t: table
+*/
+template <typename S> S cubic_interp(double pos, const std::vector<S> &t) {
+  size_t posi = (size_t)pos;
+  double frac = pos - posi;
+  double a = posi == 0 ? t[0] : t[posi - 1];
+  double b = t[posi];
+  double c = posi != t.size() - 1 ? t[posi + 1] : t[0];
+  double d =
+      posi != t.size() - 2 ? (posi != t.size() - 1 ? t[posi + 1] : t[0]) : t[1];
+  double tmp = d + 3.f * b;
+  double fracsq = frac * frac;
+  double fracb = frac * fracsq;
+  return fracb * (-a - 3 * c + tmp) / 6 + fracsq * ((a + c) / 2 - b) +
+         frac * (c + (-2 * a - tmp) / 6) + b;
+}
 
 } // namespace Aurora
 

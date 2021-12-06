@@ -35,7 +35,7 @@
 namespace Aurora {
 const double twopi = 2 * M_PI;
 
-/** Table lookup function generator for Osc \n
+/** Truncating table lookup function generator for Osc \n
     S: sample type \n
     t: function table  \n
     returns a truncating table lookup function
@@ -44,13 +44,22 @@ template <typename S> std::function<S(S)> lookup_gen(const std::vector<S> &t) {
   return [&t](double ph) -> S { return t[(std::size_t)(ph * t.size())]; };
 }
 
-/** Table lookup function generator for Osc \n
+/** Linear interp table lookup function generator for Osc \n
     S: sample type \n
     t: function table  \n
     returns an interpolating table lookup function
 */
 template <typename S> std::function<S(S)> lookupi_gen(const std::vector<S> &t) {
   return [&t](double ph) -> S { return linear_interp(ph * t.size(), t); };
+}
+
+/** Cubic interp table lookup function generator for Osc \n
+    S: sample type \n
+    t: function table  \n
+    returns a cubic interpolating table lookup function
+*/
+template <typename S> std::function<S(S)> lookupc_gen(const std::vector<S> &t) {
+  return [&t](double ph) -> S { return cubic_interp(ph * t.size(), t); };
 }
 
 /** Sine function for Osc \n

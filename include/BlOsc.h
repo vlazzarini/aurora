@@ -45,6 +45,7 @@ template <typename S> class TableSet {
   std::size_t tlen;
   std::vector<std::vector<S>> waves;
   S base;
+  std::function<std::function<S(S)>(const std::vector<S> &)> fgen;
 
   void norm(std::vector<S> &wave) {
     S max = 0.;
@@ -133,7 +134,7 @@ public:
   */
   TableSet(uint32_t type, S fs = def_sr, std::size_t len = def_ftlen)
       : tlen(len), waves((int)std::log2(fs / def_base), std::vector<S>(len)),
-        base((S)def_base) {
+        base((S)def_base), fgen(lookupi_gen<S>) {
     create(fs, type);
   }
 
@@ -144,14 +145,22 @@ public:
   */
   TableSet(const std::vector<S> &src, S b = def_base, S fs = def_sr)
       : tlen(src.size()), waves((int)std::log2(fs / b), std::vector<S>(tlen)),
-        base(1 / (b * tlen / fs)) {
+        base(1 / (b * tlen / fs)), fgen(lookupi_gen<S>) {
     fourier(src, fs);
   }
 
   /** Function selection \n
       f: fundamental frequency used for playback
   */
-  std::function<S(S)> func(S f) const { return lookupi_gen(select(f)); }
+  std::function<S(S)> func(S f) const { return fgen(select(f)); }
+
+  /** Change the lookup function generator \n
+      f: lookup function generator
+      (default at construction time is lookupi_gen)
+  */
+  void fungen(std::function<std::function<S(S)>(const std::vector<S> &)> f) {
+    fgen = f;
+  }
 
   /** reset the table set \n
       type: wave type (SAW, SQUARE, TRIANGLE, PULSE) \n

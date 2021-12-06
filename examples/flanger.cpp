@@ -46,6 +46,7 @@ int main(int argc, const char **argv) {
       if (sfinfo.channels < 2) {
         fpout = sf_open(argv[2], SFM_WRITE, &sfinfo);
         float mxdel = atof(argv[3]) / 1000.;
+        mxdel = mxdel < 10.f ? mxdel : 10.f;
         float fr = atof(argv[4]);
         float fdb = atof(argv[5]);
         float g = atof(argv[6]);
@@ -54,19 +55,16 @@ int main(int argc, const char **argv) {
           return Aurora::cos<float>(x) * 0.49 + 0.51;
         };
         Osc<float> lfo(lfofun, sfinfo.samplerate);
-        auto delf = vdelayi<float>;
-        Del<float> delay(1, delf, sfinfo.samplerate);
+        auto delf = vdelayc<float>;
+        Del<float> delay(0.01, delf, sfinfo.samplerate);
         BinOp<float> gain([](float a, float b) -> float { return a * b; });
         do {
+          std::fill(buffer.begin(), buffer.end(), 0);
           n = sf_read_float(fpin, buffer.data(), def_vsize);
-          if (n) {
-            buffer.resize(n);
-            auto &dlt = lfo(mxdel, fr);
-            auto &out = gain(delay(buffer, dlt, fdb), g);
-            sf_write_float(fpout, out.data(), n);
-          } else
-            break;
-        } while (1);
+          auto &dlt = lfo(mxdel, fr);
+          auto &out = gain(delay(buffer, dlt, fdb), g);
+          sf_write_float(fpout, out.data(), n);
+        } while (n);
         sf_close(fpout);
         return 0;
       } else

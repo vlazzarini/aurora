@@ -46,6 +46,15 @@ S fixed_delay(S rp, std::size_t wp, const std::vector<S> &d) {
   return d[wp];
 }
 
+template <typename S> inline S rpos(S rp, std::size_t wp, std::size_t ds) {
+  rp = wp - rp;
+  while (rp < 0)
+    rp += ds;
+  while (rp >= ds)
+    rp -= ds;
+  return rp;
+}
+
 /** Truncating delay function for Del \n
     S: sample type \n
     rp: reading position \n
@@ -56,12 +65,7 @@ S fixed_delay(S rp, std::size_t wp, const std::vector<S> &d) {
 template <typename S>
 S vdelay(S rp, std::size_t wp, const std::vector<S> &del) {
   std::size_t ds = del.size();
-  rp = wp - rp;
-  while (rp < 0)
-    rp += ds;
-  while (rp >= ds)
-    rp -= ds;
-  return del[(std::size_t)rp];
+  return del[(std::size_t)rpos(rp, wp, ds)];
 }
 
 /** Interpolation delay function for Del \n
@@ -75,12 +79,21 @@ S vdelay(S rp, std::size_t wp, const std::vector<S> &del) {
 template <typename S>
 S vdelayi(S rp, std::size_t wp, const std::vector<S> &del) {
   std::size_t ds = del.size();
-  rp = wp - rp;
-  while (rp < 0)
-    rp += ds;
-  while (rp >= ds)
-    rp -= ds;
-  return linear_interp(rp, del);
+  return linear_interp(rpos(rp, wp, ds), del);
+}
+
+/** CubicInterpolation delay function for Del \n
+    S: sample type \n
+    rp: reading position \n
+    wp: write position \n
+    d: delay line \n
+    returns a sample from the delay line rp samples behind wp, \n
+    cubic interpolated
+*/
+template <typename S>
+S vdelayc(S rp, std::size_t wp, const std::vector<S> &del) {
+  std::size_t ds = del.size();
+  return cubic_interp(rpos(rp, wp, ds), del);
 }
 
 /** Generating function for lpf delay function  \n

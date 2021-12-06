@@ -13,6 +13,8 @@
 \item 
 std\+::function$<$ S(S)$>$ \hyperlink{class_aurora_1_1_table_set_a27a325a2c3c4b8cd50e0c86d6ac3c617}{func} (S f) const
 \item 
+void \hyperlink{class_aurora_1_1_table_set_acd30711601ff6c362253c5d0d9582390}{fungen} (std\+::function$<$ std\+::function$<$ S(S)$>$(const std\+::vector$<$ S $>$ \&)$>$ f)
+\item 
 void \hyperlink{class_aurora_1_1_table_set_ac2c945c49d53f60fd909dc771a6ff7e5}{reset} (uint32\+\_\+t type, S fs, std\+::size\+\_\+t len=\hyperlink{namespace_aurora_a14dabfd9feedfa09c0e6f86d2627f006}{def\+\_\+ftlen})
 \item 
 void \hyperlink{class_aurora_1_1_table_set_afec852dca45285ec57b6a4a97dffac36}{reset} (const std\+::vector$<$ S $>$ \&src, S b, S fs)
@@ -59,7 +61,15 @@ fs\+: source table sampling rate
 std\+::function$<$S(S)$>$ \hyperlink{class_aurora_1_1_table_set}{Aurora\+::\+Table\+Set}$<$ S $>$\+::func (\begin{DoxyParamCaption}\item[{S}]{f }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Function selection ~\newline
-f\+: fundamental frequency used for playback \mbox{\Hypertarget{class_aurora_1_1_table_set_ac2c945c49d53f60fd909dc771a6ff7e5}\label{class_aurora_1_1_table_set_ac2c945c49d53f60fd909dc771a6ff7e5}} 
+f\+: fundamental frequency used for playback \mbox{\Hypertarget{class_aurora_1_1_table_set_acd30711601ff6c362253c5d0d9582390}\label{class_aurora_1_1_table_set_acd30711601ff6c362253c5d0d9582390}} 
+\index{Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}!fungen@{fungen}}
+\index{fungen@{fungen}!Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}}
+\subsubsection{\texorpdfstring{fungen()}{fungen()}}
+{\footnotesize\ttfamily template$<$typename S$>$ \\
+void \hyperlink{class_aurora_1_1_table_set}{Aurora\+::\+Table\+Set}$<$ S $>$\+::fungen (\begin{DoxyParamCaption}\item[{std\+::function$<$ std\+::function$<$ S(S)$>$(const std\+::vector$<$ S $>$ \&)$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Change the lookup function generator ~\newline
+f\+: lookup function generator (default at construction time is lookupi\+\_\+gen) \mbox{\Hypertarget{class_aurora_1_1_table_set_ac2c945c49d53f60fd909dc771a6ff7e5}\label{class_aurora_1_1_table_set_ac2c945c49d53f60fd909dc771a6ff7e5}} 
 \index{Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}!reset@{reset}}
 \index{reset@{reset}!Aurora\+::\+Table\+Set@{Aurora\+::\+Table\+Set}}
 \subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}

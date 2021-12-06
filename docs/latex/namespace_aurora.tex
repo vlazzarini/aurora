@@ -58,9 +58,13 @@ enum \+: int32\+\_\+t \{ \hyperlink{namespace_aurora_a963f359f40fdbc5f4dbe404353
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a62442f237e70fdaac1efc22b4e82e875}{fixed\+\_\+delay} (S rp, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&d)
 \item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_acb1ce86283459c42ac18de7634e9a2e9}{rpos} (S rp, std\+::size\+\_\+t wp, std\+::size\+\_\+t ds)
+\item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_ab93392950e0b9ae8fbbccf7cc1b55a13}{vdelay} (S rp, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&del)
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a5318ddb492590ada5dc40ba80bbf655b}{vdelayi} (S rp, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&del)
+\item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_ac522d6f69ef7018efa8ac07fd26ad057}{vdelayc} (S rp, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&del)
 \item 
 {\footnotesize template$<$typename S $>$ }\\std\+::function$<$ S(S, std\+::size\+\_\+t, const std\+::vector$<$ S $>$ \&)$>$ \hyperlink{namespace_aurora_a8a142312f627aaa19ba0e8a87f33d00b}{lpdelay\+\_\+gen} (S \&s, double \&c, std\+::function$<$ S(S, std\+::size\+\_\+t, const std\+::vector$<$ S $>$ \&)$>$ f)
 \item 
@@ -74,6 +78,8 @@ static uint32\+\_\+t \hyperlink{namespace_aurora_a49b6f6d92479d80271ced426271540
 \item 
 {\footnotesize template$<$typename S $>$ }\\std\+::function$<$ S(S)$>$ \hyperlink{namespace_aurora_a043c55515e053a8d6f31ed7077a1bea6}{lookupi\+\_\+gen} (const std\+::vector$<$ S $>$ \&t)
 \item 
+{\footnotesize template$<$typename S $>$ }\\std\+::function$<$ S(S)$>$ \hyperlink{namespace_aurora_a3f915a11dad5ebfa5cbd6b2beca3b5f7}{lookupc\+\_\+gen} (const std\+::vector$<$ S $>$ \&t)
+\item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a388ea5736944d8887f5586afd45a03b8}{sin} (double ph)
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_ab6ef1b966b8f27d107fcabe1027a677a}{cos} (double ph)
@@ -81,6 +87,8 @@ static uint32\+\_\+t \hyperlink{namespace_aurora_a49b6f6d92479d80271ced426271540
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a2fab91108d29c7101741bcd2ebe1ba72}{phase} (double ph)
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_acdc5f35b9cbf54f7fc84a423d76bd488}{linear\+\_\+interp} (double pos, const std\+::vector$<$ S $>$ \&t)
+\item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a35b9cf383290bddedd82b7c3d0f05e81}{cubic\+\_\+interp} (double pos, const std\+::vector$<$ S $>$ \&t)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -171,7 +179,17 @@ S Aurora\+::cos (\begin{DoxyParamCaption}\item[{double}]{ph }\end{DoxyParamCapti
 Cosine function for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
 S\+: sample type ~\newline
 ph\+: normalised phase ~\newline
-returns the cosine of ph$\ast$2$\ast$\$\+M\+\_\+\+PI \mbox{\Hypertarget{namespace_aurora_abf3b452f54db43f366b261c3702b0c0b}\label{namespace_aurora_abf3b452f54db43f366b261c3702b0c0b}} 
+returns the cosine of ph$\ast$2$\ast$\$\+M\+\_\+\+PI \mbox{\Hypertarget{namespace_aurora_a35b9cf383290bddedd82b7c3d0f05e81}\label{namespace_aurora_a35b9cf383290bddedd82b7c3d0f05e81}} 
+\index{Aurora@{Aurora}!cubic\+\_\+interp@{cubic\+\_\+interp}}
+\index{cubic\+\_\+interp@{cubic\+\_\+interp}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{cubic\+\_\+interp()}{cubic\_interp()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::cubic\+\_\+interp (\begin{DoxyParamCaption}\item[{double}]{pos,  }\item[{const std\+::vector$<$ S $>$ \&}]{t }\end{DoxyParamCaption})}
+
+cubic interpolation table lookup ~\newline
+S\+: sample type ~\newline
+pos\+: reading position (no bounds check) ~\newline
+t\+: table \mbox{\Hypertarget{namespace_aurora_abf3b452f54db43f366b261c3702b0c0b}\label{namespace_aurora_abf3b452f54db43f366b261c3702b0c0b}} 
 \index{Aurora@{Aurora}!fir\+\_\+gen@{fir\+\_\+gen}}
 \index{fir\+\_\+gen@{fir\+\_\+gen}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{fir\+\_\+gen()}{fir\_gen()}}
@@ -209,17 +227,27 @@ t\+: table \mbox{\Hypertarget{namespace_aurora_ade912bee8dbe0351b2193809ce592d8b
 {\footnotesize\ttfamily template$<$typename S $>$ \\
 std\+::function$<$S(S)$>$ Aurora\+::lookup\+\_\+gen (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{t }\end{DoxyParamCaption})}
 
-Table lookup function generator for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
+Truncating table lookup function generator for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
 S\+: sample type ~\newline
 t\+: function table ~\newline
-returns a truncating table lookup function \mbox{\Hypertarget{namespace_aurora_a043c55515e053a8d6f31ed7077a1bea6}\label{namespace_aurora_a043c55515e053a8d6f31ed7077a1bea6}} 
+returns a truncating table lookup function \mbox{\Hypertarget{namespace_aurora_a3f915a11dad5ebfa5cbd6b2beca3b5f7}\label{namespace_aurora_a3f915a11dad5ebfa5cbd6b2beca3b5f7}} 
+\index{Aurora@{Aurora}!lookupc\+\_\+gen@{lookupc\+\_\+gen}}
+\index{lookupc\+\_\+gen@{lookupc\+\_\+gen}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{lookupc\+\_\+gen()}{lookupc\_gen()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+std\+::function$<$S(S)$>$ Aurora\+::lookupc\+\_\+gen (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{t }\end{DoxyParamCaption})}
+
+Cubic interp table lookup function generator for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
+S\+: sample type ~\newline
+t\+: function table ~\newline
+returns a cubic interpolating table lookup function \mbox{\Hypertarget{namespace_aurora_a043c55515e053a8d6f31ed7077a1bea6}\label{namespace_aurora_a043c55515e053a8d6f31ed7077a1bea6}} 
 \index{Aurora@{Aurora}!lookupi\+\_\+gen@{lookupi\+\_\+gen}}
 \index{lookupi\+\_\+gen@{lookupi\+\_\+gen}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{lookupi\+\_\+gen()}{lookupi\_gen()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
 std\+::function$<$S(S)$>$ Aurora\+::lookupi\+\_\+gen (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{t }\end{DoxyParamCaption})}
 
-Table lookup function generator for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
+Linear interp table lookup function generator for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
 S\+: sample type ~\newline
 t\+: function table ~\newline
 returns an interpolating table lookup function \mbox{\Hypertarget{namespace_aurora_a8a142312f627aaa19ba0e8a87f33d00b}\label{namespace_aurora_a8a142312f627aaa19ba0e8a87f33d00b}} 
@@ -276,7 +304,14 @@ S Aurora\+::phase (\begin{DoxyParamCaption}\item[{double}]{ph }\end{DoxyParamCap
 Phase function for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
 S\+: sample type ~\newline
 ph\+: normalised phase ~\newline
-returns ph \mbox{\Hypertarget{namespace_aurora_a388ea5736944d8887f5586afd45a03b8}\label{namespace_aurora_a388ea5736944d8887f5586afd45a03b8}} 
+returns ph \mbox{\Hypertarget{namespace_aurora_acb1ce86283459c42ac18de7634e9a2e9}\label{namespace_aurora_acb1ce86283459c42ac18de7634e9a2e9}} 
+\index{Aurora@{Aurora}!rpos@{rpos}}
+\index{rpos@{rpos}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{rpos()}{rpos()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::rpos (\begin{DoxyParamCaption}\item[{S}]{rp,  }\item[{std\+::size\+\_\+t}]{wp,  }\item[{std\+::size\+\_\+t}]{ds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespace_aurora_a388ea5736944d8887f5586afd45a03b8}\label{namespace_aurora_a388ea5736944d8887f5586afd45a03b8}} 
 \index{Aurora@{Aurora}!sin@{sin}}
 \index{sin@{sin}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{sin()}{sin()}}
@@ -298,7 +333,20 @@ S\+: sample type ~\newline
 rp\+: reading position ~\newline
 wp\+: write position ~\newline
 d\+: delay line ~\newline
-returns a sample from the delay line floor(rp) samples behind wp \mbox{\Hypertarget{namespace_aurora_a5318ddb492590ada5dc40ba80bbf655b}\label{namespace_aurora_a5318ddb492590ada5dc40ba80bbf655b}} 
+returns a sample from the delay line floor(rp) samples behind wp \mbox{\Hypertarget{namespace_aurora_ac522d6f69ef7018efa8ac07fd26ad057}\label{namespace_aurora_ac522d6f69ef7018efa8ac07fd26ad057}} 
+\index{Aurora@{Aurora}!vdelayc@{vdelayc}}
+\index{vdelayc@{vdelayc}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{vdelayc()}{vdelayc()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::vdelayc (\begin{DoxyParamCaption}\item[{S}]{rp,  }\item[{std\+::size\+\_\+t}]{wp,  }\item[{const std\+::vector$<$ S $>$ \&}]{del }\end{DoxyParamCaption})}
+
+Cubic\+Interpolation delay function for \hyperlink{class_aurora_1_1_del}{Del} ~\newline
+S\+: sample type ~\newline
+rp\+: reading position ~\newline
+wp\+: write position ~\newline
+d\+: delay line ~\newline
+returns a sample from the delay line rp samples behind wp, ~\newline
+cubic interpolated \mbox{\Hypertarget{namespace_aurora_a5318ddb492590ada5dc40ba80bbf655b}\label{namespace_aurora_a5318ddb492590ada5dc40ba80bbf655b}} 
 \index{Aurora@{Aurora}!vdelayi@{vdelayi}}
 \index{vdelayi@{vdelayi}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{vdelayi()}{vdelayi()}}

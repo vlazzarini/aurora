@@ -1,4 +1,4 @@
-.TH "Del.h" 3 "Sun Dec 5 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Del.h" 3 "Mon Dec 6 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -34,10 +34,16 @@ Del.h
 .RI "template<typename S > S \fBAurora::fixed_delay\fP (S rp, std::size_t wp, const std::vector< S > &d)"
 .br
 .ti -1c
+.RI "template<typename S > S \fBAurora::rpos\fP (S rp, std::size_t wp, std::size_t ds)"
+.br
+.ti -1c
 .RI "template<typename S > S \fBAurora::vdelay\fP (S rp, std::size_t wp, const std::vector< S > &del)"
 .br
 .ti -1c
 .RI "template<typename S > S \fBAurora::vdelayi\fP (S rp, std::size_t wp, const std::vector< S > &del)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBAurora::vdelayc\fP (S rp, std::size_t wp, const std::vector< S > &del)"
 .br
 .ti -1c
 .RI "template<typename S > std::function< S(S, std::size_t, const std::vector< S > &)> \fBAurora::lpdelay_gen\fP (S &s, double &c, std::function< S(S, std::size_t, const std::vector< S > &)> f)"
