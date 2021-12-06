@@ -96,13 +96,18 @@ protected:
   std::function<S(S)> fun;
 
   virtual S synth(S a, S f, double &phs, std::function<S(S)> fn) {
-    S s = (S)(a * fn(phs));
-    phs += f * ts;
     while (phs < 0)
       phs += 1.;
     while (phs >= 1.)
       phs -= 1.;
+    S s = (S)(a * fn(phs));
+    phs += f * ts;
     return s;
+  }
+
+  virtual void reset_obj(S fs) {
+    ts = 1 / fs;
+    ph = 0.;
   }
 
 public:
@@ -142,7 +147,7 @@ public:
   const std::vector<S> &operator()(S a, const std::vector<S> &fm) {
     double phs = ph;
     std::size_t n = 0;
-    auto &s = process([&]() { return synth(a, fm[n++], phs, fun); }, 0);
+    auto &s = process([&]() { return synth(a, fm[n++], phs, fun); }, fm.size());
     ph = phs;
     return s;
   }
@@ -155,7 +160,7 @@ public:
   const std::vector<S> &operator()(const std::vector<S> &am, S f) {
     double phs = ph;
     std::size_t n = 0;
-    auto &s = process([&]() { return synth(am[n++], f, phs, fun); }, 0);
+    auto &s = process([&]() { return synth(am[n++], f, phs, fun); }, am.size());
     ph = phs;
     return s;
   }
@@ -180,15 +185,56 @@ public:
     return s;
   }
 
+  /** Oscillator \n
+     a: scalar amplitude \n
+    f:  scalar frequency  \n
+    pm: phase modulation signal \n
+    returns reference to object signal vector
+ */
+  const std::vector<S> &operator()(S a, S f, const std::vector<S> &pm) {
+    double phs = ph;
+    std::size_t n = 0;
+    auto &s =
+        process([&]() { return synth(a, f, phs + pm[n++], fun); }, pm.size());
+    ph = phs;
+    return s;
+  }
+
+  /** Oscillator \n
+      am: amplitude signal \n
+      f:  scalar frequency  \n
+      pm: phase modulation signal \n
+      returns reference to object signal vector
+  */
+  const std::vector<S> &operator()(const std::vector<S> &am, S f,
+                                   const std::vector<S> &pm) {
+    double phs = ph;
+    std::size_t n = 0;
+    auto &s = process(
+        [&]() {
+          auto s = synth(am[n], f, phs + pm[n], fun);
+          n++;
+          return s;
+        },
+        am.size() < pm.size() ? am.size() : pm.size());
+    ph = phs;
+    return s;
+  }
+
   /** set the oscillator function \n
       f: oscillator function to be used
   */
   void func(const std::function<S(S)> f) { fun = f; }
 
+  /** set the internal oscillator phase \n
+      phs: phase
+  */
+  void phase(double phs) { ph = phs; }
+
   /** reset the oscillator \n
       fs: sampling rate
    */
-  void reset(S fs) { ts = 1 / fs; }
+  void reset(S fs) { reset_obj(fs); }
 };
 } // namespace Aurora
 

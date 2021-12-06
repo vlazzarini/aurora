@@ -200,6 +200,11 @@ template <typename S> class BlOsc : public Osc<S> {
     return Osc<S>::synth(a, f, phs, fn);
   }
 
+  void reset_obj(S fs) override {
+    ff = 0;
+    Osc<S>::reset_obj(fs);
+  }
+
 public:
   /** Constructor \n
       t: wavetable set \n

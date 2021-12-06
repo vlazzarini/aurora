@@ -37,7 +37,16 @@ Inherited by \fBAurora::BlOsc< S >\fP\&.
 .RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &am, const std::vector< S > &fm)"
 .br
 .ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (S a, S f, const std::vector< S > &pm)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &am, S f, const std::vector< S > &pm)"
+.br
+.ti -1c
 .RI "void \fBfunc\fP (const std::function< S(S)> f)"
+.br
+.ti -1c
+.RI "void \fBphase\fP (double phs)"
 .br
 .ti -1c
 .RI "void \fBreset\fP (S \fBfs\fP)"
@@ -108,6 +117,30 @@ am: amplitude signal
 fm: frequency signal 
 .br
 returns reference to object signal vector 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Osc\fP< S >::operator() (S a, S f, const std::vector< S > & pm)\fC [inline]\fP"
+Oscillator 
+.br
+ a: scalar amplitude 
+.br
+f: scalar frequency 
+.br
+pm: phase modulation signal 
+.br
+returns reference to object signal vector 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Osc\fP< S >::operator() (const std::vector< S > & am, S f, const std::vector< S > & pm)\fC [inline]\fP"
+Oscillator 
+.br
+am: amplitude signal 
+.br
+f: scalar frequency 
+.br
+pm: phase modulation signal 
+.br
+returns reference to object signal vector 
+.SS "template<typename S > void \fBAurora::Osc\fP< S >::phase (double phs)\fC [inline]\fP"
+set the internal oscillator phase 
+.br
+phs: phase 
 .SS "template<typename S > void \fBAurora::Osc\fP< S >::reset (S fs)\fC [inline]\fP"
 reset the oscillator 
 .br
