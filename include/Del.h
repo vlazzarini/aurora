@@ -46,6 +46,7 @@ S fixed_delay(S rp, std::size_t wp, const std::vector<S> &d) {
   return d[wp];
 }
 
+/* \cond */
 template <typename S> inline S rpos(S rp, std::size_t wp, std::size_t ds) {
   rp = wp - rp;
   while (rp < 0)
@@ -54,6 +55,7 @@ template <typename S> inline S rpos(S rp, std::size_t wp, std::size_t ds) {
     rp -= ds;
   return rp;
 }
+/* \endcond */
 
 /** Truncating delay function for Del \n
     S: sample type \n
