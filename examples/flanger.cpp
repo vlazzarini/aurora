@@ -36,6 +36,27 @@
 
 using namespace Aurora;
 
+struct Flanger {
+  Osc<float> lfo;
+  Del<float> delay;
+  BinOp<float> gain;
+  float mxdel;
+
+  Flanger(float maxdt, float sr)
+      : lfo(
+            [](float x) -> float {
+              return Aurora::cos<float>(x) * 0.49 + 0.51;
+            },
+            sr),
+        delay(maxdt, vdelayc<float>, sr),
+        gain([](float a, float b) -> float { return a * b; }), mxdel(maxdt) {}
+
+  const std::vector<float> &operator()(const std::vector<float> &in, float fr,
+                                       float fdb, float g) {
+    return gain(delay(in, lfo(mxdel, fr), fdb), g);
+  }
+};
+
 int main(int argc, const char **argv) {
   SF_INFO sfinfo;
   SNDFILE *fpin, *fpout;
@@ -51,18 +72,11 @@ int main(int argc, const char **argv) {
         float fdb = atof(argv[5]);
         float g = atof(argv[6]);
         std::vector<float> buffer(def_vsize);
-        auto lfofun = [](float x) -> float {
-          return Aurora::cos<float>(x) * 0.49 + 0.51;
-        };
-        Osc<float> lfo(lfofun, sfinfo.samplerate);
-        auto delf = vdelayc<float>;
-        Del<float> delay(0.01, delf, sfinfo.samplerate);
-        BinOp<float> gain([](float a, float b) -> float { return a * b; });
+        Flanger flanger(mxdel, sfinfo.samplerate);
         do {
           std::fill(buffer.begin(), buffer.end(), 0);
           n = sf_read_float(fpin, buffer.data(), def_vsize);
-          auto &dlt = lfo(mxdel, fr);
-          auto &out = gain(delay(buffer, dlt, fdb), g);
+          auto &out = flanger(buffer, fr, fdb, g);
           sf_write_float(fpout, out.data(), n);
         } while (n);
         sf_close(fpout);
