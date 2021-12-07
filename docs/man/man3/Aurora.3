@@ -1,0 +1,368 @@
+.TH "Aurora" 3 "Tue Dec 7 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBBinOp\fP"
+.br
+.ti -1c
+.RI "class \fBBlOsc\fP"
+.br
+.ti -1c
+.RI "class \fBBuff\fP"
+.br
+.ti -1c
+.RI "class \fBConv\fP"
+.br
+.ti -1c
+.RI "class \fBDel\fP"
+.br
+.ti -1c
+.RI "class \fBEnv\fP"
+.br
+.ti -1c
+.RI "class \fBFFT\fP"
+.br
+.ti -1c
+.RI "class \fBFourPole\fP"
+.br
+.ti -1c
+.RI "class \fBFunc\fP"
+.br
+.ti -1c
+.RI "class \fBIR\fP"
+.br
+.ti -1c
+.RI "class \fBMix\fP"
+.br
+.ti -1c
+.RI "class \fBOnePole\fP"
+.br
+.ti -1c
+.RI "class \fBOsc\fP"
+.br
+.ti -1c
+.RI "class \fBSndBase\fP"
+.br
+.ti -1c
+.RI "class \fBTableSet\fP"
+.br
+.ti -1c
+.RI "class \fBTwoPole\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBSAW\fP = 0, \fBSQUARE\fP, \fBTRIANGLE\fP, \fBPULSE\fP }"
+.br
+.ti -1c
+.RI "enum : int32_t { \fBLP\fP = -1, \fBHP\fP, \fBBP\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename S > S \fBfixed_delay\fP (S nop, std::size_t wp, const std::vector< S > &d, const std::vector< S > *nop1)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBvdelay\fP (S rp, std::size_t wp, const std::vector< S > &del, const std::vector< S > *nop)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBvdelayi\fP (S rp, std::size_t wp, const std::vector< S > &del, const std::vector< S > *nop)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBvdelayc\fP (S rp, std::size_t wp, const std::vector< S > &del, const std::vector< S > *nop)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBfir\fP (S nop, std::size_t wp, const std::vector< S > &del, const std::vector< S > *ir)"
+.br
+.ti -1c
+.RI "template<typename S > std::function< S(double, S, S)> \fBads_gen\fP (const S &a, const S &d, const S &s)"
+.br
+.ti -1c
+.RI "static uint32_t \fBnp2\fP (uint32_t n)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBlookup\fP (double ph, const std::vector< S > *t)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBlookupi\fP (double ph, const std::vector< S > *t)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBlookupc\fP (double ph, const std::vector< S > *t)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBsin\fP (double ph, const std::vector< S > *t=0)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBcos\fP (double ph, const std::vector< S > *t=0)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBphase\fP (double ph, const std::vector< S > *t=0)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBlinear_interp\fP (double pos, const std::vector< S > &t)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBcubic_interp\fP (double pos, const std::vector< S > &t)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBid\fP (S s, S dr)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const double \fBdef_base\fP = 16\&."
+.br
+.ti -1c
+.RI "const int \fBdef_ftlen\fP = 16384"
+.br
+.ti -1c
+.RI "const std::size_t \fBdef_psize\fP = 2048"
+.br
+.ti -1c
+.RI "const bool \fBola\fP = 0"
+.br
+.ti -1c
+.RI "const bool \fBols\fP = 1"
+.br
+.ti -1c
+.RI "const bool \fBpacked\fP = true"
+.br
+.ti -1c
+.RI "static bool \fBforward\fP = true"
+.br
+.ti -1c
+.RI "static bool \fBinverse\fP = false"
+.br
+.ti -1c
+.RI "const double \fBtwopi\fP = 2 * M_PI"
+.br
+.ti -1c
+.RI "const int \fBdef_vsize\fP = 64"
+.br
+.ti -1c
+.RI "const double \fBdef_sr\fP = 44100\&."
+.br
+.in -1c
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "anonymous enum"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISAW \fP\fP
+.TP
+\fB\fISQUARE \fP\fP
+.TP
+\fB\fITRIANGLE \fP\fP
+.TP
+\fB\fIPULSE \fP\fP
+.SS "anonymous enum : int32_t"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fILP \fP\fP
+.TP
+\fB\fIHP \fP\fP
+.TP
+\fB\fIBP \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "template<typename S > std::function<S(double, S, S)> Aurora::ads_gen (const S & a, const S & d, const S & s)"
+ADS function generator for \fBEnv\fP 
+.br
+S: sample type 
+.br
+a: attack 
+.br
+d: decay 
+.br
+s: sustain 
+.br
+returns an ADS envelope function 
+.SS "template<typename S > S Aurora::cos (double ph, const std::vector< S > * t = \fC0\fP)\fC [inline]\fP"
+Cosine function for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: normalised phase 
+.br
+returns the cosine of ph*2*$M_PI 
+.SS "template<typename S > S Aurora::cubic_interp (double pos, const std::vector< S > & t)\fC [inline]\fP"
+cubic interpolation table lookup 
+.br
+S: sample type 
+.br
+pos: reading position (no bounds check) 
+.br
+t: table 
+.SS "template<typename S > S Aurora::fir (S nop, std::size_t wp, const std::vector< S > & del, const std::vector< S > * ir)\fC [inline]\fP"
+FIR/convolution function for \fBDel\fP 
+.br
+nop: no-op 
+.br
+wp: write position 
+.br
+del: delay line 
+.br
+ir: impulse response 
+.br
+returns a convolution sample 
+.SS "template<typename S > S Aurora::fixed_delay (S nop, std::size_t wp, const std::vector< S > & d, const std::vector< S > * nop1)\fC [inline]\fP"
+Fixed delay function for \fBDel\fP 
+.br
+S: sample type 
+.br
+nop: no op 
+.br
+wp: reading position (no bounds check) 
+.br
+d: delay line 
+.br
+no1p: no op 
+.br
+returns a sample from the delay line 
+.SS "template<typename S > S Aurora::id (S s, S dr)\fC [inline]\fP"
+
+.SS "template<typename S > S Aurora::linear_interp (double pos, const std::vector< S > & t)\fC [inline]\fP"
+linear interpolation table lookup 
+.br
+S: sample type 
+.br
+pos: reading position (no bounds check) 
+.br
+t: table 
+.SS "template<typename S > S Aurora::lookup (double ph, const std::vector< S > * t)\fC [inline]\fP"
+Truncating table lookup for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: phase 
+.br
+t: function table 
+.br
+returns a sample 
+.SS "template<typename S > S Aurora::lookupc (double ph, const std::vector< S > * t)\fC [inline]\fP"
+Cubic interp table lookup function for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: phase  t: function table 
+.br
+returns an interpolated sample 
+.SS "template<typename S > S Aurora::lookupi (double ph, const std::vector< S > * t)\fC [inline]\fP"
+Linear interp table lookup function for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: phase  t: function table 
+.br
+returns an interpolated sample 
+.SS "static uint32_t Aurora::np2 (uint32_t n)\fC [inline]\fP, \fC [static]\fP"
+
+.SS "template<typename S > S Aurora::phase (double ph, const std::vector< S > * t = \fC0\fP)\fC [inline]\fP"
+Phase function for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: normalised phase 
+.br
+returns ph 
+.SS "template<typename S > S Aurora::sin (double ph, const std::vector< S > * t = \fC0\fP)\fC [inline]\fP"
+Sine function for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: normalised phase 
+.br
+returns the sine of ph*2*$M_PI 
+.SS "template<typename S > S Aurora::vdelay (S rp, std::size_t wp, const std::vector< S > & del, const std::vector< S > * nop)\fC [inline]\fP"
+Truncating delay function for \fBDel\fP 
+.br
+S: sample type 
+.br
+rp: reading position 
+.br
+wp: write position 
+.br
+d: delay line 
+.br
+nop: no op 
+.br
+returns a sample from the delay line floor(rp) samples behind wp 
+.SS "template<typename S > S Aurora::vdelayc (S rp, std::size_t wp, const std::vector< S > & del, const std::vector< S > * nop)\fC [inline]\fP"
+CubicInterpolation delay function for \fBDel\fP 
+.br
+S: sample type 
+.br
+rp: reading position 
+.br
+wp: write position 
+.br
+del: delay line 
+.br
+nop: no op 
+.br
+returns a sample from the delay line rp samples behind wp, 
+.br
+cubic interpolated 
+.SS "template<typename S > S Aurora::vdelayi (S rp, std::size_t wp, const std::vector< S > & del, const std::vector< S > * nop)\fC [inline]\fP"
+Interpolation delay function for \fBDel\fP 
+.br
+S: sample type 
+.br
+rp: reading position 
+.br
+wp: write position 
+.br
+d: delay line 
+.br
+nop: no op 
+.br
+returns a sample from the delay line rp samples behind wp, 
+.br
+linearly interpolated 
+.SH "Variable Documentation"
+.PP 
+.SS "const double Aurora::def_base = 16\&."
+
+.SS "const int Aurora::def_ftlen = 16384"
+
+.SS "const std::size_t Aurora::def_psize = 2048"
+
+.SS "const double Aurora::def_sr = 44100\&."
+
+.SS "const int Aurora::def_vsize = 64"
+
+.SS "bool Aurora::forward = true\fC [static]\fP"
+constant indicating forward \fBFFT\fP direction 
+.SS "bool Aurora::inverse = false\fC [static]\fP"
+constant indicating inverse \fBFFT\fP direction 
+.SS "const bool Aurora::ola = 0"
+
+.SS "const bool Aurora::ols = 1"
+
+.SS "const bool Aurora::packed = true"
+constant indicating packed \fBFFT\fP format 
+.SS "const double Aurora::twopi = 2 * M_PI"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

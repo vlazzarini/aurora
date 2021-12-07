@@ -1,0 +1,93 @@
+\hypertarget{class_aurora_1_1_one_pole}{}\section{Aurora\+:\+:One\+Pole$<$ S $>$ Class Template Reference}
+\label{class_aurora_1_1_one_pole}\index{Aurora\+::\+One\+Pole$<$ S $>$@{Aurora\+::\+One\+Pole$<$ S $>$}}
+
+
+{\ttfamily \#include $<$One\+Pole.\+h$>$}
+
+
+
+Inheritance diagram for Aurora\+:\+:One\+Pole$<$ S $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{class_aurora_1_1_one_pole__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Aurora\+:\+:One\+Pole$<$ S $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{class_aurora_1_1_one_pole__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_aurora_1_1_one_pole_a58e01b113a37f1f05e4ae135acf056de}{One\+Pole} (S fs=\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}, int \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_one_pole_a34c297cdef0928ffd6e13e0603c5ef9d}{operator()} (const std\+::vector$<$ S $>$ \&in, S f)
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_one_pole_ab126ef60b5f354c5aec0b62636bbb01d}{operator()} (const std\+::vector$<$ S $>$ \&in, const std\+::vector$<$ S $>$ \&f)
+\item 
+void \hyperlink{class_aurora_1_1_one_pole_ab9d69c4ceb9dbf5017fd800844f54dbf}{reset} (S fs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename S$>$\newline
+class Aurora\+::\+One\+Pole$<$ S $>$}
+
+\hyperlink{class_aurora_1_1_one_pole}{One\+Pole} class ~\newline
+First-\/order lowpass filter ~\newline
+S\+: sample type 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_one_pole_a58e01b113a37f1f05e4ae135acf056de}\label{class_aurora_1_1_one_pole_a58e01b113a37f1f05e4ae135acf056de}} 
+\index{Aurora\+::\+One\+Pole@{Aurora\+::\+One\+Pole}!One\+Pole@{One\+Pole}}
+\index{One\+Pole@{One\+Pole}!Aurora\+::\+One\+Pole@{Aurora\+::\+One\+Pole}}
+\subsubsection{\texorpdfstring{One\+Pole()}{OnePole()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+\hyperlink{class_aurora_1_1_one_pole}{Aurora\+::\+One\+Pole}$<$ S $>$\+::\hyperlink{class_aurora_1_1_one_pole}{One\+Pole} (\begin{DoxyParamCaption}\item[{S}]{fs = {\ttfamily \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}},  }\item[{int}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor ~\newline
+fs\+: sampling rate ~\newline
+vsize\+: vector size 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_one_pole_a34c297cdef0928ffd6e13e0603c5ef9d}\label{class_aurora_1_1_one_pole_a34c297cdef0928ffd6e13e0603c5ef9d}} 
+\index{Aurora\+::\+One\+Pole@{Aurora\+::\+One\+Pole}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora\+::\+One\+Pole@{Aurora\+::\+One\+Pole}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_one_pole}{Aurora\+::\+One\+Pole}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in,  }\item[{S}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Filter ~\newline
+in\+: input ~\newline
+f\+: cutoff frequency ~\newline
+\mbox{\Hypertarget{class_aurora_1_1_one_pole_ab126ef60b5f354c5aec0b62636bbb01d}\label{class_aurora_1_1_one_pole_ab126ef60b5f354c5aec0b62636bbb01d}} 
+\index{Aurora\+::\+One\+Pole@{Aurora\+::\+One\+Pole}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora\+::\+One\+Pole@{Aurora\+::\+One\+Pole}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_one_pole}{Aurora\+::\+One\+Pole}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in,  }\item[{const std\+::vector$<$ S $>$ \&}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Filter ~\newline
+in\+: input ~\newline
+f\+: cutoff frequency ~\newline
+\mbox{\Hypertarget{class_aurora_1_1_one_pole_ab9d69c4ceb9dbf5017fd800844f54dbf}\label{class_aurora_1_1_one_pole_ab9d69c4ceb9dbf5017fd800844f54dbf}} 
+\index{Aurora\+::\+One\+Pole@{Aurora\+::\+One\+Pole}!reset@{reset}}
+\index{reset@{reset}!Aurora\+::\+One\+Pole@{Aurora\+::\+One\+Pole}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+void \hyperlink{class_aurora_1_1_one_pole}{Aurora\+::\+One\+Pole}$<$ S $>$\+::reset (\begin{DoxyParamCaption}\item[{S}]{fs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+reset the filter ~\newline
+ fs\+: sampling rate 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_one_pole_8h}{One\+Pole.\+h}\end{DoxyCompactItemize}

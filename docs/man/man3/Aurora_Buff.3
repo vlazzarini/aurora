@@ -1,0 +1,53 @@
+.TH "Aurora::Buff< S >" 3 "Tue Dec 7 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::Buff< S >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <SndBase\&.h>\fP
+.PP
+Inherits \fBAurora::SndBase< S >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBBuff\fP (std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const S *in, std::size_t n=\fBdef_vsize\fP)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S>
+.br
+class Aurora::Buff< S >"
+\fBBuff\fP class 
+.br
+sample buffer 
+.br
+S: sample type 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S > \fBAurora::Buff\fP< S >::\fBBuff\fP (std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+vsize: signal vector size 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Buff\fP< S >::operator() (const S * in, std::size_t n = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Buffer 
+.br
+in: audio input array 
+.br
+n: number of samples in audio input array 
+.br
+returns reference to object signal vector 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

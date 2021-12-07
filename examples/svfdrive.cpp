@@ -31,10 +31,7 @@
 #include <cstdlib>
 #include <iostream>
 
-
-double inline nlm(double s, double dr){
-  return std::tanh(s*dr)/dr;
-}
+double inline nlm(double s, double dr) { return std::tanh(s * dr) / dr; }
 
 int main(int argc, const char *argv[]) {
   if (argc > 7) {
@@ -49,7 +46,7 @@ int main(int argc, const char *argv[]) {
 
     Aurora::TableSet<double> wave(Aurora::SAW);
     Aurora::BlOsc<double> osc(&wave, sr);
-    Aurora::TwoPole<double,nlm> fil(sr);
+    Aurora::TwoPole<double, nlm> fil(sr);
     double att = 0.1 * dur, dec = 0.2 * dur, sus = 0.7, rt = 0.1;
     auto func = Aurora::ads_gen<double>(att, dec, sus);
     Aurora::Env<double> env(func, rt, sr);

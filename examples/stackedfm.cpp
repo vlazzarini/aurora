@@ -43,8 +43,8 @@ template <typename S> class StackedFM {
 
 public:
   StackedFM(S fs = (S)def_sr, std::size_t vsize = def_vsize)
-      : mod0(fs, vsize), mod1(fs, vsize),
-        car(fs, vsize), amp(vsize), add(vsize){};
+      : mod0(fs, vsize), mod1(fs, vsize), car(fs, vsize), amp(vsize),
+        add(vsize){};
 
   std::size_t vsize() { return car.vsize(); }
 

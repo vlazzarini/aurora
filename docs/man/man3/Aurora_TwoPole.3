@@ -1,0 +1,81 @@
+.TH "Aurora::TwoPole< S, FN >" 3 "Tue Dec 7 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::TwoPole< S, FN >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <TwoPole\&.h>\fP
+.PP
+Inherits \fBAurora::SndBase< S >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTwoPole\fP (S fs=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S f, S d, S drv=0, S m=0)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > &f, S d, S drv=0, S m=0)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (S fs)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S, S(*)(S, S) FN = id>
+.br
+class Aurora::TwoPole< S, FN >"
+\fBTwoPole\fP class 
+.br
+2-pole state-variable filter 
+.br
+S: sample type 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S , S(*)(S, S) FN = id> \fBAurora::TwoPole\fP< S, FN >::\fBTwoPole\fP (S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+sr: sampling rate 
+.br
+vsize: vector size 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S , S(*)(S, S) FN = id> const std::vector<S>& \fBAurora::TwoPole\fP< S, FN >::operator() (const std::vector< S > & in, S f, S d, S drv = \fC0\fP, S m = \fC0\fP)\fC [inline]\fP"
+Filter 
+.br
+in: input 
+.br
+f: frequency 
+.br
+d: damping factor (Q reciprocal) 
+.br
+drv: overdrive amount 
+.br
+S: output type (0 - 4: LP(0), HP(1), BP(1), BR(3)) 
+.SS "template<typename S , S(*)(S, S) FN = id> const std::vector<S>& \fBAurora::TwoPole\fP< S, FN >::operator() (const std::vector< S > & in, const std::vector< S > & f, S d, S drv = \fC0\fP, S m = \fC0\fP)\fC [inline]\fP"
+Filter 
+.br
+in: input 
+.br
+f: frequency 
+.br
+d: damping factor (Q reciprocal) 
+.br
+drv: overdrive amount 
+.br
+S: output type (0 - 2: LP(0), HP(1), BP(2)) 
+.SS "template<typename S , S(*)(S, S) FN = id> void \fBAurora::TwoPole\fP< S, FN >::reset (S fs)\fC [inline]\fP"
+reset the filter 
+.br
+fs: sampling rate 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

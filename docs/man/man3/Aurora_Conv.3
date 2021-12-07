@@ -1,0 +1,53 @@
+.TH "Aurora::Conv< S >" 3 "Tue Dec 7 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::Conv< S >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Conv\&.h>\fP
+.PP
+Inherits \fBAurora::SndBase< S >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBConv\fP (const \fBIR\fP< S > *imp, bool algo=\fBols\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S scal)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S>
+.br
+class Aurora::Conv< S >"
+\fBConv\fP class 
+.br
+Partitioned convolution 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S > \fBAurora::Conv\fP< S >::\fBConv\fP (const \fBIR\fP< S > * imp, bool algo = \fC\fBols\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+\fBIR\fP: impulse response table
+.br
+algo: convolution algorithm (ols = 0, ola = 1) 
+.br
+vsize: vector size 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Conv\fP< S >::operator() (const std::vector< S > & in, S scal)\fC [inline]\fP"
+Convolution 
+.br
+in: input 
+.br
+scal: output ampltude scaling 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

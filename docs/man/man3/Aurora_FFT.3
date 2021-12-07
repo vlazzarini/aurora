@@ -1,0 +1,86 @@
+.TH "Aurora::FFT< S >" 3 "Tue Dec 7 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::FFT< S >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <FFT\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFFT\fP (std::size_t N, bool packd=\fBpacked\fP, bool nm=\fBforward\fP)"
+.br
+.ti -1c
+.RI "std::size_t \fBsize\fP ()"
+.br
+.ti -1c
+.RI "void \fBtransform\fP (std::vector< std::complex< S >> &s, bool dir)"
+.br
+.ti -1c
+.RI "const std::complex< S > * \fBtransform\fP (const std::vector< S > &r)"
+.br
+.ti -1c
+.RI "const S * \fBtransform\fP (const std::vector< std::complex< S >> &sp)"
+.br
+.ti -1c
+.RI "const std::vector< std::complex< S > > & \fBvector\fP () const"
+.br
+.ti -1c
+.RI "const S * \fBdata\fP () const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S>
+.br
+class Aurora::FFT< S >"
+\fBFFT\fP class 
+.br
+Radix-2 fast Fourier transform 
+.br
+S: sample type 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S> \fBAurora::FFT\fP< S >::\fBFFT\fP (std::size_t N, bool packd = \fC\fBpacked\fP\fP, bool nm = \fC\fBforward\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+N: transform size 
+.br
+packed: complex data format in packed form (true) or not 
+.br
+nm: normalisation mode (forward or inverse transforms) 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S> const S* \fBAurora::FFT\fP< S >::data () const\fC [inline]\fP"
+
+.SS "template<typename S> std::size_t \fBAurora::FFT\fP< S >::size ()\fC [inline]\fP"
+
+.SS "template<typename S> void \fBAurora::FFT\fP< S >::transform (std::vector< std::complex< S >> & s, bool dir)\fC [inline]\fP"
+In-place complex-to-complex \fBFFT\fP 
+.br
+data: data to be transformed 
+.br
+dir: true for forward operation, false for inverse 
+.br
+pckd: true for packed data (first point is DC,Nyq) Size of data is expected to be a power-of-two\&. 
+.SS "template<typename S> const std::complex<S>* \fBAurora::FFT\fP< S >::transform (const std::vector< S > & r)\fC [inline]\fP"
+Real-to-complex forward \fBFFT\fP 
+.br
+r: input vector (real) returns pointer to complex data containing the transform 
+.SS "template<typename S> const S* \fBAurora::FFT\fP< S >::transform (const std::vector< std::complex< S >> & sp)\fC [inline]\fP"
+Complex-to-real inverse \fBFFT\fP 
+.br
+sp - input vector (complex) 
+.br
+returns pointer to real data containing the transform 
+.SS "template<typename S> const std::vector<std::complex<S> >& \fBAurora::FFT\fP< S >::vector () const\fC [inline]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

@@ -1,0 +1,81 @@
+.TH "Aurora::SndBase< S >" 3 "Tue Dec 7 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::SndBase< S >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <SndBase\&.h>\fP
+.PP
+Inherited by \fBAurora::BinOp< S, OP >\fP, \fBAurora::Buff< S >\fP, \fBAurora::Conv< S >\fP, \fBAurora::Del< S, FN >\fP\fC [private]\fP, \fBAurora::Env< S >\fP, \fBAurora::FourPole< S >\fP, \fBAurora::Func< S, FN >\fP, \fBAurora::Mix< S >\fP, \fBAurora::OnePole< S >\fP, \fBAurora::Osc< S, FN >\fP, and \fBAurora::TwoPole< S, FN >\fP\fC [private]\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSndBase\fP (std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "std::size_t \fBvsize\fP () const"
+.br
+.ti -1c
+.RI "void \fBvsize\fP (std::size_t n)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBvector\fP () const"
+.br
+.ti -1c
+.RI "void \fBprealloc\fP (std::size_t size)"
+.br
+.ti -1c
+.RI "void \fBcopy_out\fP (S *out)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S>
+.br
+class Aurora::SndBase< S >"
+\fBSndBase\fP class 
+.br
+\fBAurora\fP Library base class 
+.br
+S: sample type 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S > \fBAurora::SndBase\fP< S >::\fBSndBase\fP (std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+vsize: signal vector size 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S > void \fBAurora::SndBase\fP< S >::copy_out (S * out)\fC [inline]\fP"
+Copy sample data to out 
+.br
+out: buffer receiving the audio data 
+.br
+output buffer needs to have space for \fBvsize()\fP samples\&. 
+.SS "template<typename S > void \fBAurora::SndBase\fP< S >::prealloc (std::size_t size)\fC [inline]\fP"
+Preallocate vector memory 
+.br
+size: size of vector to reserve in memory 
+.br
+this method does not change the vector size\&. 
+.SS "template<typename S > const std::vector<S>& \fBAurora::SndBase\fP< S >::vector () const\fC [inline]\fP"
+Vector access 
+.br
+returns the object vector 
+.SS "template<typename S > std::size_t \fBAurora::SndBase\fP< S >::vsize () const\fC [inline]\fP"
+Vector size query 
+.br
+returns the object vector size 
+.SS "template<typename S > void \fBAurora::SndBase\fP< S >::vsize (std::size_t n)\fC [inline]\fP"
+Vector size setting 
+.br
+n: new vector size 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

@@ -131,17 +131,16 @@ public:
       fs: sampling rate \n
       vsize: signal vector size
   */
-  Osc(const std::vector<S> *t, S fs = (S)def_sr,
-      std::size_t vsize = def_vsize)
+  Osc(const std::vector<S> *t, S fs = (S)def_sr, std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), ph(0.), ts(1 / fs), tab(t){};
 
-    /** Constructor \n
-      f: oscillator function \n
-      fs: sampling rate \n
-      vsize: signal vector size
-  */
+  /** Constructor \n
+    f: oscillator function \n
+    fs: sampling rate \n
+    vsize: signal vector size
+*/
   Osc(S fs = (S)def_sr, std::size_t vsize = def_vsize)
-  : Osc(nullptr,fs, vsize) {};
+      : Osc(nullptr, fs, vsize){};
 
   virtual ~Osc(){};
 
@@ -244,12 +243,10 @@ public:
     return s;
   }
 
-   /** set the Osc function table \n
-      t: function table
-  */
-  void table(const std::vector<S> *t) {
-    tab = t;
-  }
+  /** set the Osc function table \n
+     t: function table
+ */
+  void table(const std::vector<S> *t) { tab = t; }
 
   /** set the internal oscillator phase \n
       phs: phase

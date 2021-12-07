@@ -1,0 +1,83 @@
+.TH "Aurora::Del< S, FN >" 3 "Tue Dec 7 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::Del< S, FN >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Del\&.h>\fP
+.PP
+Inherits \fBAurora::SndBase< S >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDel\fP (S maxdt, S sr=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S dt, S fdb=0, S fwd=0, const std::vector< S > *ir=nullptr)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > &dt, S fdb=0, S fwd=0, const std::vector< S > *ir=nullptr)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (S maxdt, S sr)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S, S(*)(S, std::size_t, const std::vector< S > &, const std::vector< S > *) FN = fixed_delay>
+.br
+class Aurora::Del< S, FN >"
+\fBDel\fP class 
+.br
+Generic templated delay line 
+.br
+S: sample type 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, const std::vector< S > *) FN = fixed_delay> \fBAurora::Del\fP< S, FN >::\fBDel\fP (S maxdt, S sr = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+maxdt: maximum delay time 
+.br
+f: delay lookup function 
+.br
+sr: sampling rate 
+.br
+vsize: vector size 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, const std::vector< S > *) FN = fixed_delay> const std::vector<S>& \fBAurora::Del\fP< S, FN >::operator() (const std::vector< S > & in, S dt, S fdb = \fC0\fP, S fwd = \fC0\fP, const std::vector< S > * ir = \fCnullptr\fP)\fC [inline]\fP"
+Delay 
+.br
+in: audio 
+.br
+dt: delay time 
+.br
+fdb: feedback gain 
+.br
+fwd: feedforward gain ir: optional impulse response for convolution 
+.SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, const std::vector< S > *) FN = fixed_delay> const std::vector<S>& \fBAurora::Del\fP< S, FN >::operator() (const std::vector< S > & in, const std::vector< S > & dt, S fdb = \fC0\fP, S fwd = \fC0\fP, const std::vector< S > * ir = \fCnullptr\fP)\fC [inline]\fP"
+Delay 
+.br
+in: audio 
+.br
+dt: delay time 
+.br
+fdb: feedback gain 
+.br
+fwd: feedforward gain ir: optional impulse response for convolution 
+.SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, const std::vector< S > *) FN = fixed_delay> void \fBAurora::Del\fP< S, FN >::reset (S maxdt, S sr)\fC [inline]\fP"
+reset the delayline object 
+.br
+maxdt: max delay time 
+.br
+sr: sampling rate 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

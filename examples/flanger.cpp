@@ -48,7 +48,7 @@ struct Flanger {
   float mxdel;
 
   Flanger(float maxdt, float sr)
-      : lfo(sr), delay(maxdt, sr), gain(), mxdel(maxdt) { }
+      : lfo(sr), delay(maxdt, sr), gain(), mxdel(maxdt) {}
 
   const std::vector<float> &operator()(const std::vector<float> &in, float fr,
                                        float fdb, float g) {
