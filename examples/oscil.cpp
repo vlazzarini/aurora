@@ -26,7 +26,7 @@
 // POSSIBILITY OF SUCH DAMAGE
 
 #include "Env.h"
-#include "OscT.h"
+#include "Osc.h"
 #include <cstdlib>
 #include <iostream>
 

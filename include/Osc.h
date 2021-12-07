@@ -35,31 +35,34 @@
 namespace Aurora {
 const double twopi = 2 * M_PI;
 
-/** Truncating table lookup function generator for Osc \n
+/** Truncating table lookup for Osc \n
     S: sample type \n
+    ph: phase \n
     t: function table  \n
-    returns a truncating table lookup function
+    returns a sample
 */
-template <typename S> std::function<S(S)> lookup_gen(const std::vector<S> &t) {
-  return [&t](double ph) -> S { return t[(std::size_t)(ph * t.size())]; };
+template <typename S> inline S lookup(double ph, const std::vector<S> *t) {
+  return *t[(std::size_t)(ph * t->size())];
 }
 
-/** Linear interp table lookup function generator for Osc \n
+/** Linear interp table lookup function for Osc \n
     S: sample type \n
+    ph: phase  \mn
     t: function table  \n
-    returns an interpolating table lookup function
+    returns an interpolated sample
 */
-template <typename S> std::function<S(S)> lookupi_gen(const std::vector<S> &t) {
-  return [&t](double ph) -> S { return linear_interp(ph * t.size(), t); };
+template <typename S> inline S lookupi(double ph, const std::vector<S> *t) {
+  return linear_interp(ph * t->size(), *t);
 }
 
-/** Cubic interp table lookup function generator for Osc \n
+/** Cubic interp table lookup function for Osc \n
     S: sample type \n
+    ph: phase  \mn
     t: function table  \n
-    returns a cubic interpolating table lookup function
+    returns an interpolated sample
 */
-template <typename S> std::function<S(S)> lookupc_gen(const std::vector<S> &t) {
-  return [&t](double ph) -> S { return cubic_interp(ph * t.size(), t); };
+template <typename S> S inline lookupc(double ph, const std::vector<S> *t) {
+  return cubic_interp(ph * t->size(), *t);
 }
 
 /** Sine function for Osc \n
@@ -67,40 +70,51 @@ template <typename S> std::function<S(S)> lookupc_gen(const std::vector<S> &t) {
     ph: normalised phase  \n
     returns the sine of ph*2*$M_PI
 */
-template <typename S> S sin(double ph) { return (S)std::sin(ph * twopi); }
+template <typename S> inline S sin(double ph, const std::vector<S> *t = 0) {
+  (void)t;
+  return (S)std::sin(ph * twopi);
+}
 
 /** Cosine function for Osc \n
     S: sample type \n
     ph: normalised phase \n
     returns the cosine of ph*2*$M_PI
 */
-template <typename S> S cos(double ph) { return (S)std::cos(ph * twopi); }
+template <typename S> inline S cos(double ph, const std::vector<S> *t = 0) {
+  (void)t;
+  return (S)std::cos(ph * twopi);
+}
 
 /** Phase function for Osc \n
     S: sample type \n
     ph: normalised phase \n
     returns ph
 */
-template <typename S> S phase(double ph) { return (S)ph; }
+template <typename S> inline S phase(double ph, const std::vector<S> *t = 0) {
+  (void)t;
+  return (S)ph;
+}
 
 /** Osc class  \n
     Generic oscillator \n
-    S: sample type
+    S: sample type \n
+    FN: oscillator function
 */
-template <typename S> class Osc : public SndBase<S> {
+template <typename S, S (*FN)(double, const std::vector<S> *) = cos>
+class Osc : public SndBase<S> {
   using SndBase<S>::process;
 
 protected:
   double ph;
   S ts;
-  std::function<S(S)> fun;
+  const std::vector<S> *tab;
 
-  virtual S synth(S a, S f, double &phs, std::function<S(S)> fn) {
+  virtual S synth(S a, S f, double &phs, const std::vector<S> *t) {
     while (phs < 0)
       phs += 1.;
     while (phs >= 1.)
       phs -= 1.;
-    S s = (S)(a * fn(phs));
+    S s = (S)(a * FN(phs, t));
     phs += f * ts;
     return s;
   }
@@ -112,13 +126,22 @@ protected:
 
 public:
   /** Constructor \n
+      t: function table
       f: oscillator function \n
       fs: sampling rate \n
       vsize: signal vector size
   */
-  Osc(const std::function<S(S)> f = cos<S>, S fs = (S)def_sr,
+  Osc(const std::vector<S> *t, S fs = (S)def_sr,
       std::size_t vsize = def_vsize)
-      : SndBase<S>(vsize), ph(0.), ts(1 / fs), fun(f){};
+      : SndBase<S>(vsize), ph(0.), ts(1 / fs), tab(t){};
+
+    /** Constructor \n
+      f: oscillator function \n
+      fs: sampling rate \n
+      vsize: signal vector size
+  */
+  Osc(S fs = (S)def_sr, std::size_t vsize = def_vsize)
+  : Osc(nullptr,fs, vsize) {};
 
   virtual ~Osc(){};
 
@@ -134,7 +157,7 @@ public:
   */
   const std::vector<S> &operator()(S a, S f) {
     double phs = ph;
-    auto &s = process([&]() { return synth(a, f, phs, fun); }, 0);
+    auto &s = process([&]() { return synth(a, f, phs, tab); }, 0);
     ph = phs;
     return s;
   }
@@ -147,7 +170,7 @@ public:
   const std::vector<S> &operator()(S a, const std::vector<S> &fm) {
     double phs = ph;
     std::size_t n = 0;
-    auto &s = process([&]() { return synth(a, fm[n++], phs, fun); }, fm.size());
+    auto &s = process([&]() { return synth(a, fm[n++], phs, tab); }, fm.size());
     ph = phs;
     return s;
   }
@@ -160,7 +183,7 @@ public:
   const std::vector<S> &operator()(const std::vector<S> &am, S f) {
     double phs = ph;
     std::size_t n = 0;
-    auto &s = process([&]() { return synth(am[n++], f, phs, fun); }, am.size());
+    auto &s = process([&]() { return synth(am[n++], f, phs, tab); }, am.size());
     ph = phs;
     return s;
   }
@@ -176,7 +199,7 @@ public:
     std::size_t n = 0;
     auto &s = process(
         [&]() {
-          auto s = synth(am[n], fm[n], phs, fun);
+          auto s = synth(am[n], fm[n], phs, tab);
           n++;
           return s;
         },
@@ -186,7 +209,7 @@ public:
   }
 
   /** Oscillator \n
-     a: scalar amplitude \n
+    a: scalar amplitude \n
     f:  scalar frequency  \n
     pm: phase modulation signal \n
     returns reference to object signal vector
@@ -195,7 +218,7 @@ public:
     double phs = ph;
     std::size_t n = 0;
     auto &s =
-        process([&]() { return synth(a, f, phs + pm[n++], fun); }, pm.size());
+        process([&]() { return synth(a, f, phs + pm[n++], tab); }, pm.size());
     ph = phs;
     return s;
   }
@@ -212,7 +235,7 @@ public:
     std::size_t n = 0;
     auto &s = process(
         [&]() {
-          auto s = synth(am[n], f, phs + pm[n], fun);
+          auto s = synth(am[n], f, phs + pm[n], tab);
           n++;
           return s;
         },
@@ -221,10 +244,12 @@ public:
     return s;
   }
 
-  /** set the oscillator function \n
-      f: oscillator function to be used
+   /** set the Osc function table \n
+      t: function table
   */
-  void func(const std::function<S(S)> f) { fun = f; }
+  void table(const std::vector<S> *t) {
+    tab = t;
+  }
 
   /** set the internal oscillator phase \n
       phs: phase

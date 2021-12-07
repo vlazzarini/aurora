@@ -34,21 +34,18 @@
 namespace Aurora {
 
 /** Func class  \n
-    Generic function maps \n
+    Generic templated function maps \n
+    FN: function to be applied
     S: sample type
 */
-template <typename S> class Func : public SndBase<S> {
+template <typename S, S (*FN)(S)> class Func : public SndBase<S> {
   using SndBase<S>::process;
-  std::function<S(S)> fun;
 
 public:
   /** Constructor \n
-      f: oscillator function \n
-      fs: sampling rate \n
       vsize: signal vector size
   */
-  Func(const std::function<S(S)> f, std::size_t vsize = def_vsize)
-      : SndBase<S>(vsize), fun(f){};
+  Func(std::size_t vsize = def_vsize) : SndBase<S>(vsize){};
 
   /** Functional application \n
       in: input signal \n
@@ -56,14 +53,9 @@ public:
   */
   const std::vector<S> &operator()(const std::vector<S> &in) {
     std::size_t n = 0;
-    auto fp = [&]() { return fun(in[n++]); };
+    auto fp = [&]() { return FN(in[n++]); };
     return process(fp, in.size());
   }
-
-  /** set the mapping function \n
-     f: mapping function to be used
-  */
-  void func(const std::function<S(S)> f) { fun = f; }
 };
 } // namespace Aurora
 

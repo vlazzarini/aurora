@@ -33,27 +33,29 @@
 namespace Aurora {
 enum : int32_t { LP = -1, HP, BP };
 
+ template<typename S> inline S id(S s, S dr) { (void) dr; return s; }
+
 /** TwoPole class  \n
     2-pole state-variable filter \n
     S: sample type
 */
-template <typename S> class TwoPole : SndBase<S> {
+ template <typename S, S (*FN)(S,S) = id> class TwoPole : SndBase<S> {
   using SndBase<S>::process;
   S Y[2];
   double D[2];
   double W, Fac;
   S ff, dd;
   double piosr;
-  std::function<S(S)> fun;
+ 
 
   S filter(S in, S *y, double *s, double w, double fac, S d, S drv, int32_t typ,
            S m) {
     S lp;
     y[HP] = (in - (d + w) * s[0] - s[1]) * fac;
-    S u = w * fun(y[0] * drv) * 1 / drv;
+    S u = w * FN(y[0], drv);
     y[BP] = u + s[0];
     s[0] = y[BP] + u;
-    u = w * fun(y[1] * drv) * 1 / drv;
+    u = w * FN(y[1],drv);
     lp = u + s[1];
     s[1] = lp + u;
     return typ == -1 ? lp * (1 - m) + Y[HP] * m : Y[HP] * (1 - m) + Y[BP] * m;
@@ -68,20 +70,13 @@ template <typename S> class TwoPole : SndBase<S> {
 
 public:
   /** Constructor \n
-   f: overdrive function \n
-   sr: sampling rate \n
-   vsize: vector size
-  */
-  TwoPole(std::function<S(S)> f, S fs = def_sr, std::size_t vsize = def_vsize)
-      : SndBase<S>(vsize), Y{0}, D{0}, W(0), Fac(0), ff(0), dd(0),
-        piosr(M_PI / fs), fun(f){};
-
-  /** Constructor \n
    sr: sampling rate \n
    vsize: vector size
   */
   TwoPole(S fs = def_sr, std::size_t vsize = def_vsize)
-      : TwoPole([](S x) -> S { return x; }, fs, vsize){};
+      : SndBase<S>(vsize), Y{0}, D{0}, W(0), Fac(0), ff(0), dd(0),
+        piosr(M_PI / fs) {};
+
 
   /** Filter \n
      in: input \n

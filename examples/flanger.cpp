@@ -26,8 +26,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
 
-#include "DelT.h"
-#include "OscT.h"
+#include "Del.h"
+#include "Osc.h"
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
@@ -38,7 +38,7 @@ using namespace Aurora;
 
 inline float scl(float a, float b) { return a * b; }
 inline float lfofun(double x, const std::vector<float> *nop) {
-  return cos<float>(x) * 0.49 + 0.51;
+  return cos<float>(x) * 0.46 + 0.54;
 }
 
 struct Flanger {
@@ -48,7 +48,7 @@ struct Flanger {
   float mxdel;
 
   Flanger(float maxdt, float sr)
-      : lfo(nullptr, sr), delay(maxdt, sr), gain(), mxdel(maxdt) {}
+      : lfo(sr), delay(maxdt, sr), gain(), mxdel(maxdt) { }
 
   const std::vector<float> &operator()(const std::vector<float> &in, float fr,
                                        float fdb, float g) {

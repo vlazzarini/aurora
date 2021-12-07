@@ -45,7 +45,6 @@ template <typename S> class TableSet {
   std::size_t tlen;
   std::vector<std::vector<S>> waves;
   S base;
-  std::function<std::function<S(S)>(const std::vector<S> &)> fgen;
 
   void norm(std::vector<S> &wave) {
     S max = 0.;
@@ -113,11 +112,6 @@ template <typename S> class TableSet {
     fourier(src, fs, type);
   }
 
-  const std::vector<S> &select(S f) const {
-    int32_t num = f > base ? (int32_t)round(std::log2(f / base)) : 0;
-    return num < waves.size() ? waves[num] : waves.back();
-  }
-
   void resize(std::size_t len, S fs) {
     tlen = len;
     waves.resize((int)std::log2(fs / base));
@@ -134,7 +128,7 @@ public:
   */
   TableSet(uint32_t type, S fs = def_sr, std::size_t len = def_ftlen)
       : tlen(len), waves((int)std::log2(fs / def_base), std::vector<S>(len)),
-        base((S)def_base), fgen(lookupi_gen<S>) {
+        base((S)def_base) {
     create(fs, type);
   }
 
@@ -145,21 +139,16 @@ public:
   */
   TableSet(const std::vector<S> &src, S b = def_base, S fs = def_sr)
       : tlen(src.size()), waves((int)std::log2(fs / b), std::vector<S>(tlen)),
-        base(1 / (b * tlen / fs)), fgen(lookupi_gen<S>) {
+        base(1 / (b * tlen / fs)) {
     fourier(src, fs);
   }
 
-  /** Function selection \n
+  /** table selection \n
       f: fundamental frequency used for playback
   */
-  std::function<S(S)> func(S f) const { return fgen(select(f)); }
-
-  /** Change the lookup function generator \n
-      f: lookup function generator
-      (default at construction time is lookupi_gen)
-  */
-  void fungen(std::function<std::function<S(S)>(const std::vector<S> &)> f) {
-    fgen = f;
+  const std::vector<S> &func(S f) const {
+    int32_t num = f > base ? (int32_t)round(std::log2(f / base)) : 0;
+    return num < waves.size() ? waves[num] : waves.back();
   }
 
   /** reset the table set \n
@@ -186,23 +175,25 @@ public:
 
 /** BlOsc class \n
     Bandlimited wavetable oscillator. \n
-    S: sample type
+    S: sample type \n
+    FN: oscillator function
 */
-template <typename S> class BlOsc : public Osc<S> {
-  using Osc<S>::ph;
-  using Osc<S>::ts;
-  using Osc<S>::fun;
+template <typename S, S (*FN)(double, const std::vector<S> *) = lookupi<S>>
+class BlOsc : public Osc<S, FN> {
+  using Osc<S, FN>::ph;
+  using Osc<S, FN>::ts;
+  using Osc<S, FN>::tab;
   const TableSet<S> *tset;
   S ff;
 
-  S synth(S a, S f, double &phs, std::function<S(S)> fn) override {
-    fn = ff != f ? tset->func(f) : fn;
-    return Osc<S>::synth(a, f, phs, fn);
+  S synth(S a, S f, double &phs, const std::vector<S> *t) override {
+    t = ff != f ? &tset->func(f) : t;
+    return Osc<S, FN>::synth(a, f, phs, t);
   }
 
   void reset_obj(S fs) override {
     ff = 0;
-    Osc<S>::reset_obj(fs);
+    Osc<S, FN>::reset_obj(fs);
   }
 
 public:
@@ -212,7 +203,7 @@ public:
       vsize: vector size
   */
   BlOsc(const TableSet<S> *t, S fs = (S)def_sr, std::size_t vsize = def_vsize)
-      : Osc<S>(nullptr, fs, vsize), tset(t), ff(0){};
+      : Osc<S, FN>(nullptr, fs, vsize), tset(t), ff(0){};
 
   /** Change the wavetable set
       t: wavetable set

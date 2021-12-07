@@ -31,6 +31,11 @@
 #include <cstdlib>
 #include <iostream>
 
+
+double inline nlm(double s, double dr){
+  return std::tanh(s*dr)/dr;
+}
+
 int main(int argc, const char *argv[]) {
   if (argc > 7) {
     double sr = argc > 8 ? std::atof(argv[8]) : Aurora::def_sr;
@@ -41,10 +46,10 @@ int main(int argc, const char *argv[]) {
     auto q = std::atof(argv[5]);
     auto drv = std::atof(argv[6]);
     auto typ = std::atof(argv[7]);
-    auto nlm = (double (*)(double))tanh;
+
     Aurora::TableSet<double> wave(Aurora::SAW);
     Aurora::BlOsc<double> osc(&wave, sr);
-    Aurora::TwoPole<double> fil(nlm, sr);
+    Aurora::TwoPole<double,nlm> fil(sr);
     double att = 0.1 * dur, dec = 0.2 * dur, sus = 0.7, rt = 0.1;
     auto func = Aurora::ads_gen<double>(att, dec, sus);
     Aurora::Env<double> env(func, rt, sr);

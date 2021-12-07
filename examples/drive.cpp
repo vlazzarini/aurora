@@ -26,8 +26,8 @@
 // POSSIBILITY OF SUCH DAMAGE
 
 #include "Env.h"
-#include "FuncT.h"
-#include "OscT.h"
+#include "Func.h"
+#include "Osc.h"
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
