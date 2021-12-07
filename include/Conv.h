@@ -32,7 +32,8 @@
 
 namespace Aurora {
 const std::size_t def_psize = 2048;
-
+const bool ola = 0;
+const bool ols = 1;
 /** IR class \n
     Impulse response table
 */
@@ -99,43 +100,6 @@ public:
   }
 };
 
-/** Overlap-save function for Conv \n
-    in: input  \n
-    bufin: convolution input buffer \n
-    bufout: convolution output buffer \n
-    unused: not used \n
-    p: read/write pos \n
-    psz: partition size \n
-    returns convolution sample
-*/
-template <typename S>
-S ols(S in, S *bufin, const S *bufout, S *unused, std::size_t p,
-      std::size_t psz) {
-  (void)unused;
-  auto s = bufout[p + psz];
-  bufin[p] = bufin[p + psz];
-  bufin[p + psz] = in;
-  return s;
-}
-
-/** Overlap-add function for Conv \n
-    in: input \n
-    bufin: convolution input buffer \n
-    bufout: convolution output buffer \n
-    olabuf: overlap-add buffer \n
-    p: read/write pos \n
-    psz: partition size \n
-    returns convolution sample
-*/
-template <typename S>
-S ola(S in, S *bufin, const S *bufout, S *olabuf, std::size_t cnt,
-      std::size_t psz) {
-  auto s = bufout[cnt] + olabuf[cnt];
-  bufin[cnt] = in;
-  olabuf[cnt] = bufout[cnt + psz];
-  return s;
-}
-
 /** Conv class \n
     Partitioned convolution
 */
@@ -148,7 +112,7 @@ template <typename S> class Conv : public SndBase<S> {
   std::vector<S> olabuf;
   std::size_t p, sn;
   FFT<S> fft;
-  std::function<S(S, S *, const S *, S *, std::size_t, std::size_t)> fun;
+  bool meth;
 
   void convol(const std::vector<S> &in) {
     fft.transform(in);
@@ -169,20 +133,34 @@ template <typename S> class Conv : public SndBase<S> {
     fft.transform(mix);
   }
 
+  S oladd(S in, S *bufin, const S *bufout, S *olabuf, std::size_t cnt,
+          std::size_t psz) {
+    auto s = bufout[cnt] + olabuf[cnt];
+    bufin[cnt] = in;
+    olabuf[cnt] = bufout[cnt + psz];
+    return s;
+  }
+
+  S olsave(S in, S *bufin, const S *bufout, S *unused, std::size_t p,
+           std::size_t psz) {
+    (void)unused;
+    auto s = bufout[p + psz];
+    bufin[p] = bufin[p + psz];
+    bufin[p + psz] = in;
+    return s;
+  }
+
 public:
   /** Constructor \n
       IR: impulse response table\n
-      f: convolution function \n
+      algo: convolution algorithm (ols = 0, ola = 1) \n
       vsize: vector size
   */
-  Conv(const IR<S> *imp,
-       const std::function<S(S, S *, const S *, S *, std::size_t, std::size_t)>
-           f = ols<S>,
-       std::size_t vsize = def_vsize)
+  Conv(const IR<S> *imp, bool algo = ols, std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), ir(imp),
         del(imp->nparts(), std::vector<std::complex<S>>(imp->psize() + 1)),
         mix(imp->psize() + 1), inbuf(2 * imp->psize()), olabuf(imp->psize()),
-        p(0), sn(0), fft(imp->psize() * 2, !packed, inverse), fun(f){};
+        p(0), sn(0), fft(imp->psize() * 2, !packed, inverse), meth(algo){};
 
   /** Convolution \n
     in: input \n
@@ -193,16 +171,28 @@ public:
     S *bufin = inbuf.data();
     S *obuff = olabuf.data();
     std::size_t sz = ir->psize();
-    return process(
-        [&]() {
-          auto s = fun(in[n++], bufin, fft.data(), obuff, sn, sz);
-          if (++sn == sz) {
-            convol(inbuf);
-            sn = 0;
-          }
-          return s * scal;
-        },
-        in.size());
+    return meth ? process(
+                      [&]() {
+                        auto s =
+                            oladd(in[n++], bufin, fft.data(), obuff, sn, sz);
+                        if (++sn == sz) {
+                          convol(inbuf);
+                          sn = 0;
+                        }
+                        return s * scal;
+                      },
+                      in.size())
+                : process(
+                      [&]() {
+                        auto s =
+                            olsave(in[n++], bufin, fft.data(), obuff, sn, sz);
+                        if (++sn == sz) {
+                          convol(inbuf);
+                          sn = 0;
+                        }
+                        return s * scal;
+                      },
+                      in.size());
   }
 };
 } // namespace Aurora

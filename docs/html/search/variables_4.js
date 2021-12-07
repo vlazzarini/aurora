@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['twopi',['twopi',['../namespace_aurora.html#a4c08f8416c2b35d5001062f121459b5a',1,'Aurora']]]
+  ['packed',['packed',['../namespace_aurora.html#a3e70ffc9ea5c526dcd66b1b14e43f175',1,'Aurora']]]
 ];

@@ -1,4 +1,4 @@
-.TH "Conv.h" 3 "Mon Dec 6 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Conv.h" 3 "Tue Dec 7 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -32,21 +32,17 @@ Conv.h
 .RI " \fBAurora\fP"
 .br
 .in -1c
-.SS "Functions"
-
-.in +1c
-.ti -1c
-.RI "template<typename S > S \fBAurora::ols\fP (S in, S *bufin, const S *bufout, S *unused, std::size_t p, std::size_t psz)"
-.br
-.ti -1c
-.RI "template<typename S > S \fBAurora::ola\fP (S in, S *bufin, const S *bufout, S *olabuf, std::size_t cnt, std::size_t psz)"
-.br
-.in -1c
 .SS "Variables"
 
 .in +1c
 .ti -1c
 .RI "const std::size_t \fBAurora::def_psize\fP = 2048"
+.br
+.ti -1c
+.RI "const bool \fBAurora::ola\fP = 0"
+.br
+.ti -1c
+.RI "const bool \fBAurora::ols\fP = 1"
 .br
 .in -1c
 .SH "Author"

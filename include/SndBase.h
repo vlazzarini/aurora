@@ -118,19 +118,17 @@ public:
 
 /** BinOp class \n
     Binary operations \n
+    OP: binary operation function \n
     S: sample type
 */
-template <typename S> class BinOp : public SndBase<S> {
+template <typename S, S (*OP)(S, S)> class BinOp : public SndBase<S> {
   using SndBase<S>::process;
-  std::function<S(S, S)> op;
 
 public:
   /** Constructor \n
-      f: binary operation function \n
       vsize: signal vector size
   */
-  BinOp(const std::function<S(S, S)> &f, std::size_t vsize = def_vsize)
-      : SndBase<S>(vsize), op(f){};
+  BinOp(std::size_t vsize = def_vsize) : SndBase<S>(vsize){};
 
   /** Binary operation \n
       a: scalar input \n
@@ -139,7 +137,7 @@ public:
   */
   const std::vector<S> &operator()(S a, const std::vector<S> &s) {
     std::size_t n = 0;
-    return process([&]() { return op(a, s[n++]); }, s.size());
+    return process([&]() { return OP(a, s[n++]); }, s.size());
   }
 
   /** Binary operation \n
@@ -149,7 +147,7 @@ public:
   */
   const std::vector<S> &operator()(const std::vector<S> &s, S a) {
     std::size_t n = 0;
-    return process([&]() -> S { return op(a, s[n++]); }, s.size());
+    return process([&]() -> S { return OP(a, s[n++]); }, s.size());
   }
 
   /** Binary operation \n
@@ -162,17 +160,12 @@ public:
     std::size_t n = 0;
     return process(
         [&]() -> S {
-          auto s = op(s1[n], s2[n]);
+          auto s = OP(s1[n], s2[n]);
           n++;
           return s;
         },
         s1.size() < s2.size() ? s1.size() : s2.size());
   }
-
-  /** set the operator function \n
-      f: binary operator function to be used
-  */
-  void func(const std::function<S(S, S)> &f) { op = f; }
 };
 
 /** Mix class \n
@@ -224,7 +217,8 @@ public:
     pos: reading position (no bounds check) \n
     t: table
 */
-template <typename S> S linear_interp(double pos, const std::vector<S> &t) {
+template <typename S>
+inline S linear_interp(double pos, const std::vector<S> &t) {
   size_t posi = (size_t)pos;
   double frac = pos - posi;
   return t[posi] +
@@ -236,7 +230,8 @@ template <typename S> S linear_interp(double pos, const std::vector<S> &t) {
     pos: reading position (no bounds check) \n
     t: table
 */
-template <typename S> S cubic_interp(double pos, const std::vector<S> &t) {
+template <typename S>
+inline S cubic_interp(double pos, const std::vector<S> &t) {
   size_t posi = (size_t)pos;
   double frac = pos - posi;
   double a = posi == 0 ? t[0] : t[posi - 1];

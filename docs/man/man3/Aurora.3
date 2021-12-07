@@ -1,4 +1,4 @@
-.TH "Aurora" 3 "Mon Dec 6 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora" 3 "Tue Dec 7 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -65,18 +65,15 @@ Aurora
 .RI "enum { \fBSAW\fP = 0, \fBSQUARE\fP, \fBTRIANGLE\fP, \fBPULSE\fP }"
 .br
 .ti -1c
+.RI "enum { \fBSAW\fP = 0, \fBSQUARE\fP, \fBTRIANGLE\fP, \fBPULSE\fP }"
+.br
+.ti -1c
 .RI "enum : int32_t { \fBLP\fP = -1, \fBHP\fP, \fBBP\fP }"
 .br
 .in -1c
 .SS "Functions"
 
 .in +1c
-.ti -1c
-.RI "template<typename S > S \fBols\fP (S in, S *bufin, const S *bufout, S *unused, std::size_t p, std::size_t psz)"
-.br
-.ti -1c
-.RI "template<typename S > S \fBola\fP (S in, S *bufin, const S *bufout, S *olabuf, std::size_t cnt, std::size_t psz)"
-.br
 .ti -1c
 .RI "template<typename S > S \fBfixed_delay\fP (S rp, std::size_t wp, const std::vector< S > &d)"
 .br
@@ -94,6 +91,21 @@ Aurora
 .br
 .ti -1c
 .RI "template<typename S > std::function< S(S, std::size_t, const std::vector< S > &)> \fBfir_gen\fP (const std::vector< S > &ir)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBfixed_delay\fP (S nop, std::size_t wp, const std::vector< S > &d, const std::vector< S > *nop1)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBvdelay\fP (S rp, std::size_t wp, const std::vector< S > &del, const std::vector< S > *nop)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBvdelayi\fP (S rp, std::size_t wp, const std::vector< S > &del, const std::vector< S > *nop)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBvdelayc\fP (S rp, std::size_t wp, const std::vector< S > &del, const std::vector< S > *nop)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBfir\fP (S nop, std::size_t wp, const std::vector< S > &del, const std::vector< S > *ir)"
 .br
 .ti -1c
 .RI "template<typename S > std::function< S(double, S, S)> \fBads_gen\fP (const S &a, const S &d, const S &s)"
@@ -120,6 +132,24 @@ Aurora
 .RI "template<typename S > S \fBphase\fP (double ph)"
 .br
 .ti -1c
+.RI "template<typename S > S \fBlookup\fP (double ph, const std::vector< S > *t)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBlookupi\fP (double ph, const std::vector< S > *t)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBlookupc\fP (double ph, const std::vector< S > *t)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBsin\fP (double ph, const std::vector< S > *t=0)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBcos\fP (double ph, const std::vector< S > *t=0)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBphase\fP (double ph, const std::vector< S > *t=0)"
+.br
+.ti -1c
 .RI "template<typename S > S \fBlinear_interp\fP (double pos, const std::vector< S > &t)"
 .br
 .ti -1c
@@ -137,6 +167,12 @@ Aurora
 .br
 .ti -1c
 .RI "const std::size_t \fBdef_psize\fP = 2048"
+.br
+.ti -1c
+.RI "const bool \fBola\fP = 0"
+.br
+.ti -1c
+.RI "const bool \fBols\fP = 1"
 .br
 .ti -1c
 .RI "const bool \fBpacked\fP = true"
@@ -159,6 +195,19 @@ Aurora
 .in -1c
 .SH "Enumeration Type Documentation"
 .PP 
+.SS "anonymous enum"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISAW \fP\fP
+.TP
+\fB\fISQUARE \fP\fP
+.TP
+\fB\fITRIANGLE \fP\fP
+.TP
+\fB\fIPULSE \fP\fP
 .SS "anonymous enum"
 
 .PP
@@ -205,7 +254,15 @@ S: sample type
 ph: normalised phase 
 .br
 returns the cosine of ph*2*$M_PI 
-.SS "template<typename S > S Aurora::cubic_interp (double pos, const std::vector< S > & t)"
+.SS "template<typename S > S Aurora::cos (double ph, const std::vector< S > * t = \fC0\fP)\fC [inline]\fP"
+Cosine function for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: normalised phase 
+.br
+returns the cosine of ph*2*$M_PI 
+.SS "template<typename S > S Aurora::cubic_interp (double pos, const std::vector< S > & t)\fC [inline]\fP"
 cubic interpolation table lookup 
 .br
 S: sample type 
@@ -213,6 +270,18 @@ S: sample type
 pos: reading position (no bounds check) 
 .br
 t: table 
+.SS "template<typename S > S Aurora::fir (S nop, std::size_t wp, const std::vector< S > & del, const std::vector< S > * ir)\fC [inline]\fP"
+FIR/convolution function for \fBDel\fP 
+.br
+nop: no-op 
+.br
+wp: write position 
+.br
+del: delay line 
+.br
+ir: impulse response 
+.br
+returns a convolution sample 
 .SS "template<typename S > std::function<S(S, std::size_t, const std::vector<S> &)> Aurora::fir_gen (const std::vector< S > & ir)"
 Generating function for FIR/convolution function 
 .br
@@ -231,7 +300,21 @@ wp: reading position (no bounds check)
 d: delay line 
 .br
 returns a sample from the delay line 
-.SS "template<typename S > S Aurora::linear_interp (double pos, const std::vector< S > & t)"
+.SS "template<typename S > S Aurora::fixed_delay (S nop, std::size_t wp, const std::vector< S > & d, const std::vector< S > * nop1)\fC [inline]\fP"
+Fixed delay function for \fBDel\fP 
+.br
+S: sample type 
+.br
+nop: no op 
+.br
+wp: reading position (no bounds check) 
+.br
+d: delay line 
+.br
+no1p: no op 
+.br
+returns a sample from the delay line 
+.SS "template<typename S > S Aurora::linear_interp (double pos, const std::vector< S > & t)\fC [inline]\fP"
 linear interpolation table lookup 
 .br
 S: sample type 
@@ -239,6 +322,16 @@ S: sample type
 pos: reading position (no bounds check) 
 .br
 t: table 
+.SS "template<typename S > S Aurora::lookup (double ph, const std::vector< S > * t)\fC [inline]\fP"
+Truncating table lookup for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: phase 
+.br
+t: function table 
+.br
+returns a sample 
 .SS "template<typename S > std::function<S(S)> Aurora::lookup_gen (const std::vector< S > & t)"
 Truncating table lookup function generator for \fBOsc\fP 
 .br
@@ -247,6 +340,14 @@ S: sample type
 t: function table 
 .br
 returns a truncating table lookup function 
+.SS "template<typename S > S Aurora::lookupc (double ph, const std::vector< S > * t)\fC [inline]\fP"
+Cubic interp table lookup function for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: phase  t: function table 
+.br
+returns an interpolated sample 
 .SS "template<typename S > std::function<S(S)> Aurora::lookupc_gen (const std::vector< S > & t)"
 Cubic interp table lookup function generator for \fBOsc\fP 
 .br
@@ -255,6 +356,14 @@ S: sample type
 t: function table 
 .br
 returns a cubic interpolating table lookup function 
+.SS "template<typename S > S Aurora::lookupi (double ph, const std::vector< S > * t)\fC [inline]\fP"
+Linear interp table lookup function for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: phase  t: function table 
+.br
+returns an interpolated sample 
 .SS "template<typename S > std::function<S(S)> Aurora::lookupi_gen (const std::vector< S > & t)"
 Linear interp table lookup function generator for \fBOsc\fP 
 .br
@@ -273,38 +382,6 @@ c: lp filter coef [c = sqrt(a*a - 1) - a, with a = 2 - cos(w)]
 f: delay function returns a delay function for use in \fBDel\fP 
 .SS "static uint32_t Aurora::np2 (uint32_t n)\fC [inline]\fP, \fC [static]\fP"
 
-.SS "template<typename S > S Aurora::ola (S in, S * bufin, const S * bufout, S * olabuf, std::size_t cnt, std::size_t psz)"
-Overlap-add function for \fBConv\fP 
-.br
-in: input 
-.br
-bufin: convolution input buffer 
-.br
-bufout: convolution output buffer 
-.br
-olabuf: overlap-add buffer 
-.br
-p: read/write pos 
-.br
-psz: partition size 
-.br
-returns convolution sample 
-.SS "template<typename S > S Aurora::ols (S in, S * bufin, const S * bufout, S * unused, std::size_t p, std::size_t psz)"
-Overlap-save function for \fBConv\fP 
-.br
-in: input 
-.br
-bufin: convolution input buffer 
-.br
-bufout: convolution output buffer 
-.br
-unused: not used 
-.br
-p: read/write pos 
-.br
-psz: partition size 
-.br
-returns convolution sample 
 .SS "template<typename S > S Aurora::phase (double ph)"
 Phase function for \fBOsc\fP 
 .br
@@ -313,7 +390,23 @@ S: sample type
 ph: normalised phase 
 .br
 returns ph 
+.SS "template<typename S > S Aurora::phase (double ph, const std::vector< S > * t = \fC0\fP)\fC [inline]\fP"
+Phase function for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: normalised phase 
+.br
+returns ph 
 .SS "template<typename S > S Aurora::sin (double ph)"
+Sine function for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: normalised phase 
+.br
+returns the sine of ph*2*$M_PI 
+.SS "template<typename S > S Aurora::sin (double ph, const std::vector< S > * t = \fC0\fP)\fC [inline]\fP"
 Sine function for \fBOsc\fP 
 .br
 S: sample type 
@@ -333,6 +426,20 @@ wp: write position
 d: delay line 
 .br
 returns a sample from the delay line floor(rp) samples behind wp 
+.SS "template<typename S > S Aurora::vdelay (S rp, std::size_t wp, const std::vector< S > & del, const std::vector< S > * nop)\fC [inline]\fP"
+Truncating delay function for \fBDel\fP 
+.br
+S: sample type 
+.br
+rp: reading position 
+.br
+wp: write position 
+.br
+d: delay line 
+.br
+nop: no op 
+.br
+returns a sample from the delay line floor(rp) samples behind wp 
 .SS "template<typename S > S Aurora::vdelayc (S rp, std::size_t wp, const std::vector< S > & del)"
 CubicInterpolation delay function for \fBDel\fP 
 .br
@@ -347,6 +454,22 @@ d: delay line
 returns a sample from the delay line rp samples behind wp, 
 .br
 cubic interpolated 
+.SS "template<typename S > S Aurora::vdelayc (S rp, std::size_t wp, const std::vector< S > & del, const std::vector< S > * nop)\fC [inline]\fP"
+CubicInterpolation delay function for \fBDel\fP 
+.br
+S: sample type 
+.br
+rp: reading position 
+.br
+wp: write position 
+.br
+del: delay line 
+.br
+nop: no op 
+.br
+returns a sample from the delay line rp samples behind wp, 
+.br
+cubic interpolated 
 .SS "template<typename S > S Aurora::vdelayi (S rp, std::size_t wp, const std::vector< S > & del)"
 Interpolation delay function for \fBDel\fP 
 .br
@@ -357,6 +480,22 @@ rp: reading position
 wp: write position 
 .br
 d: delay line 
+.br
+returns a sample from the delay line rp samples behind wp, 
+.br
+linearly interpolated 
+.SS "template<typename S > S Aurora::vdelayi (S rp, std::size_t wp, const std::vector< S > & del, const std::vector< S > * nop)\fC [inline]\fP"
+Interpolation delay function for \fBDel\fP 
+.br
+S: sample type 
+.br
+rp: reading position 
+.br
+wp: write position 
+.br
+d: delay line 
+.br
+nop: no op 
 .br
 returns a sample from the delay line rp samples behind wp, 
 .br
@@ -377,6 +516,10 @@ linearly interpolated
 constant indicating forward \fBFFT\fP direction 
 .SS "bool Aurora::inverse = false\fC [static]\fP"
 constant indicating inverse \fBFFT\fP direction 
+.SS "const bool Aurora::ola = 0"
+
+.SS "const bool Aurora::ols = 1"
+
 .SS "const bool Aurora::packed = true"
 constant indicating packed \fBFFT\fP format 
 .SS "const double Aurora::twopi = 2 * M_PI"

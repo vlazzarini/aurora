@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['triangle',['TRIANGLE',['../namespace_aurora.html#a890b8d3786c8a25750e8097adae3b513a0c9e1e4fb03cbc79bb5fdd9db743818f',1,'Aurora']]]
+  ['triangle',['TRIANGLE',['../namespace_aurora.html#a97f9c97ca3fa2b7ccfdde6e3848f79dba77fc1bbc78b433516db5d3f22962f6a3',1,'Aurora']]]
 ];

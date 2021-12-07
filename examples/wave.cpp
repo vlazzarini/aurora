@@ -25,7 +25,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
 
-#include "BlOsc.h"
+#include "BlOscT.h"
 #include <cstdlib>
 #include <iostream>
 

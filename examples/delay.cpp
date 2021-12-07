@@ -26,7 +26,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
 
-#include "Del.h"
+#include "DelT.h"
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
@@ -47,13 +47,11 @@ int main(int argc, const char **argv) {
         float dt = atof(argv[3]);
         float rvt = atof(argv[4]);
         float cf = atof(argv[5]);
-        float d = 0.f;
         double c = 2. - std::cos(2 * M_PI * cf / sfinfo.samplerate);
         c = sqrt(c * c - 1.f) - c;
         float fdb = std::pow(.001, dt / rvt);
         std::vector<float> buffer(def_vsize);
-        auto delf = lpdelay_gen<float>(d, c, fixed_delay<float>);
-        Del<float> delay(dt, delf, sfinfo.samplerate);
+        Del<float> delay(dt, sfinfo.samplerate);
         do {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
           if (n) {

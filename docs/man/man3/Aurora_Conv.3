@@ -1,4 +1,4 @@
-.TH "Aurora::Conv< S >" 3 "Mon Dec 6 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Conv< S >" 3 "Tue Dec 7 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -14,7 +14,7 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 
 .in +1c
 .ti -1c
-.RI "\fBConv\fP (const \fBIR\fP< S > *imp, const std::function< S(S, S *, const S *, S *, std::size_t, std::size_t)> f=\fBols\fP< S >, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.RI "\fBConv\fP (const \fBIR\fP< S > *imp, bool algo=\fBols\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S scal)"
@@ -31,12 +31,12 @@ class Aurora::Conv< S >"
 Partitioned convolution 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S > \fBAurora::Conv\fP< S >::\fBConv\fP (const \fBIR\fP< S > * imp, const std::function< S(S, S *, const S *, S *, std::size_t, std::size_t)> f = \fC\fBols\fP<S>\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S > \fBAurora::Conv\fP< S >::\fBConv\fP (const \fBIR\fP< S > * imp, bool algo = \fC\fBols\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 \fBIR\fP: impulse response table
 .br
-f: convolution function 
+algo: convolution algorithm (ols = 0, ola = 1) 
 .br
 vsize: vector size 
 .SH "Member Function Documentation"

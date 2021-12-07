@@ -26,26 +26,25 @@
 // POSSIBILITY OF SUCH DAMAGE
 
 #include "Env.h"
-#include "Func.h"
-#include "Osc.h"
+#include "FuncT.h"
+#include "OscT.h"
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
 
 using namespace Aurora;
+inline float scl(float a, float b) { return a * b; }
 struct Synth {
   float att, dec, sus;
   std::vector<float> wave;
   Env<float> env;
-  Osc<float> osc;
-  Func<float> drive;
-  BinOp<float> amp;
+  Osc<float, lookupi> osc;
+  Func<float, std::tanhf> drive;
+  BinOp<float, scl> amp;
 
   Synth(float rt, float sr)
       : att(0.1f), dec(0.3f), sus(0.7f), wave(def_vsize),
-        env(ads_gen(att, dec, sus), rt, sr), osc(lookupi_gen(wave), sr),
-        drive(std::tanhf),
-        amp([](float a, float b) -> float { return a * b; }) {
+        env(ads_gen(att, dec, sus), rt, sr), osc(&wave, sr), drive(), amp() {
     std::size_t n = 0;
     for (auto &s : wave) {
       s = sin<float>((1. / wave.size()) * n++);

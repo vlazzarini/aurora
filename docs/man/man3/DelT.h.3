@@ -1,0 +1,51 @@
+.TH "DelT.h" 3 "Tue Dec 7 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DelT.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'SndBase\&.h'\fP
+.br
+\fC#include <functional>\fP
+.br
+\fC#include <iostream>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBAurora::Del< S >\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBAurora\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename S > S \fBAurora::fixed_delay\fP (S nop, std::size_t wp, const std::vector< S > &d, const std::vector< S > *nop1)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBAurora::vdelay\fP (S rp, std::size_t wp, const std::vector< S > &del, const std::vector< S > *nop)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBAurora::vdelayi\fP (S rp, std::size_t wp, const std::vector< S > &del, const std::vector< S > *nop)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBAurora::vdelayc\fP (S rp, std::size_t wp, const std::vector< S > &del, const std::vector< S > *nop)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBAurora::fir\fP (S nop, std::size_t wp, const std::vector< S > &del, const std::vector< S > *ir)"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.

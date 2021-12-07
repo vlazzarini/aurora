@@ -1,4 +1,5 @@
 <map id="Aurora::BlOsc&lt; S &gt;" name="Aurora::BlOsc&lt; S &gt;">
-<area shape="rect" id="node2" href="$class_aurora_1_1_osc.html" title="Aurora::Osc\&lt; S \&gt;" alt="" coords="20,80,145,107"/>
-<area shape="rect" id="node3" href="$class_aurora_1_1_snd_base.html" title="Aurora::SndBase\&lt; S \&gt;" alt="" coords="5,5,160,32"/>
+<area shape="rect" id="node2" href="$class_aurora_1_1_osc.html" title="Aurora::Osc\&lt; S, FN \&gt;" alt="" coords="5,80,155,107"/>
+<area shape="rect" id="node3" href="$class_aurora_1_1_snd_base.html" title="Aurora::SndBase\&lt; S \&gt;" alt="" coords="83,5,239,32"/>
+<area shape="rect" id="node4" href="$class_aurora_1_1_osc.html" title="Aurora::Osc\&lt; S \&gt;" alt="" coords="180,80,305,107"/>
 </map>

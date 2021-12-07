@@ -31,18 +31,20 @@
 
 namespace Aurora {
 
+inline double scl(double a, double b) { return a * b; }
+inline double mix(double a, double b) { return a + b; }
+
 template <typename S> class StackedFM {
   Osc<S> mod0;
   Osc<S> mod1;
   Osc<S> car;
-  BinOp<S> amp;
-  BinOp<S> add;
+  BinOp<S, scl> amp;
+  BinOp<S, mix> add;
 
 public:
   StackedFM(S fs = (S)def_sr, std::size_t vsize = def_vsize)
       : mod0(cos<S>, fs, vsize), mod1(cos<S>, fs, vsize),
-        car(cos<S>, fs, vsize), amp([](S a, S b) -> S { return a * b; }, vsize),
-        add([](S a, S b) -> S { return a + b; }, vsize){};
+        car(cos<S>, fs, vsize), amp(vsize), add(vsize){};
 
   std::size_t vsize() { return car.vsize(); }
 

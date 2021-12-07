@@ -26,7 +26,7 @@
 // POSSIBILITY OF SUCH DAMAGE
 
 #include "Env.h"
-#include "Osc.h"
+#include "OscT.h"
 #include <cstdlib>
 #include <iostream>
 
@@ -35,14 +35,14 @@ struct Synth {
   float att, dec, sus;
   std::vector<float> wave;
   Env<float> env;
-  Osc<float> osc;
+  Osc<float, lookupi<float>> osc;
 
   Synth(float rt, float sr)
       : att(0.f), dec(0.f), sus(0.f), wave(def_vsize),
-        env(ads_gen(att, dec, sus), rt, sr), osc(lookupi_gen(wave), sr) {
+        env(ads_gen(att, dec, sus), rt, sr), osc(&wave, sr) {
     std::size_t n = 0;
     for (auto &s : wave) {
-      s = sin<float>((1. / wave.size()) * n++);
+      s = std::sin((twopi / wave.size()) * n++);
     }
   };
 

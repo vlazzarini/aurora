@@ -1,97 +1,89 @@
-\hypertarget{class_aurora_1_1_bin_op}{}\section{Aurora\+:\+:Bin\+Op$<$ S $>$ Class Template Reference}
-\label{class_aurora_1_1_bin_op}\index{Aurora\+::\+Bin\+Op$<$ S $>$@{Aurora\+::\+Bin\+Op$<$ S $>$}}
+\hypertarget{class_aurora_1_1_bin_op}{}\section{Aurora\+:\+:Bin\+Op$<$ S, OP $>$ Class Template Reference}
+\label{class_aurora_1_1_bin_op}\index{Aurora\+::\+Bin\+Op$<$ S, O\+P $>$@{Aurora\+::\+Bin\+Op$<$ S, O\+P $>$}}
 
 
 {\ttfamily \#include $<$Snd\+Base.\+h$>$}
 
 
 
-Inheritance diagram for Aurora\+:\+:Bin\+Op$<$ S $>$\+:\nopagebreak
+Inheritance diagram for Aurora\+:\+:Bin\+Op$<$ S, OP $>$\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=196pt]{class_aurora_1_1_bin_op__inherit__graph}
+\includegraphics[width=204pt]{class_aurora_1_1_bin_op__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Aurora\+:\+:Bin\+Op$<$ S $>$\+:\nopagebreak
+Collaboration diagram for Aurora\+:\+:Bin\+Op$<$ S, OP $>$\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=196pt]{class_aurora_1_1_bin_op__coll__graph}
+\includegraphics[width=204pt]{class_aurora_1_1_bin_op__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aurora_1_1_bin_op_aa8b5c6b77e89f4c73847716a695be047}{Bin\+Op} (const std\+::function$<$ S(S, S)$>$ \&f, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\hyperlink{class_aurora_1_1_bin_op_a14a9d73eaac2f6d3ac55094f575a9fa4}{Bin\+Op} (std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
 \item 
-const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_bin_op_aef7a0a9a5daa40c22e540f08ca928fab}{operator()} (S a, const std\+::vector$<$ S $>$ \&s)
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_bin_op_aa1e2d8bf1a400b2298f736395cd58bca}{operator()} (S a, const std\+::vector$<$ S $>$ \&s)
 \item 
-const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_bin_op_a488095df0eb9f16da6643476dec9e51c}{operator()} (const std\+::vector$<$ S $>$ \&s, S a)
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_bin_op_a3e182103fef21158d0a697e1dd687b47}{operator()} (const std\+::vector$<$ S $>$ \&s, S a)
 \item 
-const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_bin_op_abe8a0b7666caeda012d9ac18f889e116}{operator()} (const std\+::vector$<$ S $>$ \&s1, const std\+::vector$<$ S $>$ \&s2)
-\item 
-void \hyperlink{class_aurora_1_1_bin_op_aa440ae97cd1e9f0e1aaa077a57850f3d}{func} (const std\+::function$<$ S(S, S)$>$ \&f)
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_bin_op_afd027823b576a0c4a66e7d119bfb01d4}{operator()} (const std\+::vector$<$ S $>$ \&s1, const std\+::vector$<$ S $>$ \&s2)
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$typename S$>$\newline
-class Aurora\+::\+Bin\+Op$<$ S $>$}
+\subsubsection*{template$<$typename S, S($\ast$)(\+S, S) OP$>$\newline
+class Aurora\+::\+Bin\+Op$<$ S, O\+P $>$}
 
 \hyperlink{class_aurora_1_1_bin_op}{Bin\+Op} class ~\newline
 Binary operations ~\newline
+OP\+: binary operation function ~\newline
 S\+: sample type 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_bin_op_aa8b5c6b77e89f4c73847716a695be047}\label{class_aurora_1_1_bin_op_aa8b5c6b77e89f4c73847716a695be047}} 
+\mbox{\Hypertarget{class_aurora_1_1_bin_op_a14a9d73eaac2f6d3ac55094f575a9fa4}\label{class_aurora_1_1_bin_op_a14a9d73eaac2f6d3ac55094f575a9fa4}} 
 \index{Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}!Bin\+Op@{Bin\+Op}}
 \index{Bin\+Op@{Bin\+Op}!Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}}
 \subsubsection{\texorpdfstring{Bin\+Op()}{BinOp()}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-\hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S $>$\+::\hyperlink{class_aurora_1_1_bin_op}{Bin\+Op} (\begin{DoxyParamCaption}\item[{const std\+::function$<$ S(S, S)$>$ \&}]{f,  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S) OP$>$ \\
+\hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S, OP $>$\+::\hyperlink{class_aurora_1_1_bin_op}{Bin\+Op} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor ~\newline
-f\+: binary operation function ~\newline
 vsize\+: signal vector size 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_bin_op_aa440ae97cd1e9f0e1aaa077a57850f3d}\label{class_aurora_1_1_bin_op_aa440ae97cd1e9f0e1aaa077a57850f3d}} 
-\index{Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}!func@{func}}
-\index{func@{func}!Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}}
-\subsubsection{\texorpdfstring{func()}{func()}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-void \hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S $>$\+::func (\begin{DoxyParamCaption}\item[{const std\+::function$<$ S(S, S)$>$ \&}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-set the operator function ~\newline
-f\+: binary operator function to be used \mbox{\Hypertarget{class_aurora_1_1_bin_op_aef7a0a9a5daa40c22e540f08ca928fab}\label{class_aurora_1_1_bin_op_aef7a0a9a5daa40c22e540f08ca928fab}} 
+\mbox{\Hypertarget{class_aurora_1_1_bin_op_aa1e2d8bf1a400b2298f736395cd58bca}\label{class_aurora_1_1_bin_op_aa1e2d8bf1a400b2298f736395cd58bca}} 
 \index{Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}!operator()@{operator()}}
 \index{operator()@{operator()}!Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}}
 \subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{S}]{a,  }\item[{const std\+::vector$<$ S $>$ \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S) OP$>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S, OP $>$\+::operator() (\begin{DoxyParamCaption}\item[{S}]{a,  }\item[{const std\+::vector$<$ S $>$ \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Binary operation ~\newline
 a\+: scalar input ~\newline
 s\+: signal input ~\newline
-returns reference to object signal vector \mbox{\Hypertarget{class_aurora_1_1_bin_op_a488095df0eb9f16da6643476dec9e51c}\label{class_aurora_1_1_bin_op_a488095df0eb9f16da6643476dec9e51c}} 
+returns reference to object signal vector \mbox{\Hypertarget{class_aurora_1_1_bin_op_a3e182103fef21158d0a697e1dd687b47}\label{class_aurora_1_1_bin_op_a3e182103fef21158d0a697e1dd687b47}} 
 \index{Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}!operator()@{operator()}}
 \index{operator()@{operator()}!Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}}
 \subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{s,  }\item[{S}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S) OP$>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S, OP $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{s,  }\item[{S}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Binary operation ~\newline
 s\+: signal input ~\newline
 a\+: scalar input ~\newline
-returns reference to object signal vector \mbox{\Hypertarget{class_aurora_1_1_bin_op_abe8a0b7666caeda012d9ac18f889e116}\label{class_aurora_1_1_bin_op_abe8a0b7666caeda012d9ac18f889e116}} 
+returns reference to object signal vector \mbox{\Hypertarget{class_aurora_1_1_bin_op_afd027823b576a0c4a66e7d119bfb01d4}\label{class_aurora_1_1_bin_op_afd027823b576a0c4a66e7d119bfb01d4}} 
 \index{Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}!operator()@{operator()}}
 \index{operator()@{operator()}!Aurora\+::\+Bin\+Op@{Aurora\+::\+Bin\+Op}}
 \subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{s1,  }\item[{const std\+::vector$<$ S $>$ \&}]{s2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S) OP$>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_bin_op}{Aurora\+::\+Bin\+Op}$<$ S, OP $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{s1,  }\item[{const std\+::vector$<$ S $>$ \&}]{s2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Binary operation ~\newline
 s1\+: signal input 1 ~\newline

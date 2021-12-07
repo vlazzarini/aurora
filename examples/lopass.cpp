@@ -25,14 +25,14 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
 
-#include "BlOsc.h"
+#include "BlOscT.h"
 #include "Env.h"
 #include "OnePole.h"
 #include <cstdlib>
 #include <iostream>
 
 typedef float Sample;
-
+inline Sample scl(Sample a, Sample b) { return a * b; }
 int main(int argc, const char *argv[]) {
   if (argc > 4) {
     double sr = argc > 5 ? std::atof(argv[5]) : Aurora::def_sr;
@@ -43,8 +43,7 @@ int main(int argc, const char *argv[]) {
     Aurora::TableSet<Sample> wave(Aurora::SAW);
     Aurora::BlOsc<Sample> osc(&wave, sr);
     Aurora::OnePole<Sample> fil(sr);
-    Aurora::BinOp<Sample> amp(
-        [](Sample a, Sample b) -> Sample { return a * b; });
+    Aurora::BinOp<Sample, scl> amp;
     double att = 0.1 * dur, dec = 0.5 * dur, sus = 0.01, rt = 0.1;
     Aurora::Env<Sample> env(Aurora::ads_gen(att, dec, sus), rt, sr);
     bool gate = 1;

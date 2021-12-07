@@ -10,5 +10,6 @@
 <area shape="rect" id="node10" href="$class_aurora_1_1_one_pole.html" title="Aurora::OnePole\&lt; S \&gt;" alt="" coords="213,411,366,437"/>
 <area shape="rect" id="node11" href="$class_aurora_1_1_osc.html" title="Aurora::Osc\&lt; S \&gt;" alt="" coords="227,461,352,488"/>
 <area shape="rect" id="node13" href="$class_aurora_1_1_two_pole.html" title="Aurora::TwoPole\&lt; S \&gt;" alt="" coords="213,512,366,539"/>
-<area shape="rect" id="node12" href="$class_aurora_1_1_bl_osc.html" title="Aurora::BlOsc\&lt; S \&gt;" alt="" coords="417,461,554,488"/>
+<area shape="rect" id="node14" href="$class_aurora_1_1_osc.html" title="Osc\&lt; S, FN \&gt;" alt="" coords="238,563,341,589"/>
+<area shape="rect" id="node12" href="$class_aurora_1_1_bl_osc.html" title="Aurora::BlOsc\&lt; S \&gt;" alt="" coords="417,512,554,539"/>
 </map>

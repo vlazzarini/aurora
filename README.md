@@ -105,6 +105,41 @@ struct Synth {
 };
 ```
 
+Templated Classes
+----------
 
+Most classes that use external functions to implement processing also
+have templated versions, where functions are supplied at compile time.
+Although these are less flexible, they are likely to produce more efficient
+code, as the compiler will be able to make use of inlining and other
+optmisations. Header file names ending with **T.h** indicate the
+templated class versions. In most cases, code will need to be adjusted
+to make use of these.
 
+```
+using namespace Aurora;
+inline float scl(float a, float b){ return a * b;} 
+struct Synth {
+  float att, dec, sus;
+  std::vector<float> wave;
+  Env<float> env;
+  Osc<float,lookupi> osc;
+  Func<float,std::tanhf> drive;
+  BinOp<float,scl> amp;
 
+  Synth(float rt, float sr)
+      : att(0.1f), dec(0.3f), sus(0.7f), wave(def_vsize),
+        env(ads_gen(att, dec, sus), rt, sr), osc(&wave, sr),
+        drive(),
+        amp() {
+    std::size_t n = 0;
+    for (auto &s : wave) {
+      s = sin<float>((1. / wave.size()) * n++);
+    }
+  };
+
+  const std::vector<float> &operator()(float a, float f, float dr, bool gate) {
+    return amp(env(0, a, gate), drive(osc(dr, f)));
+  }
+};
+```

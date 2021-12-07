@@ -1,8 +1,8 @@
-.TH "Aurora::BinOp< S >" 3 "Mon Dec 6 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::BinOp< S, OP >" 3 "Tue Dec 7 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-Aurora::BinOp< S >
+Aurora::BinOp< S, OP >
 .SH SYNOPSIS
 .br
 .PP
@@ -14,7 +14,7 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 
 .in +1c
 .ti -1c
-.RI "\fBBinOp\fP (const std::function< S(S, S)> &f, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.RI "\fBBinOp\fP (std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (S a, const std::vector< S > &s)"
@@ -25,36 +25,29 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &s1, const std::vector< S > &s2)"
 .br
-.ti -1c
-.RI "void \fBfunc\fP (const std::function< S(S, S)> &f)"
-.br
 .in -1c
 .SH "Detailed Description"
 .PP 
 
-.SS "template<typename S>
+.SS "template<typename S, S(*)(S, S) OP>
 .br
-class Aurora::BinOp< S >"
+class Aurora::BinOp< S, OP >"
 \fBBinOp\fP class 
 .br
 Binary operations 
 .br
+OP: binary operation function 
+.br
 S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S > \fBAurora::BinOp\fP< S >::\fBBinOp\fP (const std::function< S(S, S)> & f, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S) OP> \fBAurora::BinOp\fP< S, OP >::\fBBinOp\fP (std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
-.br
-f: binary operation function 
 .br
 vsize: signal vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S > void \fBAurora::BinOp\fP< S >::func (const std::function< S(S, S)> & f)\fC [inline]\fP"
-set the operator function 
-.br
-f: binary operator function to be used 
-.SS "template<typename S > const std::vector<S>& \fBAurora::BinOp\fP< S >::operator() (S a, const std::vector< S > & s)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S) OP> const std::vector<S>& \fBAurora::BinOp\fP< S, OP >::operator() (S a, const std::vector< S > & s)\fC [inline]\fP"
 Binary operation 
 .br
 a: scalar input 
@@ -62,7 +55,7 @@ a: scalar input
 s: signal input 
 .br
 returns reference to object signal vector 
-.SS "template<typename S > const std::vector<S>& \fBAurora::BinOp\fP< S >::operator() (const std::vector< S > & s, S a)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S) OP> const std::vector<S>& \fBAurora::BinOp\fP< S, OP >::operator() (const std::vector< S > & s, S a)\fC [inline]\fP"
 Binary operation 
 .br
 s: signal input 
@@ -70,7 +63,7 @@ s: signal input
 a: scalar input 
 .br
 returns reference to object signal vector 
-.SS "template<typename S > const std::vector<S>& \fBAurora::BinOp\fP< S >::operator() (const std::vector< S > & s1, const std::vector< S > & s2)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S) OP> const std::vector<S>& \fBAurora::BinOp\fP< S, OP >::operator() (const std::vector< S > & s1, const std::vector< S > & s2)\fC [inline]\fP"
 Binary operation 
 .br
 s1: signal input 1 

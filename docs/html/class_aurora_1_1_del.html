@@ -103,6 +103,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aeaf2a09c658c57e3e29793ea8af092d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d5f6aa043e47077b3c1654d884c77f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_del.html#a1d5f6aa043e47077b3c1654d884c77f1">reset</a> (S maxdt, S sr)</td></tr>
 <tr class="separator:a1d5f6aa043e47077b3c1654d884c77f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5fe2f7cee0b896f2d12932bb72fd925"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_del.html#ab5fe2f7cee0b896f2d12932bb72fd925">Del</a> (S maxdt, S sr=<a class="el" href="namespace_aurora.html#ad49263d809bea98dd422e95bc91bc03e">def_sr</a>, std::size_t <a class="el" href="class_aurora_1_1_snd_base.html#af9e21aaf411b17f7a8221c991ce5d291">vsize</a>=<a class="el" href="namespace_aurora.html#afaaddf667a06e7ce23c667a8b7295263">def_vsize</a>)</td></tr>
+<tr class="separator:ab5fe2f7cee0b896f2d12932bb72fd925"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae65031a108546fdd299e50929b394bad"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_del.html#ae65031a108546fdd299e50929b394bad">operator()</a> (const std::vector&lt; S &gt; &amp;in, S dt, S fdb=0, S fwd=0, const std::vector&lt; S &gt; *ir=nullptr)</td></tr>
+<tr class="separator:ae65031a108546fdd299e50929b394bad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a565d7b65191120a0251e83833bb62ea4"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_del.html#a565d7b65191120a0251e83833bb62ea4">operator()</a> (const std::vector&lt; S &gt; &amp;in, const std::vector&lt; S &gt; &amp;dt, S fdb=0, S fwd=0, const std::vector&lt; S &gt; *ir=nullptr)</td></tr>
+<tr class="separator:a565d7b65191120a0251e83833bb62ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d5f6aa043e47077b3c1654d884c77f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_del.html#a1d5f6aa043e47077b3c1654d884c77f1">reset</a> (S maxdt, S sr)</td></tr>
+<tr class="separator:a1d5f6aa043e47077b3c1654d884c77f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename S&gt;<br />
@@ -110,10 +118,13 @@ class Aurora::Del&lt; S &gt;</h3>
 
 <p><a class="el" href="class_aurora_1_1_del.html">Del</a> class <br />
 Generic delay line <br />
+S: sample type</p>
+<p><a class="el" href="class_aurora_1_1_del.html">Del</a> class <br />
+Generic templated delay line <br />
 S: sample type </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad2236892c8f3459010f7570bee8275a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2236892c8f3459010f7570bee8275a1">&#9670;&nbsp;</a></span>Del() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2236892c8f3459010f7570bee8275a1">&#9670;&nbsp;</a></span>Del() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -168,7 +179,7 @@ vsize: vector size </p>
 </div>
 </div>
 <a id="ae7ee559e909a215a6d8248d9c9a0ced8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7ee559e909a215a6d8248d9c9a0ced8">&#9670;&nbsp;</a></span>Del() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7ee559e909a215a6d8248d9c9a0ced8">&#9670;&nbsp;</a></span>Del() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -216,6 +227,55 @@ vsize: vector size </p>
 
 </div>
 </div>
+<a id="ab5fe2f7cee0b896f2d12932bb72fd925"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5fe2f7cee0b896f2d12932bb72fd925">&#9670;&nbsp;</a></span>Del() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aurora_1_1_del.html">Aurora::Del</a>&lt; S &gt;::<a class="el" href="class_aurora_1_1_del.html">Del</a> </td>
+          <td>(</td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>maxdt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>sr</em> = <code><a class="el" href="namespace_aurora.html#ad49263d809bea98dd422e95bc91bc03e">def_sr</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>vsize</em> = <code><a class="el" href="namespace_aurora.html#afaaddf667a06e7ce23c667a8b7295263">def_vsize</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Constructor <br />
+maxdt: maximum delay time <br />
+f: delay lookup function <br />
+sr: sampling rate <br />
+vsize: vector size </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="aeaf2a09c658c57e3e29793ea8af092d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeaf2a09c658c57e3e29793ea8af092d3">&#9670;&nbsp;</a></span>func()</h2>
@@ -247,8 +307,69 @@ f: delay function to be used </p>
 
 </div>
 </div>
+<a id="ae65031a108546fdd299e50929b394bad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae65031a108546fdd299e50929b394bad">&#9670;&nbsp;</a></span>operator()() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;S&gt;&amp; <a class="el" href="class_aurora_1_1_del.html">Aurora::Del</a>&lt; S &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; S &gt; &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>dt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>fdb</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>fwd</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; S &gt; *&#160;</td>
+          <td class="paramname"><em>ir</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Delay <br />
+in: audio <br />
+dt: delay time <br />
+fdb: feedback gain <br />
+fwd: feedforward gain ir: optional impulse response for convolution </p>
+
+</div>
+</div>
 <a id="a7061e3fc28fa7c9cace2f194c0c2933b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7061e3fc28fa7c9cace2f194c0c2933b">&#9670;&nbsp;</a></span>operator()() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7061e3fc28fa7c9cace2f194c0c2933b">&#9670;&nbsp;</a></span>operator()() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -302,8 +423,69 @@ fwd: feedforward gain </p>
 
 </div>
 </div>
+<a id="a565d7b65191120a0251e83833bb62ea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a565d7b65191120a0251e83833bb62ea4">&#9670;&nbsp;</a></span>operator()() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;S&gt;&amp; <a class="el" href="class_aurora_1_1_del.html">Aurora::Del</a>&lt; S &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; S &gt; &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; S &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>fdb</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>fwd</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; S &gt; *&#160;</td>
+          <td class="paramname"><em>ir</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Delay <br />
+in: audio <br />
+dt: delay time <br />
+fdb: feedback gain <br />
+fwd: feedforward gain ir: optional impulse response for convolution </p>
+
+</div>
+</div>
 <a id="a7b07356cf07e48791929e7c99c907650"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b07356cf07e48791929e7c99c907650">&#9670;&nbsp;</a></span>operator()() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b07356cf07e48791929e7c99c907650">&#9670;&nbsp;</a></span>operator()() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -358,7 +540,7 @@ fwd: feedforward gain </p>
 </div>
 </div>
 <a id="a1d5f6aa043e47077b3c1654d884c77f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d5f6aa043e47077b3c1654d884c77f1">&#9670;&nbsp;</a></span>reset()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d5f6aa043e47077b3c1654d884c77f1">&#9670;&nbsp;</a></span>reset() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -398,8 +580,50 @@ sr: sampling rate </p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a id="a1d5f6aa043e47077b3c1654d884c77f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d5f6aa043e47077b3c1654d884c77f1">&#9670;&nbsp;</a></span>reset() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_aurora_1_1_del.html">Aurora::Del</a>&lt; S &gt;::reset </td>
+          <td>(</td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>maxdt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>sr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>reset the delayline object <br />
+maxdt: max delay time <br />
+sr: sampling rate </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_del_8h_source.html">Del.h</a></li>
+<li><a class="el" href="_del_t_8h_source.html">DelT.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
