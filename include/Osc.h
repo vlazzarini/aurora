@@ -109,13 +109,14 @@ protected:
   S ts;
   const std::vector<S> *tab;
 
-  virtual S synth(S a, S f, double &phs, const std::vector<S> *t) {
+  virtual S synth(S a, S f, double &phs, const std::vector<S> *t, S pm = 0) {
+    phs += pm;
     while (phs < 0)
       phs += 1.;
     while (phs >= 1.)
       phs -= 1.;
     S s = (S)(a * FN(phs, t));
-    phs += f * ts;
+    phs = f * ts + phs - pm;
     return s;
   }
 
@@ -217,7 +218,7 @@ public:
     double phs = ph;
     std::size_t n = 0;
     auto &s =
-        process([&]() { return synth(a, f, phs + pm[n++], tab); }, pm.size());
+        process([&]() { return synth(a, f, phs, tab, pm[n++]); }, pm.size());
     ph = phs;
     return s;
   }
@@ -234,7 +235,7 @@ public:
     std::size_t n = 0;
     auto &s = process(
         [&]() {
-          auto s = synth(am[n], f, phs + pm[n], tab);
+          auto s = synth(am[n], f, phs, tab, pm[n]);
           n++;
           return s;
         },

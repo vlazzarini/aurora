@@ -1,5 +1,5 @@
-// filter.cpp:
-// Low pass resonant filter processing example
+// Chorus.cpp:
+// Chorus effect
 // depends on libsndfile
 //
 // (c) V Lazzarini, 2021

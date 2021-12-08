@@ -186,9 +186,9 @@ class BlOsc : public Osc<S, FN> {
   const TableSet<S> *tset;
   S ff;
 
-  S synth(S a, S f, double &phs, const std::vector<S> *t) override {
+  S synth(S a, S f, double &phs, const std::vector<S> *t, S pm = 0) override {
     t = ff != f ? &tset->func(f) : t;
-    return Osc<S, FN>::synth(a, f, phs, t);
+    return Osc<S, FN>::synth(a, f, phs, t, pm);
   }
 
   void reset_obj(S fs) override {
