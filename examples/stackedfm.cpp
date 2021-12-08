@@ -48,13 +48,7 @@ public:
 
   std::size_t vsize() { return car.vsize(); }
 
-  void vsize(std::size_t n) {
-    mod0.vsize(n);
-    mod1.vsize(n);
-    car.vsize(n);
-    amp.vsize(n);
-    add.vsize(n);
-  }
+  void vsize(std::size_t n) { mod0.vsize(n); }
 
   S fs() { return car.fs(); }
 
