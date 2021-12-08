@@ -1,5 +1,5 @@
-// stackedpm.cpp:
-// Stacked PM example
+// operatorpm.cpp:
+// Operator PM example
 //
 // (c) V Lazzarini, 2021
 //
