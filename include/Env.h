@@ -43,7 +43,7 @@ namespace Aurora {
 template <typename S>
 std::function<S(double, S, S)> ads_gen(const S &a, const S &d, const S &s) {
   return [&a, &d, &s](double t, S e, S ts) -> S {
-    if (t < a)
+    if (t < a && e < 1)
       return e + ts / a;
     else if (t < a + d)
       return e + (s - 1) * ts / d;
