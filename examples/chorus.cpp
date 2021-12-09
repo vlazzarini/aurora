@@ -44,11 +44,11 @@ struct DualChorus {
   std::array<Del<float, vdelayi>, 2> delay;
   BinOp<float, ofs> offs;
 
-  DualChorus(float sr)
-      : lfo{Osc<float>(sr), Osc<float>(sr)}, delay{Del<float, vdelayi>(0.1, sr),
-                                                   Del<float, vdelayi>(0.1,
-                                                                       sr)},
-        offs(){};
+  DualChorus(float sr, std::size_t vsize = def_vsize)
+      : lfo{Osc<float>(sr, vsize), Osc<float>(sr, vsize)},
+        delay{Del<float, vdelayi>(0.1, sr, vsize),
+              Del<float, vdelayi>(0.1, sr, vsize)},
+        offs(vsize){};
 
   const std::vector<float> &operator()(const std::vector<float> &in, float fr,
                                        float d, int chn) {
@@ -72,7 +72,7 @@ int main(int argc, const char **argv) {
           std::fill(buffer.begin(), buffer.end(), 0);
           n = sf_read_float(fpin, buffer.data(), def_vsize);
           buffer.resize(n);
-          auto &l = chorus(buffer, .93f, .017, 0);
+          auto &l = chorus(buffer, .93f, .017f, 0);
           auto &r = chorus(buffer, .87f, .013f, 1);
           buffer.resize(n * 2);
           for (auto &b : buffer) {

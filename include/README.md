@@ -23,5 +23,7 @@ Aurora Headers
 
 **Conv.h**: partitioned convolution
 
+**Eq.h**: parametric equaliser
+
 
 

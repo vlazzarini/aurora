@@ -1,0 +1,50 @@
+.TH "Aurora::Eq< S >" 3 "Thu Dec 9 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::Eq< S >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Eq\&.h>\fP
+.PP
+Inherits \fBAurora::SndBase< S >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEq\fP (S fs=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S g, S fr, S bw)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (S fs)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S>
+.br
+class Aurora::Eq< S >"
+\fBEq\fP class 
+.br
+Parametric equaliser s: sample type 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S > \fBAurora::Eq\fP< S >::\fBEq\fP (S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+fs: sampling rate vsize: signal vector size 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S > const std::vector<S>& \fBAurora::Eq\fP< S >::operator() (const std::vector< S > & in, S g, S fr, S bw)\fC [inline]\fP"
+Equalisation in: input signal g: output gain fr: centre frequency bw: bandwidth 
+.SS "template<typename S > void \fBAurora::Eq\fP< S >::reset (S fs)\fC [inline]\fP"
+reset object fs: sampling rate 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.
