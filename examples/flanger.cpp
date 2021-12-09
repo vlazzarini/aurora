@@ -78,6 +78,7 @@ int main(int argc, const char **argv) {
           auto &out = flanger(buffer, fr, fdb, g);
           sf_write_float(fpout, out.data(), n);
         } while (n);
+        sf_close(fpin);
         sf_close(fpout);
         return 0;
       } else

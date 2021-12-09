@@ -57,6 +57,7 @@ int main(int argc, const char **argv) {
             break;
         } while (1);
         sf_close(fpout);
+        sf_close(fpin);
         return 0;
       } else
         std::cout << "only mono soundfiles permitted\n";

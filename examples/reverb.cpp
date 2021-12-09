@@ -65,7 +65,7 @@ int main(int argc, const char **argv) {
 
       if (sfinfoir.samplerate != sfinfo.samplerate) {
         std::cout << "sample rates do not match\n";
-        sf_close(fpir);
+        sf_close(fpin);
         return 1;
       }
 
@@ -93,6 +93,7 @@ int main(int argc, const char **argv) {
           sf_write_float(fpout, out.data(), def_vsize);
           n -= def_vsize;
         } while (n > 0);
+        sf_close(fpin);
         sf_close(fpout);
         return 0;
       } else

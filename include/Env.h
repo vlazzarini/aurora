@@ -43,7 +43,7 @@ namespace Aurora {
   ts: fs reciprocal \n
   returns an ADS sample
 */
-template <typename S> S ads(S a, S d, S s, double t, S e, S ts) {
+template <typename S> inline S ads(S a, S d, S s, double t, S e, S ts) {
   if (t < a && e < 1)
     return e + ts / a;
   else if (t < a + d && e > s)

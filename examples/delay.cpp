@@ -69,6 +69,7 @@ int main(int argc, const char **argv) {
           sf_write_float(fpout, out.data(), def_vsize);
           n -= def_vsize;
         } while (n > 0);
+        sf_close(fpin);
         sf_close(fpout);
         return 0;
       } else
