@@ -1,4 +1,4 @@
-.TH "Aurora" 3 "Wed Dec 8 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora" 3 "Thu Dec 9 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -85,6 +85,12 @@ Aurora
 .br
 .ti -1c
 .RI "template<typename S > S \fBfir\fP (S nop, std::size_t wp, const std::vector< S > &del, const std::vector< S > *ir)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBads\fP (S a, S d, S s, double t, S e, S ts)"
+.br
+.ti -1c
+.RI "template<typename S > std::function< S(double, S, S)> \fBenv_gen\fP (const std::vector< S > &pts)"
 .br
 .ti -1c
 .RI "template<typename S > std::function< S(double, S, S)> \fBads_gen\fP (const S &a, const S &d, const S &s)"
@@ -185,7 +191,25 @@ Aurora
 \fB\fIBP \fP\fP
 .SH "Function Documentation"
 .PP 
-.SS "template<typename S > std::function<S(double, S, S)> Aurora::ads_gen (const S & a, const S & d, const S & s)"
+.SS "template<typename S > S Aurora::ads (S a, S d, S s, double t, S e, S ts)"
+ADS function for \fBEnv\fP 
+.br
+S: sample type 
+.br
+a: attack 
+.br
+d: decay 
+.br
+s: sustain 
+.br
+t: current time 
+.br
+e: prev sample 
+.br
+ts: fs reciprocal 
+.br
+returns an ADS sample 
+.SS "template<typename S > std::function< S(double, S, S)> Aurora::ads_gen (const S & a, const S & d, const S & s)"
 ADS function generator for \fBEnv\fP 
 .br
 S: sample type 
@@ -213,6 +237,14 @@ S: sample type
 pos: reading position (no bounds check) 
 .br
 t: table 
+.SS "template<typename S > std::function<S(double, S, S)> Aurora::env_gen (const std::vector< S > & pts)"
+Breakpoint function generator for \fBEnv\fP 
+.br
+S: sample type 
+.br
+pts: breakpoints {t0,val0,t1,val1,\&.\&.\&.} 
+.br
+returns an envelope function 
 .SS "template<typename S > S Aurora::fir (S nop, std::size_t wp, const std::vector< S > & del, const std::vector< S > * ir)\fC [inline]\fP"
 FIR/convolution function for \fBDel\fP 
 .br

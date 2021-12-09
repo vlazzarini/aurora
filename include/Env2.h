@@ -33,46 +33,6 @@
 
 namespace Aurora {
 
-/** ADS function for Env \n
-  S: sample type \n
-  a: attack  \n
-  d: decay  \n
-  s: sustain \n
-  t: current time \n
-  e: prev sample \n
-  ts: fs reciprocal \n
-  returns an ADS sample
-*/
-template <typename S> S ads(S a, S d, S s, double t, S e, S ts) {
-  if (t < a && e < 1)
-    return e + ts / a;
-  else if (t < a + d && e > s)
-    return e + (s - 1) * ts / d;
-  else
-    return s;
-}
-
-/** Breakpoint function generator for Env \n
-  S: sample type \n
-  pts: breakpoints {t0,val0,t1,val1,...} \n
-  returns an envelope function
-*/
-template <typename S>
-std::function<S(double, S, S)> env_gen(const std::vector<S> &pts) {
-  return [&pts](double t, S e, S ts) -> S {
-    std::size_t n, siz = pts.size() % 2 ? pts.size() - 1 : pts.size();
-    for (n = 0; n < siz; n += 2) {
-      if (t < pts[n]) {
-        S p1 = n ? pts[n - 1] : 0;
-        S p2 = pts[n + 1];
-        S st = n ? pts[n - 2] : 0;
-        return e + (p2 - p1) * ts / (pts[n] - st);
-      }
-    }
-    return *(pts.end() - 1);
-  };
-}
-
 /** ADS function generator for Env \n
   S: sample type \n
   a: attack  \n
@@ -83,30 +43,31 @@ std::function<S(double, S, S)> env_gen(const std::vector<S> &pts) {
 template <typename S>
 std::function<S(double, S, S)> ads_gen(const S &a, const S &d, const S &s) {
   return [&a, &d, &s](double t, S e, S ts) -> S {
-    return ads<S>(a, d, s, t, e, ts);
+    if (t < a)
+      return e + ts / a;
+    else if (t < a + d)
+      return e + (s - 1) * ts / d;
+    else
+      return s;
   };
 }
 
 /** Env class  \n
     Generic envelope \n
-    S: sample type \n
-    FN: envelope function
+    S: sample type
 */
-template <typename S, S (*FN)(S, S, S, double, S, S) = ads>
-class Env : public SndBase<S> {
+template <typename S> class Env : public SndBase<S> {
   using SndBase<S>::process;
   std::function<S(double, S, S)> fun;
   double time;
   S prev;
   S ts;
   S fac;
-  S &att, &dec, &sus;
 
-  S synth(S e, double &t, bool gate, std::function<S(double, S, S)> fn, S a,
-          S d, S ss) {
+  S synth(S e, double &t, bool gate, std::function<S(double, S, S)> fn) {
     S s;
     if (gate) {
-      s = fn ? fn(t, e, ts) : FN(a, d, ss, t, e, ts);
+      s = fn(t, e, ts);
       t += ts;
     } else {
       if (e < 0.00001)
@@ -128,19 +89,7 @@ public:
   Env(std::function<S(double, S, S)> f, S rt, S fs = def_sr,
       std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), fun(f), prev(0), ts(1. / fs),
-        fac(std::pow(0.001, ts / rt)), att(fac), dec(fac), sus(fac){};
-
-  /** Constructor \n
-     a: attack time \n
-     d: decay time \n
-     s: sustain levl \n
-     rt: release time \n
-     fs: sampling rate \n
-     vsize: signal vector size
- */
-  Env(S &a, S &d, S &s, S rt, S fs = def_sr, std::size_t vsize = def_vsize)
-      : SndBase<S>(vsize), fun(nullptr), prev(0), ts(1. / fs),
-        fac(std::pow(0.001, ts / rt)), att(a), dec(d), sus(s) {}
+        fac(std::pow(0.001, ts / rt)){};
 
   /** Release time setter
      rt: release time
@@ -153,9 +102,7 @@ public:
   const std::vector<S> &operator()(bool gate) {
     double t = time;
     S e = prev;
-    S a = att, d = dec, ss = sus;
-    auto &s =
-        process([&]() { return (e = synth(e, t, gate, fun, a, d, ss)); }, 0);
+    auto &s = process([&]() { return (e = synth(e, t, gate, fun)); }, 0);
     prev = e;
     time = t;
     return s;
@@ -169,10 +116,9 @@ public:
   const std::vector<S> &operator()(S offs, S scal, bool gate) {
     double t = time;
     S e = prev;
-    S a = att, d = dec, ss = sus;
     auto &s = process(
         [&]() {
-          e = synth(e, t, gate, fun, a, d, ss);
+          e = synth(e, t, gate, fun);
           return (e * scal + offs);
         },
         0);
@@ -189,10 +135,9 @@ public:
     double t = time;
     S e = prev;
     std::size_t n = 0;
-    S at = att, d = dec, ss = sus;
     auto &s = process(
         [&]() {
-          e = synth(e, t, gate, fun, at, d, ss);
+          e = synth(e, t, gate, fun);
           return e * a[n++];
         },
         a.size());

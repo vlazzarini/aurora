@@ -1,12 +1,13 @@
-\hypertarget{class_aurora_1_1_env}{}\section{Aurora\+:\+:Env$<$ S $>$ Class Template Reference}
-\label{class_aurora_1_1_env}\index{Aurora\+::\+Env$<$ S $>$@{Aurora\+::\+Env$<$ S $>$}}
+\hypertarget{class_aurora_1_1_env}{}\section{Aurora\+:\+:Env$<$ S, FN $>$ Class Template Reference}
+\label{class_aurora_1_1_env}\index{Aurora\+::\+Env$<$ S, F\+N $>$@{Aurora\+::\+Env$<$ S, F\+N $>$}}
 
 
 {\ttfamily \#include $<$Env.\+h$>$}
 
 
 
-Inheritance diagram for Aurora\+:\+:Env$<$ S $>$\+:\nopagebreak
+Inheritance diagram for Aurora\+:\+:Env$<$ S, FN $>$\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +16,8 @@ Inheritance diagram for Aurora\+:\+:Env$<$ S $>$\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for Aurora\+:\+:Env$<$ S $>$\+:\nopagebreak
+Collaboration diagram for Aurora\+:\+:Env$<$ S, FN $>$\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,39 +27,86 @@ Collaboration diagram for Aurora\+:\+:Env$<$ S $>$\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aurora_1_1_env_a2ea7f7db3541bd36853d66423ee74b78}{Env} (std\+::function$<$ S(double, S, S)$>$ f, S rt, S \hyperlink{class_aurora_1_1_env_a82aa0806fae0fac3e527f30b4c2fccc1}{fs}=\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\hyperlink{class_aurora_1_1_env_a500fe7e05d736a21c801ffa480aceed7}{Env} (std\+::function$<$ S(double, S, S)$>$ f, S rt, S \hyperlink{class_aurora_1_1_env_a8b83ca686cce4fc31b03b1de847bc062}{fs}=\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
 \item 
-void \hyperlink{class_aurora_1_1_env_a6591658018e04100709018bc86e94f31}{release} (S rt)
+\hyperlink{class_aurora_1_1_env_a7a019299406bd5a3f8842194c0cbce09}{Env} (S \&a, S \&d, S \&s, S rt, S \hyperlink{class_aurora_1_1_env_a8b83ca686cce4fc31b03b1de847bc062}{fs}=\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
 \item 
-const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_env_a44666f7414faf21c568d20655d5e2761}{operator()} (bool gate)
+void \hyperlink{class_aurora_1_1_env_a2e52ca727b587d89e13a6c3832786f22}{release} (S rt)
 \item 
-const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_env_a2cf905d912ec6089b42922a92d4d7d5e}{operator()} (S offs, S scal, bool gate)
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_env_ae4e2dec694f0be0f0efa5b073a06fef5}{operator()} (bool gate)
 \item 
-const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_env_a2a97a7e7211a8717957fd0f6f8afc81f}{operator()} (const std\+::vector$<$ S $>$ \&a, bool gate)
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_env_a664e3c6ce7e66de66305ab220c116792}{operator()} (S offs, S scal, bool gate)
 \item 
-S \hyperlink{class_aurora_1_1_env_a82aa0806fae0fac3e527f30b4c2fccc1}{fs} () const
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_env_a577d95d24fd9f5c5796210874623c650}{operator()} (const std\+::vector$<$ S $>$ \&a, bool gate)
 \item 
-void \hyperlink{class_aurora_1_1_env_ac97ef83c828c1ebf2527be51f457eab8}{reset} (S \hyperlink{class_aurora_1_1_env_a82aa0806fae0fac3e527f30b4c2fccc1}{fs})
+S \hyperlink{class_aurora_1_1_env_a8b83ca686cce4fc31b03b1de847bc062}{fs} () const
 \item 
-void \hyperlink{class_aurora_1_1_env_a0339b4b6d9eab42cbd9e6fd73b34fba7}{func} (const std\+::function$<$ S(double, S, S)$>$ f)
+void \hyperlink{class_aurora_1_1_env_a12db5d285b749a7e1fed988d344d3bc9}{reset} (S \hyperlink{class_aurora_1_1_env_a8b83ca686cce4fc31b03b1de847bc062}{fs})
+\item 
+void \hyperlink{class_aurora_1_1_env_a92aec91bb78127cf50d5d841870cce14}{func} (const std\+::function$<$ S(double, S, S)$>$ f)
+\item 
+\hyperlink{class_aurora_1_1_env_a500fe7e05d736a21c801ffa480aceed7}{Env} (std\+::function$<$ S(double, S, S)$>$ f, S rt, S \hyperlink{class_aurora_1_1_env_a8b83ca686cce4fc31b03b1de847bc062}{fs}=\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\item 
+void \hyperlink{class_aurora_1_1_env_a2e52ca727b587d89e13a6c3832786f22}{release} (S rt)
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_env_ae4e2dec694f0be0f0efa5b073a06fef5}{operator()} (bool gate)
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_env_a664e3c6ce7e66de66305ab220c116792}{operator()} (S offs, S scal, bool gate)
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_env_a577d95d24fd9f5c5796210874623c650}{operator()} (const std\+::vector$<$ S $>$ \&a, bool gate)
+\item 
+S \hyperlink{class_aurora_1_1_env_a8b83ca686cce4fc31b03b1de847bc062}{fs} () const
+\item 
+void \hyperlink{class_aurora_1_1_env_a12db5d285b749a7e1fed988d344d3bc9}{reset} (S \hyperlink{class_aurora_1_1_env_a8b83ca686cce4fc31b03b1de847bc062}{fs})
+\item 
+void \hyperlink{class_aurora_1_1_env_a92aec91bb78127cf50d5d841870cce14}{func} (const std\+::function$<$ S(double, S, S)$>$ f)
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$typename S$>$\newline
-class Aurora\+::\+Env$<$ S $>$}
+\subsubsection*{template$<$typename S, S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$\newline
+class Aurora\+::\+Env$<$ S, F\+N $>$}
+
+\hyperlink{class_aurora_1_1_env}{Env} class ~\newline
+Generic envelope ~\newline
+S\+: sample type ~\newline
+FN\+: envelope function
 
 \hyperlink{class_aurora_1_1_env}{Env} class ~\newline
 Generic envelope ~\newline
 S\+: sample type 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_env_a2ea7f7db3541bd36853d66423ee74b78}\label{class_aurora_1_1_env_a2ea7f7db3541bd36853d66423ee74b78}} 
+\mbox{\Hypertarget{class_aurora_1_1_env_a500fe7e05d736a21c801ffa480aceed7}\label{class_aurora_1_1_env_a500fe7e05d736a21c801ffa480aceed7}} 
 \index{Aurora\+::\+Env@{Aurora\+::\+Env}!Env@{Env}}
 \index{Env@{Env}!Aurora\+::\+Env@{Aurora\+::\+Env}}
-\subsubsection{\texorpdfstring{Env()}{Env()}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-\hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S $>$\+::\hyperlink{class_aurora_1_1_env}{Env} (\begin{DoxyParamCaption}\item[{std\+::function$<$ S(double, S, S)$>$}]{f,  }\item[{S}]{rt,  }\item[{S}]{fs = {\ttfamily \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}},  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\subsubsection{\texorpdfstring{Env()}{Env()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+\hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::\hyperlink{class_aurora_1_1_env}{Env} (\begin{DoxyParamCaption}\item[{std\+::function$<$ S(double, S, S)$>$}]{f,  }\item[{S}]{rt,  }\item[{S}]{fs = {\ttfamily \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}},  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor ~\newline
+f\+: envelope function ~\newline
+rt\+: release time ~\newline
+fs\+: sampling rate ~\newline
+vsize\+: signal vector size \mbox{\Hypertarget{class_aurora_1_1_env_a7a019299406bd5a3f8842194c0cbce09}\label{class_aurora_1_1_env_a7a019299406bd5a3f8842194c0cbce09}} 
+\index{Aurora\+::\+Env@{Aurora\+::\+Env}!Env@{Env}}
+\index{Env@{Env}!Aurora\+::\+Env@{Aurora\+::\+Env}}
+\subsubsection{\texorpdfstring{Env()}{Env()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+\hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::\hyperlink{class_aurora_1_1_env}{Env} (\begin{DoxyParamCaption}\item[{S \&}]{a,  }\item[{S \&}]{d,  }\item[{S \&}]{s,  }\item[{S}]{rt,  }\item[{S}]{fs = {\ttfamily \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}},  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor ~\newline
+a\+: attack time ~\newline
+d\+: decay time ~\newline
+s\+: sustain levl ~\newline
+rt\+: release time ~\newline
+fs\+: sampling rate ~\newline
+vsize\+: signal vector size \mbox{\Hypertarget{class_aurora_1_1_env_a500fe7e05d736a21c801ffa480aceed7}\label{class_aurora_1_1_env_a500fe7e05d736a21c801ffa480aceed7}} 
+\index{Aurora\+::\+Env@{Aurora\+::\+Env}!Env@{Env}}
+\index{Env@{Env}!Aurora\+::\+Env@{Aurora\+::\+Env}}
+\subsubsection{\texorpdfstring{Env()}{Env()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+\hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::\hyperlink{class_aurora_1_1_env}{Env} (\begin{DoxyParamCaption}\item[{std\+::function$<$ S(double, S, S)$>$}]{f,  }\item[{S}]{rt,  }\item[{S}]{fs = {\ttfamily \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}},  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor ~\newline
 f\+: envelope function ~\newline
@@ -66,63 +115,119 @@ fs\+: sampling rate ~\newline
 vsize\+: signal vector size 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_env_a82aa0806fae0fac3e527f30b4c2fccc1}\label{class_aurora_1_1_env_a82aa0806fae0fac3e527f30b4c2fccc1}} 
+\mbox{\Hypertarget{class_aurora_1_1_env_a8b83ca686cce4fc31b03b1de847bc062}\label{class_aurora_1_1_env_a8b83ca686cce4fc31b03b1de847bc062}} 
 \index{Aurora\+::\+Env@{Aurora\+::\+Env}!fs@{fs}}
 \index{fs@{fs}!Aurora\+::\+Env@{Aurora\+::\+Env}}
-\subsubsection{\texorpdfstring{fs()}{fs()}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-S \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S $>$\+::fs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\subsubsection{\texorpdfstring{fs()}{fs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+S \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::fs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Sampling rate query ~\newline
-returns sampling rate \mbox{\Hypertarget{class_aurora_1_1_env_a0339b4b6d9eab42cbd9e6fd73b34fba7}\label{class_aurora_1_1_env_a0339b4b6d9eab42cbd9e6fd73b34fba7}} 
+returns sampling rate \mbox{\Hypertarget{class_aurora_1_1_env_a8b83ca686cce4fc31b03b1de847bc062}\label{class_aurora_1_1_env_a8b83ca686cce4fc31b03b1de847bc062}} 
+\index{Aurora\+::\+Env@{Aurora\+::\+Env}!fs@{fs}}
+\index{fs@{fs}!Aurora\+::\+Env@{Aurora\+::\+Env}}
+\subsubsection{\texorpdfstring{fs()}{fs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+S \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::fs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sampling rate query ~\newline
+returns sampling rate \mbox{\Hypertarget{class_aurora_1_1_env_a92aec91bb78127cf50d5d841870cce14}\label{class_aurora_1_1_env_a92aec91bb78127cf50d5d841870cce14}} 
 \index{Aurora\+::\+Env@{Aurora\+::\+Env}!func@{func}}
 \index{func@{func}!Aurora\+::\+Env@{Aurora\+::\+Env}}
-\subsubsection{\texorpdfstring{func()}{func()}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-void \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S $>$\+::func (\begin{DoxyParamCaption}\item[{const std\+::function$<$ S(double, S, S)$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\subsubsection{\texorpdfstring{func()}{func()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+void \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::func (\begin{DoxyParamCaption}\item[{const std\+::function$<$ S(double, S, S)$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 set the envelope function ~\newline
-f\+: envelope function to be used \mbox{\Hypertarget{class_aurora_1_1_env_a44666f7414faf21c568d20655d5e2761}\label{class_aurora_1_1_env_a44666f7414faf21c568d20655d5e2761}} 
+f\+: envelope function to be used \mbox{\Hypertarget{class_aurora_1_1_env_a92aec91bb78127cf50d5d841870cce14}\label{class_aurora_1_1_env_a92aec91bb78127cf50d5d841870cce14}} 
+\index{Aurora\+::\+Env@{Aurora\+::\+Env}!func@{func}}
+\index{func@{func}!Aurora\+::\+Env@{Aurora\+::\+Env}}
+\subsubsection{\texorpdfstring{func()}{func()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+void \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::func (\begin{DoxyParamCaption}\item[{const std\+::function$<$ S(double, S, S)$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+set the envelope function ~\newline
+f\+: envelope function to be used \mbox{\Hypertarget{class_aurora_1_1_env_ae4e2dec694f0be0f0efa5b073a06fef5}\label{class_aurora_1_1_env_ae4e2dec694f0be0f0efa5b073a06fef5}} 
 \index{Aurora\+::\+Env@{Aurora\+::\+Env}!operator()@{operator()}}
 \index{operator()@{operator()}!Aurora\+::\+Env@{Aurora\+::\+Env}}
-\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{bool}]{gate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::operator() (\begin{DoxyParamCaption}\item[{bool}]{gate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Envelope ~\newline
-gate\+: envelope gate \mbox{\Hypertarget{class_aurora_1_1_env_a2cf905d912ec6089b42922a92d4d7d5e}\label{class_aurora_1_1_env_a2cf905d912ec6089b42922a92d4d7d5e}} 
+gate\+: envelope gate \mbox{\Hypertarget{class_aurora_1_1_env_a664e3c6ce7e66de66305ab220c116792}\label{class_aurora_1_1_env_a664e3c6ce7e66de66305ab220c116792}} 
 \index{Aurora\+::\+Env@{Aurora\+::\+Env}!operator()@{operator()}}
 \index{operator()@{operator()}!Aurora\+::\+Env@{Aurora\+::\+Env}}
-\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{S}]{offs,  }\item[{S}]{scal,  }\item[{bool}]{gate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::operator() (\begin{DoxyParamCaption}\item[{S}]{offs,  }\item[{S}]{scal,  }\item[{bool}]{gate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Envelope ~\newline
-offs\+: sig offset scal\+: sig scale gate\+: envelope gate \mbox{\Hypertarget{class_aurora_1_1_env_a2a97a7e7211a8717957fd0f6f8afc81f}\label{class_aurora_1_1_env_a2a97a7e7211a8717957fd0f6f8afc81f}} 
+offs\+: sig offset scal\+: sig scale gate\+: envelope gate \mbox{\Hypertarget{class_aurora_1_1_env_a577d95d24fd9f5c5796210874623c650}\label{class_aurora_1_1_env_a577d95d24fd9f5c5796210874623c650}} 
 \index{Aurora\+::\+Env@{Aurora\+::\+Env}!operator()@{operator()}}
 \index{operator()@{operator()}!Aurora\+::\+Env@{Aurora\+::\+Env}}
-\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{a,  }\item[{bool}]{gate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{a,  }\item[{bool}]{gate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Envelope ~\newline
-a\+: input signal gate\+: envelope gate \mbox{\Hypertarget{class_aurora_1_1_env_a6591658018e04100709018bc86e94f31}\label{class_aurora_1_1_env_a6591658018e04100709018bc86e94f31}} 
+a\+: input signal gate\+: envelope gate \mbox{\Hypertarget{class_aurora_1_1_env_ae4e2dec694f0be0f0efa5b073a06fef5}\label{class_aurora_1_1_env_ae4e2dec694f0be0f0efa5b073a06fef5}} 
+\index{Aurora\+::\+Env@{Aurora\+::\+Env}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora\+::\+Env@{Aurora\+::\+Env}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::operator() (\begin{DoxyParamCaption}\item[{bool}]{gate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Envelope ~\newline
+gate\+: envelope gate \mbox{\Hypertarget{class_aurora_1_1_env_a664e3c6ce7e66de66305ab220c116792}\label{class_aurora_1_1_env_a664e3c6ce7e66de66305ab220c116792}} 
+\index{Aurora\+::\+Env@{Aurora\+::\+Env}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora\+::\+Env@{Aurora\+::\+Env}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::operator() (\begin{DoxyParamCaption}\item[{S}]{offs,  }\item[{S}]{scal,  }\item[{bool}]{gate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Envelope ~\newline
+offs\+: sig offset scal\+: sig scale gate\+: envelope gate \mbox{\Hypertarget{class_aurora_1_1_env_a577d95d24fd9f5c5796210874623c650}\label{class_aurora_1_1_env_a577d95d24fd9f5c5796210874623c650}} 
+\index{Aurora\+::\+Env@{Aurora\+::\+Env}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora\+::\+Env@{Aurora\+::\+Env}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{a,  }\item[{bool}]{gate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Envelope ~\newline
+a\+: input signal gate\+: envelope gate \mbox{\Hypertarget{class_aurora_1_1_env_a2e52ca727b587d89e13a6c3832786f22}\label{class_aurora_1_1_env_a2e52ca727b587d89e13a6c3832786f22}} 
 \index{Aurora\+::\+Env@{Aurora\+::\+Env}!release@{release}}
 \index{release@{release}!Aurora\+::\+Env@{Aurora\+::\+Env}}
-\subsubsection{\texorpdfstring{release()}{release()}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-void \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S $>$\+::release (\begin{DoxyParamCaption}\item[{S}]{rt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\subsubsection{\texorpdfstring{release()}{release()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+void \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::release (\begin{DoxyParamCaption}\item[{S}]{rt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Release time setter rt\+: release time \mbox{\Hypertarget{class_aurora_1_1_env_ac97ef83c828c1ebf2527be51f457eab8}\label{class_aurora_1_1_env_ac97ef83c828c1ebf2527be51f457eab8}} 
+Release time setter rt\+: release time \mbox{\Hypertarget{class_aurora_1_1_env_a2e52ca727b587d89e13a6c3832786f22}\label{class_aurora_1_1_env_a2e52ca727b587d89e13a6c3832786f22}} 
+\index{Aurora\+::\+Env@{Aurora\+::\+Env}!release@{release}}
+\index{release@{release}!Aurora\+::\+Env@{Aurora\+::\+Env}}
+\subsubsection{\texorpdfstring{release()}{release()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+void \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::release (\begin{DoxyParamCaption}\item[{S}]{rt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Release time setter rt\+: release time \mbox{\Hypertarget{class_aurora_1_1_env_a12db5d285b749a7e1fed988d344d3bc9}\label{class_aurora_1_1_env_a12db5d285b749a7e1fed988d344d3bc9}} 
 \index{Aurora\+::\+Env@{Aurora\+::\+Env}!reset@{reset}}
 \index{reset@{reset}!Aurora\+::\+Env@{Aurora\+::\+Env}}
-\subsubsection{\texorpdfstring{reset()}{reset()}}
-{\footnotesize\ttfamily template$<$typename S $>$ \\
-void \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S $>$\+::reset (\begin{DoxyParamCaption}\item[{S}]{fs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+void \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::reset (\begin{DoxyParamCaption}\item[{S}]{fs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+reset the envelope ~\newline
+fs\+: sampling rate \mbox{\Hypertarget{class_aurora_1_1_env_a12db5d285b749a7e1fed988d344d3bc9}\label{class_aurora_1_1_env_a12db5d285b749a7e1fed988d344d3bc9}} 
+\index{Aurora\+::\+Env@{Aurora\+::\+Env}!reset@{reset}}
+\index{reset@{reset}!Aurora\+::\+Env@{Aurora\+::\+Env}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S, S, double, S, S) FN = ads$>$ \\
+void \hyperlink{class_aurora_1_1_env}{Aurora\+::\+Env}$<$ S, FN $>$\+::reset (\begin{DoxyParamCaption}\item[{S}]{fs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 reset the envelope ~\newline
 fs\+: sampling rate 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\hyperlink{_env_8h}{Env.\+h}\end{DoxyCompactItemize}
+\hyperlink{_env_8h}{Env.\+h}\item 
+\hyperlink{_env2_8h}{Env2.\+h}\end{DoxyCompactItemize}

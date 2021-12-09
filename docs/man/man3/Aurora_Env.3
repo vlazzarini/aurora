@@ -1,18 +1,45 @@
-.TH "Aurora::Env< S >" 3 "Wed Dec 8 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Env< S, FN >" 3 "Thu Dec 9 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-Aurora::Env< S >
+Aurora::Env< S, FN >
 .SH SYNOPSIS
 .br
 .PP
 .PP
 \fC#include <Env\&.h>\fP
 .PP
-Inherits \fBAurora::SndBase< S >\fP\&.
+Inherits \fBAurora::SndBase< S >\fP, and \fBAurora::SndBase< S >\fP\&.
 .SS "Public Member Functions"
 
 .in +1c
+.ti -1c
+.RI "\fBEnv\fP (std::function< S(double, S, S)> f, S rt, S \fBfs\fP=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "\fBEnv\fP (S &a, S &d, S &s, S rt, S \fBfs\fP=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "void \fBrelease\fP (S rt)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (bool gate)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (S offs, S scal, bool gate)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &a, bool gate)"
+.br
+.ti -1c
+.RI "S \fBfs\fP () const"
+.br
+.ti -1c
+.RI "void \fBreset\fP (S \fBfs\fP)"
+.br
+.ti -1c
+.RI "void \fBfunc\fP (const std::function< S(double, S, S)> f)"
+.br
 .ti -1c
 .RI "\fBEnv\fP (std::function< S(double, S, S)> f, S rt, S \fBfs\fP=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
@@ -41,9 +68,17 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .SH "Detailed Description"
 .PP 
 
-.SS "template<typename S>
+.SS "template<typename S, S(*)(S, S, S, double, S, S) FN = ads>
 .br
-class Aurora::Env< S >"
+class Aurora::Env< S, FN >"
+\fBEnv\fP class 
+.br
+Generic envelope 
+.br
+S: sample type 
+.br
+FN: envelope function
+.PP
 \fBEnv\fP class 
 .br
 Generic envelope 
@@ -51,7 +86,31 @@ Generic envelope
 S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S > \fBAurora::Env\fP< S >::\fBEnv\fP (std::function< S(double, S, S)> f, S rt, S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> \fBAurora::Env\fP< S, FN >::\fBEnv\fP (std::function< S(double, S, S)> f, S rt, S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+f: envelope function 
+.br
+rt: release time 
+.br
+fs: sampling rate 
+.br
+vsize: signal vector size 
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> \fBAurora::Env\fP< S, FN >::\fBEnv\fP (S & a, S & d, S & s, S rt, S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+a: attack time 
+.br
+d: decay time 
+.br
+s: sustain levl 
+.br
+rt: release time 
+.br
+fs: sampling rate 
+.br
+vsize: signal vector size 
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> \fBAurora::Env\fP< S, FN >::\fBEnv\fP (std::function< S(double, S, S)> f, S rt, S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 f: envelope function 
@@ -63,29 +122,55 @@ fs: sampling rate
 vsize: signal vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S > S \fBAurora::Env\fP< S >::fs () const\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> S \fBAurora::Env\fP< S, FN >::fs () const\fC [inline]\fP"
 Sampling rate query 
 .br
 returns sampling rate 
-.SS "template<typename S > void \fBAurora::Env\fP< S >::func (const std::function< S(double, S, S)> f)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> S \fBAurora::Env\fP< S, FN >::fs () const\fC [inline]\fP"
+Sampling rate query 
+.br
+returns sampling rate 
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> void \fBAurora::Env\fP< S, FN >::func (const std::function< S(double, S, S)> f)\fC [inline]\fP"
 set the envelope function 
 .br
 f: envelope function to be used 
-.SS "template<typename S > const std::vector<S>& \fBAurora::Env\fP< S >::operator() (bool gate)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> void \fBAurora::Env\fP< S, FN >::func (const std::function< S(double, S, S)> f)\fC [inline]\fP"
+set the envelope function 
+.br
+f: envelope function to be used 
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector<S>& \fBAurora::Env\fP< S, FN >::operator() (bool gate)\fC [inline]\fP"
 Envelope 
 .br
 gate: envelope gate 
-.SS "template<typename S > const std::vector<S>& \fBAurora::Env\fP< S >::operator() (S offs, S scal, bool gate)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector<S>& \fBAurora::Env\fP< S, FN >::operator() (S offs, S scal, bool gate)\fC [inline]\fP"
 Envelope 
 .br
 offs: sig offset scal: sig scale gate: envelope gate 
-.SS "template<typename S > const std::vector<S>& \fBAurora::Env\fP< S >::operator() (const std::vector< S > & a, bool gate)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector<S>& \fBAurora::Env\fP< S, FN >::operator() (const std::vector< S > & a, bool gate)\fC [inline]\fP"
 Envelope 
 .br
 a: input signal gate: envelope gate 
-.SS "template<typename S > void \fBAurora::Env\fP< S >::release (S rt)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector<S>& \fBAurora::Env\fP< S, FN >::operator() (bool gate)\fC [inline]\fP"
+Envelope 
+.br
+gate: envelope gate 
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector<S>& \fBAurora::Env\fP< S, FN >::operator() (S offs, S scal, bool gate)\fC [inline]\fP"
+Envelope 
+.br
+offs: sig offset scal: sig scale gate: envelope gate 
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector<S>& \fBAurora::Env\fP< S, FN >::operator() (const std::vector< S > & a, bool gate)\fC [inline]\fP"
+Envelope 
+.br
+a: input signal gate: envelope gate 
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> void \fBAurora::Env\fP< S, FN >::release (S rt)\fC [inline]\fP"
 Release time setter rt: release time 
-.SS "template<typename S > void \fBAurora::Env\fP< S >::reset (S fs)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> void \fBAurora::Env\fP< S, FN >::release (S rt)\fC [inline]\fP"
+Release time setter rt: release time 
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> void \fBAurora::Env\fP< S, FN >::reset (S fs)\fC [inline]\fP"
+reset the envelope 
+.br
+fs: sampling rate 
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> void \fBAurora::Env\fP< S, FN >::reset (S fs)\fC [inline]\fP"
 reset the envelope 
 .br
 fs: sampling rate 

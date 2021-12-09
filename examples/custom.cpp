@@ -26,6 +26,7 @@
 // POSSIBILITY OF SUCH DAMAGE
 
 #include "BlOsc.h"
+#include "Env.h"
 #include "flute.h"
 #include <cstdlib>
 #include <iostream>
@@ -37,9 +38,15 @@ int main(int argc, const char *argv[]) {
     auto f = std::atof(argv[3]) * flute::ratio;
     Aurora::TableSet<float> wave(flute::wave, flute::base, flute::fs);
     Aurora::BlOsc<float> osc(&wave, flute::fs);
-    for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
-      for (auto s : osc(a, f))
+    std::vector<float> brkpts({0.1f, 1.f, 0.5f, 0.1f, 1.f, 0.7f});
+    Aurora::Env<float> env(Aurora::env_gen<float>(brkpts), 0.1f);
+    bool gate = 1;
+    for (int n = 0; n < osc.fs() * (dur + 0.1f); n += osc.vsize()) {
+      if (n > osc.fs() * dur)
+        gate = 0;
+      for (auto s : env(osc(a, f), gate))
         std::cout << s << std::endl;
+    }
   } else
     std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz)" << std::endl;
   return 0;

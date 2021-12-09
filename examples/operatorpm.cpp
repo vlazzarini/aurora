@@ -40,7 +40,7 @@ template <typename S> struct Opm {
   S o2pi;
 
   Opm(S rel, S fs = def_sr, std::size_t vsize = def_vsize)
-      : osc(fs), env(ads_gen(att, dec, sus), rel, fs), att(0), dec(0), sus(0),
+      : osc(fs), env(att, dec, sus, rel, fs), att(0), dec(0), sus(0),
         o2pi(1 / twopi) {}
 
   void release(S rel) { env.release(rel); }

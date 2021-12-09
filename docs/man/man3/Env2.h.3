@@ -1,8 +1,8 @@
-.TH "Func.h" 3 "Thu Dec 9 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Env2.h" 3 "Thu Dec 9 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-Func.h
+Env2.h
 .SH SYNOPSIS
 .br
 .PP
@@ -15,7 +15,7 @@ Func.h
 
 .in +1c
 .ti -1c
-.RI "class \fBAurora::Func< S, FN >\fP"
+.RI "class \fBAurora::Env< S, FN >\fP"
 .br
 .in -1c
 .SS "Namespaces"
@@ -23,6 +23,13 @@ Func.h
 .in +1c
 .ti -1c
 .RI " \fBAurora\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename S > std::function< S(double, S, S)> \fBAurora::ads_gen\fP (const S &a, const S &d, const S &s)"
 .br
 .in -1c
 .SH "Author"

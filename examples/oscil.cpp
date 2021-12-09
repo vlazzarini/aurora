@@ -63,11 +63,13 @@ int main(int argc, const char *argv[]) {
     synth.dec = .3f;
     synth.sus = .7f;
     bool gate = 1;
-    for (int n = 0; n < sr * dur; n += def_vsize) {
-      if (n > sr * dur/2) gate = 0;
-      if (n > sr * (dur/2+0.01)) gate = 1;
-      if (n > sr * (dur - rel)) gate = 0;
-
+    for (int n = 0; n < sr * (dur + 1); n += def_vsize) {
+      if (n > sr * dur / 2)
+        gate = 0;
+      if (n > sr * (dur / 2 + 0.01))
+        gate = 1;
+      if (n > sr * (dur - rel))
+        gate = 0;
       for (auto s : synth(a, f, gate))
         std::cout << s << std::endl;
     }
