@@ -37,7 +37,7 @@ template <typename S> struct StackedPM {
   Osc<S, sin<S>> mod0;
   Osc<S, sin<S>> mod1;
   Osc<S> car;
-  S att, dec, sus, rel;
+  S att, dec, sus;
   Env<S> env;
   BinOp<S, scl> amp;
   S o2pi;

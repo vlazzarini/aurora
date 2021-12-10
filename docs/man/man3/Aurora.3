@@ -1,4 +1,4 @@
-.TH "Aurora" 3 "Thu Dec 9 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora" 3 "Fri Dec 10 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -75,19 +75,19 @@ Aurora
 
 .in +1c
 .ti -1c
-.RI "template<typename S > S \fBfixed_delay\fP (S nop, std::size_t wp, const std::vector< S > &d, const std::vector< S > *nop1)"
+.RI "template<typename S > S \fBfixed_delay\fP (S nop, std::size_t wp, const std::vector< S > &d, std::vector< S > *nop1)"
 .br
 .ti -1c
-.RI "template<typename S > S \fBvdelay\fP (S rp, std::size_t wp, const std::vector< S > &del, const std::vector< S > *nop)"
+.RI "template<typename S > S \fBvdelay\fP (S rp, std::size_t wp, const std::vector< S > &del, std::vector< S > *nop)"
 .br
 .ti -1c
-.RI "template<typename S > S \fBvdelayi\fP (S rp, std::size_t wp, const std::vector< S > &del, const std::vector< S > *nop)"
+.RI "template<typename S > S \fBvdelayi\fP (S rp, std::size_t wp, const std::vector< S > &del, std::vector< S > *nop)"
 .br
 .ti -1c
-.RI "template<typename S > S \fBvdelayc\fP (S rp, std::size_t wp, const std::vector< S > &del, const std::vector< S > *nop)"
+.RI "template<typename S > S \fBvdelayc\fP (S rp, std::size_t wp, const std::vector< S > &del, std::vector< S > *nop)"
 .br
 .ti -1c
-.RI "template<typename S > S \fBfir\fP (S nop, std::size_t wp, const std::vector< S > &del, const std::vector< S > *ir)"
+.RI "template<typename S > S \fBfir\fP (S nop, std::size_t wp, const std::vector< S > &del, std::vector< S > *ir)"
 .br
 .ti -1c
 .RI "template<typename S > S \fBads\fP (S a, S d, S s, double t, S e, S ts)"
@@ -248,7 +248,7 @@ S: sample type
 pts: breakpoints {t0,val0,t1,val1,\&.\&.\&.} 
 .br
 returns an envelope function 
-.SS "template<typename S > S Aurora::fir (S nop, std::size_t wp, const std::vector< S > & del, const std::vector< S > * ir)\fC [inline]\fP"
+.SS "template<typename S > S Aurora::fir (S nop, std::size_t wp, const std::vector< S > & del, std::vector< S > * ir)\fC [inline]\fP"
 FIR/convolution function for \fBDel\fP 
 .br
 nop: no-op 
@@ -260,7 +260,7 @@ del: delay line
 ir: impulse response 
 .br
 returns a convolution sample 
-.SS "template<typename S > S Aurora::fixed_delay (S nop, std::size_t wp, const std::vector< S > & d, const std::vector< S > * nop1)\fC [inline]\fP"
+.SS "template<typename S > S Aurora::fixed_delay (S nop, std::size_t wp, const std::vector< S > & d, std::vector< S > * nop1)\fC [inline]\fP"
 Fixed delay function for \fBDel\fP 
 .br
 S: sample type 
@@ -328,7 +328,7 @@ S: sample type
 ph: normalised phase 
 .br
 returns the sine of ph*2*$M_PI 
-.SS "template<typename S > S Aurora::vdelay (S rp, std::size_t wp, const std::vector< S > & del, const std::vector< S > * nop)\fC [inline]\fP"
+.SS "template<typename S > S Aurora::vdelay (S rp, std::size_t wp, const std::vector< S > & del, std::vector< S > * nop)\fC [inline]\fP"
 Truncating delay function for \fBDel\fP 
 .br
 S: sample type 
@@ -342,7 +342,7 @@ d: delay line
 nop: no op 
 .br
 returns a sample from the delay line floor(rp) samples behind wp 
-.SS "template<typename S > S Aurora::vdelayc (S rp, std::size_t wp, const std::vector< S > & del, const std::vector< S > * nop)\fC [inline]\fP"
+.SS "template<typename S > S Aurora::vdelayc (S rp, std::size_t wp, const std::vector< S > & del, std::vector< S > * nop)\fC [inline]\fP"
 CubicInterpolation delay function for \fBDel\fP 
 .br
 S: sample type 
@@ -358,7 +358,7 @@ nop: no op
 returns a sample from the delay line rp samples behind wp, 
 .br
 cubic interpolated 
-.SS "template<typename S > S Aurora::vdelayi (S rp, std::size_t wp, const std::vector< S > & del, const std::vector< S > * nop)\fC [inline]\fP"
+.SS "template<typename S > S Aurora::vdelayi (S rp, std::size_t wp, const std::vector< S > & del, std::vector< S > * nop)\fC [inline]\fP"
 Interpolation delay function for \fBDel\fP 
 .br
 S: sample type 

@@ -44,7 +44,7 @@ namespace Aurora {
 */
 template <typename S>
 inline S fixed_delay(S nop, std::size_t wp, const std::vector<S> &d,
-                     const std::vector<S> *nop1) {
+                     std::vector<S> *nop1) {
   (void)nop;
   (void)nop1;
   return d[wp];
@@ -71,7 +71,7 @@ template <typename S> inline S rpos(S rp, std::size_t wp, std::size_t ds) {
 */
 template <typename S>
 inline S vdelay(S rp, std::size_t wp, const std::vector<S> &del,
-                const std::vector<S> *nop) {
+                std::vector<S> *nop) {
   (void)nop;
   std::size_t ds = del.size();
   return del[(std::size_t)rpos(rp, wp, ds)];
@@ -88,7 +88,7 @@ inline S vdelay(S rp, std::size_t wp, const std::vector<S> &del,
 */
 template <typename S>
 inline S vdelayi(S rp, std::size_t wp, const std::vector<S> &del,
-                 const std::vector<S> *nop) {
+                 std::vector<S> *nop) {
   (void)nop;
   std::size_t ds = del.size();
   return linear_interp(rpos(rp, wp, ds), del);
@@ -105,7 +105,7 @@ inline S vdelayi(S rp, std::size_t wp, const std::vector<S> &del,
 */
 template <typename S>
 inline S vdelayc(S rp, std::size_t wp, const std::vector<S> &del,
-                 const std::vector<S> *nop) {
+                 std::vector<S> *nop) {
   (void)nop;
   std::size_t ds = del.size();
   return cubic_interp(rpos(rp, wp, ds), del);
@@ -120,7 +120,7 @@ inline S vdelayc(S rp, std::size_t wp, const std::vector<S> &del,
 */
 template <typename S>
 inline S fir(S nop, std::size_t wp, const std::vector<S> &del,
-             const std::vector<S> *ir) {
+             std::vector<S> *ir) {
   auto dl = del.begin() + wp;
   S mx = 0;
   for (auto irs = ir->rbegin(); irs != ir->rend(); irs++, dl++) {
@@ -136,15 +136,15 @@ inline S fir(S nop, std::size_t wp, const std::vector<S> &del,
     S: sample type
 */
 template <typename S, S (*FN)(S, std::size_t, const std::vector<S> &,
-                              const std::vector<S> *) = fixed_delay>
+                              std::vector<S> *) = fixed_delay>
 class Del : SndBase<S> {
   using SndBase<S>::process;
   S fs;
   std::size_t wp;
   std::vector<S> del;
 
-  S delay(S in, S dt, S fdb, S fwd, std::size_t &p, const std::vector<S> *ir) {
-    S s = FN(dt * fs, p, del, ir);
+  S delay(S in, S dt, S fdb, S fwd, std::size_t &p, std::vector<S> *mem) {
+    S s = FN(dt * fs, p, del, mem);
     S w = in + s * fdb;
     del[p] = w;
     p = p < del.size() - 1 ? p + 1 : 0;
@@ -159,20 +159,20 @@ public:
       vsize: vector size
   */
   Del(S maxdt, S sr = def_sr, std::size_t vsize = def_vsize)
-  : SndBase<S>(vsize), fs(sr), wp(0), del(maxdt * fs < 1 ? 1 : maxdt * fs){};
+      : SndBase<S>(vsize), fs(sr), wp(0),
+        del(maxdt * fs < 1 ? 1 : maxdt * fs){};
 
   /** Delay \n
       in: audio \n
       dt: delay time \n
       fdb: feedback gain \n
       fwd: feedforward gain
-      ir: optional impulse response for convolution
+      mem: optional aux memory
   */
   const std::vector<S> &operator()(const std::vector<S> &in, S dt, S fdb = 0,
-                                   S fwd = 0,
-                                   const std::vector<S> *ir = nullptr) {
+                                   S fwd = 0, std::vector<S> *mem = nullptr) {
     std::size_t n = 0, p = wp;
-    auto &s = process([&]() { return delay(in[n++], dt, fdb, fwd, p, ir); },
+    auto &s = process([&]() { return delay(in[n++], dt, fdb, fwd, p, mem); },
                       in.size());
     wp = p;
     return s;
@@ -182,17 +182,17 @@ public:
       in: audio \n
       dt: delay time \n
       fdb: feedback gain \n
-      fwd: feedforward gain
-      ir: optional impulse response for convolution
+      fwd: feedforward gain \n
+      mem: optional aux memory
   */
   const std::vector<S> &operator()(const std::vector<S> &in,
                                    const std::vector<S> &dt, S fdb = 0,
-                                   S fwd = 0,
-                                   const std::vector<S> *ir = nullptr) {
+                                   S fwd = 0, std::vector<S> *mem = nullptr) {
     std::size_t n = 0, p = wp;
+
     auto &s = process(
         [&]() {
-          auto s = delay(in[n], dt[n], fdb, fwd, p, ir);
+          auto s = delay(in[n], dt[n], fdb, fwd, p, mem);
           n++;
           return s;
         },

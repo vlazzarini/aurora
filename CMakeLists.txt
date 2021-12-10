@@ -4,8 +4,8 @@ cmake_minimum_required(VERSION 3.13)
 project(Aurora_Examples)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++14")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++14 -g")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -g")
 
 find_library(LIBSNDFILE_LIBRARY NAMES sndfile libsndfile-1 libsndfile)
 find_path(LIBSNDFILE_INCLUDE_DIRECTORY sndfile.h)
@@ -44,6 +44,8 @@ add_program(lpwave)
 add_program(wave)
 add_program(svfdrive)
 add_program(oscil)
+add_program(karplus)
+
 
 # these have libsndfile dependency
 if(LIBSNDFILE_LIBRARY)
