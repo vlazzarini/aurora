@@ -52,7 +52,8 @@ struct Flanger {
 
   const std::vector<float> &operator()(const std::vector<float> &in, float fr,
                                        float fdb, float g) {
-    return gain(delay(in, lfo(mxdel, fr), fdb), g);
+    lfo.vsize(in.size());
+    return gain(delay(in, lfo(mxdel,fr), fdb), g);
   }
 };
 
@@ -77,6 +78,7 @@ int main(int argc, const char **argv) {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
           auto &out = flanger(buffer, fr, fdb, g);
           sf_write_float(fpout, out.data(), n);
+          
         } while (n);
         sf_close(fpin);
         sf_close(fpout);

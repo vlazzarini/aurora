@@ -159,7 +159,7 @@ public:
       vsize: vector size
   */
   Del(S maxdt, S sr = def_sr, std::size_t vsize = def_vsize)
-      : SndBase<S>(vsize), fs(sr), wp(0), del(maxdt * fs){};
+  : SndBase<S>(vsize), fs(sr), wp(0), del(maxdt * fs < 1 ? 1 : maxdt * fs){};
 
   /** Delay \n
       in: audio \n
