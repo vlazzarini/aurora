@@ -50,12 +50,14 @@ template <typename S> struct StackedPM {
 
   std::size_t vsize() { return car.vsize(); }
 
-  void vsize(std::size_t n) { mod0.vsize(n); }
-
   S fs() { return car.fs(); }
 
   const std::vector<S> &operator()(S a, S fc, S fm0, S fm1, S z0, S z1,
-                                   bool gate) {
+                                   bool gate, std::size_t vsiz = 0) {
+    if (vsiz) {
+      env.vsize(vsiz);
+      mod0.vsize(vsiz);
+    }
     auto &e = env(gate);
     auto ke = e[0];
     auto &s0 = mod0(z0 * o2pi * (ke + 1), fm0);

@@ -63,17 +63,17 @@ template <typename S> struct Reverb {
     }
   }
 
-  void reset(S rvt,S lpf, S fs) {
+  void reset(S rvt, S lpf, S fs) {
     std::size_t n = 0;
-    for(auto &obj: combs)
+    for (auto &obj : combs)
       obj.reset(dt[n++], fs);
-    apfs[0].reset(adt[0],fs);
-    apfs[1].reset(adt[1],fs);
+    apfs[0].reset(adt[0], fs);
+    apfs[1].reset(adt[1], fs);
     reverb_time(rvt);
-    lp_freq(lpf,fs);
+    lp_freq(lpf, fs);
   }
 
-  Reverb(S rvt,S lpf, S fs = def_sr, std::size_t vsize = def_vsize)
+  Reverb(S rvt, S lpf, S fs = def_sr, std::size_t vsize = def_vsize)
       : combs({Del<S, lp_delay>(dt[0], fs, vsize),
                Del<S, lp_delay>(dt[1], fs, vsize),
                Del<S, lp_delay>(dt[2], fs, vsize),
@@ -83,17 +83,17 @@ template <typename S> struct Reverb {
                                       std::vector<S>(2), std::vector<S>(2)}),
         g({0, 0, 0, 0}) {
     reverb_time(rvt);
-    lp_freq(lpf,fs);
+    lp_freq(lpf, fs);
   };
 
   const std::vector<S> &operator()(const std::vector<S> &in, S rmx) {
     S ga0 = 0.7;
     S ga1 = 0.7;
-    auto& s = gain(0.25, mix(combs[0](in, 0, g[0], 0, &mem[0]),
-                            combs[1](in, 0, g[1], 0, &mem[1]),
-                            combs[2](in, 0, g[2], 0, &mem[2]),
-                            combs[3](in, 0, g[3], 0, &mem[3])));    
-    return mix(in,gain(rmx,apfs[1](apfs[0](s, 0, ga0, -ga0), 0, ga1, -ga1)));
+    auto &s = gain(0.25, mix(combs[0](in, 0, g[0], 0, &mem[0]),
+                             combs[1](in, 0, g[1], 0, &mem[1]),
+                             combs[2](in, 0, g[2], 0, &mem[2]),
+                             combs[3](in, 0, g[3], 0, &mem[3])));
+    return mix(in, gain(rmx, apfs[1](apfs[0](s, 0, ga0, -ga0), 0, ga1, -ga1)));
   }
 };
 
@@ -110,24 +110,24 @@ int main(int argc, const char **argv) {
         float rmx = atof(argv[4]);
         float cf = atof(argv[5]);
         std::vector<float> buffer(def_vsize);
-        Reverb<float> reverb(rvt,cf, sfinfo.samplerate);
+        Reverb<float> reverb(rvt, cf, sfinfo.samplerate);
         do {
           std::fill(buffer.begin(), buffer.end(), 0);
           n = sf_read_float(fpin, buffer.data(), def_vsize);
           if (n) {
             buffer.resize(n);
-            auto &out = reverb(buffer,rmx);
+            auto &out = reverb(buffer, rmx);
             sf_write_float(fpout, out.data(), n);
           } else
             break;
         } while (1);
-         std::cout << buffer.size() << std::endl;
+        std::cout << buffer.size() << std::endl;
         buffer.resize(def_vsize);
-         std::cout << buffer.size() << std::endl;
+        std::cout << buffer.size() << std::endl;
         n = sfinfo.samplerate * rvt;
         std::fill(buffer.begin(), buffer.end(), 0);
         do {
-          auto &out = reverb(buffer,rmx);
+          auto &out = reverb(buffer, rmx);
           sf_write_float(fpout, out.data(), def_vsize);
           n -= def_vsize;
         } while (n > 0);
@@ -142,7 +142,8 @@ int main(int argc, const char **argv) {
       std::cout << "could not open " << argv[1] << std::endl;
     return 1;
   }
-  std::cout << "usage: " << argv[0] << " infile outfile reverb_time reverb_amount lpf \n"
+  std::cout << "usage: " << argv[0]
+            << " infile outfile reverb_time reverb_amount lpf \n"
             << std::endl;
   return -1;
 }

@@ -35,7 +35,6 @@
 namespace Aurora {
 enum { SAW = 0, SQUARE, TRIANGLE, PULSE };
 const double def_base = 16.;
-const int def_ftlen = 16384;
 
 /** TableSet class \n
     Creates a set of tables for BlOsc. \n

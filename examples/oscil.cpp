@@ -38,7 +38,7 @@ struct Synth {
   Osc<float, lookupi<float>> osc;
 
   Synth(float rt, float sr)
-      : att(0.f), dec(0.f), sus(0.f), wave(def_vsize),
+      : att(0.f), dec(0.f), sus(0.f), wave(def_ftlen),
         env(ads_gen(att, dec, sus), rt, sr), osc(&wave, sr) {
     std::size_t n = 0;
     for (auto &s : wave) {
@@ -46,7 +46,10 @@ struct Synth {
     }
   };
 
-  const std::vector<float> &operator()(float a, float f, bool gate) {
+  const std::vector<float> &operator()(float a, float f, bool gate,
+                                       std::size_t vsiz = 0) {
+    if (vsiz)
+      osc.vsize(vsiz);
     return env(osc(a, f), gate);
   }
 };

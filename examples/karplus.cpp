@@ -120,7 +120,8 @@ template <typename S> struct Karplus {
   void note_off() { gate = 0; }
 
   const std::vector<S> &operator()(S a, S fr, S dt, std::size_t vsiz = 0) {
-    if(vsiz) vsize(vsiz);
+    if (vsiz)
+      vsize(vsiz);
     fr = fr > 20 ? fr : 20;
     if (ff != fr || ddt != dt)
       decay(fr, dt);
@@ -136,7 +137,7 @@ int main(int argc, const char *argv[]) {
     auto amp = std::atof(argv[2]);
     auto fr = std::atof(argv[3]);
     Aurora::Karplus<double> pluck(sr);
-    double dec = 2.; 
+    double dec = 2.;
     pluck.note_on();
     for (int n = 0; n < pluck.fs() * (dur / 2); n += pluck.vsize()) {
       if (n > pluck.fs() * dur / 2)
@@ -145,7 +146,7 @@ int main(int argc, const char *argv[]) {
       for (auto s : out)
         std::cout << s << std::endl;
     }
-    dec = 1.; 
+    dec = 1.;
     pluck.note_on();
     for (int n = 0; n < pluck.fs() * (dur / 2 + 0.1); n += pluck.vsize()) {
       if (n > pluck.fs() * dur / 2)

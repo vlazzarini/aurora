@@ -45,7 +45,9 @@ template <typename S> struct Opm {
 
   void release(S rel) { env.release(rel); }
 
-  const std::vector<S> &operator()(S a, S f, bool gate) {
+  const std::vector<S> &operator()(S a, S f, bool gate, std::size_t vsiz = 0) {
+    if (vsiz)
+      osc.vsize(vsiz);
     return env(osc(a, f), gate);
   }
 

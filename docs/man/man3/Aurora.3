@@ -87,6 +87,9 @@ Aurora
 .RI "template<typename S > S \fBvdelayc\fP (S rp, std::size_t wp, const std::vector< S > &del, std::vector< S > *nop)"
 .br
 .ti -1c
+.RI "template<typename S > S \fBlp_delay\fP (S nop, std::size_t wp, const std::vector< S > &d, std::vector< S > *mem)"
+.br
+.ti -1c
 .RI "template<typename S > S \fBfir\fP (S nop, std::size_t wp, const std::vector< S > &del, std::vector< S > *ir)"
 .br
 .ti -1c
@@ -136,9 +139,6 @@ Aurora
 .RI "const double \fBdef_base\fP = 16\&."
 .br
 .ti -1c
-.RI "const int \fBdef_ftlen\fP = 16384"
-.br
-.ti -1c
 .RI "const std::size_t \fBdef_psize\fP = 2048"
 .br
 .ti -1c
@@ -158,6 +158,9 @@ Aurora
 .br
 .ti -1c
 .RI "const double \fBtwopi\fP = 2 * M_PI"
+.br
+.ti -1c
+.RI "const int \fBdef_ftlen\fP = 16384"
 .br
 .ti -1c
 .RI "const int \fBdef_vsize\fP = 64"
@@ -310,6 +313,18 @@ S: sample type
 ph: phase  t: function table 
 .br
 returns an interpolated sample 
+.SS "template<typename S > S Aurora::lp_delay (S nop, std::size_t wp, const std::vector< S > & d, std::vector< S > * mem)\fC [inline]\fP"
+Lowpass-filtered fixed delay function for \fBDel\fP 
+.br
+ nop: no-op 
+.br
+ wp: write position 
+.br
+ del: delay line 
+.br
+ mem: a vector of size 2 with the lp filter state (pos 0) and coeff (pos 1) 
+.br
+ returns a convolution sample 
 .SS "static uint32_t Aurora::np2 (uint32_t n)\fC [inline]\fP, \fC [static]\fP"
 
 .SS "template<typename S > S Aurora::phase (double ph, const std::vector< S > * t = \fC0\fP)\fC [inline]\fP"

@@ -115,8 +115,8 @@ inline S vdelayc(S rp, std::size_t wp, const std::vector<S> &del,
     nop: no-op \n
     wp: write position \n
     del: delay line \n
-    mem: a vector of size 2 with the lp filter state (pos 0) and coeff (pos 1) \n
-    returns a convolution sample
+    mem: a vector of size 2 with the lp filter state (pos 0) and coeff (pos 1)
+   \n returns a convolution sample
 */
 template <typename S>
 inline S lp_delay(S nop, std::size_t wp, const std::vector<S> &d,
@@ -129,8 +129,6 @@ inline S lp_delay(S nop, std::size_t wp, const std::vector<S> &d,
   return y;
 }
 
-
- 
 /** FIR/convolution function for Del  \n
     nop: no-op \n
     wp: write position \n

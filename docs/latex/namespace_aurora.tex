@@ -62,6 +62,8 @@ enum \+: int32\+\_\+t \{ \hyperlink{namespace_aurora_a963f359f40fdbc5f4dbe404353
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_ae0b6df856278006b4fed4641f8ffe051}{vdelayc} (S rp, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&del, std\+::vector$<$ S $>$ $\ast$nop)
 \item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a3993d7b3f35ba929c5e59ba117252e1d}{lp\+\_\+delay} (S nop, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&d, std\+::vector$<$ S $>$ $\ast$mem)
+\item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a9b89513b24d0d89f0ecd400c899c78ce}{fir} (S nop, std\+::size\+\_\+t wp, const std\+::vector$<$ S $>$ \&del, std\+::vector$<$ S $>$ $\ast$ir)
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a787aaa0540c8f3be97e0ad55ba643b0a}{ads} (S a, S d, S s, double t, S e, S ts)
@@ -95,8 +97,6 @@ static uint32\+\_\+t \hyperlink{namespace_aurora_a49b6f6d92479d80271ced426271540
 \item 
 const double \hyperlink{namespace_aurora_acb267dff62f74484893c2d5b679b78bf}{def\+\_\+base} = 16.
 \item 
-const int \hyperlink{namespace_aurora_a14dabfd9feedfa09c0e6f86d2627f006}{def\+\_\+ftlen} = 16384
-\item 
 const std\+::size\+\_\+t \hyperlink{namespace_aurora_a080d03c33477d9c6322278722ca8e472}{def\+\_\+psize} = 2048
 \item 
 const bool \hyperlink{namespace_aurora_ab2cb0b1f6952bb2ca908ebd8156370db}{ola} = 0
@@ -110,6 +110,8 @@ static bool \hyperlink{namespace_aurora_a20b1bd3f1b34b8676e26d07718dac352}{forwa
 static bool \hyperlink{namespace_aurora_ac22c4e2e10572cbb6f64f3bd1cd595b5}{inverse} = false
 \item 
 const double \hyperlink{namespace_aurora_a4c08f8416c2b35d5001062f121459b5a}{twopi} = 2 $\ast$ M\+\_\+\+PI
+\item 
+const int \hyperlink{namespace_aurora_a14dabfd9feedfa09c0e6f86d2627f006}{def\+\_\+ftlen} = 16384
 \item 
 const int \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize} = 64
 \item 
@@ -291,7 +293,19 @@ S Aurora\+::lookupi (\begin{DoxyParamCaption}\item[{double}]{ph,  }\item[{const 
 Linear interp table lookup function for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
 S\+: sample type ~\newline
 ph\+: phase  t\+: function table ~\newline
-returns an interpolated sample \mbox{\Hypertarget{namespace_aurora_a49b6f6d92479d80271ced42627154066}\label{namespace_aurora_a49b6f6d92479d80271ced42627154066}} 
+returns an interpolated sample \mbox{\Hypertarget{namespace_aurora_a3993d7b3f35ba929c5e59ba117252e1d}\label{namespace_aurora_a3993d7b3f35ba929c5e59ba117252e1d}} 
+\index{Aurora@{Aurora}!lp\+\_\+delay@{lp\+\_\+delay}}
+\index{lp\+\_\+delay@{lp\+\_\+delay}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{lp\+\_\+delay()}{lp\_delay()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::lp\+\_\+delay (\begin{DoxyParamCaption}\item[{S}]{nop,  }\item[{std\+::size\+\_\+t}]{wp,  }\item[{const std\+::vector$<$ S $>$ \&}]{d,  }\item[{std\+::vector$<$ S $>$ $\ast$}]{mem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Lowpass-\/filtered fixed delay function for \hyperlink{class_aurora_1_1_del}{Del} ~\newline
+ nop\+: no-\/op ~\newline
+ wp\+: write position ~\newline
+ del\+: delay line ~\newline
+ mem\+: a vector of size 2 with the lp filter state (pos 0) and coeff (pos 1) ~\newline
+ returns a convolution sample \mbox{\Hypertarget{namespace_aurora_a49b6f6d92479d80271ced42627154066}\label{namespace_aurora_a49b6f6d92479d80271ced42627154066}} 
 \index{Aurora@{Aurora}!np2@{np2}}
 \index{np2@{np2}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{np2()}{np2()}}

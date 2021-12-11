@@ -43,7 +43,7 @@ struct Synth {
   BinOp<float, scl> amp;
 
   Synth(float rt, float sr)
-      : att(0.1f), dec(0.3f), sus(0.7f), wave(def_vsize),
+      : att(0.1f), dec(0.3f), sus(0.7f), wave(def_ftlen),
         env(ads_gen(att, dec, sus), rt, sr), osc(&wave, sr), drive(), amp() {
     std::size_t n = 0;
     for (auto &s : wave) {
@@ -51,7 +51,12 @@ struct Synth {
     }
   };
 
-  const std::vector<float> &operator()(float a, float f, float dr, bool gate) {
+  const std::vector<float> &operator()(float a, float f, float dr, bool gate,
+                                       std::size_t vsiz = 0) {
+    if (vsiz) {
+      osc.vsize(vsiz);
+      env.vsize(vsiz);
+    }
     return amp(env(0, a, gate), drive(osc(dr, f)));
   }
 };
