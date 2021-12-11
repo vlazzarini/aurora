@@ -1,5 +1,5 @@
-// filter.cpp:
-// Low pass resonant filter processing example
+// delay.cpp:
+// comb filter processing example
 // depends on libsndfile
 //
 // (c) V Lazzarini, 2021
@@ -40,15 +40,12 @@ int main(int argc, const char **argv) {
   SNDFILE *fpin, *fpout;
   int n;
 
-  if (argc > 5) {
+  if (argc > 4) {
     if ((fpin = sf_open(argv[1], SFM_READ, &sfinfo)) != NULL) {
       if (sfinfo.channels < 2) {
         fpout = sf_open(argv[2], SFM_WRITE, &sfinfo);
         float dt = atof(argv[3]);
         float rvt = atof(argv[4]);
-        float cf = atof(argv[5]);
-        double c = 2. - std::cos(2 * M_PI * cf / sfinfo.samplerate);
-        c = sqrt(c * c - 1.f) - c;
         float fdb = std::pow(.001, dt / rvt);
         std::vector<float> buffer(def_vsize);
         Del<float> delay(dt, sfinfo.samplerate);
@@ -81,7 +78,7 @@ int main(int argc, const char **argv) {
     return 1;
   }
   std::cout << "usage: " << argv[0]
-            << " infile outfile delay reverb_time lpf \n"
+            << " infile outfile delay reverb_time \n"
             << std::endl;
   return -1;
 }
