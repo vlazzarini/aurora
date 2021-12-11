@@ -8,7 +8,7 @@ directory. They can also be built individually as shown below.
 ASCII output
 ---
 
-These examples write ASCII floats to stdout and can be built using
+These synthesis examples write ASCII floats to stdout and can be built using
 
 ```
 c++ -o example example.cpp - I../include -std=c++ 14
@@ -20,15 +20,24 @@ c++ -o example example.cpp - I../include -std=c++ 14
 
 **stackedfm.cpp** : stacked frequency modulation
 
+**stackedpm.cpp** : stacked phase modulation
+
 **oscil.cpp**: table lookup oscillator and envelope
 
-**lpwave.cpp** : lowpass filter,bandlimited oscillator, and envelope
+**lpwave.cpp**: lowpass filter,bandlimited oscillator, and envelope
 
-**drive.cpp** : nonlinear distortion
+**drive.cpp**: nonlinear distortion
 
-**svfdrive.cpp** : nonlinear svf
+**svfdrive.cpp**: nonlinear svf
 
-**lopass.cpp** : first-order lowpass filter
+**lopass.cpp**: first-order lowpass filter
+
+**karplus.cpp**: string physical model
+
+**operatorpm.cpp**: operator-based phase modulation
+
+ASCII floats can be converted to soundfiles using one of the utility
+programs provided in the **utilities** folder.
 
 Soundfile output
 ---
@@ -40,9 +49,21 @@ These examples read and write soundfiles.They depend on libsndfile and can be bu
 c++ -o example example.cpp -I../ include -std = c++ 14 - lsndfile
 ```
 
-**filter.cpp** : lowpass filter example
+**filter.cpp** : lowpass filter
 
-**delay.cpp** : fixed comb filter example
+**delay.cpp** : fixed comb filter
 
 **reverb.cpp**: convolution reverb
+
+**flanger.cpp**: flanger effect
+
+**chorus.cpp**: chorus effect
+
+**equaliser.cpp**: graphic equaliser
+
+**follow.cpp**: envelope follower
+
+
+
+
 
