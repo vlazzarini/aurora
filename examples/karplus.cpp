@@ -136,19 +136,21 @@ int main(int argc, const char *argv[]) {
     auto amp = std::atof(argv[2]);
     auto fr = std::atof(argv[3]);
     Aurora::Karplus<double> pluck(sr);
+    double dec = 2.; 
     pluck.note_on();
     for (int n = 0; n < pluck.fs() * (dur / 2); n += pluck.vsize()) {
       if (n > pluck.fs() * dur / 2)
         pluck.note_off();
-      const std::vector<double> &out = pluck(amp, fr, 2);
+      auto &out = pluck(amp, fr, dec);
       for (auto s : out)
         std::cout << s << std::endl;
     }
+    dec = 1.; 
     pluck.note_on();
     for (int n = 0; n < pluck.fs() * (dur / 2 + 0.1); n += pluck.vsize()) {
       if (n > pluck.fs() * dur / 2)
         pluck.note_off();
-      const std::vector<double> &out = pluck(amp, fr, 1);
+      auto &out = pluck(amp, fr, dec);
       for (auto s : out)
         std::cout << s << std::endl;
     }
