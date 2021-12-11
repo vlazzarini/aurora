@@ -1,5 +1,5 @@
-// delay.cpp:
-// comb filter processing example
+// freverb.cpp:
+// reverb processing example
 // depends on libsndfile
 //
 // (c) V Lazzarini, 2021
@@ -27,6 +27,7 @@
 // POSSIBILITY OF SUCH DAMAGE
 
 #include "Del.h"
+#include <array>
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
@@ -34,6 +35,67 @@
 #include <vector>
 
 using namespace Aurora;
+
+template <typename S>
+inline S lp_delay(S nop, std::size_t wp, const std::vector<S> &d,
+                  std::vector<S> *mem) {
+  S ym1 = (*mem)[0];
+  S coef = (*mem)[1];
+  S x = d[wp];
+  S y = (1 + coef) * x - coef * ym1;
+  (*mem)[0] = y;
+  return y;
+}
+
+template <typename S> inline S scl(S a, S b) { return a * b; }
+template <typename S> struct Reverb {
+  static constexpr S dt[4] = {0.037, 0.031, 0.029, 0.023};
+  static constexpr S adt[2] = {0.009, 0.005};
+
+  std::array<Del<S, lp_delay>, 4> combs;
+  std::array<Del<S>, 2> apfs;
+  Mix<S> mix;
+  BinOp<S, scl> gain;
+  std::array<std::vector<S>, 4> mem;
+  std::array<S, 4> g;
+  S orvt;
+
+  Reverb(S lpf, S fs = def_sr, std::size_t vsize = def_vsize)
+      : combs({Del<S, lp_delay>(dt[0], fs, vsize),
+               Del<S, lp_delay>(dt[1], fs, vsize),
+               Del<S, lp_delay>(dt[2], fs, vsize),
+               Del<S, lp_delay>(dt[3], fs, vsize)}),
+        apfs({Del<S>(adt[0], fs, vsize), Del<S>(adt[1], fs, vsize)}),
+        mix(vsize), gain(vsize), mem({std::vector<S>(2), std::vector<S>(2),
+                                      std::vector<S>(2), std::vector<S>(2)}),
+        g({0, 0, 0, 0}), orvt(0) {
+
+    for (auto &m : mem) {
+      m[0] = 0;
+      double c = 2. - std::cos(2 * M_PI * lpf / fs);
+      m[1] = sqrt(c * c - 1.f) - c;
+    }
+  };
+
+  void setg(S rvt) {
+    std::size_t n = 0;
+    for (auto &gs : g)
+      gs = std::pow(.001, dt[n++] / rvt);
+    orvt = rvt;
+  }
+
+  const std::vector<S> &operator()(const std::vector<S> &in, S rvt) {
+    if (rvt != orvt)
+      setg(rvt);
+    S ga0 = 0.7;
+    S ga1 = 0.5;
+    auto s = gain(0.25, mix(combs[0](in, 0, g[0], 0, &mem[0]),
+                            combs[1](in, 0, g[1], 0, &mem[1]),
+                            combs[2](in, 0, g[2], 0, &mem[2]),
+                            combs[3](in, 0, g[3], 0, &mem[3])));
+    return apfs[1](apfs[0](s, 0, ga0, -ga0), 0, ga1, -ga1);
+  }
+};
 
 int main(int argc, const char **argv) {
   SF_INFO sfinfo;
@@ -44,16 +106,15 @@ int main(int argc, const char **argv) {
     if ((fpin = sf_open(argv[1], SFM_READ, &sfinfo)) != NULL) {
       if (sfinfo.channels < 2) {
         fpout = sf_open(argv[2], SFM_WRITE, &sfinfo);
-        float dt = atof(argv[3]);
-        float rvt = atof(argv[4]);
-        float fdb = std::pow(.001, dt / rvt);
+        float rvt = atof(argv[3]);
+        float cf = atof(argv[4]);
         std::vector<float> buffer(def_vsize);
-        Del<float> delay(dt, sfinfo.samplerate);
+        Reverb<float> reverb(cf, sfinfo.samplerate);
         do {
           n = sf_read_float(fpin, buffer.data(), def_vsize);
           if (n) {
             buffer.resize(n);
-            auto &out = delay(buffer, dt, fdb, 1.f);
+            auto &out = reverb(buffer, rvt);
             sf_write_float(fpout, out.data(), n);
           } else
             break;
@@ -62,7 +123,7 @@ int main(int argc, const char **argv) {
         n = sfinfo.samplerate * rvt;
         std::fill(buffer.begin(), buffer.end(), 0.f);
         do {
-          auto &out = delay(buffer, dt, fdb);
+          auto &out = reverb(buffer, rvt);
           sf_write_float(fpout, out.data(), def_vsize);
           n -= def_vsize;
         } while (n > 0);
@@ -77,7 +138,7 @@ int main(int argc, const char **argv) {
       std::cout << "could not open " << argv[1] << std::endl;
     return 1;
   }
-  std::cout << "usage: " << argv[0] << " infile outfile delay reverb_time \n"
+  std::cout << "usage: " << argv[0] << " infile outfile reverb_time lpf \n"
             << std::endl;
   return -1;
 }
