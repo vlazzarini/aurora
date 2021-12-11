@@ -119,7 +119,8 @@ template <typename S> struct Karplus {
 
   void note_off() { gate = 0; }
 
-  const std::vector<S> &operator()(S a, S fr, S dt) {
+  const std::vector<S> &operator()(S a, S fr, S dt, std::size_t vsiz = 0) {
+    if(vsiz) vsize(vsiz);
     fr = fr > 20 ? fr : 20;
     if (ff != fr || ddt != dt)
       decay(fr, dt);
