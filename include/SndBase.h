@@ -207,6 +207,7 @@ public:
   template <typename... Ts>
   const std::vector<S> &operator()(const std::vector<S> &in, Ts... args) {
     auto &s = get_sig();
+    s.resize(in.size());
     std::fill(s.begin(), s.end(), 0);
     return mix(s, in, args...);
   }

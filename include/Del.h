@@ -111,6 +111,26 @@ inline S vdelayc(S rp, std::size_t wp, const std::vector<S> &del,
   return cubic_interp(rpos(rp, wp, ds), del);
 }
 
+/** Lowpass-filtered fixed delay function for Del  \n
+    nop: no-op \n
+    wp: write position \n
+    del: delay line \n
+    mem: a vector of size 2 with the lp filter state (pos 0) and coeff (pos 1) \n
+    returns a convolution sample
+*/
+template <typename S>
+inline S lp_delay(S nop, std::size_t wp, const std::vector<S> &d,
+                  std::vector<S> *mem) {
+  S ym1 = (*mem)[0];
+  S coef = (*mem)[1];
+  S x = d[wp];
+  S y = (1 + coef) * x - coef * ym1;
+  (*mem)[0] = y;
+  return y;
+}
+
+
+ 
 /** FIR/convolution function for Del  \n
     nop: no-op \n
     wp: write position \n
@@ -137,7 +157,7 @@ inline S fir(S nop, std::size_t wp, const std::vector<S> &del,
 */
 template <typename S, S (*FN)(S, std::size_t, const std::vector<S> &,
                               std::vector<S> *) = fixed_delay>
-class Del : SndBase<S> {
+class Del : public SndBase<S> {
   using SndBase<S>::process;
   S fs;
   std::size_t wp;
