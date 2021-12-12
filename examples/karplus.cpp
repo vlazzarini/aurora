@@ -125,7 +125,7 @@ template <typename S> struct Karplus {
     fr = fr > 20 ? fr : 20;
     if (ff != fr || ddt != dt)
       decay(fr, dt);
-    return amp(a, env(delay(in, 1 / fr, g, 0, &mem), gate));
+    return amp(a, env(delay(in, 1 / fr - 1 / (2*sr), g, 0, &mem), gate));
   }
 };
 } // namespace Aurora
@@ -133,29 +133,18 @@ template <typename S> struct Karplus {
 int main(int argc, const char *argv[]) {
   if (argc > 3) {
     double sr = argc > 4 ? std::atof(argv[4]) : Aurora::def_sr;
-    auto dur = std::atof(argv[1]);
+    auto dec = std::atof(argv[1]);
     auto amp = std::atof(argv[2]);
     auto fr = std::atof(argv[3]);
     Aurora::Karplus<double> pluck(sr);
-    double dec = 2.;
     pluck.note_on();
-    for (int n = 0; n < pluck.fs() * (dur / 2); n += pluck.vsize()) {
-      if (n > pluck.fs() * dur / 2)
+    for (int n = 0; n < pluck.fs() * (dec + 0.1); n += pluck.vsize()) {
+      if (n > pluck.fs() * dec)
         pluck.note_off();
       auto &out = pluck(amp, fr, dec);
       for (auto s : out)
         std::cout << s << std::endl;
     }
-    dec = 1.;
-    pluck.note_on();
-    for (int n = 0; n < pluck.fs() * (dur / 2 + 0.1); n += pluck.vsize()) {
-      if (n > pluck.fs() * dur / 2)
-        pluck.note_off();
-      auto &out = pluck(amp, fr, dec);
-      for (auto s : out)
-        std::cout << s << std::endl;
-    }
-
   } else
     std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz) [sr]"
               << std::endl;
