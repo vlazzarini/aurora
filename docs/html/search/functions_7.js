@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['linear_5finterp',['linear_interp',['../namespace_aurora.html#acdc5f35b9cbf54f7fc84a423d76bd488',1,'Aurora']]],
-  ['lookup',['lookup',['../namespace_aurora.html#ae0082f7bc3946a88145d54bacd0c6ff3',1,'Aurora']]],
-  ['lookupc',['lookupc',['../namespace_aurora.html#afab81d7b8873e7850073124fcf37eeea',1,'Aurora']]],
-  ['lookupi',['lookupi',['../namespace_aurora.html#a9246ac499667da52a0d1750e5238c4a8',1,'Aurora']]],
-  ['lp_5fdelay',['lp_delay',['../namespace_aurora.html#a3993d7b3f35ba929c5e59ba117252e1d',1,'Aurora']]]
+  ['id',['id',['../namespace_aurora.html#aca47d4c2fcfc307c85418fe7a0b1e98e',1,'Aurora']]],
+  ['ir',['IR',['../class_aurora_1_1_i_r.html#a2efce1ea1cacb440e68195209fb2e5e2',1,'Aurora::IR']]]
 ];

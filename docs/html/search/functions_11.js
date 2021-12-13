@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7eosc',['~Osc',['../class_aurora_1_1_osc.html#a1c8857130cdc3f61acd835d3725df831',1,'Aurora::Osc']]]
+  ['waveset',['waveset',['../class_aurora_1_1_bl_osc.html#a053c6740b4b419c6c03e246188906ebc',1,'Aurora::BlOsc']]]
 ];

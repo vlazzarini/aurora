@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['vdelay',['vdelay',['../namespace_aurora.html#a384371636fb98d2845ddc7619acefd0b',1,'Aurora']]],
-  ['vdelayc',['vdelayc',['../namespace_aurora.html#ae0b6df856278006b4fed4641f8ffe051',1,'Aurora']]],
-  ['vdelayi',['vdelayi',['../namespace_aurora.html#a6882049233d07537b7f0bdff7d703306',1,'Aurora']]],
-  ['vector',['vector',['../class_aurora_1_1_f_f_t.html#a67003935e240d8b4cf858430f6063913',1,'Aurora::FFT::vector()'],['../class_aurora_1_1_snd_base.html#acf9171085003208901e23c1f50520345',1,'Aurora::SndBase::vector()']]],
-  ['vsize',['vsize',['../class_aurora_1_1_snd_base.html#af9e21aaf411b17f7a8221c991ce5d291',1,'Aurora::SndBase::vsize() const'],['../class_aurora_1_1_snd_base.html#a88dacba995eef179f2fc97e11a331913',1,'Aurora::SndBase::vsize(std::size_t n)']]]
+  ['table',['table',['../class_aurora_1_1_osc.html#af003fa84004e878179446ceaf2d0007c',1,'Aurora::Osc']]],
+  ['tableset',['TableSet',['../class_aurora_1_1_table_set.html#a0be4528b972606335d73ac312da6337b',1,'Aurora::TableSet::TableSet(uint32_t type, S fs=def_sr, std::size_t len=def_ftlen)'],['../class_aurora_1_1_table_set.html#a884ecfde480fdac4c32fa10a82286941',1,'Aurora::TableSet::TableSet(const std::vector&lt; S &gt; &amp;src, S b=def_base, S fs=def_sr)']]],
+  ['transform',['transform',['../class_aurora_1_1_f_f_t.html#a8325de64c8b9f208ed0bc8db3f74e4c7',1,'Aurora::FFT::transform(std::vector&lt; std::complex&lt; S &gt;&gt; &amp;s, bool dir)'],['../class_aurora_1_1_f_f_t.html#a51ed1e25953c12b7f4cc145d19ee5cd8',1,'Aurora::FFT::transform(const std::vector&lt; S &gt; &amp;r)'],['../class_aurora_1_1_f_f_t.html#a9331bca89f3782409a7587611f1e4bab',1,'Aurora::FFT::transform(const std::vector&lt; std::complex&lt; S &gt;&gt; &amp;sp)']]],
+  ['twopole',['TwoPole',['../class_aurora_1_1_two_pole.html#a4696c27f4c9f477c6e0336f65bb7e17a',1,'Aurora::TwoPole']]]
 ];

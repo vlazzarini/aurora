@@ -84,6 +84,18 @@ static uint32\+\_\+t \hyperlink{namespace_aurora_a49b6f6d92479d80271ced426271540
 \item 
 {\footnotesize template$<$typename S $>$ }\\void \hyperlink{namespace_aurora_a797ddf91c14611eaea1c55f901f40cbf}{reson\+\_\+cfs2} (S f, S bw, S fs, double $\ast$c)
 \item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_ac8ec71dca2761ba7e67669e84faf11dc}{dfI} (S in, double $\ast$c, double $\ast$d)
+\item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_aa413f561e3e6eba365c8268bb6403262}{df\+II} (S in, double $\ast$c, double $\ast$d)
+\item 
+{\footnotesize template$<$typename S $>$ }\\void \hyperlink{namespace_aurora_af00fa05fba77610297abc0dcb14f2770}{lp\+\_\+cfs} (S f, S bw, S fs, double $\ast$c)
+\item 
+{\footnotesize template$<$typename S $>$ }\\void \hyperlink{namespace_aurora_a51c342d920dfc9f5d5538ff79f47b0e3}{hp\+\_\+cfs} (S f, S bw, S fs, double $\ast$c)
+\item 
+{\footnotesize template$<$typename S $>$ }\\void \hyperlink{namespace_aurora_a1d13ad5ed3c1a6494f338436762b67bc}{bp\+\_\+cfs} (S f, S bw, S fs, double $\ast$c)
+\item 
+{\footnotesize template$<$typename S $>$ }\\void \hyperlink{namespace_aurora_afe0c9010d177c5be0aa923601d802111}{br\+\_\+cfs} (S f, S bw, S fs, double $\ast$c)
+\item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_ae0082f7bc3946a88145d54bacd0c6ff3}{lookup} (double ph, const std\+::vector$<$ S $>$ $\ast$t)
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a9246ac499667da52a0d1750e5238c4a8}{lookupi} (double ph, const std\+::vector$<$ S $>$ $\ast$t)
@@ -200,7 +212,21 @@ S\+: sample type ~\newline
 a\+: attack ~\newline
 d\+: decay ~\newline
 s\+: sustain ~\newline
-returns an A\+DS envelope function \mbox{\Hypertarget{namespace_aurora_a0269c3758ab62d6a910cd8f7ace7fba2}\label{namespace_aurora_a0269c3758ab62d6a910cd8f7ace7fba2}} 
+returns an A\+DS envelope function \mbox{\Hypertarget{namespace_aurora_a1d13ad5ed3c1a6494f338436762b67bc}\label{namespace_aurora_a1d13ad5ed3c1a6494f338436762b67bc}} 
+\index{Aurora@{Aurora}!bp\+\_\+cfs@{bp\+\_\+cfs}}
+\index{bp\+\_\+cfs@{bp\+\_\+cfs}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{bp\+\_\+cfs()}{bp\_cfs()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+void Aurora\+::bp\+\_\+cfs (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Second-\/order bandpass filter coeffs \mbox{\Hypertarget{namespace_aurora_afe0c9010d177c5be0aa923601d802111}\label{namespace_aurora_afe0c9010d177c5be0aa923601d802111}} 
+\index{Aurora@{Aurora}!br\+\_\+cfs@{br\+\_\+cfs}}
+\index{br\+\_\+cfs@{br\+\_\+cfs}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{br\+\_\+cfs()}{br\_cfs()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+void Aurora\+::br\+\_\+cfs (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Second-\/order notch filter coeffs \mbox{\Hypertarget{namespace_aurora_a0269c3758ab62d6a910cd8f7ace7fba2}\label{namespace_aurora_a0269c3758ab62d6a910cd8f7ace7fba2}} 
 \index{Aurora@{Aurora}!cos@{cos}}
 \index{cos@{cos}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{cos()}{cos()}}
@@ -220,7 +246,21 @@ S Aurora\+::cubic\+\_\+interp (\begin{DoxyParamCaption}\item[{double}]{pos,  }\i
 cubic interpolation table lookup ~\newline
 S\+: sample type ~\newline
 pos\+: reading position (no bounds check) ~\newline
-t\+: table \mbox{\Hypertarget{namespace_aurora_aeac34405f4d58ec77eb9519844518255}\label{namespace_aurora_aeac34405f4d58ec77eb9519844518255}} 
+t\+: table \mbox{\Hypertarget{namespace_aurora_ac8ec71dca2761ba7e67669e84faf11dc}\label{namespace_aurora_ac8ec71dca2761ba7e67669e84faf11dc}} 
+\index{Aurora@{Aurora}!dfI@{dfI}}
+\index{dfI@{dfI}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{df\+I()}{dfI()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::dfI (\begin{DoxyParamCaption}\item[{S}]{in,  }\item[{double $\ast$}]{c,  }\item[{double $\ast$}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+D\+F-\/I second-\/order section \mbox{\Hypertarget{namespace_aurora_aa413f561e3e6eba365c8268bb6403262}\label{namespace_aurora_aa413f561e3e6eba365c8268bb6403262}} 
+\index{Aurora@{Aurora}!df\+II@{df\+II}}
+\index{df\+II@{df\+II}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{df\+I\+I()}{dfII()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::df\+II (\begin{DoxyParamCaption}\item[{S}]{in,  }\item[{double $\ast$}]{c,  }\item[{double $\ast$}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+D\+F-\/\+II second-\/order section \mbox{\Hypertarget{namespace_aurora_aeac34405f4d58ec77eb9519844518255}\label{namespace_aurora_aeac34405f4d58ec77eb9519844518255}} 
 \index{Aurora@{Aurora}!env\+\_\+gen@{env\+\_\+gen}}
 \index{env\+\_\+gen@{env\+\_\+gen}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{env\+\_\+gen()}{env\_gen()}}
@@ -255,7 +295,14 @@ nop\+: no op ~\newline
 wp\+: reading position (no bounds check) ~\newline
 d\+: delay line ~\newline
 no1p\+: no op ~\newline
-returns a sample from the delay line \mbox{\Hypertarget{namespace_aurora_aca47d4c2fcfc307c85418fe7a0b1e98e}\label{namespace_aurora_aca47d4c2fcfc307c85418fe7a0b1e98e}} 
+returns a sample from the delay line \mbox{\Hypertarget{namespace_aurora_a51c342d920dfc9f5d5538ff79f47b0e3}\label{namespace_aurora_a51c342d920dfc9f5d5538ff79f47b0e3}} 
+\index{Aurora@{Aurora}!hp\+\_\+cfs@{hp\+\_\+cfs}}
+\index{hp\+\_\+cfs@{hp\+\_\+cfs}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{hp\+\_\+cfs()}{hp\_cfs()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+void Aurora\+::hp\+\_\+cfs (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Second-\/order hipass filter coeffs \mbox{\Hypertarget{namespace_aurora_aca47d4c2fcfc307c85418fe7a0b1e98e}\label{namespace_aurora_aca47d4c2fcfc307c85418fe7a0b1e98e}} 
 \index{Aurora@{Aurora}!id@{id}}
 \index{id@{id}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{id()}{id()}}
@@ -303,7 +350,14 @@ S Aurora\+::lookupi (\begin{DoxyParamCaption}\item[{double}]{ph,  }\item[{const 
 Linear interp table lookup function for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
 S\+: sample type ~\newline
 ph\+: phase  t\+: function table ~\newline
-returns an interpolated sample \mbox{\Hypertarget{namespace_aurora_a3993d7b3f35ba929c5e59ba117252e1d}\label{namespace_aurora_a3993d7b3f35ba929c5e59ba117252e1d}} 
+returns an interpolated sample \mbox{\Hypertarget{namespace_aurora_af00fa05fba77610297abc0dcb14f2770}\label{namespace_aurora_af00fa05fba77610297abc0dcb14f2770}} 
+\index{Aurora@{Aurora}!lp\+\_\+cfs@{lp\+\_\+cfs}}
+\index{lp\+\_\+cfs@{lp\+\_\+cfs}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{lp\+\_\+cfs()}{lp\_cfs()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+void Aurora\+::lp\+\_\+cfs (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Second-\/order lowpass filter coeffs \mbox{\Hypertarget{namespace_aurora_a3993d7b3f35ba929c5e59ba117252e1d}\label{namespace_aurora_a3993d7b3f35ba929c5e59ba117252e1d}} 
 \index{Aurora@{Aurora}!lp\+\_\+delay@{lp\+\_\+delay}}
 \index{lp\+\_\+delay@{lp\+\_\+delay}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{lp\+\_\+delay()}{lp\_delay()}}
@@ -336,28 +390,28 @@ returns ph \mbox{\Hypertarget{namespace_aurora_a5f8647080e611bbb89c4778a9e02e063
 \index{reson@{reson}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{reson()}{reson()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-S Aurora\+::reson (\begin{DoxyParamCaption}\item[{S}]{in,  }\item[{double $\ast$}]{c,  }\item[{double $\ast$}]{d }\end{DoxyParamCaption})}
+S Aurora\+::reson (\begin{DoxyParamCaption}\item[{S}]{in,  }\item[{double $\ast$}]{c,  }\item[{double $\ast$}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 resonator function for \hyperlink{class_aurora_1_1_fil}{Fil} \mbox{\Hypertarget{namespace_aurora_a6001679ef5f80dcee8eaa5d90b1f9448}\label{namespace_aurora_a6001679ef5f80dcee8eaa5d90b1f9448}} 
 \index{Aurora@{Aurora}!reson\+\_\+cfs@{reson\+\_\+cfs}}
 \index{reson\+\_\+cfs@{reson\+\_\+cfs}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{reson\+\_\+cfs()}{reson\_cfs()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-void Aurora\+::reson\+\_\+cfs (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
+void Aurora\+::reson\+\_\+cfs (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 resonator coefficients function for \hyperlink{class_aurora_1_1_fil}{Fil} no scaling \mbox{\Hypertarget{namespace_aurora_a6a9aa81047a6c7c24bbd6d36077f6726}\label{namespace_aurora_a6a9aa81047a6c7c24bbd6d36077f6726}} 
 \index{Aurora@{Aurora}!reson\+\_\+cfs1@{reson\+\_\+cfs1}}
 \index{reson\+\_\+cfs1@{reson\+\_\+cfs1}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{reson\+\_\+cfs1()}{reson\_cfs1()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-void Aurora\+::reson\+\_\+cfs1 (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
+void Aurora\+::reson\+\_\+cfs1 (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 resonator coefficients function for \hyperlink{class_aurora_1_1_fil}{Fil} scaling type 1 \mbox{\Hypertarget{namespace_aurora_a797ddf91c14611eaea1c55f901f40cbf}\label{namespace_aurora_a797ddf91c14611eaea1c55f901f40cbf}} 
 \index{Aurora@{Aurora}!reson\+\_\+cfs2@{reson\+\_\+cfs2}}
 \index{reson\+\_\+cfs2@{reson\+\_\+cfs2}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{reson\+\_\+cfs2()}{reson\_cfs2()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-void Aurora\+::reson\+\_\+cfs2 (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
+void Aurora\+::reson\+\_\+cfs2 (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 resonator coefficients function for \hyperlink{class_aurora_1_1_fil}{Fil} scaling type 2 \mbox{\Hypertarget{namespace_aurora_a76909b8c5d5801213d35fffa69499885}\label{namespace_aurora_a76909b8c5d5801213d35fffa69499885}} 
 \index{Aurora@{Aurora}!sin@{sin}}

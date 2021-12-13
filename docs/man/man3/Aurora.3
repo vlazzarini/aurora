@@ -120,6 +120,24 @@ Aurora
 .RI "template<typename S > void \fBreson_cfs2\fP (S f, S bw, S fs, double *c)"
 .br
 .ti -1c
+.RI "template<typename S > S \fBdfI\fP (S in, double *c, double *d)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBdfII\fP (S in, double *c, double *d)"
+.br
+.ti -1c
+.RI "template<typename S > void \fBlp_cfs\fP (S f, S bw, S fs, double *c)"
+.br
+.ti -1c
+.RI "template<typename S > void \fBhp_cfs\fP (S f, S bw, S fs, double *c)"
+.br
+.ti -1c
+.RI "template<typename S > void \fBbp_cfs\fP (S f, S bw, S fs, double *c)"
+.br
+.ti -1c
+.RI "template<typename S > void \fBbr_cfs\fP (S f, S bw, S fs, double *c)"
+.br
+.ti -1c
 .RI "template<typename S > S \fBlookup\fP (double ph, const std::vector< S > *t)"
 .br
 .ti -1c
@@ -242,6 +260,10 @@ d: decay
 s: sustain 
 .br
 returns an ADS envelope function 
+.SS "template<typename S > void Aurora::bp_cfs (S f, S bw, S fs, double * c)\fC [inline]\fP"
+Second-order bandpass filter coeffs 
+.SS "template<typename S > void Aurora::br_cfs (S f, S bw, S fs, double * c)\fC [inline]\fP"
+Second-order notch filter coeffs 
 .SS "template<typename S > S Aurora::cos (double ph, const std::vector< S > * t = \fC0\fP)\fC [inline]\fP"
 Cosine function for \fBOsc\fP 
 .br
@@ -258,6 +280,10 @@ S: sample type
 pos: reading position (no bounds check) 
 .br
 t: table 
+.SS "template<typename S > S Aurora::dfI (S in, double * c, double * d)\fC [inline]\fP"
+DF-I second-order section 
+.SS "template<typename S > S Aurora::dfII (S in, double * c, double * d)\fC [inline]\fP"
+DF-II second-order section 
 .SS "template<typename S > std::function<S(double, S, S)> Aurora::env_gen (const std::vector< S > & pts)"
 Breakpoint function generator for \fBEnv\fP 
 .br
@@ -292,6 +318,8 @@ d: delay line
 no1p: no op 
 .br
 returns a sample from the delay line 
+.SS "template<typename S > void Aurora::hp_cfs (S f, S bw, S fs, double * c)\fC [inline]\fP"
+Second-order hipass filter coeffs 
 .SS "template<typename S > S Aurora::id (S s, S dr)\fC [inline]\fP"
 
 .SS "template<typename S > S Aurora::linear_interp (double pos, const std::vector< S > & t)\fC [inline]\fP"
@@ -328,6 +356,8 @@ S: sample type
 ph: phase  t: function table 
 .br
 returns an interpolated sample 
+.SS "template<typename S > void Aurora::lp_cfs (S f, S bw, S fs, double * c)\fC [inline]\fP"
+Second-order lowpass filter coeffs 
 .SS "template<typename S > S Aurora::lp_delay (S nop, std::size_t wp, const std::vector< S > & d, std::vector< S > * mem)\fC [inline]\fP"
 Lowpass-filtered fixed delay function for \fBDel\fP 
 .br
@@ -350,13 +380,13 @@ S: sample type
 ph: normalised phase 
 .br
 returns ph 
-.SS "template<typename S > S Aurora::reson (S in, double * c, double * d)"
+.SS "template<typename S > S Aurora::reson (S in, double * c, double * d)\fC [inline]\fP"
 resonator function for \fBFil\fP 
-.SS "template<typename S > void Aurora::reson_cfs (S f, S bw, S fs, double * c)"
+.SS "template<typename S > void Aurora::reson_cfs (S f, S bw, S fs, double * c)\fC [inline]\fP"
 resonator coefficients function for \fBFil\fP no scaling 
-.SS "template<typename S > void Aurora::reson_cfs1 (S f, S bw, S fs, double * c)"
+.SS "template<typename S > void Aurora::reson_cfs1 (S f, S bw, S fs, double * c)\fC [inline]\fP"
 resonator coefficients function for \fBFil\fP scaling type 1 
-.SS "template<typename S > void Aurora::reson_cfs2 (S f, S bw, S fs, double * c)"
+.SS "template<typename S > void Aurora::reson_cfs2 (S f, S bw, S fs, double * c)\fC [inline]\fP"
 resonator coefficients function for \fBFil\fP scaling type 2 
 .SS "template<typename S > S Aurora::sin (double ph, const std::vector< S > * t = \fC0\fP)\fC [inline]\fP"
 Sine function for \fBOsc\fP 

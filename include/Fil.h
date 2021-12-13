@@ -34,7 +34,7 @@ namespace Aurora {
 
 /** resonator function for Fil
  */
-template <typename S> S reson(S in, double *c, double *d) {
+template <typename S> inline S reson(S in, double *c, double *d) {
   S y = in * c[0] - d[0] * c[1] - d[1] * c[2];
   d[1] = d[0];
   d[0] = y;
@@ -44,7 +44,7 @@ template <typename S> S reson(S in, double *c, double *d) {
 /** resonator coefficients function for Fil
     no scaling
  */
-template <typename S> void reson_cfs(S f, S bw, S fs, double *c) {
+template <typename S> inline void reson_cfs(S f, S bw, S fs, double *c) {
   c[2] = std::exp(-bw * twopi / fs);
   c[1] = (-4 * c[2] / (1. + c[2])) * std::cos(twopi * f / fs);
 }
@@ -52,7 +52,7 @@ template <typename S> void reson_cfs(S f, S bw, S fs, double *c) {
 /** resonator coefficients function for Fil
     scaling type 1
  */
-template <typename S> void reson_cfs1(S f, S bw, S fs, double *c) {
+template <typename S> inline void reson_cfs1(S f, S bw, S fs, double *c) {
   reson_cfs(f, bw, fs, c);
   c[0] = (1 - c[2]) * sqrt(1.0 - c[1] * c[1] / (4 * c[2]));
 }
@@ -60,10 +60,81 @@ template <typename S> void reson_cfs1(S f, S bw, S fs, double *c) {
 /** resonator coefficients function for Fil
     scaling type 2
  */
-template <typename S> void reson_cfs2(S f, S bw, S fs, double *c) {
+template <typename S> inline void reson_cfs2(S f, S bw, S fs, double *c) {
   reson_cfs(f, bw, fs, c);
   double rsqp1 = c[2] + 1;
   c[0] = sqrt((rsqp1 * rsqp1 - c[1] * c[1]) * (1 - c[2]) / rsqp1);
+}
+
+/** DF-I second-order section
+ */
+template <typename S> inline S dfI(S in, double *c, double *d) {
+  S y = in * c[0] + d[0] * c[1] + d[1] * c[2] - d[2] * c[3] - d[3] * c[4];
+  d[1] = d[0];
+  d[0] = in;
+  d[3] = d[2];
+  d[2] = y;
+  return y;
+}
+
+/** DF-II second-order section
+ */
+template <typename S> inline S dfII(S in, double *c, double *d) {
+  S w = in - d[0] * c[3] - d[1] * c[4];
+  S y = w * c[0] + d[0] * c[1] + d[1] * c[2];
+  d[1] = d[0];
+  d[0] = w;
+  return y;
+}
+
+/** Second-order lowpass filter coeffs
+ */
+template <typename S> inline void lp_cfs(S f, S bw, S fs, double *c) {
+  double w = 1 / tan(M_PI * f / fs);
+  double sqw = sqrt(2.) * w;
+  double wsq = w * w;
+  c[0] = 1 / (1 + sqw + wsq);
+  c[1] = 2 * c[0];
+  c[2] = c[0];
+  c[3] = 2 * (1. - sqw) * c[0];
+  c[4] = (1 - sqw + wsq) * c[0];
+}
+
+/** Second-order hipass filter coeffs
+ */
+template <typename S> inline void hp_cfs(S f, S bw, S fs, double *c) {
+  double w = tan(M_PI * f / fs);
+  double sqw = sqrt(2.) * w;
+  double wsq = w * w;
+  c[0] = 1 / (1 + sqw + wsq);
+  c[1] = -2 * c[0];
+  c[2] = c[0];
+  c[3] = 2 * (wsq - 1) * c[0];
+  c[4] = (1 - sqw + wsq) * c[0];
+}
+
+/** Second-order bandpass filter coeffs
+ */
+template <typename S> inline void bp_cfs(S f, S bw, S fs, double *c) {
+  double w = 1. / tan(M_PI * bw / fs);
+  double cosw = 2. * cos(2 * M_PI * f / fs);
+  c[0] = 1. / (1 + w);
+  c[1] = 0;
+  c[2] = -c[0];
+  c[3] = -w * cosw * c[0];
+  c[4] = (w - 1) * c[0];
+}
+
+/** Second-order notch filter coeffs
+ */
+template <typename S> inline void br_cfs(S f, S bw, S fs, double *c) {
+  double w = tan(M_PI * bw / fs);
+  double cosw = 2. * cos(2 * M_PI * f / fs);
+  c[0] = 1 / (1 + w);
+  c[1] = -cosw * c[0];
+  c[2] = c[0];
+  c[3] = c[1];
+  c[4] = (1 - w) * c[0];
 }
 
 /** Fil class  \n
