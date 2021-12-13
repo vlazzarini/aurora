@@ -33,7 +33,6 @@
 #include <functional>
 
 namespace Aurora {
-const double twopi = 2 * M_PI;
 const int def_ftlen = 16384;
 
 /** Truncating table lookup for Osc \n

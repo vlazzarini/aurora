@@ -7,7 +7,8 @@ var indexSectionsWithContent =
   4: "abcdefilmnoprstvw~",
   5: "dfiopt",
   6: "bhlpst",
-  7: "a"
+  7: "m",
+  8: "a"
 };
 
 var indexSectionNames =
@@ -19,7 +20,8 @@ var indexSectionNames =
   4: "functions",
   5: "variables",
   6: "enumvalues",
-  7: "pages"
+  7: "defines",
+  8: "pages"
 };
 
 var indexSectionLabels =
@@ -31,6 +33,7 @@ var indexSectionLabels =
   4: "Functions",
   5: "Variables",
   6: "Enumerator",
-  7: "Pages"
+  7: "Macros",
+  8: "Pages"
 };
 

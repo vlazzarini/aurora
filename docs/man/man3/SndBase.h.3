@@ -8,6 +8,8 @@ SndBase.h
 .PP
 \fC#include <cstdint>\fP
 .br
+\fC#include <functional>\fP
+.br
 \fC#include <iostream>\fP
 .br
 \fC#include <numeric>\fP
@@ -38,6 +40,13 @@ SndBase.h
 .RI " \fBAurora\fP"
 .br
 .in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBM_PI\fP   3\&.14159265358979323846"
+.br
+.in -1c
 .SS "Functions"
 
 .in +1c
@@ -57,7 +66,14 @@ SndBase.h
 .ti -1c
 .RI "const double \fBAurora::def_sr\fP = 44100\&."
 .br
+.ti -1c
+.RI "const double \fBAurora::twopi\fP = 2 * \fBM_PI\fP"
+.br
 .in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define M_PI   3\&.14159265358979323846"
+
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Aurora from the source code\&.

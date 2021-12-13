@@ -19,6 +19,8 @@ class \hyperlink{class_aurora_1_1_eq}{Eq}
 \item 
 class \hyperlink{class_aurora_1_1_f_f_t}{F\+FT}
 \item 
+class \hyperlink{class_aurora_1_1_fil}{Fil}
+\item 
 class \hyperlink{class_aurora_1_1_four_pole}{Four\+Pole}
 \item 
 class \hyperlink{class_aurora_1_1_func}{Func}
@@ -74,9 +76,13 @@ enum \+: int32\+\_\+t \{ \hyperlink{namespace_aurora_a963f359f40fdbc5f4dbe404353
 \item 
 static uint32\+\_\+t \hyperlink{namespace_aurora_a49b6f6d92479d80271ced42627154066}{np2} (uint32\+\_\+t n)
 \item 
-{\footnotesize template$<$typename S $>$ }\\void \hyperlink{namespace_aurora_a7dbc97de202d9357220ebc781dc84f01}{reson} (S in, double $\ast$c, double $\ast$d)
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a5f8647080e611bbb89c4778a9e02e063}{reson} (S in, double $\ast$c, double $\ast$d)
 \item 
-{\footnotesize template$<$typename S $>$ }\\void \hyperlink{namespace_aurora_a1f00ac085556e4dbca1c62b08e1dca6c}{reson\+\_\+coeffs} (S fr, S bw, S fs, double $\ast$c)
+{\footnotesize template$<$typename S $>$ }\\void \hyperlink{namespace_aurora_a6001679ef5f80dcee8eaa5d90b1f9448}{reson\+\_\+cfs} (S f, S bw, S fs, double $\ast$c)
+\item 
+{\footnotesize template$<$typename S $>$ }\\void \hyperlink{namespace_aurora_a6a9aa81047a6c7c24bbd6d36077f6726}{reson\+\_\+cfs1} (S f, S bw, S fs, double $\ast$c)
+\item 
+{\footnotesize template$<$typename S $>$ }\\void \hyperlink{namespace_aurora_a797ddf91c14611eaea1c55f901f40cbf}{reson\+\_\+cfs2} (S f, S bw, S fs, double $\ast$c)
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_ae0082f7bc3946a88145d54bacd0c6ff3}{lookup} (double ph, const std\+::vector$<$ S $>$ $\ast$t)
 \item 
@@ -113,13 +119,13 @@ static bool \hyperlink{namespace_aurora_a20b1bd3f1b34b8676e26d07718dac352}{forwa
 \item 
 static bool \hyperlink{namespace_aurora_ac22c4e2e10572cbb6f64f3bd1cd595b5}{inverse} = false
 \item 
-const double \hyperlink{namespace_aurora_a4c08f8416c2b35d5001062f121459b5a}{twopi} = 2 $\ast$ M\+\_\+\+PI
-\item 
 const int \hyperlink{namespace_aurora_a14dabfd9feedfa09c0e6f86d2627f006}{def\+\_\+ftlen} = 16384
 \item 
 const int \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize} = 64
 \item 
 const double \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr} = 44100.
+\item 
+const double \hyperlink{namespace_aurora_a4c08f8416c2b35d5001062f121459b5a}{twopi} = 2 $\ast$ \hyperlink{_snd_base_8h_ae71449b1cc6e6250b91f539153a7a0d3}{M\+\_\+\+PI}
 \end{DoxyCompactItemize}
 
 
@@ -325,21 +331,35 @@ S Aurora\+::phase (\begin{DoxyParamCaption}\item[{double}]{ph,  }\item[{const st
 Phase function for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
 S\+: sample type ~\newline
 ph\+: normalised phase ~\newline
-returns ph \mbox{\Hypertarget{namespace_aurora_a7dbc97de202d9357220ebc781dc84f01}\label{namespace_aurora_a7dbc97de202d9357220ebc781dc84f01}} 
+returns ph \mbox{\Hypertarget{namespace_aurora_a5f8647080e611bbb89c4778a9e02e063}\label{namespace_aurora_a5f8647080e611bbb89c4778a9e02e063}} 
 \index{Aurora@{Aurora}!reson@{reson}}
 \index{reson@{reson}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{reson()}{reson()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-void Aurora\+::reson (\begin{DoxyParamCaption}\item[{S}]{in,  }\item[{double $\ast$}]{c,  }\item[{double $\ast$}]{d }\end{DoxyParamCaption})}
+S Aurora\+::reson (\begin{DoxyParamCaption}\item[{S}]{in,  }\item[{double $\ast$}]{c,  }\item[{double $\ast$}]{d }\end{DoxyParamCaption})}
 
-resonator function for Fil \mbox{\Hypertarget{namespace_aurora_a1f00ac085556e4dbca1c62b08e1dca6c}\label{namespace_aurora_a1f00ac085556e4dbca1c62b08e1dca6c}} 
-\index{Aurora@{Aurora}!reson\+\_\+coeffs@{reson\+\_\+coeffs}}
-\index{reson\+\_\+coeffs@{reson\+\_\+coeffs}!Aurora@{Aurora}}
-\subsubsection{\texorpdfstring{reson\+\_\+coeffs()}{reson\_coeffs()}}
+resonator function for \hyperlink{class_aurora_1_1_fil}{Fil} \mbox{\Hypertarget{namespace_aurora_a6001679ef5f80dcee8eaa5d90b1f9448}\label{namespace_aurora_a6001679ef5f80dcee8eaa5d90b1f9448}} 
+\index{Aurora@{Aurora}!reson\+\_\+cfs@{reson\+\_\+cfs}}
+\index{reson\+\_\+cfs@{reson\+\_\+cfs}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{reson\+\_\+cfs()}{reson\_cfs()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-void Aurora\+::reson\+\_\+coeffs (\begin{DoxyParamCaption}\item[{S}]{fr,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
+void Aurora\+::reson\+\_\+cfs (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
 
-resonator coefficients function for Fil \mbox{\Hypertarget{namespace_aurora_a76909b8c5d5801213d35fffa69499885}\label{namespace_aurora_a76909b8c5d5801213d35fffa69499885}} 
+resonator coefficients function for \hyperlink{class_aurora_1_1_fil}{Fil} no scaling \mbox{\Hypertarget{namespace_aurora_a6a9aa81047a6c7c24bbd6d36077f6726}\label{namespace_aurora_a6a9aa81047a6c7c24bbd6d36077f6726}} 
+\index{Aurora@{Aurora}!reson\+\_\+cfs1@{reson\+\_\+cfs1}}
+\index{reson\+\_\+cfs1@{reson\+\_\+cfs1}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{reson\+\_\+cfs1()}{reson\_cfs1()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+void Aurora\+::reson\+\_\+cfs1 (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
+
+resonator coefficients function for \hyperlink{class_aurora_1_1_fil}{Fil} scaling type 1 \mbox{\Hypertarget{namespace_aurora_a797ddf91c14611eaea1c55f901f40cbf}\label{namespace_aurora_a797ddf91c14611eaea1c55f901f40cbf}} 
+\index{Aurora@{Aurora}!reson\+\_\+cfs2@{reson\+\_\+cfs2}}
+\index{reson\+\_\+cfs2@{reson\+\_\+cfs2}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{reson\+\_\+cfs2()}{reson\_cfs2()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+void Aurora\+::reson\+\_\+cfs2 (\begin{DoxyParamCaption}\item[{S}]{f,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
+
+resonator coefficients function for \hyperlink{class_aurora_1_1_fil}{Fil} scaling type 2 \mbox{\Hypertarget{namespace_aurora_a76909b8c5d5801213d35fffa69499885}\label{namespace_aurora_a76909b8c5d5801213d35fffa69499885}} 
 \index{Aurora@{Aurora}!sin@{sin}}
 \index{sin@{sin}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{sin()}{sin()}}
@@ -457,5 +477,5 @@ constant indicating packed \hyperlink{class_aurora_1_1_f_f_t}{F\+FT} format \mbo
 \index{Aurora@{Aurora}!twopi@{twopi}}
 \index{twopi@{twopi}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{twopi}{twopi}}
-{\footnotesize\ttfamily const double Aurora\+::twopi = 2 $\ast$ M\+\_\+\+PI}
+{\footnotesize\ttfamily const double Aurora\+::twopi = 2 $\ast$ \hyperlink{_snd_base_8h_ae71449b1cc6e6250b91f539153a7a0d3}{M\+\_\+\+PI}}
 

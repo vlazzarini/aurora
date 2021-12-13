@@ -30,10 +30,10 @@
 #define _AURORA_SNDBASE_
 
 #include <cstdint>
+#include <functional>
 #include <iostream>
 #include <numeric>
 #include <vector>
-#include <functional>
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -42,6 +42,7 @@
 namespace Aurora {
 const int def_vsize = 64;
 const double def_sr = 44100.;
+const double twopi = 2 * M_PI;
 
 /** SndBase class \n
     Aurora Library base class \n

@@ -1,0 +1,95 @@
+\hypertarget{class_aurora_1_1_fil}{}\section{Aurora\+:\+:Fil$<$ S, CF, FN $>$ Class Template Reference}
+\label{class_aurora_1_1_fil}\index{Aurora\+::\+Fil$<$ S, C\+F, F\+N $>$@{Aurora\+::\+Fil$<$ S, C\+F, F\+N $>$}}
+
+
+{\ttfamily \#include $<$Fil.\+h$>$}
+
+
+
+Inheritance diagram for Aurora\+:\+:Fil$<$ S, CF, FN $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{class_aurora_1_1_fil__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Aurora\+:\+:Fil$<$ S, CF, FN $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{class_aurora_1_1_fil__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_aurora_1_1_fil_af431fc69db63c5255ca4c39c2a2a96b8}{Fil} (S ffs=\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}, int \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_fil_a62f4f94aaf2eccf547cc78904dd0c118}{operator()} (const std\+::vector$<$ S $>$ \&in, S f, S bw=0)
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_fil_af5803c67f4b30e46045aa51dfbe13ea9}{operator()} (const std\+::vector$<$ S $>$ \&in, const std\+::vector$<$ S $>$ \&f, S bw=0)
+\item 
+void \hyperlink{class_aurora_1_1_fil_aff34ac5681c55706eabb15cdbc03379c}{reset} (S ffs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename S, void($\ast$)(\+S, S, S, double $\ast$) CF, S($\ast$)(\+S, double $\ast$, double $\ast$) FN$>$\newline
+class Aurora\+::\+Fil$<$ S, C\+F, F\+N $>$}
+
+\hyperlink{class_aurora_1_1_fil}{Fil} class ~\newline
+Generic filter (first or second-\/order) ~\newline
+S\+: sample type 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_fil_af431fc69db63c5255ca4c39c2a2a96b8}\label{class_aurora_1_1_fil_af431fc69db63c5255ca4c39c2a2a96b8}} 
+\index{Aurora\+::\+Fil@{Aurora\+::\+Fil}!Fil@{Fil}}
+\index{Fil@{Fil}!Aurora\+::\+Fil@{Aurora\+::\+Fil}}
+\subsubsection{\texorpdfstring{Fil()}{Fil()}}
+{\footnotesize\ttfamily template$<$typename S , void($\ast$)(\+S, S, S, double $\ast$) CF, S($\ast$)(\+S, double $\ast$, double $\ast$) FN$>$ \\
+\hyperlink{class_aurora_1_1_fil}{Aurora\+::\+Fil}$<$ S, CF, FN $>$\+::\hyperlink{class_aurora_1_1_fil}{Fil} (\begin{DoxyParamCaption}\item[{S}]{ffs = {\ttfamily \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}},  }\item[{int}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor ~\newline
+fs\+: sampling rate ~\newline
+vsize\+: vector size 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_fil_a62f4f94aaf2eccf547cc78904dd0c118}\label{class_aurora_1_1_fil_a62f4f94aaf2eccf547cc78904dd0c118}} 
+\index{Aurora\+::\+Fil@{Aurora\+::\+Fil}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora\+::\+Fil@{Aurora\+::\+Fil}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S , void($\ast$)(\+S, S, S, double $\ast$) CF, S($\ast$)(\+S, double $\ast$, double $\ast$) FN$>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_fil}{Aurora\+::\+Fil}$<$ S, CF, FN $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in,  }\item[{S}]{f,  }\item[{S}]{bw = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Filter ~\newline
+in\+: input ~\newline
+f\+: cutoff frequency ~\newline
+bw\+: bandwidth ~\newline
+; \mbox{\Hypertarget{class_aurora_1_1_fil_af5803c67f4b30e46045aa51dfbe13ea9}\label{class_aurora_1_1_fil_af5803c67f4b30e46045aa51dfbe13ea9}} 
+\index{Aurora\+::\+Fil@{Aurora\+::\+Fil}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora\+::\+Fil@{Aurora\+::\+Fil}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S , void($\ast$)(\+S, S, S, double $\ast$) CF, S($\ast$)(\+S, double $\ast$, double $\ast$) FN$>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_fil}{Aurora\+::\+Fil}$<$ S, CF, FN $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in,  }\item[{const std\+::vector$<$ S $>$ \&}]{f,  }\item[{S}]{bw = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Filter ~\newline
+in\+: input ~\newline
+f\+: cutoff frequency ~\newline
+bw\+: bandwidth ~\newline
+; \mbox{\Hypertarget{class_aurora_1_1_fil_aff34ac5681c55706eabb15cdbc03379c}\label{class_aurora_1_1_fil_aff34ac5681c55706eabb15cdbc03379c}} 
+\index{Aurora\+::\+Fil@{Aurora\+::\+Fil}!reset@{reset}}
+\index{reset@{reset}!Aurora\+::\+Fil@{Aurora\+::\+Fil}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$typename S , void($\ast$)(\+S, S, S, double $\ast$) CF, S($\ast$)(\+S, double $\ast$, double $\ast$) FN$>$ \\
+void \hyperlink{class_aurora_1_1_fil}{Aurora\+::\+Fil}$<$ S, CF, FN $>$\+::reset (\begin{DoxyParamCaption}\item[{S}]{ffs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+reset the filter ~\newline
+ fs\+: sampling rate 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_fil_8h}{Fil.\+h}\end{DoxyCompactItemize}

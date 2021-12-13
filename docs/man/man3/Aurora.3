@@ -34,6 +34,9 @@ Aurora
 .RI "class \fBFFT\fP"
 .br
 .ti -1c
+.RI "class \fBFil\fP"
+.br
+.ti -1c
 .RI "class \fBFourPole\fP"
 .br
 .ti -1c
@@ -105,10 +108,16 @@ Aurora
 .RI "static uint32_t \fBnp2\fP (uint32_t n)"
 .br
 .ti -1c
-.RI "template<typename S > void \fBreson\fP (S in, double *c, double *d)"
+.RI "template<typename S > S \fBreson\fP (S in, double *c, double *d)"
 .br
 .ti -1c
-.RI "template<typename S > void \fBreson_coeffs\fP (S fr, S bw, S fs, double *c)"
+.RI "template<typename S > void \fBreson_cfs\fP (S f, S bw, S fs, double *c)"
+.br
+.ti -1c
+.RI "template<typename S > void \fBreson_cfs1\fP (S f, S bw, S fs, double *c)"
+.br
+.ti -1c
+.RI "template<typename S > void \fBreson_cfs2\fP (S f, S bw, S fs, double *c)"
 .br
 .ti -1c
 .RI "template<typename S > S \fBlookup\fP (double ph, const std::vector< S > *t)"
@@ -163,9 +172,6 @@ Aurora
 .RI "static bool \fBinverse\fP = false"
 .br
 .ti -1c
-.RI "const double \fBtwopi\fP = 2 * M_PI"
-.br
-.ti -1c
 .RI "const int \fBdef_ftlen\fP = 16384"
 .br
 .ti -1c
@@ -173,6 +179,9 @@ Aurora
 .br
 .ti -1c
 .RI "const double \fBdef_sr\fP = 44100\&."
+.br
+.ti -1c
+.RI "const double \fBtwopi\fP = 2 * \fBM_PI\fP"
 .br
 .in -1c
 .SH "Enumeration Type Documentation"
@@ -341,10 +350,14 @@ S: sample type
 ph: normalised phase 
 .br
 returns ph 
-.SS "template<typename S > void Aurora::reson (S in, double * c, double * d)"
-resonator function for Fil 
-.SS "template<typename S > void Aurora::reson_coeffs (S fr, S bw, S fs, double * c)"
-resonator coefficients function for Fil 
+.SS "template<typename S > S Aurora::reson (S in, double * c, double * d)"
+resonator function for \fBFil\fP 
+.SS "template<typename S > void Aurora::reson_cfs (S f, S bw, S fs, double * c)"
+resonator coefficients function for \fBFil\fP no scaling 
+.SS "template<typename S > void Aurora::reson_cfs1 (S f, S bw, S fs, double * c)"
+resonator coefficients function for \fBFil\fP scaling type 1 
+.SS "template<typename S > void Aurora::reson_cfs2 (S f, S bw, S fs, double * c)"
+resonator coefficients function for \fBFil\fP scaling type 2 
 .SS "template<typename S > S Aurora::sin (double ph, const std::vector< S > * t = \fC0\fP)\fC [inline]\fP"
 Sine function for \fBOsc\fP 
 .br
@@ -421,7 +434,7 @@ constant indicating inverse \fBFFT\fP direction
 
 .SS "const bool Aurora::packed = true"
 constant indicating packed \fBFFT\fP format 
-.SS "const double Aurora::twopi = 2 * M_PI"
+.SS "const double Aurora::twopi = 2 * \fBM_PI\fP"
 
 .SH "Author"
 .PP 

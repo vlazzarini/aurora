@@ -29,8 +29,8 @@
 #define _AURORA_FFT_
 
 #include <cmath>
-#include <vector>
 #include <complex>
+#include <vector>
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846

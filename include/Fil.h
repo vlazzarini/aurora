@@ -34,43 +34,56 @@ namespace Aurora {
 
 /** resonator function for Fil
  */
-template <typename S> void reson(S in, double *c, double *d) {
-  S y = in * c[0] - d[0] * c[0] - d[1] * c[1];
-  c[1] = c[0];
-  c[0] = y;
+template <typename S> S reson(S in, double *c, double *d) {
+  S y = in * c[0] - d[0] * c[1] - d[1] * c[2];
+  d[1] = d[0];
+  d[0] = y;
   return y;
 }
 
 /** resonator coefficients function for Fil
+    no scaling
  */
-template <typename S> void reson_coeffs(S fr, S bw, S fs, double *c) {
-  double r = std::exp(-bw * M_PI / fs);
-  double rr = 2. * r;
-  double rsq = r * r;
-  costh = (rr / (1. + rsq)) * std::cos(twopi * f / fs);
-  c[0] = (1 - rsq) * std::sin(std::acos(costh));
-  c[1] = -rr * costh;
-  c[2] = rsq;
+template <typename S> void reson_cfs(S f, S bw, S fs, double *c) {
+  c[2] = std::exp(-bw * twopi / fs);
+  c[1] = (-4 * c[2] / (1. + c[2])) * std::cos(twopi * f / fs);
+}
+
+/** resonator coefficients function for Fil
+    scaling type 1
+ */
+template <typename S> void reson_cfs1(S f, S bw, S fs, double *c) {
+  reson_cfs(f, bw, fs, c);
+  c[0] = (1 - c[2]) * sqrt(1.0 - c[1] * c[1] / (4 * c[2]));
+}
+
+/** resonator coefficients function for Fil
+    scaling type 2
+ */
+template <typename S> void reson_cfs2(S f, S bw, S fs, double *c) {
+  reson_cfs(f, bw, fs, c);
+  double rsqp1 = c[2] + 1;
+  c[0] = sqrt((rsqp1 * rsqp1 - c[1] * c[1]) * (1 - c[2]) / rsqp1);
 }
 
 /** Fil class  \n
     Generic filter (first or second-order) \n
     S: sample type
 */
-template <typename S, void (*CF)(S, S, S, double *) = reson_coeffs,
+template <typename S, void (*CF)(S, S, S, double *),
           S (*FN)(S, double *, double *)>
-= reson > class Fil : public SndBase<S> {
+class Fil : public SndBase<S> {
   using SndBase<S>::process;
   double d[4];
   double c[5];
   S ff;
   S bbw;
-  S sr;
+  S fs;
 
   S filter(S s, double *c, double *d) { return FN(s, c, d); }
 
-  void coeffs(S f, S b, S fs, double *c) {
-    CF(f, b, fs, c);
+  void coeffs(S f, S bw, S fs, double *c) {
+    CF(f, bw, fs, c);
     ff = f;
     bbw = bw;
   }
@@ -80,8 +93,8 @@ public:
    fs: sampling rate \n
    vsize: vector size
   */
-  OnePole(S fs = def_sr, int vsize = def_vsize)
-      : SndBase<S>(vsize), d{0}, c{0}, G(0), ff(0), bbw(0), sr(fs){};
+  Fil(S ffs = def_sr, int vsize = def_vsize)
+      : SndBase<S>(vsize), d{0}, c{0}, ff(0), bbw(0), fs(ffs){};
 
   /** Filter \n
      in: input \n
@@ -90,9 +103,10 @@ public:
   */
   const std::vector<S> &operator()(const std::vector<S> &in, S f, S bw = 0) {
     std::size_t n = 0;
+    double *D = d, *C = c;
     if (f != ff || bw != bbw)
-      coeffs(f, bw, fs, c, d);
-    auto &s = process([&]() { return filter(in[n++], c, d); }, in.size());
+      coeffs(f, bw, fs, c);
+    auto &s = process([&]() { return filter(in[n++], C, D); }, in.size());
     return s;
   }
 
@@ -103,13 +117,12 @@ public:
   */
   const std::vector<S> &operator()(const std::vector<S> &in,
                                    const std::vector<S> &f, S bw = 0) {
-    double d = D;
     std::size_t n = 0;
-    S *D = d, *C = c;
+    double *D = d, *C = c;
     auto &s = process(
         [&]() {
           if (f[n] != ff)
-            coeffs(f, bw, fs, C, D);
+            coeffs(f, bw, fs, C);
           return filter(in[n++], C, D);
         },
         in.size() < f.size() ? in.size() : f.size());
@@ -119,9 +132,10 @@ public:
   /** reset the filter \n
        fs: sampling rate
     */
-  void reset(S fs) {
+  void reset(S ffs) {
     d[0] = d[1] = d[2] = d[3] = 0;
     coeffs(ff, bbw, fs, c, d);
+    fs = ffs;
   }
 };
 } // namespace Aurora

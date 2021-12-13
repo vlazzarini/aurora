@@ -1,0 +1,77 @@
+.TH "Aurora::Fil< S, CF, FN >" 3 "Mon Dec 13 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Aurora::Fil< S, CF, FN >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Fil\&.h>\fP
+.PP
+Inherits \fBAurora::SndBase< S >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFil\fP (S ffs=\fBdef_sr\fP, int \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S f, S bw=0)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > &f, S bw=0)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (S ffs)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename S, void(*)(S, S, S, double *) CF, S(*)(S, double *, double *) FN>
+.br
+class Aurora::Fil< S, CF, FN >"
+\fBFil\fP class 
+.br
+Generic filter (first or second-order) 
+.br
+S: sample type 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename S , void(*)(S, S, S, double *) CF, S(*)(S, double *, double *) FN> \fBAurora::Fil\fP< S, CF, FN >::\fBFil\fP (S ffs = \fC\fBdef_sr\fP\fP, int vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+fs: sampling rate 
+.br
+vsize: vector size 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename S , void(*)(S, S, S, double *) CF, S(*)(S, double *, double *) FN> const std::vector<S>& \fBAurora::Fil\fP< S, CF, FN >::operator() (const std::vector< S > & in, S f, S bw = \fC0\fP)\fC [inline]\fP"
+Filter 
+.br
+in: input 
+.br
+f: cutoff frequency 
+.br
+bw: bandwidth 
+.br
+; 
+.SS "template<typename S , void(*)(S, S, S, double *) CF, S(*)(S, double *, double *) FN> const std::vector<S>& \fBAurora::Fil\fP< S, CF, FN >::operator() (const std::vector< S > & in, const std::vector< S > & f, S bw = \fC0\fP)\fC [inline]\fP"
+Filter 
+.br
+in: input 
+.br
+f: cutoff frequency 
+.br
+bw: bandwidth 
+.br
+; 
+.SS "template<typename S , void(*)(S, S, S, double *) CF, S(*)(S, double *, double *) FN> void \fBAurora::Fil\fP< S, CF, FN >::reset (S ffs)\fC [inline]\fP"
+reset the filter 
+.br
+ fs: sampling rate 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Aurora from the source code\&.
