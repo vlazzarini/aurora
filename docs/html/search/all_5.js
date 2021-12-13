@@ -3,6 +3,7 @@ var searchData=
   ['fft',['FFT',['../class_aurora_1_1_f_f_t.html',1,'Aurora']]],
   ['fft',['FFT',['../class_aurora_1_1_f_f_t.html#a358d44bb84dac04a3f6ab13aefdceaf4',1,'Aurora::FFT']]],
   ['fft_2eh',['FFT.h',['../_f_f_t_8h.html',1,'']]],
+  ['fil_2eh',['Fil.h',['../_fil_8h.html',1,'']]],
   ['fir',['fir',['../namespace_aurora.html#a9b89513b24d0d89f0ecd400c899c78ce',1,'Aurora']]],
   ['fixed_5fdelay',['fixed_delay',['../namespace_aurora.html#afe9bb9ea0f50912f1fc95a2b15b135dd',1,'Aurora']]],
   ['forward',['forward',['../namespace_aurora.html#a20b1bd3f1b34b8676e26d07718dac352',1,'Aurora']]],

@@ -74,6 +74,10 @@ enum \+: int32\+\_\+t \{ \hyperlink{namespace_aurora_a963f359f40fdbc5f4dbe404353
 \item 
 static uint32\+\_\+t \hyperlink{namespace_aurora_a49b6f6d92479d80271ced42627154066}{np2} (uint32\+\_\+t n)
 \item 
+{\footnotesize template$<$typename S $>$ }\\void \hyperlink{namespace_aurora_a7dbc97de202d9357220ebc781dc84f01}{reson} (S in, double $\ast$c, double $\ast$d)
+\item 
+{\footnotesize template$<$typename S $>$ }\\void \hyperlink{namespace_aurora_a1f00ac085556e4dbca1c62b08e1dca6c}{reson\+\_\+coeffs} (S fr, S bw, S fs, double $\ast$c)
+\item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_ae0082f7bc3946a88145d54bacd0c6ff3}{lookup} (double ph, const std\+::vector$<$ S $>$ $\ast$t)
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a9246ac499667da52a0d1750e5238c4a8}{lookupi} (double ph, const std\+::vector$<$ S $>$ $\ast$t)
@@ -321,7 +325,21 @@ S Aurora\+::phase (\begin{DoxyParamCaption}\item[{double}]{ph,  }\item[{const st
 Phase function for \hyperlink{class_aurora_1_1_osc}{Osc} ~\newline
 S\+: sample type ~\newline
 ph\+: normalised phase ~\newline
-returns ph \mbox{\Hypertarget{namespace_aurora_a76909b8c5d5801213d35fffa69499885}\label{namespace_aurora_a76909b8c5d5801213d35fffa69499885}} 
+returns ph \mbox{\Hypertarget{namespace_aurora_a7dbc97de202d9357220ebc781dc84f01}\label{namespace_aurora_a7dbc97de202d9357220ebc781dc84f01}} 
+\index{Aurora@{Aurora}!reson@{reson}}
+\index{reson@{reson}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{reson()}{reson()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+void Aurora\+::reson (\begin{DoxyParamCaption}\item[{S}]{in,  }\item[{double $\ast$}]{c,  }\item[{double $\ast$}]{d }\end{DoxyParamCaption})}
+
+resonator function for Fil \mbox{\Hypertarget{namespace_aurora_a1f00ac085556e4dbca1c62b08e1dca6c}\label{namespace_aurora_a1f00ac085556e4dbca1c62b08e1dca6c}} 
+\index{Aurora@{Aurora}!reson\+\_\+coeffs@{reson\+\_\+coeffs}}
+\index{reson\+\_\+coeffs@{reson\+\_\+coeffs}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{reson\+\_\+coeffs()}{reson\_coeffs()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+void Aurora\+::reson\+\_\+coeffs (\begin{DoxyParamCaption}\item[{S}]{fr,  }\item[{S}]{bw,  }\item[{S}]{fs,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
+
+resonator coefficients function for Fil \mbox{\Hypertarget{namespace_aurora_a76909b8c5d5801213d35fffa69499885}\label{namespace_aurora_a76909b8c5d5801213d35fffa69499885}} 
 \index{Aurora@{Aurora}!sin@{sin}}
 \index{sin@{sin}!Aurora@{Aurora}}
 \subsubsection{\texorpdfstring{sin()}{sin()}}

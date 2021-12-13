@@ -125,7 +125,7 @@ template <typename S> struct Karplus {
     fr = fr > 20 ? fr : 20;
     if (ff != fr || ddt != dt)
       decay(fr, dt);
-    return amp(a, env(delay(in, 1 / fr - 1 / (2*sr), g, 0, &mem), gate));
+    return amp(a, env(delay(in, 1 / fr - 1 / (2 * sr), g, 0, &mem), gate));
   }
 };
 } // namespace Aurora

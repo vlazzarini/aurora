@@ -1,4 +1,4 @@
-.TH "Aurora" 3 "Sat Dec 11 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora" 3 "Mon Dec 13 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -103,6 +103,12 @@ Aurora
 .br
 .ti -1c
 .RI "static uint32_t \fBnp2\fP (uint32_t n)"
+.br
+.ti -1c
+.RI "template<typename S > void \fBreson\fP (S in, double *c, double *d)"
+.br
+.ti -1c
+.RI "template<typename S > void \fBreson_coeffs\fP (S fr, S bw, S fs, double *c)"
 .br
 .ti -1c
 .RI "template<typename S > S \fBlookup\fP (double ph, const std::vector< S > *t)"
@@ -335,6 +341,10 @@ S: sample type
 ph: normalised phase 
 .br
 returns ph 
+.SS "template<typename S > void Aurora::reson (S in, double * c, double * d)"
+resonator function for Fil 
+.SS "template<typename S > void Aurora::reson_coeffs (S fr, S bw, S fs, double * c)"
+resonator coefficients function for Fil 
 .SS "template<typename S > S Aurora::sin (double ph, const std::vector< S > * t = \fC0\fP)\fC [inline]\fP"
 Sine function for \fBOsc\fP 
 .br

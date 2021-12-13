@@ -151,6 +151,12 @@ Functions</h2></td></tr>
 <tr class="separator:ac7d13365b103aa497998c2bb23ad7f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49b6f6d92479d80271ced42627154066"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a49b6f6d92479d80271ced42627154066">np2</a> (uint32_t n)</td></tr>
 <tr class="separator:a49b6f6d92479d80271ced42627154066"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dbc97de202d9357220ebc781dc84f01"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:a7dbc97de202d9357220ebc781dc84f01"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a7dbc97de202d9357220ebc781dc84f01">reson</a> (S in, double *c, double *d)</td></tr>
+<tr class="separator:a7dbc97de202d9357220ebc781dc84f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f00ac085556e4dbca1c62b08e1dca6c"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:a1f00ac085556e4dbca1c62b08e1dca6c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a1f00ac085556e4dbca1c62b08e1dca6c">reson_coeffs</a> (S fr, S bw, S fs, double *c)</td></tr>
+<tr class="separator:a1f00ac085556e4dbca1c62b08e1dca6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0082f7bc3946a88145d54bacd0c6ff3"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
 <tr class="memitem:ae0082f7bc3946a88145d54bacd0c6ff3"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#ae0082f7bc3946a88145d54bacd0c6ff3">lookup</a> (double ph, const std::vector&lt; S &gt; *t)</td></tr>
 <tr class="separator:ae0082f7bc3946a88145d54bacd0c6ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -907,6 +913,86 @@ template&lt;typename S &gt; </div>
 S: sample type <br />
 ph: normalised phase <br />
 returns ph </p>
+
+</div>
+</div>
+<a id="a7dbc97de202d9357220ebc781dc84f01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dbc97de202d9357220ebc781dc84f01">&#9670;&nbsp;</a></span>reson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Aurora::reson </td>
+          <td>(</td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>d</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>resonator function for Fil </p>
+
+</div>
+</div>
+<a id="a1f00ac085556e4dbca1c62b08e1dca6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f00ac085556e4dbca1c62b08e1dca6c">&#9670;&nbsp;</a></span>reson_coeffs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Aurora::reson_coeffs </td>
+          <td>(</td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>fr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>bw</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>fs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>resonator coefficients function for Fil </p>
 
 </div>
 </div>
