@@ -1,4 +1,4 @@
-.TH "Aurora::Osc< S, FN >" 3 "Mon Dec 13 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Osc< S, FN >" 3 "Sun Dec 26 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -28,16 +28,16 @@ Inherited by \fBAurora::BlOsc< S, FN >\fP\&.
 .RI "S \fBfs\fP () const"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (S a, S f)"
+.RI "const std::vector< S > & \fBoperator()\fP (S a, S f, S pm=0)"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (S a, const std::vector< S > &fm)"
+.RI "const std::vector< S > & \fBoperator()\fP (S a, const std::vector< S > &fm, S pm=0)"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &am, S f)"
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &am, S f, S pm=0)"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &am, const std::vector< S > &fm)"
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &am, const std::vector< S > &fm, S pm=0)"
 .br
 .ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (S a, S f, const std::vector< S > &pm)"
@@ -94,36 +94,44 @@ vsize: signal vector size
 Sampling rate query 
 .br
 returns sampling rate 
-.SS "template<typename S , S(*)(double, const std::vector< S > *) FN = cos> const std::vector<S>& \fBAurora::Osc\fP< S, FN >::operator() (S a, S f)\fC [inline]\fP"
+.SS "template<typename S , S(*)(double, const std::vector< S > *) FN = cos> const std::vector<S>& \fBAurora::Osc\fP< S, FN >::operator() (S a, S f, S pm = \fC0\fP)\fC [inline]\fP"
 Oscillator 
 .br
 a: scalar amplitude 
 .br
 f: scalar frequency 
 .br
+pm: scalar phase 
+.br
 returns reference to object signal vector 
-.SS "template<typename S , S(*)(double, const std::vector< S > *) FN = cos> const std::vector<S>& \fBAurora::Osc\fP< S, FN >::operator() (S a, const std::vector< S > & fm)\fC [inline]\fP"
+.SS "template<typename S , S(*)(double, const std::vector< S > *) FN = cos> const std::vector<S>& \fBAurora::Osc\fP< S, FN >::operator() (S a, const std::vector< S > & fm, S pm = \fC0\fP)\fC [inline]\fP"
 Oscillator 
 .br
 a: scalar amplitude 
 .br
 fm: frequency signal 
 .br
+pm: scalar phase 
+.br
 returns reference to object signal vector 
-.SS "template<typename S , S(*)(double, const std::vector< S > *) FN = cos> const std::vector<S>& \fBAurora::Osc\fP< S, FN >::operator() (const std::vector< S > & am, S f)\fC [inline]\fP"
+.SS "template<typename S , S(*)(double, const std::vector< S > *) FN = cos> const std::vector<S>& \fBAurora::Osc\fP< S, FN >::operator() (const std::vector< S > & am, S f, S pm = \fC0\fP)\fC [inline]\fP"
 Oscillator 
 .br
 am: amplitude signal 
 .br
 f: scalar frequency 
 .br
+pm: scalar phase 
+.br
 returns reference to object signal vector 
-.SS "template<typename S , S(*)(double, const std::vector< S > *) FN = cos> const std::vector<S>& \fBAurora::Osc\fP< S, FN >::operator() (const std::vector< S > & am, const std::vector< S > & fm)\fC [inline]\fP"
+.SS "template<typename S , S(*)(double, const std::vector< S > *) FN = cos> const std::vector<S>& \fBAurora::Osc\fP< S, FN >::operator() (const std::vector< S > & am, const std::vector< S > & fm, S pm = \fC0\fP)\fC [inline]\fP"
 Oscillator 
 .br
 am: amplitude signal 
 .br
 fm: frequency signal 
+.br
+pm: scalar phase 
 .br
 returns reference to object signal vector 
 .SS "template<typename S , S(*)(double, const std::vector< S > *) FN = cos> const std::vector<S>& \fBAurora::Osc\fP< S, FN >::operator() (S a, S f, const std::vector< S > & pm)\fC [inline]\fP"

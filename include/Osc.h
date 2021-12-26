@@ -153,11 +153,12 @@ public:
   /** Oscillator \n
       a: scalar amplitude \n
       f: scalar frequency \n
+      pm: scalar phase \n
       returns reference to object signal vector
   */
-  const std::vector<S> &operator()(S a, S f) {
+  const std::vector<S> &operator()(S a, S f, S pm = 0) {
     double phs = ph;
-    auto &s = process([&]() { return synth(a, f, phs, tab); }, 0);
+    auto &s = process([&]() { return synth(a, f, phs, tab, pm); }, 0);
     ph = phs;
     return s;
   }
@@ -165,12 +166,14 @@ public:
   /** Oscillator \n
       a: scalar amplitude \n
       fm: frequency signal \n
+      pm: scalar phase \n
       returns reference to object signal vector
   */
-  const std::vector<S> &operator()(S a, const std::vector<S> &fm) {
+  const std::vector<S> &operator()(S a, const std::vector<S> &fm, S pm = 0) {
     double phs = ph;
     std::size_t n = 0;
-    auto &s = process([&]() { return synth(a, fm[n++], phs, tab); }, fm.size());
+    auto &s =
+        process([&]() { return synth(a, fm[n++], phs, tab, pm); }, fm.size());
     ph = phs;
     return s;
   }
@@ -178,12 +181,14 @@ public:
   /** Oscillator \n
       am: amplitude signal \n
       f: scalar frequency \n
+      pm: scalar phase \n
       returns reference to object signal vector
   */
-  const std::vector<S> &operator()(const std::vector<S> &am, S f) {
+  const std::vector<S> &operator()(const std::vector<S> &am, S f, S pm = 0) {
     double phs = ph;
     std::size_t n = 0;
-    auto &s = process([&]() { return synth(am[n++], f, phs, tab); }, am.size());
+    auto &s =
+        process([&]() { return synth(am[n++], f, phs, tab, pm); }, am.size());
     ph = phs;
     return s;
   }
@@ -191,15 +196,16 @@ public:
   /** Oscillator \n
       am: amplitude signal \n
       fm: frequency signal \n
+      pm: scalar phase \n
       returns reference to object signal vector
   */
   const std::vector<S> &operator()(const std::vector<S> &am,
-                                   const std::vector<S> &fm) {
+                                   const std::vector<S> &fm, S pm = 0) {
     double phs = ph;
     std::size_t n = 0;
     auto &s = process(
         [&]() {
-          auto s = synth(am[n], fm[n], phs, tab);
+          auto s = synth(am[n], fm[n], phs, tab, pm);
           n++;
           return s;
         },

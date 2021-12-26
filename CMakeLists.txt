@@ -50,7 +50,7 @@ add_program(wave)
 add_program(svfdrive)
 add_program(oscil)
 add_program(karplus)
-
+add_program(pwm)
 
 # these have libsndfile dependency
 if(LIBSNDFILE_LIBRARY)

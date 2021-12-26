@@ -71,7 +71,6 @@ template <typename S> class TableSet {
           s.imag(-src[n++]);
       }
     }
-    std::cerr << blsp.size() << std::endl;
     for (auto &wave : waves) {
       double fr = base * std::pow(2, k++);
       if (fr > fs * .375)

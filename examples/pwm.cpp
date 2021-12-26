@@ -1,5 +1,5 @@
-// wave.cpp:
-// Bandlimited waveform generation example
+// oscil.cpp:
+// Table lookup oscillator and envelope example
 //
 // (c) V Lazzarini, 2021
 //
@@ -26,23 +26,60 @@
 // POSSIBILITY OF SUCH DAMAGE
 
 #include "BlOsc.h"
+#include "Env.h"
 #include <cstdlib>
 #include <iostream>
 
+using namespace Aurora;
+float add(float a, float b) { return a + b; }
+float prod(float a, float b) { return a * b; }
+struct Synth {
+  float att, dec, sus;
+  TableSet<float> wave;
+  Env<float> env;
+  BlOsc<float, lookupi<float>> osc1;
+  BlOsc<float, lookupi<float>> osc2;
+  BinOp<float, add> mix;
+  BinOp<float, prod> amp;
+
+  Synth(float rt, float sr)
+      : att(0.f), dec(0.f), sus(0.f), wave(SAW),
+        env(ads_gen(att, dec, sus), rt, sr), osc1(&wave, sr), osc2(&wave, sr),
+        mix(), amp(){};
+
+  const std::vector<float> &operator()(float a, float f, float pwm, bool gate,
+                                       std::size_t vsiz = 0) {
+    if (vsiz) {
+      osc1.vsize(vsiz);
+      osc2.vsize(vsiz);
+    }
+    float off = 0.5 - pwm;
+    auto &m = mix(mix(osc1(0.5f, f, pwm), osc2(-0.5f, f)), -off);
+    return env(amp(a, m), gate);
+  }
+};
+
 int main(int argc, const char *argv[]) {
-  if (argc > 3) {
-    double sr = argc > 5 ? std::atof(argv[5]) : Aurora::def_sr;
-    uint32_t ty = argc > 4 ? std::atoi(argv[4]) : Aurora::SAW;
+  if (argc > 4) {
+    double sr = argc > 5 ? std::atof(argv[5]) : def_sr;
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
-    Aurora::TableSet<double> wave(ty);
-    Aurora::BlOsc<double> osc(&wave, sr);
-    for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
-      for (auto s : osc(a, f, 0.5))
+    auto pwm = std::atof(argv[4]);
+    float rel = 0.1;
+    Synth synth(rel, sr);
+    synth.att = .1f;
+    synth.dec = .3f;
+    synth.sus = .7f;
+    bool gate = 1;
+    for (int n = 0; n < sr * (dur + rel); n += def_vsize) {
+      if (n > sr * dur)
+        gate = 0;
+      for (auto s : synth(a, f, pwm, gate))
         std::cout << s << std::endl;
+    }
   } else
-    std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz) [type] [sr]"
+    std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz) pwm(0-1) [sr]"
               << std::endl;
   return 0;
 }
