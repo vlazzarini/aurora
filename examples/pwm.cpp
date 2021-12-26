@@ -32,7 +32,6 @@
 
 using namespace Aurora;
 float add(float a, float b) { return a + b; }
-float prod(float a, float b) { return a * b; }
 struct Synth {
   float att, dec, sus;
   TableSet<float> wave;
@@ -40,12 +39,11 @@ struct Synth {
   BlOsc<float, lookupi<float>> osc1;
   BlOsc<float, lookupi<float>> osc2;
   BinOp<float, add> mix;
-  BinOp<float, prod> amp;
 
   Synth(float rt, float sr)
       : att(0.f), dec(0.f), sus(0.f), wave(SAW),
         env(ads_gen(att, dec, sus), rt, sr), osc1(&wave, sr), osc2(&wave, sr),
-        mix(), amp(){};
+        mix() {};
 
   const std::vector<float> &operator()(float a, float f, float pwm, bool gate,
                                        std::size_t vsiz = 0) {
@@ -53,9 +51,9 @@ struct Synth {
       osc1.vsize(vsiz);
       osc2.vsize(vsiz);
     }
-    float off = 0.5f - pwm;
-    auto &m = mix(mix(osc1(0.5f, f, pwm), osc2(-0.5f, f)), -off);
-    return env(amp(2*a, m), gate);
+    float off = a*(2*pwm - 1.f);
+    auto &m = mix(mix(osc1(a, f, pwm), osc2(-a, f)), off);
+    return env(m, gate);
   }
 };
 
