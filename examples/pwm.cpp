@@ -53,9 +53,9 @@ struct Synth {
       osc1.vsize(vsiz);
       osc2.vsize(vsiz);
     }
-    float off = 0.5 - pwm;
+    float off = 0.5f - pwm;
     auto &m = mix(mix(osc1(0.5f, f, pwm), osc2(-0.5f, f)), -off);
-    return env(amp(a, m), gate);
+    return env(amp(2*a, m), gate);
   }
 };
 
