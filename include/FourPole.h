@@ -86,7 +86,7 @@ public:
     std::size_t n = 0;
     if (f != ff)
       coeffs(f, G, A, ff, piosr);
-    auto pf = [&]() { return filter(in[n++], G, D, A, r * 4); };
+    auto pf = [&]() { return filter(in[n++], D, G, A, r * 4); };
     return process(pf, in.size());
   }
 

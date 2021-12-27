@@ -75,7 +75,7 @@ int main(int argc, const char *argv[]) {
     for (int n = 0; n < sr * (dur + 0.91); n += def_vsize) {
       if (n > dur * sr)
         gate = 0;
-      const std::vector<double> &out = op2(amp, fr, op1(6, 2 * fr, gate), gate);
+      auto &out = op2(amp, fr, op1(6, 2 * fr, gate), gate);
       for (auto s : out)
         std::cout << s << std::endl;
     }
