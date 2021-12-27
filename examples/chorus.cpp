@@ -50,7 +50,7 @@ struct DualChorus {
               Del<float, vdelayi>(0.1, sr, vsize)},
         offs(vsize){};
 
-  const std::vector<float> &operator()(const std::vector<float> &in, float fr,
+    auto &operator()(const std::vector<float> &in, float fr,
                                        float d, int chn) {
     lfo[0].vsize(in.size());
     lfo[1].vsize(in.size());

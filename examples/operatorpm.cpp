@@ -31,11 +31,12 @@
 #include <iostream>
 
 using namespace Aurora;
-inline double scl(double a, double b) { return a * b; }
+template<typename S>
+inline S scl(S a, S b) { return a * b; }
 template <typename S> struct Opm {
   Osc<S, sin<S>> osc;
   Env<S> env;
-  BinOp<S, scl> amp;
+  BinOp<S, scl<S>> amp;
   S att, dec, sus;
   S o2pi;
 
@@ -45,13 +46,13 @@ template <typename S> struct Opm {
 
   void release(S rel) { env.release(rel); }
 
-  const std::vector<S> &operator()(S a, S f, bool gate, std::size_t vsiz = 0) {
+  auto &operator()(S a, S f, bool gate, std::size_t vsiz = 0) {
     if (vsiz)
       osc.vsize(vsiz);
     return env(osc(a, f), gate);
   }
 
-  const std::vector<S> &operator()(S a, S f, const std::vector<S> &pm,
+  auto &operator()(S a, S f, const std::vector<S> &pm,
                                    bool gate) {
     return env(osc(a, f, amp(o2pi, pm)), gate);
   }
