@@ -40,7 +40,7 @@ int main(int argc, const char *argv[]) {
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
     auto cf = std::atof(argv[4]);
-    auto q = std::atof(argv[5]);
+    auto rs = std::atof(argv[5]);
     auto drv = std::atof(argv[6]);
     auto typ = std::atof(argv[7]);
 
@@ -51,15 +51,15 @@ int main(int argc, const char *argv[]) {
     auto func = Aurora::ads_gen<double>(att, dec, sus);
     Aurora::Env<double> env(func, rt, sr);
     bool gate = 1;
-    q = q > 0.5 ? q : 0.5;
+    auto d = 2*(1 - (rs > 1 ? 1 : (rs < 0 ? 0  : rs)));
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
-      for (auto s : fil(osc(a, f), env(cf, 1000, gate), 1 / q, drv, typ)) {
+      for (auto s : fil(osc(a, f), env(cf, 1000, gate), d, drv, typ)) {
         if (n > sr * (dur - rt))
           gate = 0;
         std::cout << s << std::endl;
       }
   } else
     std::cout << "usage: " << argv[0]
-              << " dur(s) amp freq(Hz) cutoff(Hz) Q drv typ [sr]" << std::endl;
+              << " dur(s) amp freq(Hz) cutoff(Hz) res drv typ [sr]" << std::endl;
   return 0;
 }

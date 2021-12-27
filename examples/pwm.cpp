@@ -1,5 +1,5 @@
-// oscil.cpp:
-// Table lookup oscillator and envelope example
+// pwm.cpp:
+// variable pulse width example
 //
 // (c) V Lazzarini, 2021
 //
