@@ -43,7 +43,7 @@ struct Synth {
   Synth(float rt, float sr)
       : att(0.f), dec(0.f), sus(0.f), wave(SAW),
         env(ads_gen(att, dec, sus), rt, sr), osc1(&wave, sr), osc2(&wave, sr),
-        mix() {};
+        mix(){};
 
   const std::vector<float> &operator()(float a, float f, float pwm, bool gate,
                                        std::size_t vsiz = 0) {
@@ -51,7 +51,7 @@ struct Synth {
       osc1.vsize(vsiz);
       osc2.vsize(vsiz);
     }
-    float off = a*(2*pwm - 1.f);
+    float off = a * (2 * pwm - 1.f);
     auto &m = mix(mix(osc1(a, f, pwm), osc2(-a, f)), off);
     return env(m, gate);
   }

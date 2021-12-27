@@ -31,8 +31,7 @@
 #include <iostream>
 
 using namespace Aurora;
-template<typename S>
-inline S scl(S a, S b) { return a * b; }
+template <typename S> inline S scl(S a, S b) { return a * b; }
 template <typename S> struct Opm {
   Osc<S, sin<S>> osc;
   Env<S> env;
@@ -52,8 +51,7 @@ template <typename S> struct Opm {
     return env(osc(a, f), gate);
   }
 
-  auto &operator()(S a, S f, const std::vector<S> &pm,
-                                   bool gate) {
+  auto &operator()(S a, S f, const std::vector<S> &pm, bool gate) {
     return env(osc(a, f, amp(o2pi, pm)), gate);
   }
 };

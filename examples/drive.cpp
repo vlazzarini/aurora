@@ -34,12 +34,13 @@
 
 using namespace Aurora;
 inline float scl(float a, float b) { return a * b; }
+inline float sat(float a, const std::vector<float> *p) { return std::tanhf(a); }
 struct Synth {
   float att, dec, sus;
   std::vector<float> wave;
   Env<float> env;
   Osc<float, lookupi> osc;
-  Func<float, std::tanhf> drive;
+  Func<float, sat> drive;
   BinOp<float, scl> amp;
 
   Synth(float rt, float sr)

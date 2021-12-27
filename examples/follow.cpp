@@ -37,7 +37,9 @@
 using namespace Aurora;
 
 template <typename S> S scl(S a, S b) { return a * b; }
-template <typename S> S pos(S a) { return a < 0 ? -a : a; }
+template <typename S> S pos(S a, const std::vector<S> *nop = NULL) {
+  return a < 0 ? -a : a;
+}
 
 template <typename S> struct Follow {
   OnePole<S> filter;

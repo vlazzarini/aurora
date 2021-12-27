@@ -35,10 +35,11 @@ namespace Aurora {
 
 /** Func class  \n
     Generic templated function maps \n
-    FN: function to be applied
+    FN: function to be applied FN(arg, table)
     S: sample type
 */
-template <typename S, S (*FN)(S)> class Func : public SndBase<S> {
+template <typename S, S (*FN)(S, const std::vector<S> *)>
+class Func : public SndBase<S> {
   using SndBase<S>::process;
 
 public:
@@ -49,14 +50,17 @@ public:
 
   /** Functional application \n
       in: input signal \n
+      t: function table to be passed (optional) \n
       returns reference to object signal vector
   */
-  const std::vector<S> &operator()(const std::vector<S> &in) {
+  const std::vector<S> &operator()(const std::vector<S> &in,
+                                   const std::vector<S> *t = NULL) {
     std::size_t n = 0;
-    auto fp = [&]() { return FN(in[n++]); };
+    auto fp = [&]() { return FN(in[n++], t); };
     return process(fp, in.size());
   }
 };
+
 } // namespace Aurora
 
 #endif // _AURORA_FUNC_
