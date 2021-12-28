@@ -219,7 +219,7 @@ public:
   }
 };
 
-/** linear interpolation table lookup \n
+/** linear interpolation circular table lookup \n
     S: sample type \n
     pos: reading position (no bounds check) \n
     t: table
@@ -232,7 +232,7 @@ inline S linear_interp(double pos, const std::vector<S> &t) {
          frac * ((posi != t.size() - 1 ? t[posi + 1] : t[0]) - t[posi]);
 }
 
-/** cubic interpolation table lookup \n
+/** cubic interpolation circular table lookup \n
     S: sample type \n
     pos: reading position (no bounds check) \n
     t: table
@@ -241,16 +241,55 @@ template <typename S>
 inline S cubic_interp(double pos, const std::vector<S> &t) {
   size_t posi = (size_t)pos;
   double frac = pos - posi;
-  double a = posi == 0 ? t[0] : t[posi - 1];
+  double a = posi == 0 ? t[t.size() - 1] : t[posi - 1];
   double b = t[posi];
   double c = posi != t.size() - 1 ? t[posi + 1] : t[0];
   double d =
-      posi != t.size() - 2 ? (posi != t.size() - 1 ? t[posi + 1] : t[0]) : t[1];
+      posi != t.size() - 2 ? (posi != t.size() - 1 ? t[posi + 2] : t[1]) : t[0];
   double tmp = d + 3.f * b;
   double fracsq = frac * frac;
   double fracb = frac * fracsq;
   return fracb * (-a - 3 * c + tmp) / 6 + fracsq * ((a + c) / 2 - b) +
          frac * (c + (-2 * a - tmp) / 6) + b;
+}
+
+/** linear interpolation limiting table lookup \n
+    S: sample type \n
+    pos: reading position \n
+    t: table
+*/
+template <typename S>
+inline S linear_interp_lim(double pos, const std::vector<S> &t) {
+  pos = pos < 0 ? 0 : (pos < t.size() ? pos : t.size() - 1);
+  size_t posi = (size_t)pos;
+  return t[posi] +
+         (posi != t.size() - 1 ? (pos - posi) * (t[posi + 1] - t[posi]) : 0);
+}
+
+/** cubic interpolation limiting table lookup \n
+    S: sample type \n
+    pos: reading position (no bounds check) \n
+    t: table
+*/
+template <typename S>
+inline S cubic_interp_lim(double pos, const std::vector<S> &t) {
+  pos = pos < 0 ? 0 : (pos < t.size() ? pos : t.size() - 1);
+  size_t posi = (size_t)pos;
+  if (posi > 0 && posi < t.size() - 2) {
+    double frac = pos - posi;
+    double a = t[posi - 1];
+    double b = t[posi];
+    double c = t[posi + 1];
+    double d = t[posi + 2];
+    double tmp = d + 3.f * b;
+    double fracsq = frac * frac;
+    double fracb = frac * fracsq;
+    return fracb * (-a - 3 * c + tmp) / 6 + fracsq * ((a + c) / 2 - b) +
+           frac * (c + (-2 * a - tmp) / 6) + b;
+  } else if (posi < t.size() - 1)
+    return t[posi] + (pos - posi) * (t[posi + 1] - t[posi]);
+  else
+    return t[posi];
 }
 
 } // namespace Aurora

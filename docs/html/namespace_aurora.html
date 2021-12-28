@@ -207,6 +207,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a35b9cf383290bddedd82b7c3d0f05e81"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
 <tr class="memitem:a35b9cf383290bddedd82b7c3d0f05e81"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#a35b9cf383290bddedd82b7c3d0f05e81">cubic_interp</a> (double pos, const std::vector&lt; S &gt; &amp;t)</td></tr>
 <tr class="separator:a35b9cf383290bddedd82b7c3d0f05e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af38f1e4b1a40dab35331f0a2be969091"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:af38f1e4b1a40dab35331f0a2be969091"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#af38f1e4b1a40dab35331f0a2be969091">linear_interp_lim</a> (double pos, const std::vector&lt; S &gt; &amp;t)</td></tr>
+<tr class="separator:af38f1e4b1a40dab35331f0a2be969091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2e17b2dd2a65b4a036a4106cd71ae0a"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
+<tr class="memitem:af2e17b2dd2a65b4a036a4106cd71ae0a"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#af2e17b2dd2a65b4a036a4106cd71ae0a">cubic_interp_lim</a> (double pos, const std::vector&lt; S &gt; &amp;t)</td></tr>
+<tr class="separator:af2e17b2dd2a65b4a036a4106cd71ae0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca47d4c2fcfc307c85418fe7a0b1e98e"><td class="memTemplParams" colspan="2">template&lt;typename S &gt; </td></tr>
 <tr class="memitem:aca47d4c2fcfc307c85418fe7a0b1e98e"><td class="memTemplItemLeft" align="right" valign="top">S&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_aurora.html#aca47d4c2fcfc307c85418fe7a0b1e98e">id</a> (S s, S dr)</td></tr>
 <tr class="separator:aca47d4c2fcfc307c85418fe7a0b1e98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -569,7 +575,49 @@ template&lt;typename S &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>cubic interpolation table lookup <br />
+<p>cubic interpolation circular table lookup <br />
+S: sample type <br />
+pos: reading position (no bounds check) <br />
+t: table </p>
+
+</div>
+</div>
+<a id="af2e17b2dd2a65b4a036a4106cd71ae0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2e17b2dd2a65b4a036a4106cd71ae0a">&#9670;&nbsp;</a></span>cubic_interp_lim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">S Aurora::cubic_interp_lim </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; S &gt; &amp;&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>cubic interpolation limiting table lookup <br />
 S: sample type <br />
 pos: reading position (no bounds check) <br />
 t: table </p>
@@ -927,9 +975,51 @@ template&lt;typename S &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>linear interpolation table lookup <br />
+<p>linear interpolation circular table lookup <br />
 S: sample type <br />
 pos: reading position (no bounds check) <br />
+t: table </p>
+
+</div>
+</div>
+<a id="af38f1e4b1a40dab35331f0a2be969091"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af38f1e4b1a40dab35331f0a2be969091">&#9670;&nbsp;</a></span>linear_interp_lim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">S Aurora::linear_interp_lim </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; S &gt; &amp;&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>linear interpolation limiting table lookup <br />
+S: sample type <br />
+pos: reading position <br />
 t: table </p>
 
 </div>

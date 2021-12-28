@@ -1,4 +1,4 @@
-.TH "Aurora" 3 "Mon Dec 27 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora" 3 "Tue Dec 28 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -162,6 +162,12 @@ Aurora
 .RI "template<typename S > S \fBcubic_interp\fP (double pos, const std::vector< S > &t)"
 .br
 .ti -1c
+.RI "template<typename S > S \fBlinear_interp_lim\fP (double pos, const std::vector< S > &t)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBcubic_interp_lim\fP (double pos, const std::vector< S > &t)"
+.br
+.ti -1c
 .RI "template<typename S > S \fBid\fP (S s, S dr)"
 .br
 .in -1c
@@ -273,7 +279,15 @@ ph: normalised phase
 .br
 returns the cosine of ph*2*$M_PI 
 .SS "template<typename S > S Aurora::cubic_interp (double pos, const std::vector< S > & t)\fC [inline]\fP"
-cubic interpolation table lookup 
+cubic interpolation circular table lookup 
+.br
+S: sample type 
+.br
+pos: reading position (no bounds check) 
+.br
+t: table 
+.SS "template<typename S > S Aurora::cubic_interp_lim (double pos, const std::vector< S > & t)\fC [inline]\fP"
+cubic interpolation limiting table lookup 
 .br
 S: sample type 
 .br
@@ -323,11 +337,19 @@ Second-order hipass filter coeffs
 .SS "template<typename S > S Aurora::id (S s, S dr)\fC [inline]\fP"
 
 .SS "template<typename S > S Aurora::linear_interp (double pos, const std::vector< S > & t)\fC [inline]\fP"
-linear interpolation table lookup 
+linear interpolation circular table lookup 
 .br
 S: sample type 
 .br
 pos: reading position (no bounds check) 
+.br
+t: table 
+.SS "template<typename S > S Aurora::linear_interp_lim (double pos, const std::vector< S > & t)\fC [inline]\fP"
+linear interpolation limiting table lookup 
+.br
+S: sample type 
+.br
+pos: reading position 
 .br
 t: table 
 .SS "template<typename S > S Aurora::lookup (double ph, const std::vector< S > * t)\fC [inline]\fP"

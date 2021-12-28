@@ -112,6 +112,10 @@ static uint32\+\_\+t \hyperlink{namespace_aurora_a49b6f6d92479d80271ced426271540
 \item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_a35b9cf383290bddedd82b7c3d0f05e81}{cubic\+\_\+interp} (double pos, const std\+::vector$<$ S $>$ \&t)
 \item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_af38f1e4b1a40dab35331f0a2be969091}{linear\+\_\+interp\+\_\+lim} (double pos, const std\+::vector$<$ S $>$ \&t)
+\item 
+{\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_af2e17b2dd2a65b4a036a4106cd71ae0a}{cubic\+\_\+interp\+\_\+lim} (double pos, const std\+::vector$<$ S $>$ \&t)
+\item 
 {\footnotesize template$<$typename S $>$ }\\S \hyperlink{namespace_aurora_aca47d4c2fcfc307c85418fe7a0b1e98e}{id} (S s, S dr)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -243,7 +247,17 @@ returns the cosine of ph$\ast$2$\ast$\$\+M\+\_\+\+PI \mbox{\Hypertarget{namespac
 {\footnotesize\ttfamily template$<$typename S $>$ \\
 S Aurora\+::cubic\+\_\+interp (\begin{DoxyParamCaption}\item[{double}]{pos,  }\item[{const std\+::vector$<$ S $>$ \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-cubic interpolation table lookup ~\newline
+cubic interpolation circular table lookup ~\newline
+S\+: sample type ~\newline
+pos\+: reading position (no bounds check) ~\newline
+t\+: table \mbox{\Hypertarget{namespace_aurora_af2e17b2dd2a65b4a036a4106cd71ae0a}\label{namespace_aurora_af2e17b2dd2a65b4a036a4106cd71ae0a}} 
+\index{Aurora@{Aurora}!cubic\+\_\+interp\+\_\+lim@{cubic\+\_\+interp\+\_\+lim}}
+\index{cubic\+\_\+interp\+\_\+lim@{cubic\+\_\+interp\+\_\+lim}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{cubic\+\_\+interp\+\_\+lim()}{cubic\_interp\_lim()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::cubic\+\_\+interp\+\_\+lim (\begin{DoxyParamCaption}\item[{double}]{pos,  }\item[{const std\+::vector$<$ S $>$ \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+cubic interpolation limiting table lookup ~\newline
 S\+: sample type ~\newline
 pos\+: reading position (no bounds check) ~\newline
 t\+: table \mbox{\Hypertarget{namespace_aurora_ac8ec71dca2761ba7e67669e84faf11dc}\label{namespace_aurora_ac8ec71dca2761ba7e67669e84faf11dc}} 
@@ -316,9 +330,19 @@ S Aurora\+::id (\begin{DoxyParamCaption}\item[{S}]{s,  }\item[{S}]{dr }\end{Doxy
 {\footnotesize\ttfamily template$<$typename S $>$ \\
 S Aurora\+::linear\+\_\+interp (\begin{DoxyParamCaption}\item[{double}]{pos,  }\item[{const std\+::vector$<$ S $>$ \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-linear interpolation table lookup ~\newline
+linear interpolation circular table lookup ~\newline
 S\+: sample type ~\newline
 pos\+: reading position (no bounds check) ~\newline
+t\+: table \mbox{\Hypertarget{namespace_aurora_af38f1e4b1a40dab35331f0a2be969091}\label{namespace_aurora_af38f1e4b1a40dab35331f0a2be969091}} 
+\index{Aurora@{Aurora}!linear\+\_\+interp\+\_\+lim@{linear\+\_\+interp\+\_\+lim}}
+\index{linear\+\_\+interp\+\_\+lim@{linear\+\_\+interp\+\_\+lim}!Aurora@{Aurora}}
+\subsubsection{\texorpdfstring{linear\+\_\+interp\+\_\+lim()}{linear\_interp\_lim()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+S Aurora\+::linear\+\_\+interp\+\_\+lim (\begin{DoxyParamCaption}\item[{double}]{pos,  }\item[{const std\+::vector$<$ S $>$ \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+linear interpolation limiting table lookup ~\newline
+S\+: sample type ~\newline
+pos\+: reading position ~\newline
 t\+: table \mbox{\Hypertarget{namespace_aurora_ae0082f7bc3946a88145d54bacd0c6ff3}\label{namespace_aurora_ae0082f7bc3946a88145d54bacd0c6ff3}} 
 \index{Aurora@{Aurora}!lookup@{lookup}}
 \index{lookup@{lookup}!Aurora@{Aurora}}

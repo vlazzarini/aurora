@@ -33,9 +33,14 @@
 #include <iostream>
 
 using namespace Aurora;
-inline float scl(float a, float b) { return a * b; }
-inline float sat(float a, const std::vector<float> *p) { return std::tanhf(a); }
+
 struct Synth {
+  inline static std::vector<float> sigmoid{std::vector<float>(def_ftlen)};
+  static float sat(float a) {
+    return cubic_interp_lim((a / 8 + .5) * sigmoid.size(), sigmoid);
+  }
+  static float scl(float a, float b) { return a * b; }
+
   float att, dec, sus;
   std::vector<float> wave;
   Env<float> env;
@@ -50,7 +55,11 @@ struct Synth {
     for (auto &s : wave) {
       s = sin<float>((1. / wave.size()) * n++);
     }
-  };
+    n = 0;
+    for (auto &s : sigmoid) {
+      s = std::tanhf((8.f / sigmoid.size()) * n++ - 4.f);
+    }
+  }
 
   const std::vector<float> &operator()(float a, float f, float dr, bool gate,
                                        std::size_t vsiz = 0) {
@@ -68,8 +77,9 @@ int main(int argc, const char *argv[]) {
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
-    auto dr = std::atof(argv[3]);
+    auto dr = std::atof(argv[4]);
     float rel = 0.1;
+
     Synth synth(rel, sr);
     bool gate = 1;
     for (int n = 0; n < sr * dur; n += def_vsize) {

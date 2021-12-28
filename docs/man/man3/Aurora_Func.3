@@ -1,4 +1,4 @@
-.TH "Aurora::Func< S, FN >" 3 "Mon Dec 27 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Func< S, FN >" 3 "Tue Dec 28 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,13 +17,16 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .RI "\fBFunc\fP (std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, const std::vector< S > *t=NULL)"
+.RI "const std::vector< S > & \fBoperator()\fP (S in)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in)"
 .br
 .in -1c
 .SH "Detailed Description"
 .PP 
 
-.SS "template<typename S, S(*)(S, const std::vector< S > *) FN>
+.SS "template<typename S, S(*)(S) FN>
 .br
 class Aurora::Func< S, FN >"
 \fBFunc\fP class 
@@ -33,18 +36,22 @@ Generic templated function maps
 FN: function to be applied FN(arg, table) S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S , S(*)(S, const std::vector< S > *) FN> \fBAurora::Func\fP< S, FN >::\fBFunc\fP (std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S) FN> \fBAurora::Func\fP< S, FN >::\fBFunc\fP (std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 vsize: signal vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S , S(*)(S, const std::vector< S > *) FN> const std::vector<S>& \fBAurora::Func\fP< S, FN >::operator() (const std::vector< S > & in, const std::vector< S > * t = \fCNULL\fP)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S) FN> const std::vector<S>& \fBAurora::Func\fP< S, FN >::operator() (S in)\fC [inline]\fP"
+Functional application 
+.br
+in: input scalar parameter 
+.br
+returns reference to object signal vector 
+.SS "template<typename S , S(*)(S) FN> const std::vector<S>& \fBAurora::Func\fP< S, FN >::operator() (const std::vector< S > & in)\fC [inline]\fP"
 Functional application 
 .br
 in: input signal 
-.br
-t: function table to be passed (optional) 
 .br
 returns reference to object signal vector 
 

@@ -93,8 +93,10 @@ Collaboration diagram for Aurora::Func&lt; S, FN &gt;:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2a97c0f4eaf70c7e922876debeb14abe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_func.html#a2a97c0f4eaf70c7e922876debeb14abe">Func</a> (std::size_t <a class="el" href="class_aurora_1_1_snd_base.html#af9e21aaf411b17f7a8221c991ce5d291">vsize</a>=<a class="el" href="namespace_aurora.html#afaaddf667a06e7ce23c667a8b7295263">def_vsize</a>)</td></tr>
 <tr class="separator:a2a97c0f4eaf70c7e922876debeb14abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83402c97421f1a82e818c4ab849dc47e"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_func.html#a83402c97421f1a82e818c4ab849dc47e">operator()</a> (const std::vector&lt; S &gt; &amp;in, const std::vector&lt; S &gt; *t=NULL)</td></tr>
-<tr class="separator:a83402c97421f1a82e818c4ab849dc47e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90363ee6e98044131fdceb8ce9bcd4d6"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_func.html#a90363ee6e98044131fdceb8ce9bcd4d6">operator()</a> (S in)</td></tr>
+<tr class="separator:a90363ee6e98044131fdceb8ce9bcd4d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7664032aef8be96cdfd33b968a1f226"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_func.html#aa7664032aef8be96cdfd33b968a1f226">operator()</a> (const std::vector&lt; S &gt; &amp;in)</td></tr>
+<tr class="separator:aa7664032aef8be96cdfd33b968a1f226"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_aurora_1_1_snd_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_aurora_1_1_snd_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_aurora_1_1_snd_base.html">Aurora::SndBase&lt; S &gt;</a></td></tr>
 <tr class="memitem:a960739d3ae63df581c28f8801e589a3c inherit pub_methods_class_aurora_1_1_snd_base"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aurora_1_1_snd_base.html#a960739d3ae63df581c28f8801e589a3c">SndBase</a> (std::size_t <a class="el" href="class_aurora_1_1_snd_base.html#af9e21aaf411b17f7a8221c991ce5d291">vsize</a>=<a class="el" href="namespace_aurora.html#afaaddf667a06e7ce23c667a8b7295263">def_vsize</a>)</td></tr>
 <tr class="separator:a960739d3ae63df581c28f8801e589a3c inherit pub_methods_class_aurora_1_1_snd_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,7 +112,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af976d3953e96cf9b4f9ac2ca617c9d87 inherit pub_methods_class_aurora_1_1_snd_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename S, S(*)(S, const std::vector&lt; S &gt; *) FN&gt;<br />
+<div class="textblock"><h3>template&lt;typename S, S(*)(S) FN&gt;<br />
 class Aurora::Func&lt; S, FN &gt;</h3>
 
 <p><a class="el" href="class_aurora_1_1_func.html">Func</a> class <br />
@@ -123,7 +125,7 @@ FN: function to be applied FN(arg, table) S: sample type </p>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename S , S(*)(S, const std::vector&lt; S &gt; *) FN&gt; </div>
+template&lt;typename S , S(*)(S) FN&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -148,13 +150,44 @@ vsize: signal vector size </p>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a83402c97421f1a82e818c4ab849dc47e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83402c97421f1a82e818c4ab849dc47e">&#9670;&nbsp;</a></span>operator()()</h2>
+<a id="a90363ee6e98044131fdceb8ce9bcd4d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90363ee6e98044131fdceb8ce9bcd4d6">&#9670;&nbsp;</a></span>operator()() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename S , S(*)(S, const std::vector&lt; S &gt; *) FN&gt; </div>
+template&lt;typename S , S(*)(S) FN&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;S&gt;&amp; <a class="el" href="class_aurora_1_1_func.html">Aurora::Func</a>&lt; S, FN &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">S&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Functional application <br />
+in: input scalar parameter <br />
+returns reference to object signal vector </p>
+
+</div>
+</div>
+<a id="aa7664032aef8be96cdfd33b968a1f226"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7664032aef8be96cdfd33b968a1f226">&#9670;&nbsp;</a></span>operator()() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S , S(*)(S) FN&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -163,18 +196,8 @@ template&lt;typename S , S(*)(S, const std::vector&lt; S &gt; *) FN&gt; </div>
           <td class="memname">const std::vector&lt;S&gt;&amp; <a class="el" href="class_aurora_1_1_func.html">Aurora::Func</a>&lt; S, FN &gt;::operator() </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; S &gt; &amp;&#160;</td>
-          <td class="paramname"><em>in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>in</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; S &gt; *&#160;</td>
-          <td class="paramname"><em>t</em> = <code>NULL</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -185,7 +208,6 @@ template&lt;typename S , S(*)(S, const std::vector&lt; S &gt; *) FN&gt; </div>
 </div><div class="memdoc">
 <p>Functional application <br />
 in: input signal <br />
-t: function table to be passed (optional) <br />
 returns reference to object signal vector </p>
 
 </div>

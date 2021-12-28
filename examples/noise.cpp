@@ -1,5 +1,5 @@
-// Func.h:
-// Generic function maps
+// noise.cpp:
+// White noise and envelope example
 //
 // (c) V Lazzarini, 2021
 //
@@ -25,48 +25,51 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
 
-#ifndef _AURORA_FUNC_
-#define _AURORA_FUNC_
+#include "Env.h"
+#include "Func.h"
+#include <cstdlib>
+#include <iostream>
 
-#include "SndBase.h"
-#include <functional>
-
-namespace Aurora {
-
-/** Func class  \n
-    Generic templated function maps \n
-    FN: function to be applied FN(arg, table)
-    S: sample type
-*/
-template <typename S, S (*FN)(S)> class Func : public SndBase<S> {
-  using SndBase<S>::process;
-
-public:
-  /** Constructor \n
-      vsize: signal vector size
-  */
-  Func(std::size_t vsize = def_vsize) : SndBase<S>(vsize){};
-
-  /** Functional application \n
-      in: input scalar parameter \n
-      returns reference to object signal vector
-  */
-  const std::vector<S> &operator()(S in) {
-    auto fp = [&]() { return FN(in); };
-    return process(fp, 0);
+using namespace Aurora;
+struct Synth {
+  static float randf(float a) {
+    return a * (((std::rand()) / float(RAND_MAX) * 2) - 1.f);
   }
 
-  /** Functional application \n
-      in: input signal \n
-      returns reference to object signal vector
-  */
-  const std::vector<S> &operator()(const std::vector<S> &in) {
-    std::size_t n = 0;
-    auto fp = [&]() { return FN(in[n++]); };
-    return process(fp, in.size());
+  float att, dec, sus;
+  Env<float> env;
+  Func<float, randf> noise;
+
+  Synth(float rt, float sr)
+      : att(0.f), dec(0.f), sus(0.f), env(ads_gen(att, dec, sus), rt, sr),
+        noise(){};
+
+  const std::vector<float> &operator()(float a, bool gate,
+                                       std::size_t vsiz = 0) {
+    if (vsiz)
+      noise.vsize(vsiz);
+    return env(noise(a), gate);
   }
 };
 
-} // namespace Aurora
-
-#endif // _AURORA_FUNC_
+int main(int argc, const char *argv[]) {
+  if (argc > 2) {
+    double sr = argc > 3 ? std::atof(argv[3]) : def_sr;
+    auto dur = std::atof(argv[1]);
+    auto a = std::atof(argv[2]);
+    float rel = 0.1;
+    Synth synth(rel, sr);
+    synth.att = .1f;
+    synth.dec = .3f;
+    synth.sus = .7f;
+    bool gate = 1;
+    for (int n = 0; n < sr * (dur + rel); n += def_vsize) {
+      if (n > sr * dur)
+        gate = 0;
+      for (auto s : synth(a, gate))
+        std::cout << s << std::endl;
+    }
+  } else
+    std::cout << "usage: " << argv[0] << " dur(s) amp [sr]" << std::endl;
+  return 0;
+}
