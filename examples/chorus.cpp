@@ -36,10 +36,8 @@
 #include <vector>
 
 using namespace Aurora;
-
-inline float ofs(float a, float b) { return a + b; }
-
 struct DualChorus {
+  static float ofs(float a, float b) { return a + b; }
   std::array<Osc<float>, 2> lfo;
   std::array<Del<float, vdelayi>, 2> delay;
   BinOp<float, ofs> offs;
@@ -51,8 +49,7 @@ struct DualChorus {
         offs(vsize){};
 
   auto &operator()(const std::vector<float> &in, float fr, float d, int chn) {
-    lfo[0].vsize(in.size());
-    lfo[1].vsize(in.size());
+    lfo[chn].vsize(in.size());
     return delay[chn](in, offs(d, lfo[chn](d * 0.1, fr)), 0, 1);
   }
 };

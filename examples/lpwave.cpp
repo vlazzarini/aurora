@@ -42,11 +42,12 @@ int main(int argc, const char *argv[]) {
     Aurora::TableSet<float> wave(Aurora::SAW);
     Aurora::BlOsc<float> osc(&wave, sr);
     Aurora::FourPole<float> fil(sr);
-    double att = 0.01 * dur, dec = 0.1 * dur, sus = 0.1, rt = 0.1;
-    Aurora::Env<float> env(Aurora::ads_gen(att, dec, sus), rt, sr);
+    float att = 0.01 * dur, dec = 0.1 * dur, sus = 0.1, rt = 0.1;
+    Aurora::Env<float> env(att, dec, sus, rt, sr);
+    Aurora::Env<float> enva(att, dec, sus, rt, sr);
     bool gate = 1;
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize()) {
-      for (auto s : fil(osc(a, f), cf/*env(cf, 1000, gate)*/, res)) {
+      for (auto s : enva(fil(osc(a, f), env(f, cf - f, gate), res), gate)) {
         if (n > sr * (dur - rt))
           gate = 0;
         std::cout << s << std::endl;

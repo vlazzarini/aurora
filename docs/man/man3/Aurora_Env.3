@@ -17,7 +17,7 @@ Inherits \fBAurora::SndBase< S >\fP, and \fBAurora::SndBase< S >\fP\&.
 .RI "\fBEnv\fP (std::function< S(double, S, S)> f, S rt, S \fBfs\fP=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
-.RI "\fBEnv\fP (S &a, S &d, S &s, S rt, S \fBfs\fP=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.RI "\fBEnv\fP (S &a, S &b, S &c, S rt, S \fBfs\fP=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
 .RI "void \fBrelease\fP (S rt)"
@@ -29,7 +29,7 @@ Inherits \fBAurora::SndBase< S >\fP, and \fBAurora::SndBase< S >\fP\&.
 .RI "const std::vector< S > & \fBoperator()\fP (S offs, S scal, bool gate)"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &a, bool gate)"
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, bool gate)"
 .br
 .ti -1c
 .RI "S \fBfs\fP () const"
@@ -96,14 +96,14 @@ rt: release time
 fs: sampling rate 
 .br
 vsize: signal vector size 
-.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> \fBAurora::Env\fP< S, FN >::\fBEnv\fP (S & a, S & d, S & s, S rt, S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> \fBAurora::Env\fP< S, FN >::\fBEnv\fP (S & a, S & b, S & c, S rt, S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
-a: attack time 
+a: env fn parameter 1 
 .br
-d: decay time 
+b: env fn parameter 2 
 .br
-s: sustain levl 
+c: env fn parameter 3
 .br
 rt: release time 
 .br
@@ -158,10 +158,10 @@ gate: envelope gate
 Envelope 
 .br
 offs: sig offset scal: sig scale gate: envelope gate 
-.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector<S>& \fBAurora::Env\fP< S, FN >::operator() (const std::vector< S > & a, bool gate)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector<S>& \fBAurora::Env\fP< S, FN >::operator() (const std::vector< S > & in, bool gate)\fC [inline]\fP"
 Envelope 
 .br
-a: input signal gate: envelope gate 
+in: input signal gate: envelope gate 
 .SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> void \fBAurora::Env\fP< S, FN >::release (S rt)\fC [inline]\fP"
 Release time setter rt: release time 
 .SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> void \fBAurora::Env\fP< S, FN >::release (S rt)\fC [inline]\fP"

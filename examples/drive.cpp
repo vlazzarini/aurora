@@ -35,29 +35,38 @@
 using namespace Aurora;
 
 struct Synth {
-  inline static std::vector<float> sigmoid{std::vector<float>(def_ftlen)};
+  inline static const float smax = 8.f;
+  inline static std::vector<float> sigmoid{std::vector<float>(0)};
+  inline static std::vector<float> wave{std::vector<float>(0)};
+
   static float sat(float a) {
-    return cubic_interp_lim((a / 8 + .5) * sigmoid.size(), sigmoid);
+    return cubic_interp_lim((a / smax + .5) * sigmoid.size(), sigmoid);
   }
   static float scl(float a, float b) { return a * b; }
 
   float att, dec, sus;
-  std::vector<float> wave;
+
   Env<float> env;
   Osc<float, lookupi> osc;
   Func<float, sat> drive;
   BinOp<float, scl> amp;
 
   Synth(float rt, float sr)
-      : att(0.1f), dec(0.3f), sus(0.7f), wave(def_ftlen),
-        env(ads_gen(att, dec, sus), rt, sr), osc(&wave, sr), drive(), amp() {
-    std::size_t n = 0;
-    for (auto &s : wave) {
-      s = sin<float>((1. / wave.size()) * n++);
+      : att(0.1f), dec(0.3f), sus(0.7f), env(ads_gen(att, dec, sus), rt, sr),
+        osc(&wave, sr), drive(), amp() {
+    if (wave.size() == 0) {
+      std::size_t n = 0;
+      wave.resize(def_ftlen);
+      for (auto &s : wave) {
+        s = sin<float>((1. / wave.size()) * n++);
+      }
     }
-    n = 0;
-    for (auto &s : sigmoid) {
-      s = std::tanhf((8.f / sigmoid.size()) * n++ - 4.f);
+    if (sigmoid.size() == 0) {
+      std::size_t n = 0;
+      sigmoid.resize(def_ftlen);
+      for (auto &s : sigmoid) {
+        s = std::tanhf((smax / sigmoid.size()) * n++ - smax / 2);
+      }
     }
   }
 

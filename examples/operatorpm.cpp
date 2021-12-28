@@ -31,11 +31,11 @@
 #include <iostream>
 
 using namespace Aurora;
-template <typename S> inline S scl(S a, S b) { return a * b; }
 template <typename S> struct Opm {
+  static S scl(S a, S b) { return a * b; }
   Osc<S, sin<S>> osc;
   Env<S> env;
-  BinOp<S, scl<S>> amp;
+  BinOp<S, scl> amp;
   S att, dec, sus;
   S o2pi;
 

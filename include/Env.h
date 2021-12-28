@@ -100,13 +100,13 @@ class Env : public SndBase<S> {
   S prev;
   S ts;
   S fac;
-  S &att, &dec, &sus;
+  S &p1, &p2, &p3;
 
   S synth(S e, double &t, bool gate, std::function<S(double, S, S)> fn, S a,
-          S d, S ss) {
+          S b, S c) {
     S s;
     if (gate) {
-      s = fn ? fn(t, e, ts) : FN(a, d, ss, t, e, ts);
+      s = fn ? fn(t, e, ts) : FN(a, b, c, t, e, ts);
       t += ts;
     } else {
       if (e < 0.00001)
@@ -128,19 +128,19 @@ public:
   Env(std::function<S(double, S, S)> f, S rt, S fs = def_sr,
       std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), fun(f), prev(0), ts(1. / fs),
-        fac(std::pow(0.001, ts / rt)), att(fac), dec(fac), sus(fac){};
+        fac(std::pow(0.001, ts / rt)), p1(fac), p2(fac), p3(fac){};
 
   /** Constructor \n
-     a: attack time \n
-     d: decay time \n
-     s: sustain levl \n
+     a: env fn parameter 1 \n
+     b: env fn parameter 2 \n
+     c: env fn parameter 3\n
      rt: release time \n
      fs: sampling rate \n
      vsize: signal vector size
  */
-  Env(S &a, S &d, S &s, S rt, S fs = def_sr, std::size_t vsize = def_vsize)
+  Env(S &a, S &b, S &c, S rt, S fs = def_sr, std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), fun(nullptr), prev(0), ts(1. / fs),
-        fac(std::pow(0.001, ts / rt)), att(a), dec(d), sus(s) {}
+        fac(std::pow(0.001, ts / rt)), p1(a), p2(b), p3(c) {}
 
   /** Release time setter
      rt: release time
@@ -153,9 +153,9 @@ public:
   const std::vector<S> &operator()(bool gate) {
     double t = time;
     S e = prev;
-    S a = att, d = dec, ss = sus;
+    S a = p1, b = p2, c = p3;
     auto &s =
-        process([&]() { return (e = synth(e, t, gate, fun, a, d, ss)); }, 0);
+        process([&]() { return (e = synth(e, t, gate, fun, a, b, c)); }, 0);
     prev = e;
     time = t;
     return s;
@@ -169,10 +169,10 @@ public:
   const std::vector<S> &operator()(S offs, S scal, bool gate) {
     double t = time;
     S e = prev;
-    S a = att, d = dec, ss = sus;
+    S a = p1, b = p2, c = p3;
     auto &s = process(
         [&]() {
-          e = synth(e, t, gate, fun, a, d, ss);
+          e = synth(e, t, gate, fun, a, b, c);
           return (e * scal + offs);
         },
         0);
@@ -182,20 +182,20 @@ public:
   }
 
   /** Envelope \n
-      a: input signal
+      in: input signal
       gate: envelope gate
    */
-  const std::vector<S> &operator()(const std::vector<S> &a, bool gate) {
+  const std::vector<S> &operator()(const std::vector<S> &in, bool gate) {
     double t = time;
     S e = prev;
     std::size_t n = 0;
-    S at = att, d = dec, ss = sus;
+    S a = p1, b = p2, c = p3;
     auto &s = process(
         [&]() {
-          e = synth(e, t, gate, fun, at, d, ss);
-          return e * a[n++];
+          e = synth(e, t, gate, fun, a, b, c);
+          return e * in[n++];
         },
-        a.size());
+        in.size());
     prev = e;
     time = t;
     return s;
