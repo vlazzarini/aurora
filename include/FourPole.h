@@ -48,7 +48,7 @@ template <typename S> class FourPole : public SndBase<S> {
     S ss = d[3];
     for (int j = 0; j < 3; j++)
       ss += d[j] * g[2 - j];
-    o = (g[3] * s + ss) / (1 - k * g[3]);
+    o = (g[3] * s + ss) / (1 + k * g[3]);
     u = g[0] * (s - k * o);
     for (int j = 0; j < 3; j++) {
       w = d[j] + u;

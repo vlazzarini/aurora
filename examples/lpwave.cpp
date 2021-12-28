@@ -46,7 +46,7 @@ int main(int argc, const char *argv[]) {
     Aurora::Env<float> env(Aurora::ads_gen(att, dec, sus), rt, sr);
     bool gate = 1;
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize()) {
-      for (auto s : fil(osc(a, f), env(cf, 1000, gate), res)) {
+      for (auto s : fil(osc(a, f), cf/*env(cf, 1000, gate)*/, res)) {
         if (n > sr * (dur - rt))
           gate = 0;
         std::cout << s << std::endl;
