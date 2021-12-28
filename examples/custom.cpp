@@ -39,12 +39,13 @@ int main(int argc, const char *argv[]) {
     Aurora::TableSet<float> wave(flute::wave, flute::base, flute::fs);
     Aurora::BlOsc<float> osc(&wave, flute::fs);
     std::vector<float> brkpts({0.1f, 1.f, 0.5f, 0.1f, 1.f, 0.7f});
-    Aurora::Env<float> env(Aurora::env_gen<float>(brkpts), 0.1f);
+    Aurora::Env<float> env(Aurora::env_gen<float>(brkpts), 0.1f,
+                           flute::fs / Aurora::def_vsize, 1);
     bool gate = 1;
     for (int n = 0; n < osc.fs() * (dur + 0.1f); n += osc.vsize()) {
       if (n > osc.fs() * dur)
         gate = 0;
-      for (auto s : env(osc(a, f), gate))
+      for (auto s : osc(env(0, a, gate)[0], f))
         std::cout << s << std::endl;
     }
   } else
