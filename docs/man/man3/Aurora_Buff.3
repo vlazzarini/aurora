@@ -1,4 +1,4 @@
-.TH "Aurora::Buff< S >" 3 "Tue Dec 28 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Buff< S >" 3 "Wed Dec 29 2021" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -14,10 +14,19 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 
 .in +1c
 .ti -1c
-.RI "\fBBuff\fP (std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.RI "\fBBuff\fP (std::size_t \fBbsize\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
-.RI "const std::vector< S > & \fBoperator()\fP (const S *in, std::size_t n=\fBdef_vsize\fP)"
+.RI "std::size_t \fBbsize\fP () const"
+.br
+.ti -1c
+.RI "void \fBbsize\fP (std::size_t n)"
+.br
+.ti -1c
+.RI "void \fBoperator()\fP (const std::vector< S > &in)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP ()"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -28,25 +37,37 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 class Aurora::Buff< S >"
 \fBBuff\fP class 
 .br
-sample buffer 
+circular buffer 
 .br
 S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S > \fBAurora::Buff\fP< S >::\fBBuff\fP (std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S > \fBAurora::Buff\fP< S >::\fBBuff\fP (std::size_t bsize, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
-vsize: signal vector size 
+bsize: buffer size vsize: signal vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S > const std::vector<S>& \fBAurora::Buff\fP< S >::operator() (const S * in, std::size_t n = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
-Buffer 
+.SS "template<typename S > std::size_t \fBAurora::Buff\fP< S >::bsize () const\fC [inline]\fP"
+Buffer size query 
 .br
-in: audio input array 
+returns the buffer size 
+.SS "template<typename S > void \fBAurora::Buff\fP< S >::bsize (std::size_t n)\fC [inline]\fP"
+Buffer size setting 
 .br
-n: number of samples in audio input array 
+n: new vector size 
+.SS "template<typename S > void \fBAurora::Buff\fP< S >::operator() (const std::vector< S > & in)\fC [inline]\fP"
+Buffer input 
 .br
-returns reference to object signal vector 
+in: audio input 
+.br
+
+.SS "template<typename S > const std::vector<S>& \fBAurora::Buff\fP< S >::operator() ()\fC [inline]\fP"
+Buffer output 
+.br
+returns audio from buffer 
+.br
+
 
 .SH "Author"
 .PP 

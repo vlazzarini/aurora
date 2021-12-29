@@ -97,28 +97,66 @@ public:
 };
 
 /** Buff class \n
-    sample buffer \n
+    circular buffer \n
     S: sample type
 */
 template <typename S> class Buff : public SndBase<S> {
   using SndBase<S>::get_sig;
+  using SndBase<S>::vsize;
+  std::vector<S> b;
+  std::size_t wp, rp;
 
 public:
   /** Constructor \n
+      bsize: buffer size
       vsize: signal vector size
   */
-  Buff(std::size_t vsize = def_vsize) : SndBase<S>(vsize){};
+  Buff(std::size_t bsize, std::size_t vsize = def_vsize)
+      : SndBase<S>(vsize), b(bsize), wp(0), rp(0){};
 
-  /** Buffer \n
-      in: audio input array \n
-      n: number of samples in audio input array \n
-      returns reference to object signal vector
+  /** Buffer size query \n
+      returns the buffer size
   */
-  const std::vector<S> &operator()(const S *in, std::size_t n = def_vsize) {
-    auto &s = get_sig();
-    this->resize(n);
-    std::copy(in, in + n, s.begin());
-    return s;
+  std::size_t bsize() const { return b.size(); }
+
+  /** Buffer size setting \n
+      n: new vector size
+  */
+  void bsize(std::size_t n) { b.resize(n); }
+
+  /** Buffer input \n
+      in: audio input \n
+  */
+  void operator()(const std::vector<S> &in) {
+    if (b.size() < vsize())
+      b.resize(vsize());
+    std::size_t end = in.size() + wp;
+    if (end < b.size()) {
+      std::copy(in.begin(), in.end(), b.begin() + wp);
+      wp = end;
+    } else {
+      std::size_t ovflw = end - b.size();
+      std::copy(in.begin(), in.end() - ovflw, b.begin() + wp);
+      std::copy(in.end() - ovflw, in.end(), b.begin());
+      wp = ovflw;
+    }
+  }
+
+  /** Buffer output \n
+      returns audio from buffer \n
+  */
+  const std::vector<S> &operator()() {
+    auto &o = get_sig();
+    std::size_t end = vsize() + rp;
+    if (end < b.size()) {
+      std::copy(b.begin() + rp, b.begin() + end, o.begin());
+      rp = end;
+    } else {
+      std::size_t ovflw = end - b.size();
+      std::copy(b.begin() + rp, b.end(), o.begin());
+      std::copy(b.begin(), b.begin() + ovflw, o.end() - ovflw);
+      rp = ovflw;
+    }
   }
 };
 

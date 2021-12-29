@@ -25,9 +25,15 @@ Collaboration diagram for Aurora\+:\+:Buff$<$ S $>$\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aurora_1_1_buff_aa6a1980c02f6f9e416bbc59905e847ad}{Buff} (std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\hyperlink{class_aurora_1_1_buff_aaca7f3a2037c2c127969ca15ae1fca58}{Buff} (std\+::size\+\_\+t \hyperlink{class_aurora_1_1_buff_a8e1a05d615af725bce21de0fb10735a2}{bsize}, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
 \item 
-const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_buff_afd7878cb1948f8d41dfd635c163d1c27}{operator()} (const S $\ast$in, std\+::size\+\_\+t n=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+std\+::size\+\_\+t \hyperlink{class_aurora_1_1_buff_a8e1a05d615af725bce21de0fb10735a2}{bsize} () const
+\item 
+void \hyperlink{class_aurora_1_1_buff_ac5b2377e34eb7ff03261e43e907ef0d2}{bsize} (std\+::size\+\_\+t n)
+\item 
+void \hyperlink{class_aurora_1_1_buff_a40884550c6105f427148f8663a54bc71}{operator()} (const std\+::vector$<$ S $>$ \&in)
+\item 
+const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_buff_ad1ccc1beacd029ca12f38005e3ae2daf}{operator()} ()
 \end{DoxyCompactItemize}
 
 
@@ -36,32 +42,56 @@ const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_buff_afd7878cb1948f8
 class Aurora\+::\+Buff$<$ S $>$}
 
 \hyperlink{class_aurora_1_1_buff}{Buff} class ~\newline
-sample buffer ~\newline
+circular buffer ~\newline
 S\+: sample type 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_buff_aa6a1980c02f6f9e416bbc59905e847ad}\label{class_aurora_1_1_buff_aa6a1980c02f6f9e416bbc59905e847ad}} 
+\mbox{\Hypertarget{class_aurora_1_1_buff_aaca7f3a2037c2c127969ca15ae1fca58}\label{class_aurora_1_1_buff_aaca7f3a2037c2c127969ca15ae1fca58}} 
 \index{Aurora\+::\+Buff@{Aurora\+::\+Buff}!Buff@{Buff}}
 \index{Buff@{Buff}!Aurora\+::\+Buff@{Aurora\+::\+Buff}}
 \subsubsection{\texorpdfstring{Buff()}{Buff()}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-\hyperlink{class_aurora_1_1_buff}{Aurora\+::\+Buff}$<$ S $>$\+::\hyperlink{class_aurora_1_1_buff}{Buff} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\hyperlink{class_aurora_1_1_buff}{Aurora\+::\+Buff}$<$ S $>$\+::\hyperlink{class_aurora_1_1_buff}{Buff} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{bsize,  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor ~\newline
-vsize\+: signal vector size 
+bsize\+: buffer size vsize\+: signal vector size 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_buff_afd7878cb1948f8d41dfd635c163d1c27}\label{class_aurora_1_1_buff_afd7878cb1948f8d41dfd635c163d1c27}} 
+\mbox{\Hypertarget{class_aurora_1_1_buff_a8e1a05d615af725bce21de0fb10735a2}\label{class_aurora_1_1_buff_a8e1a05d615af725bce21de0fb10735a2}} 
+\index{Aurora\+::\+Buff@{Aurora\+::\+Buff}!bsize@{bsize}}
+\index{bsize@{bsize}!Aurora\+::\+Buff@{Aurora\+::\+Buff}}
+\subsubsection{\texorpdfstring{bsize()}{bsize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+std\+::size\+\_\+t \hyperlink{class_aurora_1_1_buff}{Aurora\+::\+Buff}$<$ S $>$\+::bsize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Buffer size query ~\newline
+returns the buffer size \mbox{\Hypertarget{class_aurora_1_1_buff_ac5b2377e34eb7ff03261e43e907ef0d2}\label{class_aurora_1_1_buff_ac5b2377e34eb7ff03261e43e907ef0d2}} 
+\index{Aurora\+::\+Buff@{Aurora\+::\+Buff}!bsize@{bsize}}
+\index{bsize@{bsize}!Aurora\+::\+Buff@{Aurora\+::\+Buff}}
+\subsubsection{\texorpdfstring{bsize()}{bsize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+void \hyperlink{class_aurora_1_1_buff}{Aurora\+::\+Buff}$<$ S $>$\+::bsize (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Buffer size setting ~\newline
+n\+: new vector size \mbox{\Hypertarget{class_aurora_1_1_buff_a40884550c6105f427148f8663a54bc71}\label{class_aurora_1_1_buff_a40884550c6105f427148f8663a54bc71}} 
 \index{Aurora\+::\+Buff@{Aurora\+::\+Buff}!operator()@{operator()}}
 \index{operator()@{operator()}!Aurora\+::\+Buff@{Aurora\+::\+Buff}}
-\subsubsection{\texorpdfstring{operator()()}{operator()()}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename S $>$ \\
-const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_buff}{Aurora\+::\+Buff}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const S $\ast$}]{in,  }\item[{std\+::size\+\_\+t}]{n = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \hyperlink{class_aurora_1_1_buff}{Aurora\+::\+Buff}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Buffer ~\newline
-in\+: audio input array ~\newline
-n\+: number of samples in audio input array ~\newline
-returns reference to object signal vector 
+Buffer input ~\newline
+in\+: audio input ~\newline
+\mbox{\Hypertarget{class_aurora_1_1_buff_ad1ccc1beacd029ca12f38005e3ae2daf}\label{class_aurora_1_1_buff_ad1ccc1beacd029ca12f38005e3ae2daf}} 
+\index{Aurora\+::\+Buff@{Aurora\+::\+Buff}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora\+::\+Buff@{Aurora\+::\+Buff}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_buff}{Aurora\+::\+Buff}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Buffer output ~\newline
+returns audio from buffer ~\newline
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
