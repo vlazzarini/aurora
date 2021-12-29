@@ -157,6 +157,7 @@ public:
       std::copy(b.begin(), b.begin() + ovflw, o.end() - ovflw);
       rp = ovflw;
     }
+    return o;
   }
 };
 

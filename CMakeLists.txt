@@ -52,6 +52,7 @@ add_program(oscil)
 add_program(karplus)
 add_program(pwm)
 add_program(noise)
+add_program(buffer)
 
 # these have libsndfile dependency
 if(LIBSNDFILE_LIBRARY)
