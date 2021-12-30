@@ -77,28 +77,34 @@ template <typename S> struct GrainGen {
   std::vector<S> mix;
   std::size_t st;
   std::size_t num;
+  std::size_t dm;
 
   GrainGen(const std::vector<S> &wave, std::size_t streams = 16, S sr = def_sr,
-           std::size_t vsize = def_vsize)
-      : slots(streams ? streams : 1, Grain<S>(wave, sr, 1)), mix(vsize), st(sr),
-        num(0){};
+           std::size_t decim = def_vsize, std::size_t vsize = def_vsize)
+    : slots(streams ? streams : 1, Grain<S>(wave, sr, decim)), mix(vsize), st(0),
+      num(0), dm(decim){};
 
   /** play streams of grains, with amp a, pitch p, grain dur gd (sec),
       density dens (g/sec), and table pos gp (sec) */
   auto &operator()(S a, S p, S dens, S gd, S gp = 0) {
     std::size_t tt = slots[0].fs / dens;
-    for (auto &s : mix) {
+    std::size_t vs = mix.size();
+    auto &s = mix;
+    for (std::size_t n = 0; n < vs; n+=dm) {
       if (st >= tt) {
-        st = 0;
+        st -= tt;
         slots[num].trigger(gd, gp);
         num = num == slots.size() - 1 ? 0 : num + 1;
       }
-      s = 0;
-      for (auto &slot : slots)
-        s += slot(a, p)[0];
-      st++;
+      std::fill(s.begin()+n,s.begin()+n+dm,0);
+      for (auto &slot : slots) {
+        std::size_t j = n;
+        for (auto &o : slot(a,p)) 
+          s[j++] += o;
+       }
+      st+=dm;
     }
-    return mix;
+    return s;
   }
 };
 } // namespace Aurora
