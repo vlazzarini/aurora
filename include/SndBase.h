@@ -94,6 +94,14 @@ public:
       output buffer needs to have space for vsize() samples.
   */
   void copy_out(S *out) { std::copy(sig.begin(), sig.end(), out); }
+
+  /** Sets all output samples to zero \n
+      returns the object vector
+  */
+  const std::vector<S> &clear() {
+    std::fill(sig.begin(), sig.end(), 0);
+    return sig;
+  }
 };
 
 /** Buff class \n

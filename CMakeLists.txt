@@ -53,6 +53,7 @@ add_program(karplus)
 add_program(pwm)
 add_program(noise)
 add_program(buffer)
+add_program(grain)
 
 # these have libsndfile dependency
 if(LIBSNDFILE_LIBRARY)
