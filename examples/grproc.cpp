@@ -48,7 +48,7 @@ int main(int argc, const char **argv) {
         float ol = atof(argv[7]);
         double ts = 0.f;
         std::vector<float> wave(sfinfo_in.frames);
-        std::size_t dur = abs(t*sfinfo_in.frames), n = 0;
+        std::size_t dur = abs(sfinfo_in.frames/t), n = 0;
         sf_read_float(fpin, wave.data(), sfinfo_in.frames);
         sf_close(fpin);
         GrainGen<float> grain(wave,std::ceil(ol),sfinfo_in.samplerate,1);

@@ -38,10 +38,11 @@ template <typename S> struct Grain {
   std::size_t gdr;
   double fs;
   std::size_t t;
+  bool off;
 
   Grain(const std::vector<S> &wve, S sr = def_sr, std::size_t vsize = def_vsize)
       : wave(wve), env(&win, sr, vsize), osc(&wve, sr, vsize), gdr(0), fs(sr),
-        t(0) {
+       t(0), off(false) {
     if (win.size() == 0) {
       std::size_t n = 0;
       win.resize(def_ftlen);
@@ -57,6 +58,7 @@ template <typename S> struct Grain {
     osc.phase(ph);
     env.phase(0);
     t = 0;
+    off = false;
   }
 
   /** play grain for set duration with amp a and pitch p */
@@ -65,8 +67,13 @@ template <typename S> struct Grain {
       S fr = p * fs / wave.size();
       t += osc.vsize();
       return env(osc(a, fr), fs / gdr);
-    } else
-      return env.clear();
+    } else {
+      if(!off) {
+        env.clear();
+        off = true;
+      }
+      return env.vector();
+    }
   }
 };
 
