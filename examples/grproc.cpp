@@ -45,16 +45,16 @@ int main(int argc, const char **argv) {
         float p = atof(argv[4]);
         float t = atof(argv[5]);
         float gdur = atof(argv[6]);
-        int ol = atoi(argv[7]);
+        float ol = atof(argv[7]);
         double ts = 0.f;
         std::vector<float> wave(sfinfo_in.frames);
-        std::size_t dur = t*sfinfo_in.frames, n = 0;
+        std::size_t dur = abs(t*sfinfo_in.frames), n = 0;
         sf_read_float(fpin, wave.data(), sfinfo_in.frames);
         sf_close(fpin);
-        GrainGen<float> grain(wave,ol,sfinfo_in.samplerate,1);
+        GrainGen<float> grain(wave,std::ceil(ol),sfinfo_in.samplerate,1);
         do {
          auto &out = grain(a,p,ol/gdur,gdur,ts);
-         ts += t*double(sfinfo_in.samplerate);  
+         ts += t*def_vsize/double(sfinfo_in.samplerate);
          sf_write_float(fpout, out.data(), def_vsize);
          n += def_vsize;
         } while (n < dur);
