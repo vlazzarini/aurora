@@ -94,19 +94,20 @@ template <typename S> struct GrainGen {
   /** play streams of grains, with amp a, pitch p, grain dur gd (sec),
       density dens (g/sec), and table pos gp (sec) */
   auto &operator()(S a, S p, S dens, S gd, S gp = 0) {
-    std::size_t tt = slots[0].fs / dens;
+    auto &grains = slots;
+    std::size_t tt = grains[0].fs / dens;
     std::size_t vs = mix.size();
     auto &s = mix;
     for (std::size_t n = 0; n < vs; n+=dm) {
       if (st >= tt) {
         st -= tt;
-        slots[num].trigger(gd, gp);
+        grains[num].trigger(gd, gp);
         num = num == slots.size() - 1 ? 0 : num + 1;
       }
       std::fill(s.begin()+n,s.begin()+n+dm,0);
-      for (auto &slot : slots) {
+      for (auto &grain: grains) {
         std::size_t j = n;
-        for (auto &o : slot(a,p)) 
+        for (auto &o : grain(a,p)) 
           s[j++] += o;
        }
       st+=dm;

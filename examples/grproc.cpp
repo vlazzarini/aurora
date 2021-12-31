@@ -46,18 +46,17 @@ int main(int argc, const char **argv) {
         float t = atof(argv[5]);
         float gdur = atof(argv[6]);
         float ol = atof(argv[7]);
+        int dm = argc > 8  ? atoi(argv[8]) : def_vsize;
         double ts = 0.f;
         std::vector<float> wave(sfinfo_in.frames);
-        std::size_t dur = abs(sfinfo_in.frames/t), n = 0;
         sf_read_float(fpin, wave.data(), sfinfo_in.frames);
         sf_close(fpin);
-        GrainGen<float> grain(wave,std::ceil(ol),sfinfo_in.samplerate,1);
+        GrainGen<float> grain(wave,std::ceil(ol),sfinfo_in.samplerate,dm);
         do {
          auto &out = grain(a,p,ol/gdur,gdur,ts);
          ts += t*def_vsize/double(sfinfo_in.samplerate);
          sf_write_float(fpout, out.data(), def_vsize);
-         n += def_vsize;
-        } while (n < dur);
+        } while (ts < sfinfo_in.frames/sfinfo_in.samplerate);
         sf_close(fpout);
         return 0;
       } else
@@ -68,7 +67,7 @@ int main(int argc, const char **argv) {
       std::cout << "could not open " << argv[1] << std::endl;
     return 1;
   }
-  std::cout << "usage: " << argv[0] << " infile outfile amp pitch tscale grainsize olap\n"
+  std::cout << "usage: " << argv[0] << " infile outfile amp pitchscale timescale grainsize(s) overlap [decimation]\n"
             << std::endl;
   return -1;
 }
