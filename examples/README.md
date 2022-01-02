@@ -36,10 +36,18 @@ c++ -o example example.cpp - I../include -std=c++ 14
 
 **operatorpm.cpp**: operator-based phase modulation
 
+**pwm.cpp**: variable pulse-width square wave
+
+**noise.cpp**: white noise genarator 
+
+**buffer.cpp**: circular buffer test
+
+**grsynth.cpp**: granular synthesis
+
 ASCII floats can be converted to soundfiles using one of the utility
 programs provided in the **utilities** folder.
 
-Soundfile output
+Soundfile input/output
 ---
 
 These examples read and write soundfiles.They depend on libsndfile and can be built using
@@ -62,6 +70,14 @@ c++ -o example example.cpp -I../ include -std = c++ 14 - lsndfile
 **equaliser.cpp**: graphic equaliser
 
 **follow.cpp**: envelope follower
+
+**freverb.cpp**: extended Schroeder reverb
+
+**resonator.cpp**: resonator filter
+
+**grproc.cpp**: granular processing
+
+
 
 
 

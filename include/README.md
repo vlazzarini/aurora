@@ -25,5 +25,7 @@ Aurora Headers
 
 **Eq.h**: parametric equaliser
 
+**Fil.h**: second-order filters
+
 
 
