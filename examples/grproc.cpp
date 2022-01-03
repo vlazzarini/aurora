@@ -43,21 +43,21 @@ int main(int argc, const char **argv) {
         fpout = sf_open(argv[2], SFM_WRITE, &sfinfo);
         float a = atof(argv[3]);
         float p = atof(argv[4]);
-        float t = atof(argv[5]);
+        float t = atof(argv[5]) * def_vsize / double(sfinfo_in.samplerate);
         float gdur = atof(argv[6]);
-        float ol = atof(argv[7]);
+        float ol = atof(argv[7]) ;
         int dm = argc > 8 ? atoi(argv[8]) : def_vsize;
-        double ts = t >= 0 ? 0.f : sfinfo_in.frames / sfinfo_in.samplerate;
+        double ts = t >= 0 ? 0.f : sfinfo_in.frames / double(sfinfo_in.samplerate);
         std::vector<float> wave(sfinfo_in.frames);
         sf_read_float(fpin, wave.data(), sfinfo_in.frames);
         sf_close(fpin);
         GrainGen<float> grain(wave, std::ceil(ol), sfinfo_in.samplerate, dm);
         do {
           auto &out = grain(a, p, ol / gdur, gdur, ts);
-          ts += t * def_vsize / double(sfinfo_in.samplerate);
+          ts += t; 
           sf_write_float(fpout, out.data(), def_vsize);
         } while (t < 0 ? ts >= 0
-                       : ts < sfinfo_in.frames / sfinfo_in.samplerate);
+                 : ts < sfinfo_in.frames / double(sfinfo_in.samplerate));
         sf_close(fpout);
         return 0;
       } else

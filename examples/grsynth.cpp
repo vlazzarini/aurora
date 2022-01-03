@@ -43,7 +43,7 @@ int main(int argc, const char *argv[]) {
     std::size_t n = 0;
     for (auto &s : wave)
       s = Aurora::cos<double>(n++ / double(Aurora::def_ftlen));
-    Aurora::GrainGen<double> grain(wave, std::lround(dens * gdur), sr);
+    Aurora::GrainGen<double> grain(wave, std::ceil(dens * gdur), sr);
     for (int n = 0; n < sr * dur; n += Aurora::def_vsize) {
       for (auto s :
            grain(a, ff * wave.size(), dens, gdur, rnd(sr / wave.size())))
