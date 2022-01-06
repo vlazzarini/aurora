@@ -39,7 +39,7 @@ int main(int argc, const char *argv[]) {
     auto f = std::atof(argv[3]);
     auto cf = std::atof(argv[4]);
     auto res = std::atof(argv[5]);
-    Aurora::TableSet<float> wave(Aurora::SAW);
+    Aurora::TableSet<float> wave(Aurora::SQUARE);
     Aurora::BlOsc<float> osc(&wave, sr);
     Aurora::FourPole<float> fil(sr);
     float att = 0.01 * dur, dec = 0.1 * dur, sus = 0.1, rt = 0.1;

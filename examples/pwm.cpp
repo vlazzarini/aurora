@@ -25,6 +25,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
 
+#include "FourPole.h"
 #include "BlOsc.h"
 #include "Env.h"
 #include <cstdlib>
@@ -63,17 +64,24 @@ int main(int argc, const char *argv[]) {
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
+
     auto pwm = std::atof(argv[4]);
     float rel = 0.1;
     Synth synth(rel, sr);
+    Aurora::FourPole<float> fil(sr);
+    float att = 0.01 * dur, dec = 0.1 * dur, sus = 0.1, rt = 0.1;
+    Aurora::Env<float> env(att, dec, sus, rt, sr);
+    Aurora::Osc<float> lfo(sr);
     synth.att = .1f;
     synth.dec = .3f;
     synth.sus = .7f;
     bool gate = 1;
+    float res = 0.5;
+    float cf = 10000.f;
     for (int n = 0; n < sr * (dur + rel); n += def_vsize) {
       if (n > sr * dur)
         gate = 0;
-      for (auto s : synth(a, f, pwm, gate))
+      for (auto s : fil(synth(a, f, lfo(pwm/2,0.9)[0] + 0.5 , gate), env(f, cf - f, gate), res))
         std::cout << s << std::endl;
     }
   } else
