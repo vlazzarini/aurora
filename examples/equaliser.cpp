@@ -86,7 +86,7 @@ int main(int argc, const char **argv) {
         g.push_back(tg);
         f.push_back(tf);
         b.push_back(tb);
-        printf("filter %d - g:%.3f  cf:%.1f  bw:%.1f\n", ++i, tg, tf, tb);
+        printf("band %d - g:%.3f  cf:%.1f  bw:%.1f\n", ++i, tg, tf, tb);
       }
     } while (n > 0);
     fclose(fp);
