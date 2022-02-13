@@ -78,14 +78,15 @@ int main(int argc, const char **argv) {
     std::vector<float> f;
     std::vector<float> b;
     std::vector<float> g;
+    int i = 0;
     do {
-      float tg, tf, tb;
+      float tg, tf, tb; 
       n = fscanf(fp, "%f  %f  %f\n", &tg, &tf, &tb);
       if (n > 0) {
         g.push_back(tg);
         f.push_back(tf);
         b.push_back(tb);
-        printf("%lld: %f  %f  %f\n", n, tg, tf, tb);
+        printf("filter %d - g:%.3f  cf:%.1f  bw:%.1f\n", ++i, tg, tf, tb);
       }
     } while (n > 0);
     fclose(fp);
@@ -106,7 +107,7 @@ int main(int argc, const char **argv) {
     sf_close(fpout);
     return 0;
   }
-  std::cout << "usage: " << argv[0] << " paramfile envfile outfile \n"
+  std::cout << "usage: " << argv[0] << " paramfile infile outfile \n"
             << std::endl;
   return -1;
 }
