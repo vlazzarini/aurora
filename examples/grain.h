@@ -61,6 +61,12 @@ template <typename S> struct Grain {
     off = false;
   }
 
+  void reset(S sr) {
+    fs = sr;
+    osc.reset(fs);
+    env.reset(fs);
+  }
+
   /** play grain for set duration with amp a and pitch p */
   auto &operator()(S a, S p) {
     if (t < gdr) {
@@ -90,6 +96,10 @@ template <typename S> struct GrainGen {
            std::size_t decim = def_vsize, std::size_t vsize = def_vsize)
     : slots(streams ? streams : 1, Grain<S>(wave, sr, decim)), mix(vsize), st(0),
       num(0), dm(decim){};
+
+  void reset(S fs){
+    for (auto &grain: slots) grain.reset(fs);
+  }
 
   /** play streams of grains, with amp a, pitch p, grain dur gd (sec),
       density dens (g/sec), and table pos gp (sec) */
