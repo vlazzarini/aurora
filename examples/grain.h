@@ -67,6 +67,11 @@ template <typename S> struct Grain {
     env.reset(fs);
   }
 
+  void vsize(std::size_t vs) {
+    osc.vsize(vs);
+    env.vsize(vs);
+  }
+
   /** play grain for set duration with amp a and pitch p */
   auto &operator()(S a, S p) {
     if (t < gdr) {
@@ -91,11 +96,12 @@ template <typename S> struct GrainGen {
   std::size_t st;
   std::size_t num;
   std::size_t dm;
+  std::size_t dmr;
 
   GrainGen(const std::vector<S> &wave, std::size_t streams = 16, S sr = def_sr,
            std::size_t decim = def_vsize, std::size_t vsize = def_vsize)
     : slots(streams ? streams : 1, Grain<S>(wave, sr, decim)), mix(vsize), st(0),
-      num(0), dm(decim){};
+    num(0), dm(decim), dmr(dm/vsize) {};
 
   void reset(S fs){
     for (auto &grain: slots) grain.reset(fs);
@@ -117,6 +123,7 @@ template <typename S> struct GrainGen {
       std::fill(s.begin()+n,s.begin()+n+dm,0);
       for (auto &grain: grains) {
         std::size_t j = n;
+	grain.vsize(dmr*vs);
         for (auto &o : grain(a,p)) 
           s[j++] += o;
        }
