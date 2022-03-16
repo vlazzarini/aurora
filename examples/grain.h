@@ -189,8 +189,8 @@ template <typename S> struct GrainGen {
 	S ppan = 1. - pan;
 	pan = pan*.5f;
         for (auto &o : grain(am,f,pm)) {
-          s[j] += o*ppan;
-          s2[j++] += o*(1.-ppan);
+          s[j] += o;//*ppan;
+          s2[j++] += o;//*(1.-ppan);
 	  ppan = ch ? pan : 1. - pan;
 	  ch = !ch ;
 	}
