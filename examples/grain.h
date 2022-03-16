@@ -101,6 +101,20 @@ template <typename S> struct Grain {
     }
   }
 
+    /** play grain for set duration with AM and PM */
+  auto &operator()(const std::vector<S> am, S f, const std::vector<S> pm) {
+    if (t < gdr) {
+      t += osc.vsize();
+      return env(osc(am, f, pm), fs / gdr);
+    } else {
+      if(!off) {
+        env.clear();
+        off = true;
+      }
+      return env.vector();
+    }
+  }
+
   
 };
 
@@ -173,6 +187,33 @@ template <typename S> struct GrainGen {
     }
     return s;
   }
+
+     /** play streams of grains, with amp am, freq f, pm pm, grain dur gd (sec),
+      density dens (g/sec), and table pos gp (sec) */
+  auto &operator()(const std::vector<S> am, S f, const std::vector<S> pm, S dens, S gd,
+		   S gp = 0, std::size_t vs = def_vsize) {
+    auto &grains = slots;
+    auto &s = mix;
+    std::size_t tt = grains[0].fs / dens;
+    s.resize(vs);
+    for (std::size_t n = 0; n < vs; n+=dm) {
+      if (st >= tt) {
+        st -= tt;
+        grains[num].trigger(gd, gp);
+        num = num == slots.size() - 1 ? 0 : num + 1;
+      }
+      std::fill(s.begin()+n,s.begin()+n+dm,0);
+      for (auto &grain: grains) {
+        std::size_t j = n;
+	grain.vsize(dmr*vs);
+        for (auto &o : grain(am,f,pm)) 
+          s[j++] += o;
+       }
+      st+=dm;
+    }
+    return s;
+  }
+
 
 
   
