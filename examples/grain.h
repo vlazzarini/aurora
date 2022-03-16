@@ -174,14 +174,14 @@ template <typename S> struct GrainGen {
     std::size_t tt = grains[0].fs / dens;
     s.resize(vs);
     s2.resize(vs);
-    for (std::size_t n = 0; n < vs; n+=dm) {
+    for (std::size_t n = 0; n < vs; n+=dmr*vs) {
       if (st >= tt) {
         st -= tt;
         grains[num].trigger(gd, gp);
         num = num == slots.size() - 1 ? 0 : num + 1;
       }
-      std::fill(s.begin()+n,s.begin()+n+dm,0);
-      std::fill(s2.begin()+n,s2.begin()+n+dm,0);
+      std::fill(s.begin()+n,s.begin()+n+dmr*vs,0);
+      std::fill(s2.begin()+n,s2.begin()+n+dmr*vs,0);
       for (auto &grain: grains) {
         std::size_t j = n;
 	grain.vsize(dmr*vs);
@@ -189,8 +189,8 @@ template <typename S> struct GrainGen {
 	S ppan = 1. - pan;
 	pan = pan*.5f;
         for (auto &o : grain(am,f,pm)) {
-          s[j++] += o; //*ppan;
-          //s2[j++] += o; //*(1.-ppan);
+          s[j] += o*ppan;
+          s2[j++] += o*(1.-ppan);
 	  ppan = ch ? pan : 1. - pan;
 	  ch = !ch ;
 	}
