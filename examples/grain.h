@@ -122,7 +122,8 @@ template <typename S> struct Grain {
 template <typename S> struct GrainGen {
   static S add(S a, S b) { return a + b; }
   std::vector<Grain<S>> slots;
-  std::vector<S> mix;
+  std::vector<S> mixl;
+  std::vector<S> mixr;
   std::size_t st;
   std::size_t num;
   std::size_t dm;
@@ -130,7 +131,7 @@ template <typename S> struct GrainGen {
 
   GrainGen(const std::vector<S> &wave, std::size_t streams = 16, S sr = def_sr,
            std::size_t decim = def_vsize, std::size_t vsize = def_vsize)
-    : slots(streams ? streams : 1, Grain<S>(wave, sr, decim)), mix(vsize), st(0),
+  : slots(streams ? streams : 1, Grain<S>(wave, sr, decim)), mixl(vsize), mixr(vsize), st(0),
     num(0), dm(decim), dmr(dm/vsize) {};
 
   void reset(S fs){
@@ -141,7 +142,7 @@ template <typename S> struct GrainGen {
       density dens (g/sec), and table pos gp (sec) */
   auto &operator()(S a, S p, S dens, S gd, S gp = 0, std::size_t vs = def_vsize) {
     auto &grains = slots;
-    auto &s = mix;
+    auto &s = mixl;
     std::size_t tt = grains[0].fs / dens;
     s.resize(vs);
     for (std::size_t n = 0; n < vs; n+=dm) {
@@ -162,12 +163,14 @@ template <typename S> struct GrainGen {
     return s;
   }
 
-   /** play streams of grains, with amp am, freq fm, grain dur gd (sec),
+
+  /** play streams of grains, with amp am, freq f, pm pm, grain dur gd (sec),
       density dens (g/sec), and table pos gp (sec) */
-  auto &operator()(const std::vector<S> am, const std::vector<S> fm, S dens, S gd,
+  auto &operator()(const std::vector<S> am, S f, const std::vector<S> pm, S pan, S dens, S gd,
 		   S gp = 0, std::size_t vs = def_vsize) {
     auto &grains = slots;
-    auto &s = mix;
+    auto &s = mixl;
+    auto &s2 = mixr;
     std::size_t tt = grains[0].fs / dens;
     s.resize(vs);
     for (std::size_t n = 0; n < vs; n+=dm) {
@@ -180,41 +183,24 @@ template <typename S> struct GrainGen {
       for (auto &grain: grains) {
         std::size_t j = n;
 	grain.vsize(dmr*vs);
-        for (auto &o : grain(am,fm)) 
-          s[j++] += o;
+	bool ch = 0;
+	S ppan = 1. - pan;
+	pan = pan*.5f;
+        for (auto &o : grain(am,f,pm)) {
+          s[j++] += o*ppan;
+          s2[j++] += o*(1.-ppan);
+	  ppan = ch ? pan : 1. - pan;
+	  ch = !ch ;
+	}
        }
       st+=dm;
     }
     return s;
   }
 
-     /** play streams of grains, with amp am, freq f, pm pm, grain dur gd (sec),
-      density dens (g/sec), and table pos gp (sec) */
-  auto &operator()(const std::vector<S> am, S f, const std::vector<S> pm, S dens, S gd,
-		   S gp = 0, std::size_t vs = def_vsize) {
-    auto &grains = slots;
-    auto &s = mix;
-    std::size_t tt = grains[0].fs / dens;
-    s.resize(vs);
-    for (std::size_t n = 0; n < vs; n+=dm) {
-      if (st >= tt) {
-        st -= tt;
-        grains[num].trigger(gd, gp);
-        num = num == slots.size() - 1 ? 0 : num + 1;
-      }
-      std::fill(s.begin()+n,s.begin()+n+dm,0);
-      for (auto &grain: grains) {
-        std::size_t j = n;
-	grain.vsize(dmr*vs);
-        for (auto &o : grain(am,f,pm)) 
-          s[j++] += o;
-       }
-      st+=dm;
-    }
-    return s;
+  auto &channel(bool ch) {
+    return ch ? mixr : mixl; 
   }
-
-
 
   
 };
