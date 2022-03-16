@@ -182,18 +182,18 @@ template <typename S> struct GrainGen {
       }
       std::fill(s.begin()+n,s.begin()+n+dmr*vs,0);
       std::fill(s2.begin()+n,s2.begin()+n+dmr*vs,0);
+      	bool ch = 0;
+	S ppan = 1. - pan;
+	pan = pan*.5f;
       for (auto &grain: grains) {
         std::size_t j = n;
 	grain.vsize(dmr*vs);
-	bool ch = 0;
-	S ppan = 1. - pan;
-	pan = pan*.5f;
         for (auto &o : grain(am,f,pm)) {
           s[j] += o*ppan;
           s2[j++] += o*(1.-ppan);
+	}
 	  ppan = ch ? pan : 1. - pan;
 	  ch = !ch ;
-	}
        }
       st+=dm;
     }
