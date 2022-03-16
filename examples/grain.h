@@ -143,18 +143,19 @@ template <typename S> struct GrainGen {
   auto &operator()(S a, S p, S dens, S gd, S gp = 0, std::size_t vs = def_vsize) {
     auto &grains = slots;
     auto &s = mixl;
+    std::size_t ddm = dmr*vs;
     std::size_t tt = grains[0].fs / dens;
     s.resize(vs);
-    for (std::size_t n = 0; n < vs; n+=dm) {
+    for (std::size_t n = 0; n < vs; n+=ddm) {
       if (st >= tt) {
         st -= tt;
         grains[num].trigger(gd, gp);
         num = num == slots.size() - 1 ? 0 : num + 1;
       }
-      std::fill(s.begin()+n,s.begin()+n+dm,0);
+      std::fill(s.begin()+n,s.begin()+n+ddm,0);
       for (auto &grain: grains) {
         std::size_t j = n;
-	grain.vsize(dmr*vs);
+	grain.vsize(ddm);
         for (auto &o : grain(a,p)) 
           s[j++] += o;
        }
@@ -171,23 +172,24 @@ template <typename S> struct GrainGen {
     auto &grains = slots;
     auto &s = mixl;
     auto &s2 = mixr;
+    std::size_t ddm = dmr*vs;
     std::size_t tt = grains[0].fs / dens;
     s.resize(vs);
     s2.resize(vs);
-    for (std::size_t n = 0; n < vs; n+=dmr*vs) {
+    for (std::size_t n = 0; n < vs; n+=ddm) {
       if (st >= tt) {
         st -= tt;
         grains[num].trigger(gd, gp);
         num = num == slots.size() - 1 ? 0 : num + 1;
       }
-      std::fill(s.begin()+n,s.begin()+n+dmr*vs,0);
-      std::fill(s2.begin()+n,s2.begin()+n+dmr*vs,0);
+      std::fill(s.begin()+n,s.begin()+n+ddm,0);
+      std::fill(s2.begin()+n,s2.begin()+n+ddm,0);
       	bool ch = 0;
 	pan = (1. - pan)*.5f;
 	S ppan = 1 - pan;
       for (auto &grain: grains) {
         std::size_t j = n;
-	grain.vsize(dmr*vs);
+	grain.vsize(ddm);
         for (auto &o : grain(am,f,pm)) {
           s[j] += o*ppan;
           s2[j++] += o*(1.-ppan);
