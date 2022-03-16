@@ -147,6 +147,10 @@ public:
    */
   void release(S rt) { fac = std::pow(0.001, ts / rt); }
 
+  /** Retrigger
+   */
+  void retrigger() { time  = 0; }
+
   /** Envelope \n
       gate: envelope gate
    */
