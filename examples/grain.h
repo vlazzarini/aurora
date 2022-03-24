@@ -131,7 +131,7 @@ template <typename S> struct GrainGen {
 
   GrainGen(const std::vector<S> &wave, std::size_t streams = 16, S sr = def_sr,
            std::size_t decim = def_vsize, std::size_t vsize = def_vsize)
-  : slots(streams ? 2*streams : 2, Grain<S>(wave, sr, decim)), mixl(vsize), mixr(vsize), st(0),
+  : slots(streams ? streams : 1, Grain<S>(wave, sr, decim)), mixl(vsize), mixr(vsize), st(0),
     num(0), dm(decim), dmr(dm/vsize) {};
 
   void reset(S fs){
@@ -173,7 +173,7 @@ template <typename S> struct GrainGen {
     auto &s = mixl;
     auto &s2 = mixr;
     std::size_t ddm = dmr*vs;
-    std::size_t tt = 2*grains[0].fs / dens;
+    std::size_t tt = grains[0].fs / dens;
     s.resize(vs);
     s2.resize(vs);
     for (std::size_t n = 0; n < vs; n+=ddm) {
@@ -197,7 +197,7 @@ template <typename S> struct GrainGen {
 	  ppan = ch ? pan : 1. - pan;
 	  ch = !ch ;
        }
-      st+=dm;
+      st+=ddm;
     }
     return s;
   }
