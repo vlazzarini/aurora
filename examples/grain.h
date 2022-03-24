@@ -190,7 +190,7 @@ template <typename S> struct GrainGen {
       for (auto &grain: grains) {
         std::size_t j = n;
 	grain.vsize(ddm);
-        for (auto &o : grain(am[0],f[0]*def_ftlen/def_sr)) {
+        for (auto &o : grain(am[0],f*def_ftlen/def_sr)) {
           s[j] += o*ppan;
           s2[j++] += o*(1.-ppan);
 	}
