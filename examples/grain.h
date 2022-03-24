@@ -102,10 +102,10 @@ template <typename S> struct Grain {
   }
 
     /** play grain for set duration with AM and PM */
-  auto &operator()(const std::vector<S> a, S f, const std::vector<S> pm) {
+  auto &operator()(const std::vector<S> a, S f) {
     if (t < gdr) {
       t += osc.vsize();
-      return env(osc(a, f, pm), fs / gdr);
+      return env(osc(a, f), fs / gdr);
     } else {
       if(!off) {
         env.clear();
@@ -190,7 +190,7 @@ template <typename S> struct GrainGen {
       for (auto &grain: grains) {
         std::size_t j = n;
 	grain.vsize(ddm);
-        for (auto &o : grain(am,f,pm)) {
+        for (auto &o : grain(am,f)) {
           s[j] += o*ppan;
           s2[j++] += o*(1.-ppan);
 	}
