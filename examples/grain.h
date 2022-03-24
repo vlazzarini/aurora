@@ -182,8 +182,8 @@ template <typename S> struct GrainGen {
         grains[num].trigger(gd, gp);
         num = num == slots.size() - 1 ? 0 : num + 1;
       }
-      std::fill(s.begin()+n,s.begin()+n+ddm,0);
-      std::fill(s2.begin()+n,s2.begin()+n+ddm,0);
+      std::fill(s.begin()+n,s.begin()+n+dm,0);
+      std::fill(s2.begin()+n,s2.begin()+n+dm,0);
       	bool ch = 0;
 	pan = (1. - pan)*.5f;
 	S ppan = 1 - pan;
