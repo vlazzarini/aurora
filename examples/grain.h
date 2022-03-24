@@ -102,7 +102,7 @@ template <typename S> struct Grain {
   }
 
     /** play grain for set duration with AM and PM */
-  auto &operator()(S a, S f, const std::vector<S> pm) {
+  auto &operator()(const std::vector<S> a, S f, const std::vector<S> pm) {
     if (t < gdr) {
       t += osc.vsize();
       return env(osc(a, f, pm), fs / gdr);
