@@ -159,7 +159,7 @@ template <typename S> struct GrainGen {
         for (auto &o : grain(a,p)) 
           s[j++] += o;
        }
-      st+=dm;
+      st+=ddm;
     }
     return s;
   }
@@ -197,7 +197,7 @@ template <typename S> struct GrainGen {
 	  ppan = ch ? pan : 1. - pan;
 	  ch = !ch ;
        }
-      st+=ddm;
+      st+=dm;
     }
     return s;
   }
