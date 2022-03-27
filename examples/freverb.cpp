@@ -38,8 +38,8 @@ using namespace Aurora;
 
 template <typename S> inline S scl(S a, S b) { return a * b; }
 template <typename S> struct Reverb {
-  static constexpr S dt[4] = {0.037, 0.031, 0.029, 0.023};
-  static constexpr S adt[2] = {0.01, 0.0017};
+static  constexpr S dt[4] = {0.037, 0.031, 0.029, 0.023};
+static constexpr S adt[2] = {0.01, 0.0017};
 
   std::array<Del<S, lp_delay>, 4> combs;
   std::array<Del<S>, 2> apfs;

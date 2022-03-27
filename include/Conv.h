@@ -95,7 +95,7 @@ public:
     parts.clear();
     parts.resize(ceil((float)s.size() / psize));
     for (auto &part : parts)
-      part(std::vector<std::complex<S>>(psize + 1));
+      part = std::vector<std::complex<S>>(psize + 1);
     create(s, psize);
   }
 };
