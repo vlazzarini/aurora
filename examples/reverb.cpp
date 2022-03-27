@@ -73,9 +73,8 @@ int main(int argc, const char **argv) {
         fpout = sf_open(argv[3], SFM_WRITE, &sfinfo);
         float g = atof(argv[4]);
         std::vector<float> buffer(def_vsize);
-        IR<float> ir(impulse, 512);
+        IR<float> ir(impulse,512);
         Conv<float> delay(&ir);
-	ir.reset(impulse,512);
         Mix<float> mix;
         do {
           n = sf_read_float(fpin, buffer.data(), def_vsize);

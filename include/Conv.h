@@ -64,7 +64,7 @@ public:
   */
   IR(const std::vector<S> &s, std::size_t psize = def_psize)
       : parts(ceil((float)s.size() / psize),
-              std::vector<std::complex<S>>(psize + 1))
+              std::move(std::vector<std::complex<S>>(psize + 1)))
 
   {
     create(s, psize);
@@ -95,7 +95,7 @@ public:
     parts.clear();
     parts.resize(ceil((float)s.size() / psize));
     for (auto &part : parts)
-      part = std::vector<std::complex<S>>(psize + 1);
+      part = std::move(std::vector<std::complex<S>>(psize + 1));
     create(s, psize);
   }
 };
