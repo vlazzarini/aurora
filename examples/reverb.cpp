@@ -35,6 +35,62 @@
 
 using namespace Aurora;
 
+template <typename S>
+inline S sum(S a, S b) { return a + b; } 
+
+template <typename S>
+struct ConvReverb {
+   IR<S>   ir1;
+   IR<S>   ir2;  
+   IR<S>   ir3;
+   Conv<S> c1;
+   Conv<S> c2;
+   Conv<S> c3;
+   BinOp<S, sum> mix;
+ 
+
+  ConvReverb(const std::vector<S> &s1,
+	     const std::vector<S> &s2,
+	     const std::vector<S> &s3) :
+    ir1(s1,32), ir2(s2,256), ir3(s3,4096),
+    c1(&ir1), c2(&ir2), c3(&ir3) { }
+
+  void reset(const std::vector<S> &s1,
+	     const std::vector<S> &s2,
+	     const std::vector<S> &s3) {
+    ir1.reset(s1,32);
+      ir2.reset(s2,256);
+        ir3.reset(s3,4096);
+  }
+
+  const std::vector<S> &operator()(const std::vector<S> &in, S g) {
+    return mix(mix(c1(in,g*0.3),c2(in,g*0.3)),c3(in,g*0.3));
+  }
+
+};
+
+template <typename S>
+ConvReverb<S> create_reverb(std::vector<S> &imp) {
+  if(imp.size() < 8192)
+    imp.resize(8192);
+  std::vector<S> s1(imp.begin()+32, imp.begin()+256);
+  std::vector<S> s2(imp.begin()+256, imp.begin()+4096);
+  std::vector<S> s3(imp.begin()+4096, imp.end());
+  return ConvReverb(s1,s2,s3);
+}
+
+template <typename S>
+void reset_reverb(ConvReverb<S> &rev, std::vector<S> &imp) {
+  if(imp.size() < 8192)
+    imp.resize(8192);
+  std::vector<S> s1(imp.begin()+32, imp.begin()+256);
+  std::vector<S> s2(imp.begin()+256, imp.begin()+4096);
+  std::vector<S> s3(imp.begin()+4096, imp.end());
+  rev.reset(s1,s2,s3);
+}
+
+
+
 int main(int argc, const char **argv) {
   SF_INFO sfinfo, sfinfoir;
   SNDFILE *fpir, *fpin, *fpout;
@@ -73,8 +129,8 @@ int main(int argc, const char **argv) {
         fpout = sf_open(argv[3], SFM_WRITE, &sfinfo);
         float g = atof(argv[4]);
         std::vector<float> buffer(def_vsize);
-        IR<float> ir(impulse,512);
-        Conv<float> delay(&ir);
+	//IR<float> imp(impulse);
+        ConvReverb<float> delay = create_reverb(impulse);
         Mix<float> mix;
         do {
           n = sf_read_float(fpin, buffer.data(), def_vsize);

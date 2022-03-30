@@ -57,6 +57,7 @@ add_program(grsynth)
 
 # these have libsndfile dependency
 if(LIBSNDFILE_LIBRARY)
+ add_program(tvconv ${LIBSNDFILE_LIBRARY} ${LIBSNDFILE_INCLUDE_DIRECTORY})
  add_program(delay ${LIBSNDFILE_LIBRARY} ${LIBSNDFILE_INCLUDE_DIRECTORY})
  add_program(filter ${LIBSNDFILE_LIBRARY} ${LIBSNDFILE_INCLUDE_DIRECTORY})
  add_program(reverb ${LIBSNDFILE_LIBRARY} ${LIBSNDFILE_INCLUDE_DIRECTORY})
