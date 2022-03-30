@@ -245,8 +245,8 @@ template <typename S> class TVConv : public SndBase<S> {
 
 public:
   /** Constructor \n
-      IR: impulse response table\n
-      algo: convolution algorithm (ols = 0, ola = 1) \n
+      len: filter len \n
+      psize: partition size \n
       vsize: vector size
   */
  TVConv(std::size_t len, std::size_t psize = def_psize, bool algo = ols, std::size_t vsize = def_vsize)
@@ -277,6 +277,19 @@ public:
                         return s *scal;
                       },
                       in1.size());
+  }
+
+  void reset(std::size_t len, std::size_t psize = def_psize) {
+    del1 = std::vector<std::vector<std::complex<S>>>(len/psize, std::vector<std::complex<S>>(psize + 1));
+    del2 = std::vector<std::vector<std::complex<S>>>(len/psize, std::vector<std::complex<S>>(psize + 1));
+    mix = std::vector<std::complex<S>>(psize + 1);
+    inbuf1 = std::vector<S>(2 * psize);
+    inbuf2 = std::vector<S>(psize);
+    olabuf = std::vector<S>(psize);
+    p = 0;
+    sn = 0;
+    fft = FFT<S>(psize * 2, !packed, inverse);
+    sz = psize;     
   }
            
 };
