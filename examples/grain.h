@@ -202,7 +202,7 @@ template <typename S> struct GrainGen {
     for (auto &grain: grains) {
         j = 0;
 	grain.vsize(vs);
-        for (auto &o : grain(am[0],f,pm[0])) {
+        for (auto &o : grain(am[0],f,0)) {
           s[j] += o*ppan;
           s2[j++] += o*(1.-ppan);
 	}
