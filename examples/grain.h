@@ -186,6 +186,7 @@ template <typename S> struct GrainGen {
     auto &s = mixl;
     auto &s2 = mixr;
     std::size_t tt = grains[0].fs / dens;
+    vs = am.size();
     s.resize(vs);
     s2.resize(vs);
     if (st >= tt) {
@@ -202,7 +203,7 @@ template <typename S> struct GrainGen {
     for (auto &grain: grains) {
         j = 0;
 	grain.vsize(vs);
-        for (auto &o : grain(am[0],f,0)) {
+        for (auto &o : grain(am[0],f,pm[0])) {
           s[j] += o*ppan;
           s2[j++] += o*(1.-ppan);
 	}
