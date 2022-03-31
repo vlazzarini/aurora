@@ -206,6 +206,7 @@ namespace Aurora {
 				transform(inbuf,del);
 				p = p == del.size() - 1 ? 0 : p + 1;			  
 				convol(del,ir->spectrum(),p);
+				std::fill(inbuf.begin()+psize,inbuf.end(),0);
 				sn = 0;
 			      }
 			      return s * scal;
@@ -238,10 +239,10 @@ namespace Aurora {
       return process( [&]() {
 	  auto s =
 	    oladd(in1[n], bufin, fft.data(), obuff, sn, sz);
-	  bufin2[n] = in2[n];
+	  bufin2[sn] = in2[n];
 	  if (++sn == sz) {
 	    transform(inbuf,del);
-	    transform(inbuf,del2);
+	    transform(inbuf2,del2);
 	    p = p == del.size() - 1 ? 0 : p + 1;			  
 	    convol(del,del2,p);
 	    sn = 0;
@@ -258,7 +259,6 @@ namespace Aurora {
 	 (imp->nparts(), std::vector<std::complex<S>>(psize + 1));
       mix = std::vector<std::complex<S>>(psize + 1);
       inbuf = std::vector<S>(2 * psize);
-      inbuf2 = std::vector<S>(psize);
       olabuf = std::vector<S>(psize);
       p = 0;
       sn = 0;
@@ -272,7 +272,7 @@ namespace Aurora {
 	(len/psize,std::vector<std::complex<S>>(psize + 1));
       mix = std::vector<std::complex<S>>(psize + 1);
       inbuf = std::vector<S>(2 * psize);
-      inbuf2 = std::vector<S>(psize);
+      inbuf2 = std::vector<S>(2 * psize);
       olabuf = std::vector<S>(psize);
       p = 0;
       sn = 0;

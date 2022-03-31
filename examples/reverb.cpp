@@ -40,34 +40,34 @@ inline S sum(S a, S b) { return a + b; }
 
 template <typename S>
 struct ConvReverb {
-   IR<S>   ir1;
-   IR<S>   ir2;  
-   IR<S>   ir3;
-   Conv<S> c1;
-   Conv<S> c2;
-   Conv<S> c3;
-   BinOp<S, sum> mix;
+  IR<S>   ir1;
+  IR<S>   ir2;  
+  IR<S>   ir3;
+  Conv<S> c1;
+  Conv<S> c2;
+  Conv<S> c3;
+  BinOp<S, sum> mix;
  
 
   ConvReverb(const std::vector<S> &s1,
 	     const std::vector<S> &s2,
 	     const std::vector<S> &s3) :
     ir1(s1,32), ir2(s2,256), ir3(s3,4096),
-    c1(&ir1), c2(&ir2), c3(&ir3) { }
+    c1(&ir1), c2(&ir2,ola), c3(&ir3,ola) { }
 
   void reset(const std::vector<S> &s1,
 	     const std::vector<S> &s2,
 	     const std::vector<S> &s3) {
     ir1.reset(s1,32);
     c1.reset(&ir1);
-      ir2.reset(s2,256);
-      c2.reset(&ir2);
-        ir3.reset(s3,4096);
-	c2.reset(&ir2);
+    ir2.reset(s2,256);
+    c2.reset(&ir2);
+    ir3.reset(s3,4096);
+    c2.reset(&ir2);
   }
 
   const std::vector<S> &operator()(const std::vector<S> &in, S g) {
-    return mix(mix(c1(in,g*0.3),c2(in,g*0.3)),c3(in,g*0.3));
+    return  c1(in,g);//mix(mix(c1(in,g*0.3),c2(in,g*0.3)),c3(in,g*0.3));
   }
 
 };
@@ -76,7 +76,7 @@ template <typename S>
 ConvReverb<S> create_reverb(std::vector<S> &imp) {
   if(imp.size() < 8192)
     imp.resize(8192);
-  std::vector<S> s1(imp.begin()+32, imp.begin()+256);
+  std::vector<S> s1(imp.begin(), imp.begin()+256);
   std::vector<S> s2(imp.begin()+256, imp.begin()+4096);
   std::vector<S> s3(imp.begin()+4096, imp.end());
   return ConvReverb(s1,s2,s3);
@@ -97,14 +97,14 @@ void reset_reverb(ConvReverb<S> &rev, std::vector<S> &imp) {
 int main(int argc, const char **argv) {
   SF_INFO sfinfo, sfinfoir;
   SNDFILE *fpir, *fpin, *fpout;
-  std::vector<float> impulse;
+  std::vector<double> impulse;
   sf_count_t n;
 
   if (argc > 4) {
     if ((fpir = sf_open(argv[1], SFM_READ, &sfinfoir)) != NULL) {
       if (sfinfoir.channels < 2) {
         impulse.resize(sfinfoir.frames);
-        n = sf_read_float(fpir, impulse.data(), sfinfoir.frames);
+        n = sf_read_double(fpir, impulse.data(), sfinfoir.frames);
         if (!n) {
           std::cout << "error reading " << argv[1] << std::endl;
           sf_close(fpir);
@@ -130,18 +130,20 @@ int main(int argc, const char **argv) {
 
       if (sfinfo.channels < 2) {
         fpout = sf_open(argv[3], SFM_WRITE, &sfinfo);
-        float g = atof(argv[4]);
-        std::vector<float> buffer(def_vsize);
-	//IR<float> imp(impulse);
-        ConvReverb<float> delay = create_reverb(impulse);
-	reset_reverb(delay,impulse); 
-        Mix<float> mix;
+        double g = atof(argv[4]);
+        std::vector<double> buffer(def_vsize);
+	IR<double> imp(impulse,16384);
+	//Conv<double> delay(&imp,ola);
+        ConvReverb<double> delay = create_reverb(impulse);
+	//reset_reverb(delay,impulse);
+	//delay.reset(&imp);
+        Mix<double> mix;
         do {
-          n = sf_read_float(fpin, buffer.data(), def_vsize);
+          n = sf_read_double(fpin, buffer.data(), def_vsize);
           if (n) {
             buffer.resize(n);
             auto &out = mix(delay(buffer, g), buffer);
-            sf_write_float(fpout, out.data(), n);
+            sf_write_double(fpout, out.data(), n);
           } else
             break;
         } while (1);
@@ -150,7 +152,7 @@ int main(int argc, const char **argv) {
         std::fill(buffer.begin(), buffer.end(), 0.f);
         do {
           auto &out = delay(buffer, g);
-          sf_write_float(fpout, out.data(), def_vsize);
+          sf_write_double(fpout, out.data(), def_vsize);
           n -= def_vsize;
         } while (n > 0);
         sf_close(fpin);
