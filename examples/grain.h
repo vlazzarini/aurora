@@ -118,7 +118,7 @@ template <typename S> struct Grain {
   auto &operator()(S a, S f, S pm) {
     if (t < gdr) {
       t += osc.vsize();
-      return env(osc(a, f, pm), fs / gdr);
+      return env(osc(a, f), fs / gdr);
     } else {
       if(!off) {
         env.clear();
