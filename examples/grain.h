@@ -115,6 +115,19 @@ template <typename S> struct Grain {
     }
   }
 
+  auto &operator()(S a, S f, S pm) {
+    if (t < gdr) {
+      t += osc.vsize();
+      return env(osc(a, f, pm), fs / gdr);
+    } else {
+      if(!off) {
+        env.clear();
+        off = true;
+      }
+      return env.vector();
+    }
+  }
+
   
 };
 
@@ -189,7 +202,7 @@ template <typename S> struct GrainGen {
     for (auto &grain: grains) {
         j = 0;
 	grain.vsize(vs);
-        for (auto &o : grain(am,f,pm)) {
+        for (auto &o : grain(am[0],f,pm[0])) {
           s[j] += o*ppan;
           s2[j++] += o*(1.-ppan);
 	}
