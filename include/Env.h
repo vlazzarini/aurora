@@ -149,7 +149,8 @@ public:
 
   /** Retrigger
    */
-  void retrigger() { time  = 0; prev = 0; }
+  void retrigger() { time  = 0; //prev = 0;
+  }
 
   /** Envelope \n
       gate: envelope gate

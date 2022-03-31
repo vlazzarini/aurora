@@ -181,12 +181,12 @@ template <typename S> struct GrainGen {
   /** play streams of grains, with amp am, freq f, pm pm, grain dur gd (sec),
       density dens (g/sec), and table pos gp (sec) */
   auto &operator()(const std::vector<S> am, S f, const std::vector<S> pm, S pan, S dens, S gd,
-		   S gp = 0, std::size_t vs = def_vsize) {
+		   S gp = 0) {
     auto &grains = slots;
     auto &s = mixl;
     auto &s2 = mixr;
     std::size_t tt = grains[0].fs / dens;
-    vs = am.size();
+    std::size_t vs = am.size();
     s.resize(vs);
     s2.resize(vs);
     if (st >= tt) {
@@ -203,7 +203,7 @@ template <typename S> struct GrainGen {
     for (auto &grain: grains) {
         j = 0;
 	grain.vsize(vs);
-        for (auto &o : grain(am[0],f,pm[0])) {
+        for (auto &o : grain(am,f,pm)) {
           s[j] += o*ppan;
           s2[j++] += o*(1.-ppan);
 	}

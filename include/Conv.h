@@ -32,8 +32,8 @@
 
 namespace Aurora {
 const std::size_t def_psize = 2048;
-const bool ola = 0;
-const bool ols = 1;
+const bool ola = 1;
+const bool ols = 0;
 /** IR class \n
     Impulse response table
 */
@@ -105,23 +105,25 @@ public:
 */
 template <typename S> class Conv : public SndBase<S> {
   using SndBase<S>::process;
+  using SndBase<S>::vector;
   const IR<S> *ir;
+ protected:
   std::vector<std::vector<std::complex<S>>> del;
+  std::vector<std::vector<std::complex<S>>> del2;
   std::vector<std::complex<S>> mix;
   std::vector<S> inbuf;
+  std::vector<S> inbuf2;
   std::vector<S> olabuf;
-  std::size_t p, sn;
+  std::size_t p, sn, psize;
   FFT<S> fft;
   bool meth;
 
-  void convol(const std::vector<S> &in) {
-    fft.transform(in);
-    auto &v = fft.vector();
-    std::copy(v.begin(), v.end(), del[p].begin());
+  void convol(const std::vector<std::vector<std::complex<S>>> &in1,
+	      const std::vector<std::vector<std::complex<S>>> &in2,
+	      std::size_t pp) {
+    auto dl = in1.begin() + pp;
+    auto &part = in2;
     std::fill(mix.begin(), mix.end(), 0);
-    p = p == del.size() - 1 ? 0 : p + 1;
-    auto dl = del.begin() + p;
-    auto &part = ir->spectrum();
     for (auto prt = part.rbegin(); prt != part.rend(); prt++, dl++) {
       if (dl == del.end())
         dl = del.begin();
@@ -150,6 +152,12 @@ template <typename S> class Conv : public SndBase<S> {
     return s;
   }
 
+  void transform(const std::vector<S> &in, std::vector<std::vector<std::complex<S>>> &d) {
+             fft.transform(in);
+             auto &v = fft.vector();
+             std::copy(v.begin(), v.end(), d[p].begin());
+  }				   
+
 public:
   /** Constructor \n
       IR: impulse response table\n
@@ -159,25 +167,41 @@ public:
   Conv(const IR<S> *imp, bool algo = ols, std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), ir(imp),
         del(imp->nparts(), std::vector<std::complex<S>>(imp->psize() + 1)),
-        mix(imp->psize() + 1), inbuf(2 * imp->psize()), olabuf(imp->psize()),
-        p(0), sn(0), fft(imp->psize() * 2, !packed, inverse), meth(algo){};
+        del2(0), mix(imp->psize() + 1), inbuf(2 * imp->psize()), inbuf2(0),
+        olabuf(imp->psize()),
+       p(0), sn(0), psize(imp->psize()), fft(imp->psize() * 2, !packed, inverse), meth(algo){};
+
+   /** Constructor \n
+      len: convolution length \n
+      psize: partition size \n
+      vsize: vector size
+    */
+  Conv(std::size_t len,  std::size_t psiz = def_psize, std::size_t vsize = def_vsize)
+      : SndBase<S>(vsize), ir(nullptr),
+        del(std::ceil(len/psiz), std::vector<std::complex<S>>(psiz + 1)),
+        del2(std::ceil(len/psiz), std::vector<std::complex<S>>(psiz + 1)),
+        mix(psiz + 1), inbuf(2 * psiz), inbuf2(2 * psiz), olabuf(psiz),
+        p(0), sn(0), psize(psiz), fft(psize * 2, !packed, inverse), meth(ola){};
 
   /** Convolution \n
     in: input \n
     scal: output ampltude scaling
   */
   const std::vector<S> &operator()(const std::vector<S> &in, S scal) {
+    if(ir == nullptr) return vector();
     std::size_t n = 0;
     S *bufin = inbuf.data();
     S *obuff = olabuf.data();
-    std::size_t sz = ir->psize();
+    std::size_t sz = psize;
     return meth ? process(
                       [&]() {
                         auto s =
                             oladd(in[n++], bufin, fft.data(), obuff, sn, sz);
                         if (++sn == sz) {
-                          convol(inbuf);
-                          sn = 0;
+			      transform(inbuf,del);
+                              p = p == del.size() - 1 ? 0 : p + 1;			  
+                              convol(del,ir->spectrum(),p);
+                              sn = 0;
                         }
                         return s * scal;
                       },
@@ -187,91 +211,33 @@ public:
                         auto s =
                             olsave(in[n++], bufin, fft.data(), obuff, sn, sz);
                         if (++sn == sz) {
-                          convol(inbuf);
-                          sn = 0;
+			     transform(inbuf,del);
+                              p = p == del.size() - 1 ? 0 : p + 1;			  
+                              convol(del,ir->spectrum(),p);
+                              sn = 0;
                         }
                         return s * scal;
                       },
                       in.size());
   }
-};
 
-
-
-/** TVConv class \n
-    Time-Varying Partitioned convolution
-*/
-template <typename S> class TVConv : public SndBase<S> {
-  using SndBase<S>::process;
-  std::vector<std::vector<std::complex<S>>> del1, del2;
-  std::vector<std::complex<S>> mix;
-  std::vector<S> inbuf1, inbuf2;
-  std::vector<S> olabuf;
-  std::size_t p, sn;
-  FFT<S> fft;
-  std::size_t sz;
-
-  void convol(const std::vector<S> &in1, const std::vector<S> &in2) {
-    fft.transform(in1);
-    auto &v1 = fft.vector();
-    std::copy(v1.begin(), v1.end(), del1[p].begin());
-    fft.transform(in2);
-    auto &v2 = fft.vector();
-    std::copy(v2.begin(), v2.end(), del2[p].begin());
-    std::fill(mix.begin(), mix.end(), 0);
-    p = p == del1.size() - 1 ? 0 : p + 1;
-    auto dl = del1.begin() + p;
-    auto &part = del2;
-    for (auto prt = part.rbegin(); prt != part.rend(); prt++, dl++) {
-      if (dl == del1.end())
-        dl = del1.begin();
-      auto dsamp = dl->begin();
-      auto psamp = prt->begin();
-      for (auto &mx : mix)
-        mx += (*dsamp++ * *psamp++);
-    }
-    fft.transform(mix);
-  }
-
-  S oladd(S in1, S in2, S *bufin1,  S *bufin2,
-	  const S *bufout, S *olabuf, std::size_t cnt,
-          std::size_t psz) {
-    auto s = bufout[cnt] + olabuf[cnt];
-    bufin1[cnt] = in1;
-    bufin2[cnt] = in2;
-    olabuf[cnt] = bufout[cnt + psz];
-    return s;
-  }
-
-public:
-  /** Constructor \n
-      len: filter len \n
-      psize: partition size \n
-      vsize: vector size
-  */
- TVConv(std::size_t len, std::size_t psize = def_psize, bool algo = ols, std::size_t vsize = def_vsize)
-      : SndBase<S>(vsize),
-        del1(len/psize, std::vector<std::complex<S>>(psize + 1)),
-        del2(len/psize, std::vector<std::complex<S>>(psize + 1)),
-        mix(psize + 1), inbuf1(2 * psize), inbuf2(psize),
-        olabuf(psize),
-        p(0), sn(0), fft(psize * 2, !packed, inverse), sz(psize){};
-
-  /** Convolution \n
-    in: input \n
-    scal: output ampltude scaling
-  */
   const std::vector<S> &operator()(const std::vector<S> &in1, const std::vector<S> &in2, S scal) {
+    if(del2.size() == 0) return vector();
     std::size_t n = 0;
-    S *bufin1 = inbuf1.data();
+    S *bufin = inbuf.data();
     S *bufin2 = inbuf2.data();
     S *obuff = olabuf.data();
+    std::size_t sz = psize;
     return process( [&]() {
                         auto s =
-			  oladd(in1[n], in2[n], bufin1, bufin2, fft.data(), obuff, sn, sz);
+			  oladd(in1[n], bufin, fft.data(), obuff, sn, sz);
+			bufin2[n] = in2[n];
                         if (++sn == sz) {
-                          convol(inbuf1,inbuf2);
-                          sn = 0;
+			      transform(inbuf,del);
+			      transform(inbuf,del2);
+                              p = p == del.size() - 1 ? 0 : p + 1;			  
+                              convol(del,del2,p);
+                              sn = 0;
                         }
 			n++;
                         return s *scal;
@@ -279,22 +245,18 @@ public:
                       in1.size());
   }
 
-  void reset(std::size_t len, std::size_t psize = def_psize) {
-    del1 = std::vector<std::vector<std::complex<S>>>(len/psize, std::vector<std::complex<S>>(psize + 1));
+ void reset(std::size_t len, std::size_t psiz = def_psize) {
+    del = std::vector<std::vector<std::complex<S>>>(len/psize, std::vector<std::complex<S>>(psize + 1));
     del2 = std::vector<std::vector<std::complex<S>>>(len/psize, std::vector<std::complex<S>>(psize + 1));
     mix = std::vector<std::complex<S>>(psize + 1);
-    inbuf1 = std::vector<S>(2 * psize);
+    inbuf = std::vector<S>(2 * psize);
     inbuf2 = std::vector<S>(psize);
     olabuf = std::vector<S>(psize);
     p = 0;
     sn = 0;
     fft = FFT<S>(psize * 2, !packed, inverse);
-    sz = psize;     
+    psize = psiz;     
   }
-           
 };
 
- 
-
- 
 } // namespace Aurora
