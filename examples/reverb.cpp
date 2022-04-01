@@ -63,7 +63,7 @@ struct ConvReverb {
     ir2.reset(s2,256);
     c2.reset(&ir2);
     ir3.reset(s3,4096);
-    c2.reset(&ir3);
+    c3.reset(&ir3);
   }
 
   const std::vector<S> &operator()(const std::vector<S> &in, S g) {
@@ -139,7 +139,7 @@ int main(int argc, const char **argv) {
           n = sf_read_double(fpin, buffer.data(), def_vsize);
           if (n) {
             buffer.resize(n);
-            auto &out = delay(buffer, g);
+            auto &out = mix(delay(buffer, g),buffer);
             sf_write_double(fpout, out.data(), n);
           } else
             break;
