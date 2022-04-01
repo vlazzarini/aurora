@@ -53,7 +53,7 @@ struct ConvReverb {
 	     const std::vector<S> &s2,
 	     const std::vector<S> &s3) :
     ir1(s1,32), ir2(s2,256), ir3(s3,4096),
-    c1(&ir1), c2(&ir2,ola), c3(&ir3,ola) { }
+    c1(&ir1), c2(&ir2), c3(&ir3) { }
 
   void reset(const std::vector<S> &s1,
 	     const std::vector<S> &s2,
@@ -63,7 +63,7 @@ struct ConvReverb {
     ir2.reset(s2,256);
     c2.reset(&ir2);
     ir3.reset(s3,4096);
-    c2.reset(&ir2);
+    c2.reset(&ir3);
   }
 
   const std::vector<S> &operator()(const std::vector<S> &in, S g) {
@@ -132,7 +132,8 @@ int main(int argc, const char **argv) {
         fpout = sf_open(argv[3], SFM_WRITE, &sfinfo);
         double g = atof(argv[4]);
         std::vector<double> buffer(def_vsize);
-        ConvReverb<double> delay = create_reverb(impulse);
+        ConvReverb<double> delay = create_reverb(buffer);
+	reset_reverb(delay,impulse);
         Mix<double> mix;
         do {
           n = sf_read_double(fpin, buffer.data(), def_vsize);

@@ -254,9 +254,10 @@ namespace Aurora {
     }
 
     void reset(const IR<S> *imp) {
-      psize = imp->psize();	
+      ir = imp;
+      psize = ir->psize();	
       del = std::vector<std::vector<std::complex<S>>>
-	(imp->nparts(), std::vector<std::complex<S>>(psize + 1));
+	(ir->nparts(), std::vector<std::complex<S>>(psize + 1));
       mix = std::vector<std::complex<S>>(psize + 1);
       inbuf = std::vector<S>(2 * psize);
       olabuf = std::vector<S>(psize);
