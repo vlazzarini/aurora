@@ -100,6 +100,7 @@ class Env : public SndBase<S> {
   S prev;
   S ts;
   S fac;
+  S rt;
   S &p1, &p2, &p3;
 
   S synth(S e, double &t, bool gate, std::function<S(double, S, S)> fn, S a,
@@ -128,7 +129,7 @@ public:
   Env(std::function<S(double, S, S)> f, S rt, S fs = def_sr,
       std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), fun(f), prev(0), ts(1. / fs),
-        fac(std::pow(0.001, ts / rt)), p1(fac), p2(fac), p3(fac){};
+     fac(std::pow(0.001, ts / rt)), rt(rt), p1(fac), p2(fac), p3(fac){};
 
   /** Constructor \n
      a: env fn parameter 1 \n
@@ -140,16 +141,18 @@ public:
  */
   Env(S &a, S &b, S &c, S rt, S fs = def_sr, std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), fun(nullptr), prev(0), ts(1. / fs),
-        fac(std::pow(0.001, ts / rt)), p1(a), p2(b), p3(c) {}
+  fac(std::pow(0.001, ts / rt)), rt(rt), p1(a), p2(b), p3(c) {}
 
   /** Release time setter
      rt: release time
    */
-  void release(S rt) { fac = std::pow(0.001, ts / rt); }
+  void release(S t) { fac = std::pow(0.001, ts / (rt = t)); }
+
+  S release() { return rt; }
 
   /** Retrigger
    */
-  void retrigger() { time  = 0; //prev = 0;
+  void retrigger() { time  = 0; 
   }
 
   /** Envelope \n
@@ -218,6 +221,7 @@ public:
     time = 0;
     prev = 0;
     ts = 1 / fs;
+    fac = std::pow(0.001, ts / rt);
   }
 
   /** set the envelope function \n
