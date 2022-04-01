@@ -67,7 +67,7 @@ struct ConvReverb {
   }
 
   const std::vector<S> &operator()(const std::vector<S> &in, S g) {
-    return  c1(in,g);//mix(mix(c1(in,g*0.3),c2(in,g*0.3)),c3(in,g*0.3));
+    return mix(mix(c1(in,g*0.3),c2(in,g*0.3)),c3(in,g*0.3));
   }
 
 };
@@ -76,7 +76,7 @@ template <typename S>
 ConvReverb<S> create_reverb(std::vector<S> &imp) {
   if(imp.size() < 8192)
     imp.resize(8192);
-  std::vector<S> s1(imp.begin(), imp.begin()+256);
+  std::vector<S> s1(imp.begin()+32, imp.begin()+256);
   std::vector<S> s2(imp.begin()+256, imp.begin()+4096);
   std::vector<S> s3(imp.begin()+4096, imp.end());
   return ConvReverb(s1,s2,s3);
@@ -132,11 +132,7 @@ int main(int argc, const char **argv) {
         fpout = sf_open(argv[3], SFM_WRITE, &sfinfo);
         double g = atof(argv[4]);
         std::vector<double> buffer(def_vsize);
-	IR<double> imp(impulse,16384);
-	//Conv<double> delay(&imp,ola);
         ConvReverb<double> delay = create_reverb(impulse);
-	//reset_reverb(delay,impulse);
-	//delay.reset(&imp);
         Mix<double> mix;
         do {
           n = sf_read_double(fpin, buffer.data(), def_vsize);

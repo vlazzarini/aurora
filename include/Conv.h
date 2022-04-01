@@ -132,6 +132,7 @@ namespace Aurora {
 	for (auto &mx : mix)
 	  mx += (*dsamp++ * *psamp++);
       }
+      mix[0] *= 2; mix[psize] *= 2;
       fft.transform(mix);
     }
 
