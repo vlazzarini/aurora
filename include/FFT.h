@@ -31,6 +31,7 @@
 #include <cmath>
 #include <complex>
 #include <vector>
+#include <iostream>
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -125,10 +126,11 @@ public:
         w *= wp;
       }
     }
-    dir = norm ? dir : !dir;
-    if (dir == forward)
+    dir = norm ? !dir : dir;
+    if (dir == forward) {
       for (uint32_t n = 0; n < N; n++)
         s[n] /= N;
+    }
   }
 
   /** Real-to-complex forward FFT \n
