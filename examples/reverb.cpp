@@ -138,7 +138,7 @@ int main(int argc, const char **argv) {
           n = sf_read_double(fpin, buffer.data(), def_vsize);
           if (n) {
             buffer.resize(n);
-            auto &out = mix(delay(buffer, g), buffer);
+            auto &out = delay(buffer, g);
             sf_write_double(fpout, out.data(), n);
           } else
             break;

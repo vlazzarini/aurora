@@ -125,8 +125,8 @@ namespace Aurora {
       auto &part = in2;
       std::fill(mix.begin(), mix.end(), 0);
       for (auto prt = part.rbegin(); prt != part.rend(); prt++, dl++) {
-	if (dl == del.end())
-	  dl = del.begin();
+	if (dl == in1.end())
+	  dl = in1.begin();
 	auto dsamp = dl->begin();
 	auto psamp = prt->begin();
 	for (auto &mx : mix)
@@ -253,7 +253,7 @@ namespace Aurora {
 	in1.size());
     }
 
-      void reset(const IR<S> *imp) {
+    void reset(const IR<S> *imp) {
       psize = imp->psize();	
       del = std::vector<std::vector<std::complex<S>>>
 	 (imp->nparts(), std::vector<std::complex<S>>(psize + 1));
