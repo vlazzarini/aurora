@@ -57,7 +57,7 @@ namespace Aurora {
       fft.transform(in);
       auto &v = fft.vector();
       for(auto &s : get_spec()) {
-	s = v[n];
+	   s = v[n];
 	oph[n] = s.diff(oph[n]);
 	s.freq(s.tocps(n*c, fac));
 	n++;
@@ -140,14 +140,11 @@ namespace Aurora {
 	bin = in[n];
         bin.freq(bin.fromcps(n*c, fac));
         ph[n] = bin.integ(ph[n]);
-        if(n  && n != in.size()-1) s = bin;
-	else {
-	  s.real(bin.amp());
-	    s.imag(0);
-	}
-	    
+        s = bin;
 	n++;
-      }	
+      }
+      spec[0].imag(0);
+      spec.front().imag(0);
       return fft.transform(spec);
     }
     
