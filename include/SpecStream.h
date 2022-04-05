@@ -127,7 +127,7 @@ namespace Aurora {
     using SndBase<S>::get_sig;
     std::vector<std::vector<S>> buffers;
     std::vector<std::complex<S>> spec;
-    std::vector<S> ph;
+    std::vector<double> ph;
     const std::vector<S> &win;
     FFT<S> fft;
     std::size_t dm, fcnt, pos, hsize, hnum;
@@ -140,10 +140,11 @@ namespace Aurora {
 	bin = in[n];
         bin.freq(bin.fromcps(n*c, fac));
         ph[n] = bin.integ(ph[n]);
+	if(n==10) std::cout << ph[n] << std::endl;
         s = bin;
 	n++;
       }
-      std::cout << spec[0].imag() << std::endl;
+
       return fft.transform(spec);
     }
     
