@@ -140,7 +140,12 @@ namespace Aurora {
 	bin = in[n];
         bin.freq(bin.fromcps(n*c, fac));
         ph[n] = bin.integ(ph[n]);
-        s = bin;
+        if(n  && n != in.size()-1) s = bin;
+	else {
+	  s.real(bin.amp());
+	    s.imag(0);
+	}
+	    
 	n++;
       }	
       return fft.transform(spec);
