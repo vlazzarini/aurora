@@ -174,10 +174,10 @@ namespace Aurora {
       for(auto &ss : v) {
 	ss = 0.;
 	std::size_t offs = 0;	  
-	for (auto &b : buffers) {
-	  ss += b[(pos-offs+size)%size];
+	//for (auto &b : buffers) {
+	  ss += buffers[0][(pos-offs+size)%size];
 	  offs += hsize;
-	}
+	  //}
 	if(++fcnt == hsize) {
 	  std::size_t n = 0;
 	  auto s = synthesis(in);
