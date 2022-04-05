@@ -175,7 +175,7 @@ namespace Aurora {
 	ss = 0.;
 	std::size_t offs = 0;	  
 	for (auto &b : buffers) {
-	  ss += buffers[0][(pos-offs+size)%size];
+	  ss += b[(pos-offs+size)%size];
 	  offs += hsize;
 	 }
 	if(++fcnt == hsize) {
