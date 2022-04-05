@@ -200,6 +200,9 @@ namespace Aurora {
       c = fs/win.size();
     }
 
+    void clearph() {
+      std::fill(ph.begin(), ph.end(), 0);
+    }
   };
  
 }
