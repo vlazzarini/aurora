@@ -132,25 +132,18 @@ namespace Aurora {
     FFT<S> fft;
     std::size_t dm, fcnt, pos, hsize, hnum;
     S fac, c;
-    int bin_index;
 
     const S *synthesis(const std::vector<specdata<S>> &in) {
       specdata<S> bin;
       std::size_t n = 0;
-      S the_phase;
       for(auto &s : spec) {
 	bin = in[n];
+	if(!n) std::cout << bin.freq() << std::endl;
         bin.freq(bin.fromcps(n*c, fac));
-        the_phase =  bin.integ(ph[n]);
-	if (n == bin_index)
-          the_phase = (S) fmod(the_phase,twopi);
-	bin.freq(the_phase);
-	ph[n] = the_phase;
+        ph[n] = bin.integ(ph[n]);
         s = bin;
 	n++;
       }
-      if (++(bin_index) == spec.size())
-           bin_index = 0;
       spec[0].imag(0);
       spec.front().imag(0);
       return fft.transform(spec);
@@ -169,7 +162,7 @@ namespace Aurora {
     SndBase<S>(vsize), buffers(window.size()/hsiz, std::vector<S>(window.size())),
       spec(window.size()/2 + 1), ph(window.size()/2 + 1), win(window),
       fft(window.size(), !packed), dm(window.size()/hsiz), fcnt(0),
-      pos(0), hsize(hsiz), hnum(0), fac(twopi*hsiz/fs), c(fs/window.size()), bin_index(0) { };
+      pos(0), hsize(hsiz), hnum(0), fac(twopi*hsiz/fs), c(fs/window.size()) { };
 
 
     /** Spectral stream synthesis \n
