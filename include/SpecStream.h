@@ -138,7 +138,7 @@ namespace Aurora {
       std::size_t n = 0;
       for(auto &s : spec) {
 	bin = in[n];
-	if(!n) bin.freq(0);
+	if(n==spec.size()-1) std::cout << bin.freq() << std::endl;
         bin.freq(bin.fromcps(n*c, fac));
         ph[n] = bin.integ(ph[n]);
         s = bin;
