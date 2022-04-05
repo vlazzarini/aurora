@@ -148,8 +148,8 @@ public:
     if (!pckd)
       c.resize(N);
     transform(c, forward);
-    zro = (c[0].real() + c[0].imag())*0.5;
-    nyq = (c[0].real() - c[0].imag())*0.5;
+    zro = c[0].real() + c[0].imag();
+    nyq = c[0].real() - c[0].imag();
     c[0].real(zro), c[0].imag(nyq);
     o = -M_PI / N;
     wp.real(std::cos(o)), wp.imag(std::sin(o));
@@ -185,10 +185,10 @@ public:
     S *s = reinterpret_cast<S *>(c.data());
     std::copy(sp.begin(), sp.end(), c.begin());
     if (pckd)
-      zro = c[0].real(), nyq = c[0].imag();
+      zro = c[0].real()*0.5, nyq = c[0].imag()*0.5;
     else {
-      zro = c[0].real();
-      nyq = c[N].real();
+      zro = c[0].real()*0.5;
+      nyq = c[N].real()*0.5;
     }
     c[0].real(zro + nyq), c[0].imag(zro - nyq);
     o = M_PI / N;
