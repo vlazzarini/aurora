@@ -172,6 +172,12 @@ namespace Aurora {
       std::size_t size = win.size();
       auto &v = get_sig();
       for(auto &ss : v) {
+	ss = 0.;
+	std::size_t offs = 0;	  
+	for (auto &b : buffers) {
+	  ss += b[(pos-offs+size)%size];
+	  offs += hsize;
+	}
 	if(++fcnt == hsize) {
 	  std::size_t n = 0;
 	  auto s = synthesis(in);
@@ -183,13 +189,8 @@ namespace Aurora {
 	  hnum = hnum != dm - 1 ? hnum + 1 : 0;
 	  fcnt = 0;
 	}
-	ss = 0.;
-	std::size_t offs = 0;	  
-	for (auto &b : buffers) {
-	  ss += b[(pos-offs+size)%size];
-	  offs += hsize;
-	}
-	pos = pos != size - 1 ? pos + 1 : 0; 
+	pos = pos != size - 1 ? pos + 1 : 0;
+	
       }
       return v;
     }
