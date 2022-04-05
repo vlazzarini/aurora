@@ -183,7 +183,7 @@ namespace Aurora {
 	  auto s = synthesis(in);
 	  std::size_t offs =  hsize*hnum;
 	  for(auto &b : buffers[hnum]) {
-	    b = s[(n+offs)%size]*win[n];
+	    b = s[(n-offs+size)%size]*win[n];
 	    n++;
 	  }
 	  hnum = hnum != dm - 1 ? hnum + 1 : 0;
