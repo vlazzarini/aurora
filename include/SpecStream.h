@@ -139,7 +139,7 @@ namespace Aurora {
       for(auto &s : spec) {
 	bin = in[n];
         bin.freq(bin.fromcps(n*c, fac));
-        ph[n] = bin.integ(ph[n]);
+        ph[n] = fmod(bin.integ(ph[n]), twopi);
 	if(n==10) std::cout << ph[n] << std::endl;
         s = bin;
 	n++;
