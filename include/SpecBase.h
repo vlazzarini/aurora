@@ -130,7 +130,7 @@ namespace Aurora {
         returns current phase in object
     */
      S integ(S ph) {
-      bin.imag(ph+bin.imag());
+      bin.imag(unwrap(ph+bin.imag()));
       return bin.imag();
     }
 

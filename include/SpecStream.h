@@ -141,7 +141,6 @@ namespace Aurora {
         bin.freq(bin.fromcps(n*c, fac));
         ph[n] = bin.integ(ph[n]);
         s = bin;
-
 	n++;
       }	
       return fft.transform(spec);
