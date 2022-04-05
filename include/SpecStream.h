@@ -138,14 +138,12 @@ namespace Aurora {
       std::size_t n = 0;
       for(auto &s : spec) {
 	bin = in[n];
-	if(n==spec.size()-1) std::cout << bin.freq() << std::endl;
         bin.freq(bin.fromcps(n*c, fac));
         ph[n] = bin.integ(ph[n]);
         s = bin;
 	n++;
       }
-      spec[0].imag(0);
-      spec.front().imag(0);
+      std::cout << spec[0].imag() << std::endl;
       return fft.transform(spec);
     }
     
