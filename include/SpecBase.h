@@ -72,9 +72,7 @@ namespace Aurora {
       returns complex data in rectangular format
   */ 
   operator std::complex<S> () const {
-    S r = bin.real();
-    S i = bin.imag();
-    return std::complex<S>(r*std::cos(i),r*std::sin(i));
+    return std::polar(bin.real(),bin.imag());
   }
 
   /** spectral data amplitude

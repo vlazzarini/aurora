@@ -57,12 +57,10 @@ namespace Aurora {
       fft.transform(in);
       auto &v = fft.vector();
       for(auto &s : get_spec()) {
-	if(n && n != in.size() - 1){
-	   s = v[n];
-	   oph[n] = s.diff(oph[n]);
-	   s.freq(s.tocps(n*c, fac));
-	} else s.amp(v[n].real()), s.freq(v[n].imag());   
-       n++;
+	s = v[n];
+	oph[n] = s.diff(oph[n]);
+	s.freq(s.tocps(n*c, fac));
+	n++;
       }
     }
     
@@ -139,12 +137,10 @@ namespace Aurora {
       specdata<S> bin;
       std::size_t n = 0;
       for(auto &s : spec) {
-	if(n && n != in.size() - 1) {
- 	  bin = in[n];
-          bin.freq(bin.fromcps(n*c, fac));
-          ph[n] = fmod(ph[n] += bin.freq(), twopi);
-          s = std::complex<float>(bin.amp()*cos(ph[n]), bin.amp()*sin(ph[n]));
-	} else s.real(in[n].amp()), s.imag(in[n].freq());
+	bin = in[n];
+	bin.freq(bin.fromcps(n*c, fac));
+	ph[n] = fmod(bin.integ(ph[n]), twopi);
+	s = bin;
 	n++;
       }
 
@@ -153,12 +149,12 @@ namespace Aurora {
     
   public:
 
-  /** Constructor \n
-      window: short-time Fourier transform window \n
-      hsize: stream hopsize \n
-      fs: sampling rate \n
-      vsize: output vector size
-  */  
+    /** Constructor \n
+	window: short-time Fourier transform window \n
+	hsize: stream hopsize \n
+	fs: sampling rate \n
+	vsize: output vector size
+    */  
   SpecSynth(const std::vector<S> &window, std::size_t hsiz = def_hsize,
 	    S fs = def_sr, std::size_t vsize = def_vsize) :
     SndBase<S>(vsize), buffers(window.size()/hsiz, std::vector<S>(window.size())),
@@ -173,18 +169,18 @@ namespace Aurora {
     */    
     const std::vector<S> &operator() (const std::vector<specdata<S>> &in) {  
       std::size_t size = win.size();
-      auto &v = get_sig();
-      for(auto &ss : v) {
+      std::size_t offs = 0;
+      for(auto &ss : get_sig()) {
 	ss = 0.;
-	std::size_t offs = 0;	  
+	offs = 0;  
 	for (auto &b : buffers) {
 	  ss += b[(pos-offs+size)%size];
 	  offs += hsize;
-	 }
+	}
 	if(++fcnt == hsize) {
 	  std::size_t n = 0;
 	  auto s = synthesis(in);
-	  std::size_t offs =  hsize*hnum;
+	  offs =  hsize*hnum;
 	  for(auto &b : buffers[hnum]) {
 	    b = s[(n+offs)%size]*win[n];
 	    n++;
@@ -192,10 +188,9 @@ namespace Aurora {
 	  hnum = hnum != dm - 1 ? hnum + 1 : 0;
 	  fcnt = 0;
 	}
-	pos = pos != size - 1 ? pos + 1 : 0;
-	
+	pos = pos != size - 1 ? pos + 1 : 0;	
       }
-      return v;
+      return get_sig();
     }
     
     /** reset the stream parameters \n
