@@ -173,28 +173,27 @@ namespace Aurora {
     */    
     const std::vector<S> &operator() (const std::vector<specdata<S>> &in) {  
       std::size_t size = win.size();
-      std::size_t offs1 = 0, offs2= 0 ;
       auto &v = get_sig();
       for(auto &ss : v) {
 	ss = 0.;
-	offs1 = 0;	  
+	std::size_t offs = 0;	  
 	for (auto &b : buffers) {
-	  ss += b[(pos-offs1+size)%size];
-	  offs1 += hsize;	 
-	  if(fcnt == hsize) {
-	    std::size_t n = 0;
-	    auto s = synthesis(in);
-	    offs2 =  hsize*hnum;
-	    for(auto &b : buffers[hnum]) {
-	      b = s[(n+offs2)%size]*win[n];
-	      n++;
+	  ss += b[(pos-offs+size)%size];
+	  offs += hsize;
+	 }
+	if(++fcnt == hsize) {
+	  std::size_t n = 0;
+	  auto s = synthesis(in);
+	  std::size_t offs =  hsize*hnum;
+	  for(auto &b : buffers[hnum]) {
+	    b = s[(n+offs)%size]*win[n];
+	    n++;
 	  }
 	  hnum = hnum != dm - 1 ? hnum + 1 : 0;
 	  fcnt = 0;
-	 }
 	}
 	pos = pos != size - 1 ? pos + 1 : 0;
-	fcnt++;
+	
       }
       return v;
     }
