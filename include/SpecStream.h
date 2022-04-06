@@ -181,19 +181,20 @@ namespace Aurora {
 	for (auto &b : buffers) {
 	  ss += b[(pos-offs1+size)%size];
 	  offs1 += hsize;	 
-	if(++fcnt == hsize) {
-	  std::size_t n = 0;
-	  auto s = synthesis(in);
-	  offs2 =  hsize*hnum;
-	  for(auto &b : buffers[hnum]) {
-	    b = s[(n+offs2)%size]*win[n];
-	    n++;
+	  if(fcnt == hsize) {
+	    std::size_t n = 0;
+	    auto s = synthesis(in);
+	    offs2 =  hsize*hnum;
+	    for(auto &b : buffers[hnum]) {
+	      b = s[(n+offs2)%size]*win[n];
+	      n++;
 	  }
 	  hnum = hnum != dm - 1 ? hnum + 1 : 0;
 	  fcnt = 0;
 	 }
 	}
 	pos = pos != size - 1 ? pos + 1 : 0;
+	fcnt++;
       }
       return v;
     }
