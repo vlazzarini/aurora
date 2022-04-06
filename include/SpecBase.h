@@ -39,7 +39,7 @@ namespace Aurora {
   const std::size_t def_hsize = 256;
 
   template <typename S>
-    S unwrap(S ph) { return ph >= M_PI ? ph -twopi : (ph < -M_PI ? ph + twopi : ph); } 
+    S unwrap(S ph) { return ph >= M_PI ? ph - twopi : (ph < -M_PI ? ph + twopi : ph); } 
 
   /** Spectral Data Type \n
       S: sample type
@@ -64,10 +64,8 @@ namespace Aurora {
        c - complex data in rectangular format
    */
   specdata(std::complex<S> c) : bin(c) {
-      S r = bin.real();
-      S i = bin.imag();
-      bin.real(std::sqrt(r*r + i*i));
-      bin.imag(std::atan2(i, r));
+      bin.real(std::abs(c));
+      bin.imag(std::arg(c));
   }
 
   /** Cast operator \n

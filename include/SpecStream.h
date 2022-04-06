@@ -57,10 +57,12 @@ namespace Aurora {
       fft.transform(in);
       auto &v = fft.vector();
       for(auto &s : get_spec()) {
+	if(n && n != in.size() - 1){
 	   s = v[n];
-	oph[n] = s.diff(oph[n]);
-	s.freq(s.tocps(n*c, fac));
-	n++;
+	   oph[n] = s.diff(oph[n]);
+	   s.freq(s.tocps(n*c, fac));
+	} else s.amp(v[n].real()), s.freq(v[n].imag());   
+       n++;
       }
     }
     
@@ -137,10 +139,12 @@ namespace Aurora {
       specdata<S> bin;
       std::size_t n = 0;
       for(auto &s : spec) {
-	bin = in[n];
-        bin.freq(bin.fromcps(n*c, fac));
-        ph[n] = fmod(bin.integ(ph[n]), twopi);
-        s = bin;
+	if(n && n != in.size() - 1) {
+ 	  bin = in[n];
+          bin.freq(bin.fromcps(n*c, fac));
+          ph[n] = fmod(ph[n] += bin.freq(), twopi);
+          s = std::complex<float>(bin.amp()*cos(ph[n]), bin.amp()*sin(ph[n]));
+	} else s.real(in[n].amp()), s.imag(in[n].freq());
 	n++;
       }
 
