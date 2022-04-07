@@ -216,8 +216,8 @@ namespace Aurora {
     std::vector<std::complex<S>> spec;
     FFT<S> fft;   
 
-  Ceps(std::size_t vsize = def_fftsize) : SndBase<S>(vsize), spec(vsize/4 + 1),
-      fft(vsize/2, !packed) { };
+  Ceps(std::size_t size = def_fftsize) : SndBase<S>(size/2 + 1), spec(size/4 + 1),
+      fft(size/2, !packed) { };
 
   public:
     const std::vector<S> &operator()(const std::vector<specdata<S>> &in, std::size_t coefs){
