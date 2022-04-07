@@ -28,6 +28,7 @@
 #ifndef _AURORA_SPECSTREAM_
 #define _AURORA_SPECSTREAM_
 
+#include <algorithm>
 #include "SpecBase.h"
 #include "FFT.h"
 
@@ -165,9 +166,9 @@ namespace Aurora {
       fft(window.size(), packed), dm(window.size()/hsiz),
       hsize(hsiz), count(dm), fac(twopi*hsiz/fs),
       c(fs/window.size()) {
-         std::size_t n = 1;      
-         for (auto &cnt : count) cnt = (dm - n++)*hsize;
-      };
+      std::size_t n = 1;      
+      for (auto &cnt : count) cnt = (dm - n++)*hsize;
+    };
 
 
     /** Spectral stream synthesis \n
@@ -183,15 +184,15 @@ namespace Aurora {
 	  auto &buf = buffers[j];
 	  ss += buf[cnt++];
 	  if(cnt == size) {
-	   std::size_t n = 0;
-	   auto s = synthesis(in);
-	   std::size_t offs = hsize*j;
-	   for(auto &b : buf) {
-	     b = s[(n+offs)%size]*win[n];
-	     n++;
-	   }
-	   cnt = 0;
-	 }
+	    std::size_t n = 0;
+	    auto s = synthesis(in);
+	    std::size_t offs = hsize*j;
+	    for(auto &b : buf) {
+	      b = s[(n+offs)%size]*win[n];
+	      n++;
+	    }
+	    cnt = 0;
+	  }
 	  j++;
 	}
       }
@@ -207,6 +208,32 @@ namespace Aurora {
     }
     
   };
+
+
+  template <typename S>
+    class Ceps : public SndBase<S>  {
+    using SndBase<S>::get_sig;
+    std::vector<std::complex<S>> spec;
+    FFT<S> fft;   
+
+  Ceps(std::size_t vsize = def_fftsize) : SndBase<S>(vsize), spec(vsize/4 + 1),
+      fft(vsize/2, !packed) { };
+
+  public:
+    const std::vector<S> &operator()(const std::vector<specdata<S>> &in, std::size_t coefs){
+      std::size_t n = 0;
+      auto &mags = get_sig();
+      std::transform(in.begin(), in.end(), mags.begin(),
+		     [](const specdata<S> &in) { return std::log(in.amp());} );  
+      auto s = fft.transform(mags);
+      std::fill(spec.begin(),spec.end(),0);
+      std::copy(s,s+coefs,spec.begin());
+      auto w = fft.transform(spec);
+      for(auto &m : mags) m = std::exp(w[n++]);
+      return mags;
+    }
+  };
+  
  
 }
 
