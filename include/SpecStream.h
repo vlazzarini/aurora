@@ -84,23 +84,31 @@ namespace Aurora {
     const std::vector<specdata<S>> &operator()(const std::vector<S> &in) {
       std::size_t vsize = in.size();
       std::size_t hs = hsize();
-      std::size_t samps = vsize;
+      if(vsize > hs) vsize = hs;
+      std::size_t samps = vsize + pos;
+      if(samps > hs) samps = vsize - samps + hs; 
+      else samps = vsize;
       std::copy(in.begin(), in.begin() + samps, buf.begin() + pos + hs*hnum);
       pos += samps;
       if(pos == hs) {
-        std::size_t n = 0, offs = hs*(dm - hnum - 1); 
-	std::size_t size = win.size();
-        for (auto &b : wbuf) {
-	  b = buf[n]*win[(n+offs)%size];
+        std::size_t n = 0, offs = hs*(dm - hnum - 1);
+	std::size_t N = win.size();
+        for (auto &s : wbuf) {
+	  s = buf[n]*win[(n+offs)%N];
 	  n++;
 	}  
 	analysis(wbuf);
 	pos = 0;
         hnum = hnum != dm - 1 ? hnum + 1 : 0;
+        if(samps != vsize) { std::copy(in.begin() + samps, in.begin() + vsize,
+				       buf.begin() + hs*hnum);
+          pos += vsize - samps;
+	}
 	fcount_incr();
       }
       return get_spec();
     }
+
 
     /** reset the stream parameters \n
         fs - sampling rate 
