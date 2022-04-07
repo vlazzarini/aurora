@@ -42,8 +42,6 @@ namespace Aurora {
   template <typename S>
     class SpecStream : public SpecBase<S> {
     using SpecBase<S>::get_spec;
-    using SpecBase<S>::size;
-    using SpecBase<S>::hsize;
     using SpecBase<S>::fcount_incr;
     std::vector<S> buf;
     std::vector<S> wbuf;
@@ -66,6 +64,8 @@ namespace Aurora {
     }
     
   public:
+   using SpecBase<S>::size;
+   using SpecBase<S>::hsize; 
     /** Constructor \n
         window: short-time Fourier transform window \n
         hsize: stream hopsize \n
