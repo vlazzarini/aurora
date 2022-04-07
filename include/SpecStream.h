@@ -70,11 +70,12 @@ namespace Aurora {
         hsize: stream hopsize \n
         fs: sampling rate
     */
-  SpecStream(const std::vector<S> &window, std::size_t hsize = def_hsize, S fs = def_sr) :
+  SpecStream(const std::vector<S> &window, std::size_t hsize = def_hsize,
+	     S fs = def_sr) :
     SpecBase<S>(window.size(), hsize), buf(window.size()), wbuf(window.size()),
       oph(window.size()/2 + 1), win(window), fft(window.size(), !packed),
       fac(fs/(twopi*hsize)), c(fs/window.size()), dm(window.size()/hsize),
-      hnum(0), pos(0) { };
+      hnum(dm-1), pos(0) { };
 
     /** Spectral stream analysis \n
         in: signal input \n
@@ -83,26 +84,19 @@ namespace Aurora {
     const std::vector<specdata<S>> &operator()(const std::vector<S> &in) {
       std::size_t vsize = in.size();
       std::size_t hs = hsize();
-      if(vsize > hs) vsize = hs;
-      std::size_t samps = vsize + pos;
-      if(samps > hs) samps = vsize - samps + hs; 
-      else samps = vsize;
+      std::size_t samps = vsize;
       std::copy(in.begin(), in.begin() + samps, buf.begin() + pos + hs*hnum);
       pos += samps;
       if(pos == hs) {
-        std::size_t n = 0, offs = hs*(dm - hnum - 1);
-	std::size_t N = win.size();
-        for (auto &s : wbuf) {
-	  s = buf[n]*win[(n+offs)%N];
+        std::size_t n = 0, offs = hs*(dm - hnum - 1); 
+	std::size_t size = win.size();
+        for (auto &b : wbuf) {
+	  b = buf[n]*win[(n+offs)%size];
 	  n++;
 	}  
 	analysis(wbuf);
 	pos = 0;
         hnum = hnum != dm - 1 ? hnum + 1 : 0;
-        if(samps != vsize) { std::copy(in.begin() + samps, in.begin() + vsize,
-				       buf.begin() + hs*hnum);
-          pos += vsize - samps;
-	}
 	fcount_incr();
       }
       return get_spec();
@@ -130,7 +124,8 @@ namespace Aurora {
     std::vector<double> ph;
     const std::vector<S> &win;
     FFT<S> fft;
-    std::size_t dm, fcnt, pos, hsize, hnum;
+    std::size_t dm, hsize;
+    std::vector<std::size_t> count;
     S fac, c;
 
     const S *synthesis(const std::vector<specdata<S>> &in) {
@@ -138,12 +133,11 @@ namespace Aurora {
       std::size_t n = 0;
       for(auto &s : spec) {
 	bin = in[n];
-	bin.freq(bin.fromcps(n*c, fac));
-	ph[n] = fmod(bin.integ(ph[n]), twopi);
+        bin.freq(bin.fromcps(n*c, fac));
+	ph[n] = bin.integ(ph[n]);
 	s = bin;
 	n++;
       }
-
       return fft.transform(spec);
     }
     
@@ -157,10 +151,15 @@ namespace Aurora {
     */  
   SpecSynth(const std::vector<S> &window, std::size_t hsiz = def_hsize,
 	    S fs = def_sr, std::size_t vsize = def_vsize) :
-    SndBase<S>(vsize), buffers(window.size()/hsiz, std::vector<S>(window.size())),
+    SndBase<S>(vsize), buffers(window.size()/hsiz,
+			       std::vector<S>(window.size())),
       spec(window.size()/2 + 1), ph(window.size()/2 + 1), win(window),
-      fft(window.size(), !packed), dm(window.size()/hsiz), fcnt(0),
-      pos(0), hsize(hsiz), hnum(0), fac(twopi*hsiz/fs), c(fs/window.size()) { };
+      fft(window.size(), packed), dm(window.size()/hsiz),
+      hsize(hsiz), count(dm), fac(twopi*hsiz/fs),
+      c(fs/window.size()) {
+         std::size_t n = 1;      
+         for (auto &cnt : count) cnt = (dm - n++)*hsize;
+      };
 
 
     /** Spectral stream synthesis \n
@@ -169,26 +168,24 @@ namespace Aurora {
     */    
     const std::vector<S> &operator() (const std::vector<specdata<S>> &in) {  
       std::size_t size = win.size();
-      std::size_t offs = 0;
       for(auto &ss : get_sig()) {
-	ss = 0.;
-	offs = 0;  
-	for (auto &b : buffers) {
-	  ss += b[(pos-offs+size)%size];
-	  offs += hsize;
+	ss = 0;
+	std::size_t j = 0;
+	for (auto &cnt : count) { 
+	  auto &buf = buffers[j];
+	  ss += buf[cnt++];
+	  if(cnt == size) {
+	   std::size_t n = 0;
+	   auto s = synthesis(in);
+	   std::size_t offs = hsize*j;
+	   for(auto &b : buf) {
+	     b = s[(n+offs)%size]*win[n];
+	     n++;
+	   }
+	   cnt = 0;
+	 }
+	  j++;
 	}
-	if(++fcnt == hsize) {
-	  std::size_t n = 0;
-	  auto s = synthesis(in);
-	  offs =  hsize*hnum;
-	  for(auto &b : buffers[hnum]) {
-	    b = s[(n+offs)%size]*win[n];
-	    n++;
-	  }
-	  hnum = hnum != dm - 1 ? hnum + 1 : 0;
-	  fcnt = 0;
-	}
-	pos = pos != size - 1 ? pos + 1 : 0;	
       }
       return get_sig();
     }
@@ -200,10 +197,7 @@ namespace Aurora {
       fac = twopi*hsize/fs;
       c = fs/win.size();
     }
-
-    void clearph() {
-      std::fill(ph.begin(), ph.end(), 0);
-    }
+    
   };
  
 }

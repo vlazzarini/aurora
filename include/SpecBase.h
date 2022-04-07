@@ -52,7 +52,7 @@ namespace Aurora {
   /** Spectral Data Type \n
       default constructor
    */
-  specdata() { };
+  specdata() : bin(0,0) { };
 
    /** Spectral Data Type
        amp - amplitude \n
