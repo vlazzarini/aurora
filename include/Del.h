@@ -186,7 +186,7 @@ public:
       sr: sampling rate \n
       vsize: vector size
   */
-   Del(std::_size_t maxdt, S sr = def_sr, std::size_t vsize = def_vsize)
+   Del(std::size_t maxdt, S sr = def_sr, std::size_t vsize = def_vsize)
       : SndBase<S>(vsize), fs(sr), wp(0),
         del(maxdt < 1 ? 1 : maxdt){};
 
