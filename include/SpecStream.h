@@ -80,7 +80,7 @@ namespace Aurora {
 
     /** Spectral stream analysis \n
         in: signal input \n
-        returns the current spectral frame
+        returns the current spectral frame (non=negative frequencies only)
     */
     const std::vector<specdata<S>> &operator()(const std::vector<S> &in) {
       std::size_t vsize = in.size();
@@ -173,7 +173,7 @@ namespace Aurora {
 
     /** Spectral stream synthesis \n
         in: input spectral frame  \n
-        returns the output vector
+        returns the output signal vector
     */    
     const std::vector<S> &operator() (const std::vector<specdata<S>> &in) {  
       std::size_t size = win.size();
@@ -209,18 +209,27 @@ namespace Aurora {
     
   };
 
-
+  /** Ceps class \n
+      Spectral envelope extraction
+  */
   template <typename S>
     class Ceps : public SndBase<S>  {
     using SndBase<S>::get_sig;
     std::vector<std::complex<S>> spec;
     FFT<S> fft;   
 
-   public: 
+   public:
+   /** Constructor \n
+       sixe: spectral frame size 
+    */   
    Ceps(std::size_t size = def_fftsize) : SndBase<S>(size/2 + 1), spec(size/4 + 1),
       fft(size/2, !packed) { };
 
-
+    /** Spectral envelope extraction \n
+        in: input spectral frame \n
+        coefs: number of cepstral coeffs retained \n
+        returns the spectral envelope (non-negative frequencies only)
+     */
     const std::vector<S> &operator()(const std::vector<specdata<S>> &in, std::size_t coefs){
       std::size_t n = 0;
       auto &mags = get_sig();

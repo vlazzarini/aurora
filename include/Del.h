@@ -162,12 +162,14 @@ class Del : public SndBase<S> {
   std::vector<S> del;
 
   S delay(S in, S dt, S fdb, S fwd, std::size_t &p, std::vector<S> *mem) {
-    S s = FN(dt * fs, p, del, mem);
+    S s = FN(dt, p, del, mem);
     S w = in + s * fdb;
     del[p] = w;
     p = p < del.size() - 1 ? p + 1 : 0;
     return w * fwd + s;
   }
+
+  
 
 public:
   /** Constructor \n
@@ -196,9 +198,7 @@ public:
   */
   const std::vector<S> &operator()(const std::vector<S> &in) {
     std::size_t n = 0, p = wp;
-    S dt = del.size()/fs;
-    auto &s = process([&]() { return delay(in[n++], dt, 0, 0, p, nullptr); },
-                      in.size());
+    auto &s = process([&]() { return delay(in[n++], del.size(), 0, 0, p, nullptr); }, in.size());
     wp = p;
     return s;
   }
@@ -214,7 +214,7 @@ public:
   const std::vector<S> &operator()(const std::vector<S> &in, S dt, S fdb = 0,
                                    S fwd = 0, std::vector<S> *mem = nullptr) {
     std::size_t n = 0, p = wp;
-    auto &s = process([&]() { return delay(in[n++], dt, fdb, fwd, p, mem); },
+    auto &s = process([&]() { return delay(in[n++], dt*fs, fdb, fwd, p, mem); },
                       in.size());
     wp = p;
     return s;
@@ -234,17 +234,13 @@ public:
 
     auto &s = process(
         [&]() {
-          auto s = delay(in[n], dt[n], fdb, fwd, p, mem);
+          auto s = delay(in[n], dt[n] * fs, fdb, fwd, p, mem);
           n++;
           return s;
         },
         in.size() < dt.size() ? in.size() : dt.size());
     wp = p;
     return s;
-  }
-
-  void  set_fs(S sr) {
-    fs = sr;
   }
   
   /** reset the delayline object \n
