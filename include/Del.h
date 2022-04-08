@@ -180,6 +180,30 @@ public:
       : SndBase<S>(vsize), fs(sr), wp(0),
         del(maxdt * fs < 1 ? 1 : maxdt * fs){};
 
+    /** Constructor \n
+      maxdt: maximum delay time in Samples \n
+      f: delay lookup function \n
+      sr: sampling rate \n
+      vsize: vector size
+  */
+   Del(std::_size_t maxdt, S sr = def_sr, std::size_t vsize = def_vsize)
+      : SndBase<S>(vsize), fs(sr), wp(0),
+        del(maxdt < 1 ? 1 : maxdt){};
+
+
+  /** Delay \n
+      in: audio \n
+  */
+  const std::vector<S> &operator()(const std::vector<S> &in) {
+    std::size_t n = 0, p = wp;
+    S dt = del.size()/fs;
+    auto &s = process([&]() { return delay(in[n++], dt, 0, 0, p, nullptr); },
+                      in.size());
+    wp = p;
+    return s;
+  }
+
+  
   /** Delay \n
       in: audio \n
       dt: delay time \n
