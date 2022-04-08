@@ -186,8 +186,8 @@ public:
       sr: sampling rate \n
       vsize: vector size
   */
-   Del(std::size_t maxdt, S sr = def_sr, std::size_t vsize = def_vsize)
-      : SndBase<S>(vsize), fs(sr), wp(0),
+   Del(std::size_t maxdt, std::size_t vsize = def_vsize)
+      : SndBase<S>(vsize), fs(def_sr), wp(0),
         del(maxdt < 1 ? 1 : maxdt){};
 
 
@@ -243,6 +243,10 @@ public:
     return s;
   }
 
+  void  set_fs(S sr) {
+    fs = sr;
+  }
+  
   /** reset the delayline object \n
       maxdt: max delay time \n
       sr: sampling rate
