@@ -225,7 +225,7 @@ namespace Aurora {
       std::size_t n = 0;
       auto &mags = get_sig();
       std::transform(in.begin(), in.end(), mags.begin(),
-		     [](const specdata<S> &in) { return std::log(in.amp());} );  
+		     [](const specdata<S> &in) { return in.amp() > 0 ? std::log(in.amp()) : 0;} );  
       auto s = fft.transform(mags);
       std::fill(spec.begin(),spec.end(),0);
       std::copy(s,s+coefs,spec.begin());
