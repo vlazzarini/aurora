@@ -163,7 +163,7 @@ namespace Aurora {
     SndBase<S>(vsize), buffers(window.size()/hsiz,
 			       std::vector<S>(window.size())),
       spec(window.size()/2 + 1), ph(window.size()/2 + 1), win(window),
-      fft(window.size(), packed), dm(window.size()/hsiz),
+      fft(window.size(), !packed), dm(window.size()/hsiz),
       hsize(hsiz), count(dm), fac(twopi*hsiz/fs),
       c(fs/window.size()) {
       std::size_t n = 1;      
