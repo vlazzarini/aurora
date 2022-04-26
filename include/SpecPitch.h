@@ -32,6 +32,10 @@
 
 namespace Aurora {
 
+/** SpecPitch class \n
+    spectral pitch tracker\n
+    S: sample type
+*/     
 template <typename S> class SpecPitch {
   std::vector<S> peaks;
   std::vector<S> ifacts;
@@ -93,14 +97,25 @@ template <typename S> class SpecPitch {
 
 
  public:
-
- SpecPitch(std::size_t npeaks = def_fftsize/2) :
+  
+ /** Constructor \n
+     npeaks: number of peaks searched for
+ */
+ SpecPitch(std::size_t npeaks = def_fftsize/4) :
   peaks(npeaks), ifacts(npeaks), cps(0.) { }
 
+  /** Pitch tracking \n
+      spec: spectral frame input \n
+      thresh: peak finding threshold (0-1)
+      returns estimated fundamental frequency
+  */
   S operator()(const std::vector<specdata<S>> &spec, S thresh) {
     return estimate(spec, thresh);
   }
-
+  
+  /** 
+      returns latest estimated fundamental frequency
+  */
  S get_cps() { return cps; }
 	  
 };
