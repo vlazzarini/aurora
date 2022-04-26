@@ -141,10 +141,12 @@ namespace Aurora {
       specdata<S> bin;
       std::size_t n = 0;
       for(auto &s : spec) {
+	if(n) {
 	bin = in[n];
         bin.freq(bin.fromcps(n*c, fac));
 	ph[n] = bin.integ(ph[n]);
 	s = bin;
+	} else s.real(in[0].amp()), s.imag(in[spec.size()].amp());
 	n++;
       }
       return fft.transform(spec);
@@ -162,8 +164,8 @@ namespace Aurora {
 	    S fs = def_sr, std::size_t vsize = def_vsize) :
     SndBase<S>(vsize), buffers(window.size()/hsiz,
 			       std::vector<S>(window.size())),
-      spec(window.size()/2 + 1), ph(window.size()/2 + 1), win(window),
-      fft(window.size(), !packed), dm(window.size()/hsiz),
+      spec(window.size()/2), ph(window.size()/2), win(window),
+      fft(window.size(), packed), dm(window.size()/hsiz),
       hsize(hsiz), count(dm), fac(twopi*hsiz/fs),
       c(fs/window.size()) {
       std::size_t n = 1;      

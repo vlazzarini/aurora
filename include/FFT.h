@@ -95,7 +95,7 @@ public:
   */
   FFT(std::size_t N, bool packd = packed, bool nm = forward)
       : c(packd ? np2(N) / 2 : np2(N) / 2 + 1), pckd(packd), sz(np2(N) / 2),
-        norm(nm){};
+        norm(nm){ };
 
   std::size_t size() { return 2 * c.size(); }
 
@@ -177,9 +177,9 @@ public:
   */
   const S *transform(const std::vector<std::complex<S>> &sp) {
     using namespace std::complex_literals;
-    std::fill(c.begin(), c.end(), std::complex<S>(0, 0));
-    std::copy(sp.begin(), sp.end(), c.begin());
     uint32_t N = sz;
+    if(!pckd) c.resize(N+1);
+    std::fill(c.begin(), c.end(), std::complex<S>(0, 0));
     std::complex<S> wp, w = 1., even, odd;
     S o, zro, nyq;
     S *s = reinterpret_cast<S *>(c.data());
