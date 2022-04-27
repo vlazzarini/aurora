@@ -68,13 +68,12 @@ static inline uint32_t np2(uint32_t n) {
 template <typename S> class FFT {
   std::vector<std::complex<S>> c;
   bool pckd;
-  std::size_t sz;
+  const std::size_t sz;
   bool norm;
 
-  void reorder(std::vector<std::complex<S>> &s) {
-    uint32_t N = s.size();
-    uint32_t j = 0, m;
-    for (uint32_t i = 0; i < N; i++) {
+  void reorder(std::complex<S> *s) {
+    const std::size_t N = sz;
+    for (std::size_t i = 0, j = 0, m = 0; i < N; i++) {
       if (j > i) {
         std::swap(s[i], s[j]);
       }
@@ -102,21 +101,17 @@ public:
   /** In-place complex-to-complex FFT \n
       data: data to be transformed  \n
       dir: true for forward operation, false for inverse \n
-      pckd: true for packed data (first point is DC,Nyq)
-      Size of data is expected to be a power-of-two.
   */
-  void transform(std::vector<std::complex<S>> &s, bool dir) {
-    uint32_t N = s.size();
+  void transform(std::complex<S> *s, bool dir) {
+    const std::size_t N = sz;
     std::complex<S> wp, w, even, odd;
-    S o;
-    uint32_t i;
     reorder(s);
-    for (uint32_t n = 1; n < N; n *= 2) {
-      o = dir == forward ? -M_PI / n : M_PI / n;
+    for (std::size_t n = 1, i = 0; n < N; n *= 2) {
+      S o = dir == forward ? -M_PI / n : M_PI / n;
       wp.real(std::cos(o)), wp.imag(std::sin(o));
       w = 1.;
-      for (uint32_t m = 0; m < n; m++) {
-        for (uint32_t k = m; k < N; k += n * 2) {
+      for (std::size_t m = 0; m < n; m++) {
+        for (std::size_t k = m; k < N; k += n * 2) {
           i = k + n;
           even = s[k];
           odd = w * s[i];
@@ -128,7 +123,7 @@ public:
     }
     dir = norm ? dir : !dir;
     if (dir == forward) {
-      for (uint32_t n = 0; n < N; n++)
+      for (std::size_t n = 0; n < N; n++)
         s[n] /= N;
     }
   }
@@ -139,22 +134,20 @@ public:
   */
   const std::complex<S> *transform(const std::vector<S> &r) {
     using namespace std::complex_literals;
-    uint32_t N = sz;
+    const std::size_t N = sz;
     std::complex<S> wp, w = 1., even, odd;
     S o, zro, nyq;
     S *s = reinterpret_cast<S *>(c.data());
     std::fill(c.begin(), c.end(), std::complex<S>(0, 0));
     std::copy(r.begin(), r.end(), s);
-    if (!pckd)
-      c.resize(N);
-    transform(c, forward);
+    transform(c.data(), forward);
     zro = c[0].real() + c[0].imag();
     nyq = c[0].real() - c[0].imag();
     c[0].real(zro), c[0].imag(nyq);
     o = -M_PI / N;
     wp.real(std::cos(o)), wp.imag(std::sin(o));
     w *= wp;
-    for (uint32_t i = 1, j = 0; i < N / 2; i++) {
+    for (std::size_t i = 1, j = 0; i < N / 2; i++) {
       j = N - i;
       even = S(.5) * (c[i] + conj(c[j]));
       odd = std::complex<S>(.5i) * (conj(c[j]) - c[i]);
@@ -163,7 +156,6 @@ public:
       w *= wp;
     }
     if (!pckd) {
-      c.resize(N + 1);
       c[N].real(c[0].imag());
       c[0].imag(0.);
       c[N].imag(0.);
@@ -177,8 +169,7 @@ public:
   */
   const S *transform(const std::vector<std::complex<S>> &sp) {
     using namespace std::complex_literals;
-    uint32_t N = sz;
-    if(!pckd) c.resize(N+1);
+    const std::size_t N = sz;
     std::fill(c.begin(), c.end(), std::complex<S>(0, 0));
     std::complex<S> wp, w = 1., even, odd;
     S o, zro, nyq;
@@ -194,8 +185,7 @@ public:
     o = M_PI / N;
     wp.real(std::cos(o)), wp.imag(std::sin(o));
     w *= wp;
-    int j;
-    for (uint32_t i = 1; i < N / 2; i++) {
+    for (std::size_t i = 1, j = 0; i < N / 2; i++) {
       j = N - i;
       even = S(.5) * (c[i] + conj(c[j]));
       odd = std::complex<S>(.5i) * (c[i] - conj(c[j]));
@@ -203,15 +193,24 @@ public:
       c[j] = conj(even - w * odd);
       w *= wp;
     }
-    if (!pckd)
-      c.resize(N);
-    transform(c, inverse);
+    transform(c.data(), inverse);
     return s;
   }
 
-  const std::vector<std::complex<S>> &vector() const { return c; }
+  const std::vector<std::complex<S>> &operator() (const std::vector<S> &r) {
+    transform(r);
+    return c;
+  }
 
+  const S *operator() (const std::vector<std::complex<S>> &sp)
+  {
+    return transform(sp);
+  }
+
+  const std::vector<std::complex<S>> &vector() const { return c; }
+  
   const S *data() const { return reinterpret_cast<const S *>(c.data()); }
+  
 };
 } // namespace Aurora
 

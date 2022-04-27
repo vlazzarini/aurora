@@ -53,8 +53,7 @@ namespace Aurora {
  
     void analysis(const std::vector<S> &in) {
       std::size_t n = 0;
-      fft.transform(in);
-      auto &v = fft.vector();
+      auto &v = fft(in);
       for(auto &s : get_spec()) {
 	s = v[n];
 	oph[n] = s.diff(oph[n]);
@@ -147,7 +146,7 @@ namespace Aurora {
 	s = bin;
 	n++;
       }
-      return fft.transform(spec);
+      return fft(spec);
     }
     
   public:
