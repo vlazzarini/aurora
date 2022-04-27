@@ -253,7 +253,7 @@ namespace Aurora {
 	in1.size());
     }
 
-    void reset(const IR<S> *imp) {
+    /*void reset(const IR<S> *imp) {
       ir = imp;
       psize = ir->psize();	
       del = std::vector<std::vector<std::complex<S>>>
@@ -279,7 +279,7 @@ namespace Aurora {
       sn = 0;
       fft = FFT<S>(psize * 2, !packed, inverse);
       psize = psiz;     
-    }
+      } */
   };
 
 } // namespace Aurora

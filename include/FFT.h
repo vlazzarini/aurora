@@ -68,7 +68,7 @@ static inline uint32_t np2(uint32_t n) {
 template <typename S> class FFT {
   std::vector<std::complex<S>> c;
   bool pckd;
-  std::size_t sz;
+  const std::size_t sz;
   bool norm;
 
   void reorder(std::complex<S> *s) {

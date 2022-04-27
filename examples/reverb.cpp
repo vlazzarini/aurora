@@ -82,18 +82,6 @@ ConvReverb<S> create_reverb(std::vector<S> &imp) {
   return ConvReverb(s1,s2,s3);
 }
 
-template <typename S>
-void reset_reverb(ConvReverb<S> &rev, std::vector<S> &imp) {
-  if(imp.size() < 8192)
-    imp.resize(8192);
-  std::vector<S> s1(imp.begin()+32, imp.begin()+256);
-  std::vector<S> s2(imp.begin()+256, imp.begin()+4096);
-  std::vector<S> s3(imp.begin()+4096, imp.end());
-  rev.reset(s1,s2,s3);
-}
-
-
-
 int main(int argc, const char **argv) {
   SF_INFO sfinfo, sfinfoir;
   SNDFILE *fpir, *fpin, *fpout;
@@ -132,8 +120,7 @@ int main(int argc, const char **argv) {
         fpout = sf_open(argv[3], SFM_WRITE, &sfinfo);
         double g = atof(argv[4]);
         std::vector<double> buffer(def_vsize);
-        ConvReverb<double> delay = create_reverb(buffer);
-	reset_reverb(delay,impulse);
+        ConvReverb<double> delay = create_reverb(impulse);
         Mix<double> mix;
         do {
           n = sf_read_double(fpin, buffer.data(), def_vsize);
