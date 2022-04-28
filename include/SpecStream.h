@@ -84,7 +84,7 @@ namespace Aurora {
     const std::vector<specdata<S>> &operator()(const std::vector<S> &in) {
       std::size_t vsize = in.size();
       std::size_t hs = hsize();
-      if(vsize > hs) vsize = hs;
+      /*if(vsize > hs) vsize = hs;
       std::size_t samps = vsize + pos;
       if(samps > hs) samps = vsize - samps + hs; 
       else samps = vsize;
@@ -105,6 +105,21 @@ namespace Aurora {
           pos += vsize - samps;
 	}
 	fcount_incr();
+	}*/
+      for(auto &s : in) {
+	buf[pos+hnum*hs] = s;
+        if(++pos == hs) {
+          std::size_t n = 0, offs = hs*(dm - hnum - 1);
+	  std::size_t N = win.size();
+          for (auto &s : wbuf) {
+	    s = buf[n]*win[(n+offs)%N];
+	   n++;
+	  }
+	  analysis(wbuf);
+	  pos = 0;
+          hnum = hnum != dm - 1 ? hnum + 1 : 0;
+	  fcount_incr();
+	 }  
       }
       return get_spec();
     }
