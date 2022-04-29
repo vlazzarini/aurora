@@ -40,6 +40,10 @@ template <typename S> class SpecPitch {
   std::vector<S> peaks;
   std::vector<S> ifacts;
   S cps;
+  S ts;
+  S y;
+  S c;
+  S t;
 
   S frm(S x, S y) {
     return x/y - (int) (x/y);
@@ -100,17 +104,24 @@ template <typename S> class SpecPitch {
   
  /** Constructor \n
      npeaks: number of peaks searched for
+     rate: analysis rate in frames/sec
  */
- SpecPitch(std::size_t npeaks = def_fftsize/4) :
-  peaks(npeaks), ifacts(npeaks), cps(0.) { }
+ SpecPitch(std::size_t npeaks = def_fftsize/4, S rate = def_sr/def_hsize) :
+  peaks(npeaks), ifacts(npeaks), cps(260), ts(1/rate), y(260), c(0), t(0)  { }
 
   /** Pitch tracking \n
       spec: spectral frame input \n
       thresh: peak finding threshold (0-1)
+      slew: slew time
       returns estimated fundamental frequency
   */
-  S operator()(const std::vector<specdata<S>> &spec, S thresh) {
-    return estimate(spec, thresh);
+  S operator()(const std::vector<specdata<S>> &spec, S thresh, S slew = 0.01) {
+    if(slew != t) {
+      c = std::pow(0.5, ts/slew);
+      t = slew;
+    }
+    y = estimate(spec,thresh)*(1. - c) + y*c;
+    return y;
   }
   
   /** 
