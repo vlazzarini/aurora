@@ -128,7 +128,12 @@ template <typename S> class SpecPitch {
       returns latest estimated fundamental frequency
   */
  S get_cps() { return cps; }
-	  
+
+  /** 
+     sets analysis rate
+  */
+ void set_rate(S rate) { ts = 1./rate; }
+ 
 };
 
 }
