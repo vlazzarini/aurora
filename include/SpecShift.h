@@ -98,9 +98,8 @@ namespace Aurora {
 
   public:
 
-  SpecShift(S fs = def_sr, std::size_t size = def_fftsize,
-	    std::size_t hsize = def_hsize) :
-    SpecBase<S>(size, hsize), ceps(size), ftmp(size/2 + 1),
+  SpecShift(S fs = def_sr, std::size_t size = def_fftsize) :
+    SpecBase<S>(size), ceps(size), ftmp(size/2 + 1),
       ts(1/fs), lock(false) { };
 
     const std::vector<specdata<S>> &operator()(const SpecBase<S> &obj,

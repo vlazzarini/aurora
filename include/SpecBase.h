@@ -170,16 +170,13 @@ namespace Aurora {
         size: spectral frame size
         hsize: stream hopsize
         */
-      SpecBase(std::size_t size = def_fftsize, std::size_t hsize = def_hsize) :
-      spec(size/2 + 1), hs(hsize), fcnt(0) { };
+      SpecBase(std::size_t size = def_fftsize) :
+      spec(size/2 + 1), fcnt(0) { };
 
       /** spectral frame size 
        */
       std::size_t size() const { return (spec.size() - 1)*2; }
 
-      /** spectral hopsize 
-       */
-      std::size_t hsize() const { return hs; }
 
       /** stream framecount
        */

@@ -42,6 +42,7 @@ namespace Aurora {
     class SpecStream : public SpecBase<S> {
     using SpecBase<S>::get_spec;
     using SpecBase<S>::fcount_incr;
+    std::size_t hs;
     std::vector<S> buf;
     std::vector<S> wbuf;
     std::vector<S> oph;
@@ -63,7 +64,6 @@ namespace Aurora {
     
   public:
    using SpecBase<S>::size;
-   using SpecBase<S>::hsize; 
     /** Constructor \n
         window: short-time Fourier transform window \n
         hsize: stream hopsize \n
@@ -71,7 +71,7 @@ namespace Aurora {
     */
   SpecStream(const std::vector<S> &window, std::size_t hsize = def_hsize,
 	     S fs = def_sr) :
-    SpecBase<S>(window.size(), hsize), buf(window.size()), wbuf(window.size()),
+   SpecBase<S>(window.size()), hs(hsize), buf(window.size()), wbuf(window.size()),
       oph(window.size()/2 + 1), win(window), fft(window.size(), !packed),
       fac(fs/(twopi*hsize)), c(fs/window.size()), dm(window.size()/hsize),
       hnum(dm-1), pos(0) { };
@@ -82,7 +82,6 @@ namespace Aurora {
     */
     const std::vector<specdata<S>> &operator()(const std::vector<S> &in) {
       std::size_t vsize = in.size();
-      std::size_t hs = hsize();
       if(vsize > hs) vsize = hs;
       std::size_t samps = vsize + pos;
       if(samps > hs) samps = vsize - samps + hs; 
@@ -108,6 +107,10 @@ namespace Aurora {
       return get_spec();
     }
 
+    
+   /** spectral hopsize 
+     */
+   std::size_t hsize() const { return hs; }
 
     /** reset the stream parameters \n
         fs - sampling rate 
