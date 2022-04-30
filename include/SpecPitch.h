@@ -135,7 +135,7 @@ template <typename S> class SpecPitch {
   S operator()(const SpecBase<S> &obj, S thresh, S slew = 0.01) {
     if(obj.framecount() > framecount) {
       framecount = obj.framecount();
-      return *this(obj.frame(), thresh, slew);
+      return (*this)(obj.frame(), thresh, slew);
     }
     else return y;
   }
