@@ -62,7 +62,7 @@ namespace Aurora {
 	forshift = -fshift;
       }
       forshift *= size*ts;
-      preserve = forshift != 0 || forscale != 0 ? true : false;
+      preserve = forshift != 0 || forscale != 1. ? true : false;
     
       if (preserve) {
 	auto &senv = ceps(spec, 30);
