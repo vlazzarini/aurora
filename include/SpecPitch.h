@@ -39,6 +39,7 @@ namespace Aurora {
 template <typename S> class SpecPitch {
   std::vector<S> peaks;
   std::vector<S> ifacts;
+  std::size_t framecount;
   S cps;
   S ts;
   S y;
@@ -109,6 +110,7 @@ template <typename S> class SpecPitch {
  SpecPitch(std::size_t npeaks = def_fftsize/4, S rate = def_sr/def_hsize) :
   peaks(npeaks), ifacts(npeaks), cps(260), ts(1/rate), y(260), c(0), t(0)  { }
 
+
   /** Pitch tracking \n
       spec: spectral frame input \n
       thresh: peak finding threshold (0-1)
@@ -123,6 +125,22 @@ template <typename S> class SpecPitch {
     y = estimate(spec,thresh)*(1. - c) + y*c;
     return y;
   }
+    
+  /** Pitch tracking \n
+      obj: spectral obj input \n
+      thresh: peak finding threshold (0-1)
+      slew: slew time
+      returns estimated fundamental frequency
+  */
+  S operator()(const SpecBase<S> &obj, S thresh, S slew = 0.01) {
+    if(obj.framecount() > framecount) {
+      framecount = obj.framecount();
+      return *this(obj.frame(), thresh, slew);
+    }
+    else return y;
+  }
+
+
   
   /** 
       returns latest estimated fundamental frequency
