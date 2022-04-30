@@ -114,6 +114,7 @@ namespace Aurora {
 
     void lock_formants() { lock = true; }
 
+    void reset(S sr) { ts = 1/sr; }
   };
 
 
