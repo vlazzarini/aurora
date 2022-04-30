@@ -112,7 +112,7 @@ namespace Aurora {
       } else return get_spec();
     }
 
-    void lock_formants() { lock = true; }
+    void lock_formants(bool b) { lock = b; }
 
     void reset(S sr) { ts = 1/sr; }
   };
