@@ -30,7 +30,6 @@
 
 #include <algorithm>
 #include "SpecBase.h"
-#include "FFT.h"
 
 namespace Aurora {
 
@@ -208,42 +207,5 @@ namespace Aurora {
     
   };
 
-  /** Ceps class \n
-      Spectral envelope extraction
-  */
-  template <typename S>
-    class Ceps : public SndBase<S>  {
-    using SndBase<S>::get_sig;
-    std::vector<std::complex<S>> spec;
-    FFT<S> fft;   
-
-   public:
-   /** Constructor \n
-       sixe: spectral frame size 
-    */   
-   Ceps(std::size_t size = def_fftsize) : SndBase<S>(size/2 + 1), spec(size/4 + 1),
-      fft(size/2, !packed) { };
-
-    /** Spectral envelope extraction \n
-        in: input spectral frame \n
-        coefs: number of cepstral coeffs retained \n
-        returns the spectral envelope (non-negative frequencies only)
-     */
-    const std::vector<S> &operator()(const std::vector<specdata<S>> &in, std::size_t coefs){
-      std::size_t n = 0;
-      auto &mags = get_sig();
-      std::transform(in.begin(), in.end(), mags.begin(),
-		     [](const specdata<S> &in) { return in.amp() >= 0 ? std::log(in.amp()) : 0;} );  
-      auto s = fft.transform(mags);
-      std::fill(spec.begin(),spec.end(),0);
-      std::copy(s,s+coefs,spec.begin());
-      auto w = fft.transform(spec);
-      for(auto &m : mags) m = std::exp(w[n++]);
-      return mags;
-    }
-  };
-  
- 
 }
-
 #endif
