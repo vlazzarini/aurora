@@ -108,7 +108,8 @@ template <typename S> class SpecPitch {
      rate: analysis rate in frames/sec
  */
  SpecPitch(std::size_t npeaks = def_fftsize/4, S rate = def_sr/def_hsize) :
-  peaks(npeaks), ifacts(npeaks), cps(260), ts(1/rate), y(260), c(0), t(0)  { }
+  peaks(npeaks), framecount(0), ifacts(npeaks), cps(260), ts(1/rate),
+    y(260), c(0), t(0)  { }
 
 
   /** Pitch tracking \n
