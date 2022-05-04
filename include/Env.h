@@ -46,7 +46,7 @@ namespace Aurora {
 template <typename S> inline S ads(S a, S d, S s, double t, S e, S ts) {
   if (t < a && e < 1)
     return e + ts / a;
-  else if (t < a + d && e > s)
+  else if (t < a + d && e > s && d != 0)
     return e + (s - 1) * ts / d;
   else
     return s;
