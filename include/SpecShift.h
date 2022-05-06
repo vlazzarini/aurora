@@ -111,7 +111,7 @@ namespace Aurora {
       } else return get_spec();
     }
 
-     const std::vector<specdata<S>> &operator()(const Specdata<S> &spec,
+     const std::vector<specdata<S>> &operator()(const specdata<S> &spec,
 					       S scl, S shft = 0, S forscl = 0,
 					       S forshft = 0) {
         return shift(spec,scl,shft,forscl,forshft);
