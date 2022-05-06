@@ -111,6 +111,15 @@ namespace Aurora {
       } else return get_spec();
     }
 
+     const std::vector<specdata<S>> &operator()(const Specdata<S> &spec,
+					       S scl, S shft = 0, S forscl = 0,
+					       S forshft = 0) {
+        return shift(spec,scl,shft,forscl,forshft);
+    }
+
+
+    
+
     void lock_formants(bool b) { lock = b; }
 
     void reset(S sr) { ts = 1/sr; }
