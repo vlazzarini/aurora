@@ -211,10 +211,10 @@ namespace Aurora {
       auto &ss = get_sig();
       fac = twopi*hsize/fs;
       c = fs/win.size();
-            std::size_t n = 1;      
+      std::size_t n = 1;      
       for(auto &buf : buffers) {
 	std::fill(buf.begin(), buf.end(), 0);
-	count[n] = (dm - n)*hsize;
+	count[n-1] = (dm - n)*hsize;
 	n++;
       }
       std::fill(spec.begin(), spec.end(), std::complex<S>(0,0));
