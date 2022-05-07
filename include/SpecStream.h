@@ -116,8 +116,12 @@ namespace Aurora {
         fs - sampling rate 
     */ 
     void reset(S fs) {
+      auto &ss = get_spec();
       fac = fs/(twopi*hsize());
       c = fs/win.size();
+      std::fill(buf.begin(),buf.end(),0);
+      std::fill(ss.begin(),ss.end(),specdata<S>(0,0));
+      pos = 0;
     }
       
   };
@@ -204,8 +208,17 @@ namespace Aurora {
         fs - sampling rate 
     */ 
     void reset(S fs) {
+      auto &ss = get_sig();
       fac = twopi*hsize/fs;
       c = fs/win.size();
+            std::size_t n = 1;      
+      for(auto &buf : buffers) {
+	std::fill(buf.begin(), buf.end(), 0);
+	count[n] = (dm - n)*hsize;
+	n++;
+      }
+      std::fill(spec.begin(), spec.end(), std::complex<S>(0,0));
+      std::fill(ss.begin(), ss.end(), 0);
     }
     
   };
