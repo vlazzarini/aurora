@@ -219,6 +219,7 @@ namespace Aurora {
       }
       std::fill(spec.begin(), spec.end(), std::complex<S>(0,0));
       std::fill(ss.begin(), ss.end(), 0);
+      std::fill(ph.begin(), ph.end(), 0);
     }
     
   };
