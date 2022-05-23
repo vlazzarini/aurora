@@ -42,7 +42,7 @@ const int def_ftlen = 16384;
     returns a sample
 */
 template <typename S> inline S lookup(double ph, const std::vector<S> *t) {
-  return *t[(std::size_t)(ph * t->size())];
+  return (*t)[(std::size_t)(ph * t->size())];
 }
 
 /** Linear interp table lookup function for Osc \n
@@ -136,7 +136,6 @@ public:
       : SndBase<S>(vsize), ph(0.), ts(1 / fs), tab(t){};
 
   /** Constructor \n
-    f: oscillator function \n
     fs: sampling rate \n
     vsize: signal vector size
 */
