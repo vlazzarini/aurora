@@ -33,6 +33,26 @@
 
 namespace Aurora {
 
+/** Sine function for Osc \n
+    S: sample type \n
+    ph: normalised phase  \n
+    returns the sine of ph*2*$M_PI
+*/
+  template <typename S> inline S sinn(S ph) {
+  return (S)std::sin(ph * twopi);
+}
+
+/** Cosine function for Osc \n
+    S: sample type \n
+    ph: normalised phase \n
+    returns the cosine of ph*2*$M_PI
+*/
+template <typename S> inline S cosn(S ph) {
+  return (S)std::cos(ph * twopi);
+}
+
+  
+
 /** Func class  \n
     Generic templated function maps \n
     FN: function to be applied FN(arg, table)

@@ -23,6 +23,7 @@
 // INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE
 
 #ifndef _AURORA_TWOPOLE_
 #define _AURORA_TWOPOLE_
@@ -42,7 +43,7 @@ template <typename S> inline S id(S s, S dr) {
     2-pole state-variable filter \n
     S: sample type
 */
-template <typename S, S (*FN)(S, S) = id> class TwoPole : SndBase<S> {
+template <typename S, S (*FN)(S, S) = id> class TwoPole : public SndBase<S> {
   using SndBase<S>::process;
   S Y[2];
   double D[2];

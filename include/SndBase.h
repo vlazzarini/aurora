@@ -50,7 +50,7 @@ const double twopi = 2 * M_PI;
 */
 template <typename S> class SndBase {
   std::vector<S> sig;
-
+  
 protected:
   const std::vector<S> &process(std::function<S()> f, std::size_t sz) {
     if (sz)
