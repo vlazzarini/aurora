@@ -32,16 +32,8 @@
 #include <complex>
 
 namespace Aurora {
-  const double ap1[] = {
-    17.007011830208345,
-    129.17600673030512,
-    525.775375708461,
-    2109.1757722295597,
-    8464.591006904155,
-    37626.43738022203
-  };
 
-  const double ap2[] = {
+  const double ap1[] = {
     59.017959590337846,
     262.34340692699607,
     1052.8560831644886,
@@ -50,9 +42,19 @@ namespace Aurora {
     130538.42435798004
   };
 
+  
+  const double ap2[] = {
+    17.007011830208345,
+    129.17600673030512,
+    525.775375708461,
+    2109.1757722295597,
+    8464.591006904155,
+    37626.43738022203
+  };
+  
   /** Quad class  \n
-    Quadrature filter \n
-    S: sample type
+      Quadrature filter \n
+      S: sample type
   */
   template <typename S> class Quad : public SndBase<S> {
     using SndBase<S>::get_sig;
@@ -79,15 +81,15 @@ namespace Aurora {
 
   public:
 
-  /** Constructor \n
-   sr: sampling rate \n
-   vsize: vector size
-  */   
+    /** Constructor \n
+	sr: sampling rate \n
+	vsize: vector size
+    */   
   Quad(S fs = def_sr, std::size_t vsize = def_vsize)
     : SndBase<S>(vsize), d1{0}, d2{0}, c1{0}, c2{0}, im(vsize), ts(1/fs) 
-      {
-	reset(fs);
-      };
+						       {
+							 reset(fs);
+						       };
 
 
     const std::vector<S> &operator()(const std::vector<S> &in) {
@@ -99,7 +101,7 @@ namespace Aurora {
       for(auto &s : in) {
 	cs = filter(s,c1,c2,d1,d2);
 	re[n] = cs.real();
-	im[n++] = -cs.imag();
+	im[n++] = cs.imag();
       }	
       return re;
     }
@@ -113,15 +115,15 @@ namespace Aurora {
     }
     
     void reset(S fs) {
-       ts = 1/fs;
-       S a;
-       for(int j = 0; j < 6; j++) {
-	 a = ap1[j]*ts;
-         c1[j] = (1 - a) / (1 + a);
-	 a = ap2[j]*ts;
-         c2[j] = (1 - a) / (1 + a);
-	 d1[j] = d2[j] = 0;
-       }
+      ts = 1/fs;
+      S a;
+      for(int j = 0; j < 6; j++) {
+	a = ap1[j]*ts;
+	c1[j] = (1 - a) / (1 + a);
+	a = ap2[j]*ts;
+	c2[j] = (1 - a) / (1 + a);
+	d1[j] = d2[j] = 0;
+      }
     }
     
   };

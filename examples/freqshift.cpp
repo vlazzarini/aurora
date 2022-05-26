@@ -28,7 +28,6 @@
 
 #include "Quad.h"
 #include "Osc.h"
-#include "Func.h"
 #include <array>
 #include <cmath>
 #include <cstdlib>
@@ -40,28 +39,29 @@ using namespace Aurora;
 class FreqShifter {
   Quad<float> quad;
   Osc<float,phase> ph;
-  Func<float,Aurora::cosn<float>> cosi;
-  Func<float,Aurora::sinn<float>> sine;  
+  std::vector<float> cost;
+  std::vector<float> sint;  
   std::vector<float> out;
 
 public:
   FreqShifter(float sr, std::size_t vsize = def_vsize)
-    :   quad(sr,vsize), ph(sr,vsize), cosi(vsize), sine(vsize),
-        out(vsize) {};
+    :   quad(sr,vsize), ph(sr,vsize), cost(def_ftlen+1), sint(def_ftlen+1),
+        out(vsize) {
+    for(std::size_t n = 0; n < def_ftlen+1; n++) {
+      cost[n] = std::cos(n*twopi/def_ftlen);
+      sint[n] = std::sin(n*twopi/def_ftlen);
+    }
+  };
 
 
   const std::vector<float> &operator()(const std::vector<float> &in, float fr) {
     std::size_t n = 0;
     out.resize(in.size());
-    cosi.vsize(in.size());
-    sine.vsize(in.size());
     auto &phase = ph(1, fr);
-    auto &modr = cosi(phase);
-    auto &modi = sine(phase);
     auto &inr = quad(in);
     auto &ini = quad.imag();
     for(auto &s : out) {
-      s = inr[n]*modr[n] - ini[n]*modi[n];
+      s = inr[n]*lookupi(phase[n],&cost) - ini[n]*lookupi(phase[n],&sint);
       n++;
     }
     return out;
