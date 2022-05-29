@@ -30,6 +30,10 @@
 
 namespace Aurora {
 
+  /** SpecTable class \n
+      spectral function table \n
+      S - sample type
+  */
   template <typename S> 
     class SpecTable {
     const std::vector<S> &win;
@@ -69,82 +73,129 @@ namespace Aurora {
     }
 
   public:
+  /** Constructor \n
+       wn - analysis window \n
+       hs - hopsize \n
+       sr - sampling rate
+  */
   SpecTable(const std::vector<S> &wn, std::size_t hsiz=def_hsize, S sr = def_sr)
     : win(wn), tab(0), hs(hsiz), fs(sr) {
     }
 
+    /** Spectral table creation \n
+        in - input data \n
+        returns the number of spectral frames
+     */
     std::size_t operator()(const std::vector<S> &in) {
       create(in);
       return tab.size();
     }
 
+    /** Spectral table access \n
+        returns the spectral table
+    */
     const std::vector<std::vector<Aurora::specdata<S>>>
       &operator()() const {
       return tab;
     }
 
+    /** returns the hopsize */
     std::size_t hsize() const { return hs; }
+
+    /** returns the analysis size */
     std::size_t fftsize() const { return win.size(); }
+
+    /** returns the number of frames in the table */
     std::size_t size() const { return tab.size(); }
+
+    /** sets the sampling rate */
     void sr(S r) {
       fs = r;
     }
+
+    /** clears the table memory */
     void clear() {
       tab.clear();
     }
   
   };
 
-  
+  /** SpecPlay class \n
+      spectral function table player \n
+      S - sample type
+  */  
   template <typename S> class SpecPlay {
     SpecShift<S> shift;
     S sr;
     S rp;
-    S siz, shft, fscal;
+    S shft, fscal;
     S bn, fine, tscal, beg, end, st;
     bool keep;
 
 
   public:
-  SpecPlay(S fs, std::size_t fftsize) : shift(fs,fftsize), sr(fs), rp(0), siz(0),
+  /** Constructor \n
+       sr - sampling rate \n
+       fftsize - analysis size
+  */ 
+  SpecPlay(S fs, std::size_t fftsize) : shift(fs,fftsize), sr(fs), rp(0),
       shft(0), fscal(1), bn(261), fine(1), tscal(1), beg(0), end(1), st(0), keep(0){ }
 
-    void onset() {
+    /** play from start \n
+        siz - spec table size
+     */ 
+    void onset(std::size_t siz) {
       rp = (st < end? st : end)*siz;
     }
+
+    /** reset object \n 
+       fs - sampling rate
+    */
     void reset(S fs) {
       shift.reset(fs);
       sr  = fs;
       rp = 0;
     }
 
-    void size(std::size_t sz) { siz = sz; }
-    std::size_t size() { return siz; }
-
+    /** set frequency shift (Hz) */
     void freqshift(S f) { shft = f; }
 
+    /** set formant scaling factor */
     void formscal(S f) { fscal = f; }
 
+    /** set base freq in Hz */
     void basefreq(S f) { bn = f; }
 
+    /** set fine scaling factor */
     void finetune(S f) { fine = f; }
 
+    /** set time scale factor */
     void timescale(S ts) { tscal = ts; }
 
-    void loopbeg(S t) { beg = t; }
+    /** loop begin pos (0 - 1) */
+    void loopbeg(S p) { beg = p >= 0 ? (p < 1 ? p : 1) : 0; }
 
-    void loopend(S t) { end = t; }
+    /** loop end pos (0 - 1) */
+    void loopend(S p) { end = p >= 0 ? (p < 1 ? p : 1) : 0;; }
 
-    void start(S t) { st = t; }
+    /** start pos (0 - 1) */
+    void start(S p) { st = p >= 0 ? (p < 1 ? p : 1) : 0;; }
 
+    /** extract formants */
     void keepform(bool b) { keep = b; }
 
+    /** Spectral player \n
+        samp - spectral table \n
+        cps - frequency \n
+        returns spectral frame \n
+    */
     const std::vector<specdata<S>>
       &operator() (const SpecTable<S> &samp, S cps) {
-      if(samp.size() != siz || samp.size() == 0){
+      if(samp.size() == 0){
 	shift.reset(sr);
 	return shift.frame();
-      } 	
+      }
+      std::size_t siz = samp.size();
       shift.lock_formants(keep);
       shift(samp()[(int)rp],cps*fine/bn, shft, fscal);
       rp += tscal;
