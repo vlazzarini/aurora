@@ -1,95 +1,84 @@
-\hypertarget{class_aurora_1_1_two_pole}{}\section{Aurora\+:\+:Two\+Pole$<$ S, FN $>$ Class Template Reference}
-\label{class_aurora_1_1_two_pole}\index{Aurora\+::\+Two\+Pole$<$ S, F\+N $>$@{Aurora\+::\+Two\+Pole$<$ S, F\+N $>$}}
+\hypertarget{class_aurora_1_1_two_pole}{}\doxysection{Aurora\+::Two\+Pole\texorpdfstring{$<$}{<} S, FN \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_aurora_1_1_two_pole}\index{Aurora::TwoPole$<$ S, FN $>$@{Aurora::TwoPole$<$ S, FN $>$}}
 
 
 {\ttfamily \#include $<$Two\+Pole.\+h$>$}
 
 
 
-Inheritance diagram for Aurora\+:\+:Two\+Pole$<$ S, FN $>$\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=196pt]{class_aurora_1_1_two_pole__inherit__graph}
-\end{center}
-\end{figure}
+Inheritance diagram for Aurora\+::Two\+Pole\texorpdfstring{$<$}{<} S, FN \texorpdfstring{$>$}{>}\+:
+% FIG 0
 
 
-Collaboration diagram for Aurora\+:\+:Two\+Pole$<$ S, FN $>$\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=196pt]{class_aurora_1_1_two_pole__coll__graph}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+Collaboration diagram for Aurora\+::Two\+Pole\texorpdfstring{$<$}{<} S, FN \texorpdfstring{$>$}{>}\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aurora_1_1_two_pole_a4696c27f4c9f477c6e0336f65bb7e17a}{Two\+Pole} (S fs=\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}, std\+::size\+\_\+t \hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}=\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize})
+\mbox{\hyperlink{class_aurora_1_1_two_pole_a4696c27f4c9f477c6e0336f65bb7e17a}{Two\+Pole}} (S fs=\mbox{\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}}, std\+::size\+\_\+t \mbox{\hyperlink{class_aurora_1_1_snd_base_af9e21aaf411b17f7a8221c991ce5d291}{vsize}}=\mbox{\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}})
 \item 
-const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_two_pole_a1dc2162d26dbb9215d2c31eaee2cea2f}{operator()} (const std\+::vector$<$ S $>$ \&in, S f, S d, S drv=0, S m=0)
+const std\+::vector$<$ S $>$ \& \mbox{\hyperlink{class_aurora_1_1_two_pole_a4b12ebbef88b94a75a25056e16e92357}{operator()}} (const std\+::vector$<$ S $>$ \&in, S f, S d, S drv=0, S m=0)
 \item 
-const std\+::vector$<$ S $>$ \& \hyperlink{class_aurora_1_1_two_pole_a4cbd5c7edf3dadf6ab55a58fe3c50750}{operator()} (const std\+::vector$<$ S $>$ \&in, const std\+::vector$<$ S $>$ \&f, S d, S drv=0, S m=0)
+const std\+::vector$<$ S $>$ \& \mbox{\hyperlink{class_aurora_1_1_two_pole_aa8712f26a92306b4dd09247ed3d562e2}{operator()}} (const std\+::vector$<$ S $>$ \&in, const std\+::vector$<$ S $>$ \&f, S d, S drv=0, S m=0)
 \item 
-void \hyperlink{class_aurora_1_1_two_pole_aef4afc0b8012d9bccf104488c6ebad3f}{reset} (S fs)
+void \mbox{\hyperlink{class_aurora_1_1_two_pole_aef4afc0b8012d9bccf104488c6ebad3f}{reset}} (S fs)
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-\subsubsection*{template$<$typename S, S($\ast$)(\+S, S) FN = id$>$\newline
-class Aurora\+::\+Two\+Pole$<$ S, F\+N $>$}
-
-\hyperlink{class_aurora_1_1_two_pole}{Two\+Pole} class ~\newline
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename S, S($\ast$)(S, S) FN = id$>$\newline
+class Aurora\+::\+Two\+Pole$<$ S, FN $>$}
+\mbox{\hyperlink{class_aurora_1_1_two_pole}{Two\+Pole}} class ~\newline
 2-\/pole state-\/variable filter ~\newline
 S\+: sample type 
 
-\subsection{Constructor \& Destructor Documentation}
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_aurora_1_1_two_pole_a4696c27f4c9f477c6e0336f65bb7e17a}\label{class_aurora_1_1_two_pole_a4696c27f4c9f477c6e0336f65bb7e17a}} 
-\index{Aurora\+::\+Two\+Pole@{Aurora\+::\+Two\+Pole}!Two\+Pole@{Two\+Pole}}
-\index{Two\+Pole@{Two\+Pole}!Aurora\+::\+Two\+Pole@{Aurora\+::\+Two\+Pole}}
-\subsubsection{\texorpdfstring{Two\+Pole()}{TwoPole()}}
-{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S) FN = id$>$ \\
-\hyperlink{class_aurora_1_1_two_pole}{Aurora\+::\+Two\+Pole}$<$ S, FN $>$\+::\hyperlink{class_aurora_1_1_two_pole}{Two\+Pole} (\begin{DoxyParamCaption}\item[{S}]{fs = {\ttfamily \hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}},  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\index{Aurora::TwoPole$<$ S, FN $>$@{Aurora::TwoPole$<$ S, FN $>$}!TwoPole@{TwoPole}}
+\index{TwoPole@{TwoPole}!Aurora::TwoPole$<$ S, FN $>$@{Aurora::TwoPole$<$ S, FN $>$}}
+\doxysubsubsection{\texorpdfstring{TwoPole()}{TwoPole()}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(S, S) FN = id$>$ \\
+\mbox{\hyperlink{class_aurora_1_1_two_pole}{Aurora\+::\+Two\+Pole}}$<$ S, FN $>$\+::\+Two\+Pole (\begin{DoxyParamCaption}\item[{S}]{fs = {\ttfamily \mbox{\hyperlink{namespace_aurora_ad49263d809bea98dd422e95bc91bc03e}{def\+\_\+sr}}},  }\item[{std\+::size\+\_\+t}]{vsize = {\ttfamily \mbox{\hyperlink{namespace_aurora_afaaddf667a06e7ce23c667a8b7295263}{def\+\_\+vsize}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor ~\newline
 sr\+: sampling rate ~\newline
 vsize\+: vector size 
 
-\subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_two_pole_a1dc2162d26dbb9215d2c31eaee2cea2f}\label{class_aurora_1_1_two_pole_a1dc2162d26dbb9215d2c31eaee2cea2f}} 
-\index{Aurora\+::\+Two\+Pole@{Aurora\+::\+Two\+Pole}!operator()@{operator()}}
-\index{operator()@{operator()}!Aurora\+::\+Two\+Pole@{Aurora\+::\+Two\+Pole}}
-\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S) FN = id$>$ \\
-const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_two_pole}{Aurora\+::\+Two\+Pole}$<$ S, FN $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in,  }\item[{S}]{f,  }\item[{S}]{d,  }\item[{S}]{drv = {\ttfamily 0},  }\item[{S}]{m = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_two_pole_aa8712f26a92306b4dd09247ed3d562e2}\label{class_aurora_1_1_two_pole_aa8712f26a92306b4dd09247ed3d562e2}} 
+\index{Aurora::TwoPole$<$ S, FN $>$@{Aurora::TwoPole$<$ S, FN $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora::TwoPole$<$ S, FN $>$@{Aurora::TwoPole$<$ S, FN $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(S, S) FN = id$>$ \\
+const std\+::vector$<$ S $>$ \& \mbox{\hyperlink{class_aurora_1_1_two_pole}{Aurora\+::\+Two\+Pole}}$<$ S, FN $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in,  }\item[{const std\+::vector$<$ S $>$ \&}]{f,  }\item[{S}]{d,  }\item[{S}]{drv = {\ttfamily 0},  }\item[{S}]{m = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Filter ~\newline
 in\+: input ~\newline
 f\+: frequency ~\newline
 d\+: damping factor (Q reciprocal) ~\newline
 drv\+: overdrive amount ~\newline
-S\+: output type (0 -\/ 4\+: L\+P(0), H\+P(1), B\+P(1), B\+R(3)) \mbox{\Hypertarget{class_aurora_1_1_two_pole_a4cbd5c7edf3dadf6ab55a58fe3c50750}\label{class_aurora_1_1_two_pole_a4cbd5c7edf3dadf6ab55a58fe3c50750}} 
-\index{Aurora\+::\+Two\+Pole@{Aurora\+::\+Two\+Pole}!operator()@{operator()}}
-\index{operator()@{operator()}!Aurora\+::\+Two\+Pole@{Aurora\+::\+Two\+Pole}}
-\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S) FN = id$>$ \\
-const std\+::vector$<$S$>$\& \hyperlink{class_aurora_1_1_two_pole}{Aurora\+::\+Two\+Pole}$<$ S, FN $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in,  }\item[{const std\+::vector$<$ S $>$ \&}]{f,  }\item[{S}]{d,  }\item[{S}]{drv = {\ttfamily 0},  }\item[{S}]{m = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+S\+: output type (0 -\/ 2\+: LP(0), HP(1), BP(2)) \mbox{\Hypertarget{class_aurora_1_1_two_pole_a4b12ebbef88b94a75a25056e16e92357}\label{class_aurora_1_1_two_pole_a4b12ebbef88b94a75a25056e16e92357}} 
+\index{Aurora::TwoPole$<$ S, FN $>$@{Aurora::TwoPole$<$ S, FN $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora::TwoPole$<$ S, FN $>$@{Aurora::TwoPole$<$ S, FN $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(S, S) FN = id$>$ \\
+const std\+::vector$<$ S $>$ \& \mbox{\hyperlink{class_aurora_1_1_two_pole}{Aurora\+::\+Two\+Pole}}$<$ S, FN $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{in,  }\item[{S}]{f,  }\item[{S}]{d,  }\item[{S}]{drv = {\ttfamily 0},  }\item[{S}]{m = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Filter ~\newline
 in\+: input ~\newline
 f\+: frequency ~\newline
 d\+: damping factor (Q reciprocal) ~\newline
 drv\+: overdrive amount ~\newline
-S\+: output type (0 -\/ 2\+: L\+P(0), H\+P(1), B\+P(2)) \mbox{\Hypertarget{class_aurora_1_1_two_pole_aef4afc0b8012d9bccf104488c6ebad3f}\label{class_aurora_1_1_two_pole_aef4afc0b8012d9bccf104488c6ebad3f}} 
-\index{Aurora\+::\+Two\+Pole@{Aurora\+::\+Two\+Pole}!reset@{reset}}
-\index{reset@{reset}!Aurora\+::\+Two\+Pole@{Aurora\+::\+Two\+Pole}}
-\subsubsection{\texorpdfstring{reset()}{reset()}}
-{\footnotesize\ttfamily template$<$typename S , S($\ast$)(\+S, S) FN = id$>$ \\
-void \hyperlink{class_aurora_1_1_two_pole}{Aurora\+::\+Two\+Pole}$<$ S, FN $>$\+::reset (\begin{DoxyParamCaption}\item[{S}]{fs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+S\+: output type (0 -\/ 4\+: LP(0), HP(1), BP(1), BR(3)) \mbox{\Hypertarget{class_aurora_1_1_two_pole_aef4afc0b8012d9bccf104488c6ebad3f}\label{class_aurora_1_1_two_pole_aef4afc0b8012d9bccf104488c6ebad3f}} 
+\index{Aurora::TwoPole$<$ S, FN $>$@{Aurora::TwoPole$<$ S, FN $>$}!reset@{reset}}
+\index{reset@{reset}!Aurora::TwoPole$<$ S, FN $>$@{Aurora::TwoPole$<$ S, FN $>$}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$typename S , S($\ast$)(S, S) FN = id$>$ \\
+void \mbox{\hyperlink{class_aurora_1_1_two_pole}{Aurora\+::\+Two\+Pole}}$<$ S, FN $>$\+::reset (\begin{DoxyParamCaption}\item[{S}]{fs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 reset the filter ~\newline
 fs\+: sampling rate 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\hyperlink{_two_pole_8h}{Two\+Pole.\+h}\end{DoxyCompactItemize}
+\mbox{\hyperlink{_two_pole_8h}{Two\+Pole.\+h}}\end{DoxyCompactItemize}

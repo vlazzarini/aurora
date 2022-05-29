@@ -1,4 +1,4 @@
-.TH "Aurora::Fil< S, CF, FN >" 3 "Sun Jan 2 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Fil< S, CF, FN >" 3 "Sun May 29 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -31,15 +31,14 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 
 .SS "template<typename S, void(*)(S, S, S, double *) CF, S(*)(S, double *, double *) FN>
 .br
-class Aurora::Fil< S, CF, FN >"
-\fBFil\fP class 
+class Aurora::Fil< S, CF, FN >"\fBFil\fP class 
 .br
 Generic filter (first or second-order) 
 .br
 S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S , void(*)(S, S, S, double *) CF, S(*)(S, double *, double *) FN> \fBAurora::Fil\fP< S, CF, FN >::\fBFil\fP (S ffs = \fC\fBdef_sr\fP\fP, int vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S , void(*)(S, S, S, double *) CF, S(*)(S, double *, double *) FN> \fBAurora::Fil\fP< S, CF, FN >::Fil (S ffs = \fC\fBdef_sr\fP\fP, int vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 fs: sampling rate 
@@ -47,7 +46,7 @@ fs: sampling rate
 vsize: vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S , void(*)(S, S, S, double *) CF, S(*)(S, double *, double *) FN> const std::vector<S>& \fBAurora::Fil\fP< S, CF, FN >::operator() (const std::vector< S > & in, S f, S bw = \fC0\fP)\fC [inline]\fP"
+.SS "template<typename S , void(*)(S, S, S, double *) CF, S(*)(S, double *, double *) FN> const std::vector< S > & \fBAurora::Fil\fP< S, CF, FN >::operator() (const std::vector< S > & in, const std::vector< S > & f, S bw = \fC0\fP)\fC [inline]\fP"
 Filter 
 .br
 in: input 
@@ -57,7 +56,7 @@ f: cutoff frequency
 bw: bandwidth 
 .br
 ; 
-.SS "template<typename S , void(*)(S, S, S, double *) CF, S(*)(S, double *, double *) FN> const std::vector<S>& \fBAurora::Fil\fP< S, CF, FN >::operator() (const std::vector< S > & in, const std::vector< S > & f, S bw = \fC0\fP)\fC [inline]\fP"
+.SS "template<typename S , void(*)(S, S, S, double *) CF, S(*)(S, double *, double *) FN> const std::vector< S > & \fBAurora::Fil\fP< S, CF, FN >::operator() (const std::vector< S > & in, S f, S bw = \fC0\fP)\fC [inline]\fP"
 Filter 
 .br
 in: input 

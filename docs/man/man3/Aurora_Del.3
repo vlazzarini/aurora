@@ -1,4 +1,4 @@
-.TH "Aurora::Del< S, FN >" 3 "Sun Jan 2 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Del< S, FN >" 3 "Sun May 29 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,6 +17,12 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .RI "\fBDel\fP (S maxdt, S sr=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
+.RI "\fBDel\fP (std::size_t maxdt, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in)"
+.br
+.ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S dt, S fdb=0, S fwd=0, std::vector< S > *mem=nullptr)"
 .br
 .ti -1c
@@ -31,15 +37,14 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 
 .SS "template<typename S, S(*)(S, std::size_t, const std::vector< S > &, std::vector< S > *) FN = fixed_delay>
 .br
-class Aurora::Del< S, FN >"
-\fBDel\fP class 
+class Aurora::Del< S, FN >"\fBDel\fP class 
 .br
 Generic templated delay line 
 .br
 S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, std::vector< S > *) FN = fixed_delay> \fBAurora::Del\fP< S, FN >::\fBDel\fP (S maxdt, S sr = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, std::vector< S > *) FN = fixed_delay> \fBAurora::Del\fP< S, FN >::Del (S maxdt, S sr = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 maxdt: maximum delay time 
@@ -49,19 +54,25 @@ f: delay lookup function
 sr: sampling rate 
 .br
 vsize: vector size 
+.SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, std::vector< S > *) FN = fixed_delay> \fBAurora::Del\fP< S, FN >::Del (std::size_t maxdt, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+maxdt: maximum delay time in Samples 
+.br
+f: delay lookup function 
+.br
+sr: sampling rate 
+.br
+vsize: vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, std::vector< S > *) FN = fixed_delay> const std::vector<S>& \fBAurora::Del\fP< S, FN >::operator() (const std::vector< S > & in, S dt, S fdb = \fC0\fP, S fwd = \fC0\fP, std::vector< S > * mem = \fCnullptr\fP)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, std::vector< S > *) FN = fixed_delay> const std::vector< S > & \fBAurora::Del\fP< S, FN >::operator() (const std::vector< S > & in)\fC [inline]\fP"
 Delay 
 .br
 in: audio 
 .br
-dt: delay time 
-.br
-fdb: feedback gain 
-.br
-fwd: feedforward gain mem: optional aux memory 
-.SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, std::vector< S > *) FN = fixed_delay> const std::vector<S>& \fBAurora::Del\fP< S, FN >::operator() (const std::vector< S > & in, const std::vector< S > & dt, S fdb = \fC0\fP, S fwd = \fC0\fP, std::vector< S > * mem = \fCnullptr\fP)\fC [inline]\fP"
+
+.SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, std::vector< S > *) FN = fixed_delay> const std::vector< S > & \fBAurora::Del\fP< S, FN >::operator() (const std::vector< S > & in, const std::vector< S > & dt, S fdb = \fC0\fP, S fwd = \fC0\fP, std::vector< S > * mem = \fCnullptr\fP)\fC [inline]\fP"
 Delay 
 .br
 in: audio 
@@ -73,6 +84,16 @@ fdb: feedback gain
 fwd: feedforward gain 
 .br
 mem: optional aux memory 
+.SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, std::vector< S > *) FN = fixed_delay> const std::vector< S > & \fBAurora::Del\fP< S, FN >::operator() (const std::vector< S > & in, S dt, S fdb = \fC0\fP, S fwd = \fC0\fP, std::vector< S > * mem = \fCnullptr\fP)\fC [inline]\fP"
+Delay 
+.br
+in: audio 
+.br
+dt: delay time 
+.br
+fdb: feedback gain 
+.br
+fwd: feedforward gain mem: optional aux memory 
 .SS "template<typename S , S(*)(S, std::size_t, const std::vector< S > &, std::vector< S > *) FN = fixed_delay> void \fBAurora::Del\fP< S, FN >::reset (S maxdt, S sr)\fC [inline]\fP"
 reset the delayline object 
 .br

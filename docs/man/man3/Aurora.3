@@ -1,4 +1,4 @@
-.TH "Aurora" 3 "Sun Jan 2 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora" 3 "Sun May 29 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -19,7 +19,16 @@ Aurora
 .RI "class \fBBuff\fP"
 .br
 .ti -1c
+.RI "class \fBCeps\fP"
+.br
+.ti -1c
 .RI "class \fBConv\fP"
+.br
+.ti -1c
+.RI "struct \fBdata_chunk\fP"
+.br
+.ti -1c
+.RI "class \fBDeinterleave\fP"
 .br
 .ti -1c
 .RI "class \fBDel\fP"
@@ -35,6 +44,9 @@ Aurora
 .br
 .ti -1c
 .RI "class \fBFil\fP"
+.br
+.ti -1c
+.RI "struct \fBfmt_chunk\fP"
 .br
 .ti -1c
 .RI "class \fBFourPole\fP"
@@ -55,13 +67,46 @@ Aurora
 .RI "class \fBOsc\fP"
 .br
 .ti -1c
+.RI "class \fBQuad\fP"
+.br
+.ti -1c
+.RI "struct \fBriff_chunk\fP"
+.br
+.ti -1c
 .RI "class \fBSndBase\fP"
+.br
+.ti -1c
+.RI "class \fBSpecBase\fP"
+.br
+.ti -1c
+.RI "class \fBspecdata\fP"
+.br
+.ti -1c
+.RI "class \fBSpecPitch\fP"
+.br
+.ti -1c
+.RI "class \fBSpecPlay\fP"
+.br
+.ti -1c
+.RI "class \fBSpecShift\fP"
+.br
+.ti -1c
+.RI "class \fBSpecStream\fP"
+.br
+.ti -1c
+.RI "class \fBSpecSynth\fP"
+.br
+.ti -1c
+.RI "class \fBSpecTable\fP"
 .br
 .ti -1c
 .RI "class \fBTableSet\fP"
 .br
 .ti -1c
 .RI "class \fBTwoPole\fP"
+.br
+.ti -1c
+.RI "class \fBWave\fP"
 .br
 .in -1c
 .SS "Enumerations"
@@ -138,6 +183,12 @@ Aurora
 .RI "template<typename S > void \fBbr_cfs\fP (S f, S bw, S fs, double *c)"
 .br
 .ti -1c
+.RI "template<typename S > S \fBsinn\fP (S ph)"
+.br
+.ti -1c
+.RI "template<typename S > S \fBcosn\fP (S ph)"
+.br
+.ti -1c
 .RI "template<typename S > S \fBlookup\fP (double ph, const std::vector< S > *t)"
 .br
 .ti -1c
@@ -168,7 +219,16 @@ Aurora
 .RI "template<typename S > S \fBcubic_interp_lim\fP (double pos, const std::vector< S > &t)"
 .br
 .ti -1c
+.RI "template<typename S > S \fBunwrap\fP (S ph)"
+.br
+.ti -1c
 .RI "template<typename S > S \fBid\fP (S s, S dr)"
+.br
+.ti -1c
+.RI "static char \fBle_test\fP ()"
+.br
+.ti -1c
+.RI "static char * \fBbyteswap\fP (void *pp, int32_t N)"
 .br
 .in -1c
 .SS "Variables"
@@ -181,10 +241,10 @@ Aurora
 .RI "const std::size_t \fBdef_psize\fP = 2048"
 .br
 .ti -1c
-.RI "const bool \fBola\fP = 0"
+.RI "const bool \fBola\fP = 1"
 .br
 .ti -1c
-.RI "const bool \fBols\fP = 1"
+.RI "const bool \fBols\fP = 0"
 .br
 .ti -1c
 .RI "const bool \fBpacked\fP = true"
@@ -199,6 +259,12 @@ Aurora
 .RI "const int \fBdef_ftlen\fP = 16384"
 .br
 .ti -1c
+.RI "const double \fBap1\fP []"
+.br
+.ti -1c
+.RI "const double \fBap2\fP []"
+.br
+.ti -1c
 .RI "const int \fBdef_vsize\fP = 64"
 .br
 .ti -1c
@@ -206,6 +272,24 @@ Aurora
 .br
 .ti -1c
 .RI "const double \fBtwopi\fP = 2 * \fBM_PI\fP"
+.br
+.ti -1c
+.RI "const std::size_t \fBdef_fftsize\fP = 1024"
+.br
+.ti -1c
+.RI "const std::size_t \fBdef_hsize\fP = 256"
+.br
+.ti -1c
+.RI "const char \fBRIFF_ID\fP [4] = {'R','I','F','F'}"
+.br
+.ti -1c
+.RI "const char \fBWAVE_ID\fP [4] = {'W','A','V','E'}"
+.br
+.ti -1c
+.RI "const char \fBFMT_ID\fP [4] = {'f','m','t',' '}"
+.br
+.ti -1c
+.RI "const char \fBDATA_ID\fP [4] = {'d','a','t','a'}"
 .br
 .in -1c
 .SH "Enumeration Type Documentation"
@@ -254,7 +338,7 @@ e: prev sample
 ts: fs reciprocal 
 .br
 returns an ADS sample 
-.SS "template<typename S > std::function<S(double, S, S)> Aurora::ads_gen (const S & a, const S & d, const S & s)"
+.SS "template<typename S > std::function< S(double, S, S)> Aurora::ads_gen (const S & a, const S & d, const S & s)"
 ADS function generator for \fBEnv\fP 
 .br
 S: sample type 
@@ -270,7 +354,17 @@ returns an ADS envelope function
 Second-order bandpass filter coeffs 
 .SS "template<typename S > void Aurora::br_cfs (S f, S bw, S fs, double * c)\fC [inline]\fP"
 Second-order notch filter coeffs 
+.SS "static char * Aurora::byteswap (void * pp, int32_t N)\fC [inline]\fP, \fC [static]\fP"
+
 .SS "template<typename S > S Aurora::cos (double ph, const std::vector< S > * t = \fC0\fP)\fC [inline]\fP"
+Cosine function for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: normalised phase 
+.br
+returns the cosine of ph*2*$M_PI 
+.SS "template<typename S > S Aurora::cosn (S ph)\fC [inline]\fP"
 Cosine function for \fBOsc\fP 
 .br
 S: sample type 
@@ -298,7 +392,7 @@ t: table
 DF-I second-order section 
 .SS "template<typename S > S Aurora::dfII (S in, double * c, double * d)\fC [inline]\fP"
 DF-II second-order section 
-.SS "template<typename S > std::function<S(double, S, S)> Aurora::env_gen (const std::vector< S > & pts)"
+.SS "template<typename S > std::function< S(double, S, S)> Aurora::env_gen (const std::vector< S > & pts)"
 Breakpoint function generator for \fBEnv\fP 
 .br
 S: sample type 
@@ -336,6 +430,8 @@ returns a sample from the delay line
 Second-order hipass filter coeffs 
 .SS "template<typename S > S Aurora::id (S s, S dr)\fC [inline]\fP"
 
+.SS "static char Aurora::le_test ()\fC [inline]\fP, \fC [static]\fP"
+
 .SS "template<typename S > S Aurora::linear_interp (double pos, const std::vector< S > & t)\fC [inline]\fP"
 linear interpolation circular table lookup 
 .br
@@ -367,7 +463,7 @@ Cubic interp table lookup function for \fBOsc\fP
 .br
 S: sample type 
 .br
-ph: phase  t: function table 
+ph: phase \\mn t: function table 
 .br
 returns an interpolated sample 
 .SS "template<typename S > S Aurora::lookupi (double ph, const std::vector< S > * t)\fC [inline]\fP"
@@ -375,7 +471,7 @@ Linear interp table lookup function for \fBOsc\fP
 .br
 S: sample type 
 .br
-ph: phase  t: function table 
+ph: phase \\mn t: function table 
 .br
 returns an interpolated sample 
 .SS "template<typename S > void Aurora::lp_cfs (S f, S bw, S fs, double * c)\fC [inline]\fP"
@@ -418,6 +514,16 @@ S: sample type
 ph: normalised phase 
 .br
 returns the sine of ph*2*$M_PI 
+.SS "template<typename S > S Aurora::sinn (S ph)\fC [inline]\fP"
+Sine function for \fBOsc\fP 
+.br
+S: sample type 
+.br
+ph: normalised phase 
+.br
+returns the sine of ph*2*$M_PI 
+.SS "template<typename S > S Aurora::unwrap (S ph)"
+
 .SS "template<typename S > S Aurora::vdelay (S rp, std::size_t wp, const std::vector< S > & del, std::vector< S > * nop)\fC [inline]\fP"
 Truncating delay function for \fBDel\fP 
 .br
@@ -466,9 +572,41 @@ returns a sample from the delay line rp samples behind wp,
 linearly interpolated 
 .SH "Variable Documentation"
 .PP 
+.SS "const double Aurora::ap1[]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+    59\&.017959590337846,
+    262\&.34340692699607,
+    1052\&.8560831644886,
+    4223\&.577583838366,
+    17190\&.389734991037,
+    130538\&.42435798004
+  }
+.fi
+.SS "const double Aurora::ap2[]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+    17\&.007011830208345,
+    129\&.17600673030512,
+    525\&.775375708461,
+    2109\&.1757722295597,
+    8464\&.591006904155,
+    37626\&.43738022203
+  }
+.fi
+.SS "const char Aurora::DATA_ID[4] = {'d','a','t','a'}"
+
 .SS "const double Aurora::def_base = 16\&."
 
+.SS "const std::size_t Aurora::def_fftsize = 1024"
+
 .SS "const int Aurora::def_ftlen = 16384"
+
+.SS "const std::size_t Aurora::def_hsize = 256"
 
 .SS "const std::size_t Aurora::def_psize = 2048"
 
@@ -476,17 +614,23 @@ linearly interpolated
 
 .SS "const int Aurora::def_vsize = 64"
 
+.SS "const char Aurora::FMT_ID[4] = {'f','m','t',' '}"
+
 .SS "bool Aurora::forward = true\fC [static]\fP"
 constant indicating forward \fBFFT\fP direction 
 .SS "bool Aurora::inverse = false\fC [static]\fP"
 constant indicating inverse \fBFFT\fP direction 
-.SS "const bool Aurora::ola = 0"
+.SS "const bool Aurora::ola = 1"
 
-.SS "const bool Aurora::ols = 1"
+.SS "const bool Aurora::ols = 0"
 
 .SS "const bool Aurora::packed = true"
 constant indicating packed \fBFFT\fP format 
+.SS "const char Aurora::RIFF_ID[4] = {'R','I','F','F'}"
+
 .SS "const double Aurora::twopi = 2 * \fBM_PI\fP"
+
+.SS "const char Aurora::WAVE_ID[4] = {'W','A','V','E'}"
 
 .SH "Author"
 .PP 

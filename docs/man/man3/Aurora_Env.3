@@ -1,4 +1,4 @@
-.TH "Aurora::Env< S, FN >" 3 "Sun Jan 2 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Env< S, FN >" 3 "Sun May 29 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -20,7 +20,13 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .RI "\fBEnv\fP (S &a, S &b, S &c, S rt, S \fBfs\fP=\fBdef_sr\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
-.RI "void \fBrelease\fP (S rt)"
+.RI "void \fBrelease\fP (S t)"
+.br
+.ti -1c
+.RI "S \fBrelease\fP ()"
+.br
+.ti -1c
+.RI "void \fBretrigger\fP ()"
 .br
 .ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (bool gate)"
@@ -46,8 +52,7 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 
 .SS "template<typename S, S(*)(S, S, S, double, S, S) FN = ads>
 .br
-class Aurora::Env< S, FN >"
-\fBEnv\fP class 
+class Aurora::Env< S, FN >"\fBEnv\fP class 
 .br
 Generic envelope 
 .br
@@ -56,7 +61,7 @@ S: sample type
 FN: envelope function 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> \fBAurora::Env\fP< S, FN >::\fBEnv\fP (std::function< S(double, S, S)> f, S rt, S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> \fBAurora::Env\fP< S, FN >::Env (std::function< S(double, S, S)> f, S rt, S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 f: envelope function 
@@ -66,7 +71,7 @@ rt: release time
 fs: sampling rate 
 .br
 vsize: signal vector size 
-.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> \fBAurora::Env\fP< S, FN >::\fBEnv\fP (S & a, S & b, S & c, S rt, S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> \fBAurora::Env\fP< S, FN >::Env (S & a, S & b, S & c, S rt, S fs = \fC\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 a: env fn parameter 1 
@@ -90,24 +95,28 @@ returns sampling rate
 set the envelope function 
 .br
 f: envelope function to be used 
-.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector<S>& \fBAurora::Env\fP< S, FN >::operator() (bool gate)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector< S > & \fBAurora::Env\fP< S, FN >::operator() (bool gate)\fC [inline]\fP"
 Envelope 
 .br
 gate: envelope gate 
-.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector<S>& \fBAurora::Env\fP< S, FN >::operator() (S offs, S scal, bool gate)\fC [inline]\fP"
-Envelope 
-.br
-offs: sig offset scal: sig scale gate: envelope gate 
-.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector<S>& \fBAurora::Env\fP< S, FN >::operator() (const std::vector< S > & in, bool gate)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector< S > & \fBAurora::Env\fP< S, FN >::operator() (const std::vector< S > & in, bool gate)\fC [inline]\fP"
 Envelope 
 .br
 in: input signal gate: envelope gate 
-.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> void \fBAurora::Env\fP< S, FN >::release (S rt)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> const std::vector< S > & \fBAurora::Env\fP< S, FN >::operator() (S offs, S scal, bool gate)\fC [inline]\fP"
+Envelope 
+.br
+offs: sig offset scal: sig scale gate: envelope gate 
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> S \fBAurora::Env\fP< S, FN >::release ()\fC [inline]\fP"
+
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> void \fBAurora::Env\fP< S, FN >::release (S t)\fC [inline]\fP"
 Release time setter rt: release time 
 .SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> void \fBAurora::Env\fP< S, FN >::reset (S fs)\fC [inline]\fP"
 reset the envelope 
 .br
 fs: sampling rate 
+.SS "template<typename S , S(*)(S, S, S, double, S, S) FN = ads> void \fBAurora::Env\fP< S, FN >::retrigger ()\fC [inline]\fP"
+Retrigger 
 
 .SH "Author"
 .PP 

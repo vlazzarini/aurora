@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['linear_5finterp',['linear_interp',['../namespace_aurora.html#acdc5f35b9cbf54f7fc84a423d76bd488',1,'Aurora']]],
-  ['linear_5finterp_5flim',['linear_interp_lim',['../namespace_aurora.html#af38f1e4b1a40dab35331f0a2be969091',1,'Aurora']]],
-  ['lookup',['lookup',['../namespace_aurora.html#ae0082f7bc3946a88145d54bacd0c6ff3',1,'Aurora']]],
-  ['lookupc',['lookupc',['../namespace_aurora.html#afab81d7b8873e7850073124fcf37eeea',1,'Aurora']]],
-  ['lookupi',['lookupi',['../namespace_aurora.html#a9246ac499667da52a0d1750e5238c4a8',1,'Aurora']]],
-  ['lp',['LP',['../namespace_aurora.html#a963f359f40fdbc5f4dbe4043534de9ebaa9f81f17c7244e2198dba962e817cf89',1,'Aurora']]],
-  ['lp_5fcfs',['lp_cfs',['../namespace_aurora.html#af00fa05fba77610297abc0dcb14f2770',1,'Aurora']]],
-  ['lp_5fdelay',['lp_delay',['../namespace_aurora.html#a3993d7b3f35ba929c5e59ba117252e1d',1,'Aurora']]]
+  ['id_0',['id',['../namespace_aurora.html#aca47d4c2fcfc307c85418fe7a0b1e98e',1,'Aurora']]],
+  ['imag_1',['imag',['../class_aurora_1_1_quad.html#a5bada8b0f315b0df2b2838b9d85163fa',1,'Aurora::Quad']]],
+  ['integ_2',['integ',['../class_aurora_1_1specdata.html#aa240c8f9bab129ae9ca3eb395a80cdda',1,'Aurora::specdata']]],
+  ['inverse_3',['inverse',['../namespace_aurora.html#ac22c4e2e10572cbb6f64f3bd1cd595b5',1,'Aurora']]],
+  ['ir_4',['IR',['../class_aurora_1_1_i_r.html',1,'Aurora::IR&lt; S &gt;'],['../class_aurora_1_1_i_r.html#a2efce1ea1cacb440e68195209fb2e5e2',1,'Aurora::IR::IR()']]],
+  ['readme_2emd_5',['README.md',['../include_2_r_e_a_d_m_e_8md.html',1,'']]]
 ];

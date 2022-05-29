@@ -77,9 +77,9 @@ c++ -o example example.cpp -I../ include -std = c++ 14 - lsndfile
 
 **grproc.cpp**: granular processing
 
+**freqshift.cpp**: frequency shifting
 
-
-
+**tvconv.cpp**: time-varying convolution
 
 
 

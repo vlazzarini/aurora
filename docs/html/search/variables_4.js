@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['packed',['packed',['../namespace_aurora.html#a3e70ffc9ea5c526dcd66b1b14e43f175',1,'Aurora']]]
+  ['len_0',['len',['../struct_aurora_1_1fmt__chunk.html#a542c9e6071f48be53aaf852d0b0c6e35',1,'Aurora::fmt_chunk']]],
+  ['len0_1',['len0',['../struct_aurora_1_1riff__chunk.html#a59b69f3848dba76aca3ad3ecf0032ba9',1,'Aurora::riff_chunk']]]
 ];

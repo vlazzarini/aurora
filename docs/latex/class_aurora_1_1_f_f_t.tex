@@ -1,100 +1,117 @@
-\hypertarget{class_aurora_1_1_f_f_t}{}\section{Aurora\+:\+:F\+FT$<$ S $>$ Class Template Reference}
-\label{class_aurora_1_1_f_f_t}\index{Aurora\+::\+F\+F\+T$<$ S $>$@{Aurora\+::\+F\+F\+T$<$ S $>$}}
+\hypertarget{class_aurora_1_1_f_f_t}{}\doxysection{Aurora\+::FFT\texorpdfstring{$<$}{<} S \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_aurora_1_1_f_f_t}\index{Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}}
 
 
-{\ttfamily \#include $<$F\+F\+T.\+h$>$}
+{\ttfamily \#include $<$FFT.\+h$>$}
 
-\subsection*{Public Member Functions}
+\doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_aurora_1_1_f_f_t_a358d44bb84dac04a3f6ab13aefdceaf4}{F\+FT} (std\+::size\+\_\+t N, bool packd=\hyperlink{namespace_aurora_a3e70ffc9ea5c526dcd66b1b14e43f175}{packed}, bool nm=\hyperlink{namespace_aurora_a20b1bd3f1b34b8676e26d07718dac352}{forward})
+\mbox{\hyperlink{class_aurora_1_1_f_f_t_a358d44bb84dac04a3f6ab13aefdceaf4}{FFT}} (std\+::size\+\_\+t N, bool packd=\mbox{\hyperlink{namespace_aurora_a3e70ffc9ea5c526dcd66b1b14e43f175}{packed}}, bool nm=\mbox{\hyperlink{namespace_aurora_a20b1bd3f1b34b8676e26d07718dac352}{forward}})
 \item 
-std\+::size\+\_\+t \hyperlink{class_aurora_1_1_f_f_t_ad0149c60672d3f4e64850dde22f5b163}{size} ()
+std\+::size\+\_\+t \mbox{\hyperlink{class_aurora_1_1_f_f_t_ad0149c60672d3f4e64850dde22f5b163}{size}} ()
 \item 
-void \hyperlink{class_aurora_1_1_f_f_t_a8325de64c8b9f208ed0bc8db3f74e4c7}{transform} (std\+::vector$<$ std\+::complex$<$ S $>$$>$ \&s, bool dir)
+void \mbox{\hyperlink{class_aurora_1_1_f_f_t_a2aa8fde5d685a6c8bff5aca17f4cdfbf}{transform}} (std\+::complex$<$ S $>$ $\ast$s, bool dir)
 \item 
-const std\+::complex$<$ S $>$ $\ast$ \hyperlink{class_aurora_1_1_f_f_t_a51ed1e25953c12b7f4cc145d19ee5cd8}{transform} (const std\+::vector$<$ S $>$ \&r)
+const std\+::complex$<$ S $>$ $\ast$ \mbox{\hyperlink{class_aurora_1_1_f_f_t_a4c8dd21b6ccf2759e8aa1810bdd57aff}{transform}} (const std\+::vector$<$ S $>$ \&r)
 \item 
-const S $\ast$ \hyperlink{class_aurora_1_1_f_f_t_a9331bca89f3782409a7587611f1e4bab}{transform} (const std\+::vector$<$ std\+::complex$<$ S $>$$>$ \&sp)
+const S $\ast$ \mbox{\hyperlink{class_aurora_1_1_f_f_t_a5f951c3ce7aa157d6ca3c2815d32c76c}{transform}} (const std\+::vector$<$ std\+::complex$<$ S $>$ $>$ \&sp)
 \item 
-const std\+::vector$<$ std\+::complex$<$ S $>$ $>$ \& \hyperlink{class_aurora_1_1_f_f_t_a67003935e240d8b4cf858430f6063913}{vector} () const
+const std\+::vector$<$ std\+::complex$<$ S $>$ $>$ \& \mbox{\hyperlink{class_aurora_1_1_f_f_t_af62cae83687ae0f65eea6a6e92da5a90}{operator()}} (const std\+::vector$<$ S $>$ \&r)
 \item 
-const S $\ast$ \hyperlink{class_aurora_1_1_f_f_t_a7462e77c06228475f0f491d7a25d7bba}{data} () const
+const S $\ast$ \mbox{\hyperlink{class_aurora_1_1_f_f_t_a4b6382c0d714b6a89987d939383abd76}{operator()}} (const std\+::vector$<$ std\+::complex$<$ S $>$ $>$ \&sp)
+\item 
+const std\+::vector$<$ std\+::complex$<$ S $>$ $>$ \& \mbox{\hyperlink{class_aurora_1_1_f_f_t_abde1002b8fc0234bede1be83805cb1af}{vector}} () const
+\item 
+const S $\ast$ \mbox{\hyperlink{class_aurora_1_1_f_f_t_adda1c7509b11162dbe65f2a61981c0d9}{data}} () const
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename S$>$\newline
-class Aurora\+::\+F\+F\+T$<$ S $>$}
-
-\hyperlink{class_aurora_1_1_f_f_t}{F\+FT} class ~\newline
+class Aurora\+::\+FFT$<$ S $>$}
+\mbox{\hyperlink{class_aurora_1_1_f_f_t}{FFT}} class ~\newline
 Radix-\/2 fast Fourier transform ~\newline
 S\+: sample type 
 
-\subsection{Constructor \& Destructor Documentation}
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_aurora_1_1_f_f_t_a358d44bb84dac04a3f6ab13aefdceaf4}\label{class_aurora_1_1_f_f_t_a358d44bb84dac04a3f6ab13aefdceaf4}} 
-\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!F\+FT@{F\+FT}}
-\index{F\+FT@{F\+FT}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
-\subsubsection{\texorpdfstring{F\+F\+T()}{FFT()}}
-{\footnotesize\ttfamily template$<$typename S$>$ \\
-\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::\hyperlink{class_aurora_1_1_f_f_t}{F\+FT} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{N,  }\item[{bool}]{packd = {\ttfamily \hyperlink{namespace_aurora_a3e70ffc9ea5c526dcd66b1b14e43f175}{packed}},  }\item[{bool}]{nm = {\ttfamily \hyperlink{namespace_aurora_a20b1bd3f1b34b8676e26d07718dac352}{forward}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\index{Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}!FFT@{FFT}}
+\index{FFT@{FFT}!Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}}
+\doxysubsubsection{\texorpdfstring{FFT()}{FFT()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+\mbox{\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+FFT}}$<$ S $>$\+::\+FFT (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{N,  }\item[{bool}]{packd = {\ttfamily \mbox{\hyperlink{namespace_aurora_a3e70ffc9ea5c526dcd66b1b14e43f175}{packed}}},  }\item[{bool}]{nm = {\ttfamily \mbox{\hyperlink{namespace_aurora_a20b1bd3f1b34b8676e26d07718dac352}{forward}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Constructor ~\newline
 N\+: transform size ~\newline
 packed\+: complex data format in packed form (true) or not ~\newline
 nm\+: normalisation mode (forward or inverse transforms) 
 
-\subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_aurora_1_1_f_f_t_a7462e77c06228475f0f491d7a25d7bba}\label{class_aurora_1_1_f_f_t_a7462e77c06228475f0f491d7a25d7bba}} 
-\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!data@{data}}
-\index{data@{data}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
-\subsubsection{\texorpdfstring{data()}{data()}}
-{\footnotesize\ttfamily template$<$typename S$>$ \\
-const S$\ast$ \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aurora_1_1_f_f_t_adda1c7509b11162dbe65f2a61981c0d9}\label{class_aurora_1_1_f_f_t_adda1c7509b11162dbe65f2a61981c0d9}} 
+\index{Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}!data@{data}}
+\index{data@{data}!Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const S $\ast$ \mbox{\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+FFT}}$<$ S $>$\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_aurora_1_1_f_f_t_af62cae83687ae0f65eea6a6e92da5a90}\label{class_aurora_1_1_f_f_t_af62cae83687ae0f65eea6a6e92da5a90}} 
+\index{Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const std\+::vector$<$ std\+::complex$<$ S $>$ $>$ \& \mbox{\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+FFT}}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_aurora_1_1_f_f_t_a4b6382c0d714b6a89987d939383abd76}\label{class_aurora_1_1_f_f_t_a4b6382c0d714b6a89987d939383abd76}} 
+\index{Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const S $\ast$ \mbox{\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+FFT}}$<$ S $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::complex$<$ S $>$ $>$ \&}]{sp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_aurora_1_1_f_f_t_ad0149c60672d3f4e64850dde22f5b163}\label{class_aurora_1_1_f_f_t_ad0149c60672d3f4e64850dde22f5b163}} 
-\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!size@{size}}
-\index{size@{size}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
-\subsubsection{\texorpdfstring{size()}{size()}}
-{\footnotesize\ttfamily template$<$typename S$>$ \\
-std\+::size\+\_\+t \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\index{Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}!size@{size}}
+\index{size@{size}!Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+FFT}}$<$ S $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_aurora_1_1_f_f_t_a8325de64c8b9f208ed0bc8db3f74e4c7}\label{class_aurora_1_1_f_f_t_a8325de64c8b9f208ed0bc8db3f74e4c7}} 
-\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!transform@{transform}}
-\index{transform@{transform}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
-\subsubsection{\texorpdfstring{transform()}{transform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
-{\footnotesize\ttfamily template$<$typename S$>$ \\
-void \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::transform (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::complex$<$ S $>$$>$ \&}]{s,  }\item[{bool}]{dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\Hypertarget{class_aurora_1_1_f_f_t_a4c8dd21b6ccf2759e8aa1810bdd57aff}\label{class_aurora_1_1_f_f_t_a4c8dd21b6ccf2759e8aa1810bdd57aff}} 
+\index{Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}!transform@{transform}}
+\index{transform@{transform}!Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}}
+\doxysubsubsection{\texorpdfstring{transform()}{transform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const std\+::complex$<$ S $>$ $\ast$ \mbox{\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+FFT}}$<$ S $>$\+::transform (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-In-\/place complex-\/to-\/complex \hyperlink{class_aurora_1_1_f_f_t}{F\+FT} ~\newline
+Real-\/to-\/complex forward \mbox{\hyperlink{class_aurora_1_1_f_f_t}{FFT}} ~\newline
+r\+: input vector (real) returns pointer to complex data containing the transform \mbox{\Hypertarget{class_aurora_1_1_f_f_t_a5f951c3ce7aa157d6ca3c2815d32c76c}\label{class_aurora_1_1_f_f_t_a5f951c3ce7aa157d6ca3c2815d32c76c}} 
+\index{Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}!transform@{transform}}
+\index{transform@{transform}!Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}}
+\doxysubsubsection{\texorpdfstring{transform()}{transform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const S $\ast$ \mbox{\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+FFT}}$<$ S $>$\+::transform (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::complex$<$ S $>$ $>$ \&}]{sp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Complex-\/to-\/real inverse \mbox{\hyperlink{class_aurora_1_1_f_f_t}{FFT}} ~\newline
+sp -\/ input vector (complex) ~\newline
+returns pointer to real data containing the transform \mbox{\Hypertarget{class_aurora_1_1_f_f_t_a2aa8fde5d685a6c8bff5aca17f4cdfbf}\label{class_aurora_1_1_f_f_t_a2aa8fde5d685a6c8bff5aca17f4cdfbf}} 
+\index{Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}!transform@{transform}}
+\index{transform@{transform}!Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}}
+\doxysubsubsection{\texorpdfstring{transform()}{transform()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+void \mbox{\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+FFT}}$<$ S $>$\+::transform (\begin{DoxyParamCaption}\item[{std\+::complex$<$ S $>$ $\ast$}]{s,  }\item[{bool}]{dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+In-\/place complex-\/to-\/complex \mbox{\hyperlink{class_aurora_1_1_f_f_t}{FFT}} ~\newline
 data\+: data to be transformed ~\newline
 dir\+: true for forward operation, false for inverse ~\newline
-pckd\+: true for packed data (first point is DC,Nyq) Size of data is expected to be a power-\/of-\/two. \mbox{\Hypertarget{class_aurora_1_1_f_f_t_a51ed1e25953c12b7f4cc145d19ee5cd8}\label{class_aurora_1_1_f_f_t_a51ed1e25953c12b7f4cc145d19ee5cd8}} 
-\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!transform@{transform}}
-\index{transform@{transform}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
-\subsubsection{\texorpdfstring{transform()}{transform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily template$<$typename S$>$ \\
-const std\+::complex$<$S$>$$\ast$ \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::transform (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ S $>$ \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-Real-\/to-\/complex forward \hyperlink{class_aurora_1_1_f_f_t}{F\+FT} ~\newline
-r\+: input vector (real) returns pointer to complex data containing the transform \mbox{\Hypertarget{class_aurora_1_1_f_f_t_a9331bca89f3782409a7587611f1e4bab}\label{class_aurora_1_1_f_f_t_a9331bca89f3782409a7587611f1e4bab}} 
-\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!transform@{transform}}
-\index{transform@{transform}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
-\subsubsection{\texorpdfstring{transform()}{transform()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily template$<$typename S$>$ \\
-const S$\ast$ \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::transform (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::complex$<$ S $>$$>$ \&}]{sp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-Complex-\/to-\/real inverse \hyperlink{class_aurora_1_1_f_f_t}{F\+FT} ~\newline
-sp -\/ input vector (complex) ~\newline
-returns pointer to real data containing the transform \mbox{\Hypertarget{class_aurora_1_1_f_f_t_a67003935e240d8b4cf858430f6063913}\label{class_aurora_1_1_f_f_t_a67003935e240d8b4cf858430f6063913}} 
-\index{Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}!vector@{vector}}
-\index{vector@{vector}!Aurora\+::\+F\+FT@{Aurora\+::\+F\+FT}}
-\subsubsection{\texorpdfstring{vector()}{vector()}}
-{\footnotesize\ttfamily template$<$typename S$>$ \\
-const std\+::vector$<$std\+::complex$<$S$>$ $>$\& \hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+F\+FT}$<$ S $>$\+::vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\Hypertarget{class_aurora_1_1_f_f_t_abde1002b8fc0234bede1be83805cb1af}\label{class_aurora_1_1_f_f_t_abde1002b8fc0234bede1be83805cb1af}} 
+\index{Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}!vector@{vector}}
+\index{vector@{vector}!Aurora::FFT$<$ S $>$@{Aurora::FFT$<$ S $>$}}
+\doxysubsubsection{\texorpdfstring{vector()}{vector()}}
+{\footnotesize\ttfamily template$<$typename S $>$ \\
+const std\+::vector$<$ std\+::complex$<$ S $>$ $>$ \& \mbox{\hyperlink{class_aurora_1_1_f_f_t}{Aurora\+::\+FFT}}$<$ S $>$\+::vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\hyperlink{_f_f_t_8h}{F\+F\+T.\+h}\end{DoxyCompactItemize}
+\mbox{\hyperlink{_f_f_t_8h}{FFT.\+h}}\end{DoxyCompactItemize}

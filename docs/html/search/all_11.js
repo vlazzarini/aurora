@@ -1,4 +1,27 @@
 var searchData=
 [
-  ['waveset',['waveset',['../class_aurora_1_1_bl_osc.html#a053c6740b4b419c6c03e246188906ebc',1,'Aurora::BlOsc']]]
+  ['saw_0',['SAW',['../namespace_aurora.html#a890b8d3786c8a25750e8097adae3b513ad47a607309b6d737bba699a295e5e814',1,'Aurora']]],
+  ['set_5frate_1',['set_rate',['../class_aurora_1_1_spec_pitch.html#aa71a987e8aa5d979c26122e744b50acc',1,'Aurora::SpecPitch']]],
+  ['sin_2',['sin',['../namespace_aurora.html#a76909b8c5d5801213d35fffa69499885',1,'Aurora']]],
+  ['sinn_3',['sinn',['../namespace_aurora.html#adddc8703027392395bf60d41b689f5fe',1,'Aurora']]],
+  ['size_4',['size',['../class_aurora_1_1_spec_table.html#a8ff0b80997fba682ce2632ba320c6dd5',1,'Aurora::SpecTable::size()'],['../class_aurora_1_1_spec_base.html#ac19c236e8a289a851329b559f26abbf1',1,'Aurora::SpecBase::size()'],['../class_aurora_1_1_f_f_t.html#ad0149c60672d3f4e64850dde22f5b163',1,'Aurora::FFT::size()'],['../struct_aurora_1_1fmt__chunk.html#a234f9b44ef64577429a80553a16a6121',1,'Aurora::fmt_chunk::size()']]],
+  ['sndbase_5',['SndBase',['../class_aurora_1_1_snd_base.html',1,'Aurora::SndBase&lt; S &gt;'],['../class_aurora_1_1_snd_base.html#a960739d3ae63df581c28f8801e589a3c',1,'Aurora::SndBase::SndBase()']]],
+  ['sndbase_2eh_6',['SndBase.h',['../_snd_base_8h.html',1,'']]],
+  ['specbase_7',['SpecBase',['../class_aurora_1_1_spec_base.html',1,'Aurora::SpecBase&lt; S &gt;'],['../class_aurora_1_1_spec_base.html#ad2bd221263daadf65cee7890bb33b3ad',1,'Aurora::SpecBase::SpecBase()']]],
+  ['specbase_2eh_8',['SpecBase.h',['../_spec_base_8h.html',1,'']]],
+  ['specdata_9',['specdata',['../class_aurora_1_1specdata.html',1,'Aurora::specdata&lt; S &gt;'],['../class_aurora_1_1specdata.html#a35c54cc13659dde70450e7a0cb5abf73',1,'Aurora::specdata::specdata()'],['../class_aurora_1_1specdata.html#a9b1d8352cac3c22cc5b1c46285357211',1,'Aurora::specdata::specdata(S amp, S freq)'],['../class_aurora_1_1specdata.html#a76bd02bed6941c36c938254449df0389',1,'Aurora::specdata::specdata(std::complex&lt; S &gt; c)']]],
+  ['specpitch_10',['SpecPitch',['../class_aurora_1_1_spec_pitch.html',1,'Aurora::SpecPitch&lt; S &gt;'],['../class_aurora_1_1_spec_pitch.html#ab8ddece26187a11d679c125b7bd517ba',1,'Aurora::SpecPitch::SpecPitch()']]],
+  ['specpitch_2eh_11',['SpecPitch.h',['../_spec_pitch_8h.html',1,'']]],
+  ['specplay_12',['SpecPlay',['../class_aurora_1_1_spec_play.html',1,'Aurora::SpecPlay&lt; S &gt;'],['../class_aurora_1_1_spec_play.html#a6485207abdc91ec9a4699de6e661f5ef',1,'Aurora::SpecPlay::SpecPlay()']]],
+  ['specplay_2eh_13',['SpecPlay.h',['../_spec_play_8h.html',1,'']]],
+  ['specshift_14',['SpecShift',['../class_aurora_1_1_spec_shift.html',1,'Aurora::SpecShift&lt; S &gt;'],['../class_aurora_1_1_spec_shift.html#a7ac8de305ae5a4850d054030da79b665',1,'Aurora::SpecShift::SpecShift()']]],
+  ['specshift_2eh_15',['SpecShift.h',['../_spec_shift_8h.html',1,'']]],
+  ['specstream_16',['SpecStream',['../class_aurora_1_1_spec_stream.html',1,'Aurora::SpecStream&lt; S &gt;'],['../class_aurora_1_1_spec_stream.html#a9fc50d5033091df1b2513683adb76539',1,'Aurora::SpecStream::SpecStream()']]],
+  ['specstream_2eh_17',['SpecStream.h',['../_spec_stream_8h.html',1,'']]],
+  ['specsynth_18',['SpecSynth',['../class_aurora_1_1_spec_synth.html',1,'Aurora::SpecSynth&lt; S &gt;'],['../class_aurora_1_1_spec_synth.html#a6c343816a4aa5e545af34c47808aed6c',1,'Aurora::SpecSynth::SpecSynth()']]],
+  ['spectable_19',['SpecTable',['../class_aurora_1_1_spec_table.html',1,'Aurora::SpecTable&lt; S &gt;'],['../class_aurora_1_1_spec_table.html#a7b1cd9460e3059161dfded2618ead43e',1,'Aurora::SpecTable::SpecTable()']]],
+  ['spectrum_20',['spectrum',['../class_aurora_1_1_i_r.html#a1f368278be0a315f7da7079bf361dcb4',1,'Aurora::IR']]],
+  ['square_21',['SQUARE',['../namespace_aurora.html#a890b8d3786c8a25750e8097adae3b513ad12f117b00f964cb4de3809ca2e2fa2b',1,'Aurora']]],
+  ['sr_22',['sr',['../class_aurora_1_1_spec_table.html#a3bf19e4962291c2a7fa97c1d04b7ba91',1,'Aurora::SpecTable']]],
+  ['start_23',['start',['../class_aurora_1_1_spec_play.html#ab76b8a1dc2ea6aaae8e337186bfcc014',1,'Aurora::SpecPlay']]]
 ];

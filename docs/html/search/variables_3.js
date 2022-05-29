@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ola',['ola',['../namespace_aurora.html#ab2cb0b1f6952bb2ca908ebd8156370db',1,'Aurora']]],
-  ['ols',['ols',['../namespace_aurora.html#a4e816792565225ccd6ba67110f75fb8b',1,'Aurora']]]
+  ['inverse_0',['inverse',['../namespace_aurora.html#ac22c4e2e10572cbb6f64f3bd1cd595b5',1,'Aurora']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['hp',['HP',['../namespace_aurora.html#a963f359f40fdbc5f4dbe4043534de9eba404a7e9d666dc8dc6a9492163a8f3d49',1,'Aurora']]],
-  ['hp_5fcfs',['hp_cfs',['../namespace_aurora.html#a51c342d920dfc9f5d5538ff79f47b0e3',1,'Aurora']]]
+  ['get_5fcps_0',['get_cps',['../class_aurora_1_1_spec_pitch.html#ae5f232086b042b73da1f99097046d7db',1,'Aurora::SpecPitch']]]
 ];

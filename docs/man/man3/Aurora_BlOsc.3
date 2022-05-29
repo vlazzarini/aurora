@@ -1,4 +1,4 @@
-.TH "Aurora::BlOsc< S, FN >" 3 "Sun Jan 2 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::BlOsc< S, FN >" 3 "Sun May 29 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,7 +9,7 @@ Aurora::BlOsc< S, FN >
 .PP
 \fC#include <BlOsc\&.h>\fP
 .PP
-Inherits \fBAurora::Osc< S, FN >\fP\&.
+Inherits \fBAurora::Osc< S, lookupi< S > >\fP\&.
 .SS "Public Member Functions"
 
 .in +1c
@@ -25,8 +25,7 @@ Inherits \fBAurora::Osc< S, FN >\fP\&.
 
 .SS "template<typename S, S(*)(double, const std::vector< S > *) FN = lookupi<S>>
 .br
-class Aurora::BlOsc< S, FN >"
-\fBBlOsc\fP class 
+class Aurora::BlOsc< S, FN >"\fBBlOsc\fP class 
 .br
 Bandlimited wavetable oscillator\&. 
 .br
@@ -35,7 +34,7 @@ S: sample type
 FN: oscillator function 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S , S(*)(double, const std::vector< S > *) FN = lookupi<S>> \fBAurora::BlOsc\fP< S, FN >::\fBBlOsc\fP (const \fBTableSet\fP< S > * t, S fs = \fC(S)\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S , S(*)(double, const std::vector< S > *) FN = lookupi<S>> \fBAurora::BlOsc\fP< S, FN >::BlOsc (const \fBTableSet\fP< S > * t, S fs = \fC(S)\fBdef_sr\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 t: wavetable set 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['aurora_20headers',['Aurora Headers',['../index.html',1,'']]]
+  ['aurora_20headers_0',['Aurora Headers',['../index.html',1,'']]]
 ];

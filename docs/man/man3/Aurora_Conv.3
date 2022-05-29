@@ -1,4 +1,4 @@
-.TH "Aurora::Conv< S >" 3 "Sun Jan 2 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Conv< S >" 3 "Sun May 29 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,7 +17,19 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 .RI "\fBConv\fP (const \fBIR\fP< S > *imp, bool algo=\fBols\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
 .br
 .ti -1c
+.RI "\fBConv\fP (std::size_t len, std::size_t psiz=\fBdef_psize\fP, std::size_t \fBvsize\fP=\fBdef_vsize\fP)"
+.br
+.ti -1c
 .RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in, S scal)"
+.br
+.ti -1c
+.RI "const std::vector< S > & \fBoperator()\fP (const std::vector< S > &in1, const std::vector< S > &in2, S scal)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (const \fBIR\fP< S > *imp)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (std::size_t len, std::size_t psiz=\fBdef_psize\fP)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -25,13 +37,12 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 
 .SS "template<typename S>
 .br
-class Aurora::Conv< S >"
-\fBConv\fP class 
+class Aurora::Conv< S >"\fBConv\fP class 
 .br
 Partitioned convolution 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S > \fBAurora::Conv\fP< S >::\fBConv\fP (const \fBIR\fP< S > * imp, bool algo = \fC\fBols\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S > \fBAurora::Conv\fP< S >::Conv (const \fBIR\fP< S > * imp, bool algo = \fC\fBols\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 \fBIR\fP: impulse response table
@@ -39,14 +50,28 @@ Constructor
 algo: convolution algorithm (ols = 0, ola = 1) 
 .br
 vsize: vector size 
+.SS "template<typename S > \fBAurora::Conv\fP< S >::Conv (std::size_t len, std::size_t psiz = \fC\fBdef_psize\fP\fP, std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+Constructor 
+.br
+len: convolution length 
+.br
+psize: partition size 
+.br
+vsize: vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S > const std::vector<S>& \fBAurora::Conv\fP< S >::operator() (const std::vector< S > & in, S scal)\fC [inline]\fP"
+.SS "template<typename S > const std::vector< S > & \fBAurora::Conv\fP< S >::operator() (const std::vector< S > & in, S scal)\fC [inline]\fP"
 Convolution 
 .br
 in: input 
 .br
 scal: output ampltude scaling 
+.SS "template<typename S > const std::vector< S > & \fBAurora::Conv\fP< S >::operator() (const std::vector< S > & in1, const std::vector< S > & in2, S scal)\fC [inline]\fP"
+
+.SS "template<typename S > void \fBAurora::Conv\fP< S >::reset (const \fBIR\fP< S > * imp)\fC [inline]\fP"
+
+.SS "template<typename S > void \fBAurora::Conv\fP< S >::reset (std::size_t len, std::size_t psiz = \fC\fBdef_psize\fP\fP)\fC [inline]\fP"
+
 
 .SH "Author"
 .PP 

@@ -1,4 +1,4 @@
-.TH "Aurora::TableSet< S >" 3 "Sun Jan 2 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::TableSet< S >" 3 "Sun May 29 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -32,15 +32,14 @@ Aurora::TableSet< S >
 
 .SS "template<typename S>
 .br
-class Aurora::TableSet< S >"
-\fBTableSet\fP class 
+class Aurora::TableSet< S >"\fBTableSet\fP class 
 .br
 Creates a set of tables for \fBBlOsc\fP\&. 
 .br
 S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S> \fBAurora::TableSet\fP< S >::\fBTableSet\fP (uint32_t type, S fs = \fC\fBdef_sr\fP\fP, std::size_t len = \fC\fBdef_ftlen\fP\fP)\fC [inline]\fP"
+.SS "template<typename S > \fBAurora::TableSet\fP< S >::TableSet (uint32_t type, S fs = \fC\fBdef_sr\fP\fP, std::size_t len = \fC\fBdef_ftlen\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 type: wave type (SAW, SQUARE, TRIANGLE, PULSE) 
@@ -48,7 +47,7 @@ type: wave type (SAW, SQUARE, TRIANGLE, PULSE)
 fs: sampling rate for which these will be built 
 .br
 len: table length 
-.SS "template<typename S> \fBAurora::TableSet\fP< S >::\fBTableSet\fP (const std::vector< S > & src, S b = \fC\fBdef_base\fP\fP, S fs = \fC\fBdef_sr\fP\fP)\fC [inline]\fP"
+.SS "template<typename S > \fBAurora::TableSet\fP< S >::TableSet (const std::vector< S > & src, S b = \fC\fBdef_base\fP\fP, S fs = \fC\fBdef_sr\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 src: source wave table 
@@ -58,17 +57,11 @@ b: source table base frequency
 fs: source table sampling rate 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S> const std::vector<S>& \fBAurora::TableSet\fP< S >::func (S f) const\fC [inline]\fP"
+.SS "template<typename S > const std::vector< S > & \fBAurora::TableSet\fP< S >::func (S f) const\fC [inline]\fP"
 table selection 
 .br
 f: fundamental frequency used for playback 
-.SS "template<typename S> void \fBAurora::TableSet\fP< S >::reset (uint32_t type, S fs, std::size_t len = \fC\fBdef_ftlen\fP\fP)\fC [inline]\fP"
-reset the table set 
-.br
-type: wave type (SAW, SQUARE, TRIANGLE, PULSE) 
-.br
-fs: sampling rate for which these will be built tlen: table size 
-.SS "template<typename S> void \fBAurora::TableSet\fP< S >::reset (const std::vector< S > & src, S b, S fs)\fC [inline]\fP"
+.SS "template<typename S > void \fBAurora::TableSet\fP< S >::reset (const std::vector< S > & src, S b, S fs)\fC [inline]\fP"
 reset the table set 
 .br
 src: source wave table 
@@ -78,6 +71,12 @@ b: source table base frequency
 fs: source table sampling rate 
 .br
 tlen: table size 
+.SS "template<typename S > void \fBAurora::TableSet\fP< S >::reset (uint32_t type, S fs, std::size_t len = \fC\fBdef_ftlen\fP\fP)\fC [inline]\fP"
+reset the table set 
+.br
+type: wave type (SAW, SQUARE, TRIANGLE, PULSE) 
+.br
+fs: sampling rate for which these will be built tlen: table size 
 
 .SH "Author"
 .PP 

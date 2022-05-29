@@ -1,4 +1,4 @@
-.TH "Aurora::Func< S, FN >" 3 "Sun Jan 2 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
+.TH "Aurora::Func< S, FN >" 3 "Sun May 29 2022" "Version 0.1" "Aurora" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -28,30 +28,29 @@ Inherits \fBAurora::SndBase< S >\fP\&.
 
 .SS "template<typename S, S(*)(S) FN>
 .br
-class Aurora::Func< S, FN >"
-\fBFunc\fP class 
+class Aurora::Func< S, FN >"\fBFunc\fP class 
 .br
 Generic templated function maps 
 .br
 FN: function to be applied FN(arg, table) S: sample type 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<typename S , S(*)(S) FN> \fBAurora::Func\fP< S, FN >::\fBFunc\fP (std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S) FN> \fBAurora::Func\fP< S, FN >::Func (std::size_t vsize = \fC\fBdef_vsize\fP\fP)\fC [inline]\fP"
 Constructor 
 .br
 vsize: signal vector size 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<typename S , S(*)(S) FN> const std::vector<S>& \fBAurora::Func\fP< S, FN >::operator() (S in)\fC [inline]\fP"
-Functional application 
-.br
-in: input scalar parameter 
-.br
-returns reference to object signal vector 
-.SS "template<typename S , S(*)(S) FN> const std::vector<S>& \fBAurora::Func\fP< S, FN >::operator() (const std::vector< S > & in)\fC [inline]\fP"
+.SS "template<typename S , S(*)(S) FN> const std::vector< S > & \fBAurora::Func\fP< S, FN >::operator() (const std::vector< S > & in)\fC [inline]\fP"
 Functional application 
 .br
 in: input signal 
+.br
+returns reference to object signal vector 
+.SS "template<typename S , S(*)(S) FN> const std::vector< S > & \fBAurora::Func\fP< S, FN >::operator() (S in)\fC [inline]\fP"
+Functional application 
+.br
+in: input scalar parameter 
 .br
 returns reference to object signal vector 
 
