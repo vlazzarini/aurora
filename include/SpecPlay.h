@@ -133,9 +133,9 @@ namespace Aurora {
   public:
   /** Constructor \n
        sr - sampling rate \n
-       fftsize - analysis size
+       fftsize - analysis window size
   */ 
-  SpecPlay(S fs, std::size_t fftsize) : shift(fs,fftsize), sr(fs), rp(0),
+  SpecPlay(S fs = def_sr, std::size_t fftsize = def_fftsize) : shift(fs,fftsize), sr(fs), rp(0),
       shft(0), fscal(1), bn(261), fine(1), tscal(1), beg(0), end(1), st(0), keep(0){ }
 
     /** play from start \n
