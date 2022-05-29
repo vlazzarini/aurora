@@ -99,11 +99,8 @@ namespace Aurora {
       return tab;
     }
 
-    /** returns the hopsize */
+    /** returns the analysis hopsize */
     std::size_t hsize() const { return hs; }
-
-    /** returns the analysis size */
-    std::size_t fftsize() const { return win.size(); }
 
     /** returns the number of frames in the table */
     std::size_t size() const { return tab.size(); }
@@ -181,7 +178,7 @@ namespace Aurora {
     /** start pos (0 - 1) */
     void start(S p) { st = p >= 0 ? (p < 1 ? p : 1) : 0;; }
 
-    /** extract formants */
+    /** extract and keep formants */
     void keepform(bool b) { keep = b; }
 
     /** Spectral player \n
