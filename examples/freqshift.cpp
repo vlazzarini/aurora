@@ -41,12 +41,13 @@ class FreqShifter {
   Osc<float,phase> ph;
   std::vector<float> cost;
   std::vector<float> sint;  
-  std::vector<float> out;
+  std::vector<float> up;
+  std::vector<float> down;
 
 public:
   FreqShifter(float sr, std::size_t vsize = def_vsize)
     :   quad(sr,vsize), ph(sr,vsize), cost(def_ftlen+1), sint(def_ftlen+1),
-        out(vsize) {
+    up(vsize), down(vsize) {
     for(std::size_t n = 0; n < def_ftlen+1; n++) {
       cost[n] = std::cos(n*twopi/def_ftlen);
       sint[n] = std::sin(n*twopi/def_ftlen);
@@ -54,18 +55,34 @@ public:
   };
 
 
+  void reset(float sr) {
+    ph.reset(sr);
+    quad.reset(sr);
+  }
+
+
   const std::vector<float> &operator()(const std::vector<float> &in, float fr) {
     std::size_t n = 0;
-    out.resize(in.size());
+    float re, im;
+    up.resize(in.size());
+    down.resize(in.size());
+    ph.vsize(in.size());
     auto &phase = ph(1, fr);
     auto &inr = quad(in);
     auto &ini = quad.imag();
-    for(auto &s : out) {
-      s = inr[n]*lookupi(phase[n],&cost) - ini[n]*lookupi(phase[n],&sint);
-      n++;
+    for(auto &s : up) {
+      re = inr[n]*lookupi(phase[n],&cost);
+      im = ini[n]*lookupi(phase[n],&sint);
+      s = re - im;
+      down[n++] = re + im;
     }
-    return out;
+    return up;
   }
+
+  const std::vector<float> &downshift() {
+    return down;
+  }
+  
 };
 
 int main(int argc, const char **argv) {
