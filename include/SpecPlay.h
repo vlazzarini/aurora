@@ -191,11 +191,11 @@ namespace Aurora {
     */
     const std::vector<specdata<S>>
       &operator() (const SpecTable<S> &samp, S cps) {
-      if(samp.size() == 0){
+      std::size_t siz = samp.size();
+      if(siz == 0){
 	shift.reset(sr);
 	return shift.frame();
       }
-      std::size_t siz = samp.size();
       shift.lock_formants(keep);
       shift(samp()[(int)rp],cps*fine/bn, shft, fscal);
       rp += tscal;
