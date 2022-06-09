@@ -186,7 +186,8 @@ class BlOsc : public Osc<S, FN> {
   S ff;
 
   S synth(S a, S f, double &phs, const std::vector<S> *t, S pm = 0) override {
-    t = ff != f ? &tset->func(f) : t;
+    t = ff != f || !t ? &tset->func(f) : t;
+    ff = f;
     return Osc<S, FN>::synth(a, f, phs, t, pm);
   }
 
