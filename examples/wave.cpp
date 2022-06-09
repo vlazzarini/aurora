@@ -38,8 +38,9 @@ int main(int argc, const char *argv[]) {
     auto f = std::atof(argv[3]);
     Aurora::TableSet<double> wave(ty);
     Aurora::BlOsc<double> osc(&wave, sr);
+    Aurora::Osc<double> lfo(sr);
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
-      for (auto s : osc(a, f, 0.5))
+      for (auto s : osc(a, lfo(f,0.5), 0.5))
         std::cout << s << std::endl;
   } else
     std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz) [type] [sr]"

@@ -52,7 +52,9 @@ template <typename S> inline S lookup(double ph, const std::vector<S> *t) {
     returns an interpolated sample
 */
 template <typename S> inline S lookupi(double ph, const std::vector<S> *t) {
+  if(t)
   return linear_interp(ph * t->size(), *t);
+  else return 0;
 }
 
 /** Cubic interp table lookup function for Osc \n
