@@ -146,7 +146,7 @@ public:
       f: fundamental frequency used for playback
   */
   const std::vector<S> &func(S f) const {
-    int32_t num = f > base ? (int32_t)round(std::log2(f / base)) : 0;
+    std::size_t num = f > base ? (int32_t)round(std::log2(f / base)) : 0;
     return num < waves.size() ? waves[num] : waves.back();
   }
 
@@ -202,7 +202,7 @@ public:
       vsize: vector size
   */
   BlOsc(const TableSet<S> *t, S fs = (S)def_sr, std::size_t vsize = def_vsize)
-      : Osc<S, FN>(nullptr, fs, vsize), tset(t), ff(0){};
+      : Osc<S, FN>(nullptr, fs, vsize), tset(t), ff(-fs){};
 
   /** Change the wavetable set
       t: wavetable set
