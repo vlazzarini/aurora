@@ -119,6 +119,7 @@ class Tonegen {
       p.vsize(vsiz);
       p(1,ff*pow(2,n++/12.));
     }
+    n = 0;
     for(auto &w : wheels) {
       w(phs[n%12].vector());
       n++;
