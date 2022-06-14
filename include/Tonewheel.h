@@ -111,13 +111,13 @@ class Tonegen {
   const static SqrTab<S>  sqtab;
   std::vector<Tonewheel<S>> wheels;
   std::vector<Osc<S,phase>> phs;
+  S ffs[12];
 
   void run(std::size_t vsiz) {
     std::size_t n = 0;
-    S ff = 32.69;
     for(auto &p : phs) {
       p.vsize(vsiz);
-      p(1,ff*pow(2,n++/12.));
+      p(1,ffs[n++]);
     }
     n = 0;
     for(auto &w : wheels) {
@@ -129,10 +129,14 @@ class Tonegen {
  public:
  Tonegen() : wheels(91), phs(12) {
     for(std::size_t n = 0; n < wheels.size(); n++) {
-      if(n < 12) wheels[n].set_table(&(sqtab.tab));
+      if(n < 12) {
+	wheels[n].set_table(&(sqtab.tab));
+        ffs[n] = pow(2,n/12.)*32.69;
+      }
       else wheels[n].set_table(&(stab.tab));
       wheels[n].set_ratio(pow(2,n/12));
     }
+ 
   }
 
   void operator()(std::size_t vsize) { run(vsize); }
