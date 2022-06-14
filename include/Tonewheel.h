@@ -102,6 +102,9 @@ struct SqrTab {
       s += std::sin(3*(n++)*twopi/(tab.size()-1))/3;
       s += std::sin(5*(n++)*twopi/(tab.size()-1))/5;
     }
+    S max = 0;
+    for(auto &s : tab) if(fabs(s) > max) max  = fabs(s);
+    for(auto &s : tab) s *= 1/max;
   }
 }; 
 
