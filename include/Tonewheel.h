@@ -142,8 +142,8 @@ class Tonegen {
  
   }
 
-  void operator()(float scal, std::size_t vsize) { run(vsize); }
-  const std::vector<S> &wheel(float scal, std::size_t num) {
+  void operator()(float scal, std::size_t vsize) { run(scal, vsize); }
+  const std::vector<S> &wheel(std::size_t num) {
     return wheels[num].vector();
   }
  
