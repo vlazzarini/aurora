@@ -131,7 +131,7 @@ class Tonegen {
     for(std::size_t n = 0; n < wheels.size(); n++) {
       if(n < 12) wheels[n].set_table(&(sqtab.tab));
       else wheels[n].set_table(&(stab.tab));
-      wheels[n].set_ratio(n/12 + 1);
+      wheels[n].set_ratio(pow(2,n/12));
     }
   }
 
