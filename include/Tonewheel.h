@@ -116,11 +116,11 @@ class Tonegen {
   std::vector<Osc<S,phase>> phs;
   S ffs[12];
 
-  void run(float scal, std::size_t vsiz) {
+  void run(std::size_t vsiz) {
     std::size_t n = 0;
     for(auto &p : phs) {
       p.vsize(vsiz);
-      p(scal,ffs[n++]);
+      p(1,ffs[n++]);
     }
     n = 0;
     for(auto &w : wheels) {
@@ -142,7 +142,7 @@ class Tonegen {
  
   }
 
-  void operator()(float scal, std::size_t vsize) { run(scal, vsize); }
+  void operator()(std::size_t vsize) { run(vsize); }
   const std::vector<S> &wheel(std::size_t num) {
     return wheels[num].vector();
   }
