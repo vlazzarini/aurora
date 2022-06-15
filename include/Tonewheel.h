@@ -34,7 +34,7 @@
 namespace Aurora {
   template <typename S>
     struct Tonewheel : public SndBase<S> {
-    static constexpr int64_t maxlen = 0x100000000; // max tab len 2^32
+    static constexpr int32_t maxlen = 0x40000000; // max tab len 2^30
     using SndBase<S>::process;
     const std::vector<S> *tab;
     int64_t fac;
@@ -45,7 +45,7 @@ namespace Aurora {
     S lookup(unsigned int phs) {
       auto &t = *tab;
       float frac = (phs & lomask)*lofac; // frac part of index
-      unsigned int ndx = phs >> lobits;  // index
+      unsigned int ndx = (phs >> lobits);  // index 
       S s = t[ndx] + frac*(t[ndx+1] - t[ndx]);  // lookup
       return s;
     }
@@ -59,7 +59,7 @@ namespace Aurora {
 	lobits += 1;
       lomask = (1 << lobits) - 1;
       lofac = 1.f/(lomask + 1);
-      }
+      }    
     }
 
     void set_ratio(S r) { fac = r*maxlen; }
@@ -73,9 +73,10 @@ namespace Aurora {
 
     const std::vector<S> &operator() (const std::vector<S> &phs) {
       std::size_t n  = 0;
+      int32_t phmsk = maxlen - 1;
       return process(
         [&]() {
-          return lookup((unsigned int)(phs[n++]*fac));
+          return lookup((unsigned int)(phs[n++]*fac) & phmsk);
         },
         phs.size());
     }
