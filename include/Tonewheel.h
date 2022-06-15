@@ -42,11 +42,11 @@ namespace Aurora {
     int lomask; // mask for frac extraction
     S lofac; // fac for frac extract
     
-    S lookup(unsigned int phs) {
+    S lookup(int64_t phs) {
       auto &t = *tab;
+      int64_t phmsk = maxlen - 1;
       float frac = (phs & lomask)*lofac; // frac part of index
-      std::cerr << phs << std::endl;
-      unsigned int ndx = (phs >> lobits);  // index 
+      int64_t ndx = (phs & phmsk) >> lobits;  // index 
       S s = t[ndx] + frac*(t[ndx+1] - t[ndx]);  // lookup
       return s;
     }
@@ -74,10 +74,9 @@ namespace Aurora {
 
     const std::vector<S> &operator() (const std::vector<S> &phs) {
       std::size_t n  = 0;
-      int32_t phmsk = maxlen - 1;
       return process(
         [&]() {
-          return lookup((unsigned int)(phs[n++]*fac) & phmsk);
+          return lookup((phs[n++]*fac));
         },
         phs.size());
     }
