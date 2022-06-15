@@ -150,6 +150,10 @@ class Tonegen {
   const std::vector<S> &wheel(std::size_t num) {
     return wheels[num].vector();
   }
+
+  void reset(S fs) {
+    for(auto &p : phs) p.reset(fs);
+  }
  
   };
 
