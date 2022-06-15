@@ -45,6 +45,7 @@ namespace Aurora {
     S lookup(unsigned int phs) {
       auto &t = *tab;
       float frac = (phs & lomask)*lofac; // frac part of index
+      std::cerr << phs << std::endl;
       unsigned int ndx = (phs >> lobits);  // index 
       S s = t[ndx] + frac*(t[ndx+1] - t[ndx]);  // lookup
       return s;
