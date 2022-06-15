@@ -35,6 +35,7 @@ namespace Aurora {
   template <typename S>
     struct Tonewheel : public SndBase<S> {
     static constexpr int32_t maxlen = 0x40000000; // max tab len 2^30
+    static constexpr int32_t phmsk = maxlen - 1;
     using SndBase<S>::process;
     const std::vector<S> *tab;
     int64_t fac;
@@ -44,7 +45,6 @@ namespace Aurora {
     
     S lookup(int64_t phs) {
       auto &t = *tab;
-      int64_t phmsk = maxlen - 1;
       float frac = (phs & lomask)*lofac; // frac part of index
       int64_t ndx = (phs & phmsk) >> lobits;  // index 
       S s = t[ndx] + frac*(t[ndx+1] - t[ndx]);  // lookup
