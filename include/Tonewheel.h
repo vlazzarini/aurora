@@ -131,11 +131,14 @@ class Tonegen {
   }
 
  public:
- Tonegen() : wheels(91), phs(12) {
+ Tonegen() : wheels(91), phs(12), ffs{0.817307692,0.865853659,0.917808219,
+       0.972222222,1.03,1.090909091,1.15625,1.225,1.297297297,1.375,
+       1.456521739,1.542857143}
+       {
     for(std::size_t n = 0; n < wheels.size(); n++) {
       if(n < 12) {
 	wheels[n].set_table(&(sqtab.tab));
-        ffs[n] = pow(2,n/12.)*32.69;
+        ffs[n] *= 40; // 2 teeth @ 20 rev/s 
       }
       else wheels[n].set_table(&(stab.tab));
       wheels[n].set_ratio(pow(2,n/12));
