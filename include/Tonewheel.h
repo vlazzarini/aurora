@@ -34,7 +34,7 @@
 namespace Aurora {
   template <typename S>
     struct Tonewheel : public SndBase<S> {
-    static constexpr int64_t maxlen = 0x100000000; // max tab len 2^32
+    static constexpr int64_t maxlen = 0x10000000; // max tab len 2^32
     using SndBase<S>::process;
     const std::vector<S> *tab;
     int64_t fac;
