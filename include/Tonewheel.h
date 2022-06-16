@@ -99,8 +99,8 @@ struct SqrTab {
   SqrTab() : tab(pow(2,14)+1) {
     std::size_t n = 0;
     for(auto &s : tab) {
-      s = std::sin((n++)*twopi/(tab.size()-1));
-      s += std::sin(3*(n++)*twopi/(tab.size()-1))/3;
+      s = std::sin((n)*twopi/(tab.size()-1));
+      s += std::sin(3*(n)*twopi/(tab.size()-1))/3;
       s += std::sin(5*(n++)*twopi/(tab.size()-1))/5;
     }
     S max = 0;
