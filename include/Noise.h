@@ -46,15 +46,13 @@ class Noise : public SndBase<S> {
   S fs;
   S incr;
   S ov;
-  std::size_t t, p;
+  std::size_t t;
 
   S sample(S a, std::size_t pp, bool interp) {
-    if(++t >= p)
+    if(++t >= pp)
       {
       S nv = FN(a);
-      p = pp;
-      if(p > 0)
-       incr = (nv - ov)/p;
+      incr = (nv - ov)/pp;
       t = 0;
       if(!interp) ov = nv;
      }
