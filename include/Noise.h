@@ -53,7 +53,7 @@ class Noise : public SndBase<S> {
       {
       S nv = FN(a);
       p = pp;
-      if(p)
+      if(p > 0)
        incr = (nv - ov)/p;
       t = 0;
       if(!interp) ov = nv;
@@ -70,6 +70,7 @@ class Noise : public SndBase<S> {
 
   const std::vector<S> & operator()(S a, S f, bool interp = false) {
     std::size_t pp = fs/(f > 0 ? f : 0.001);
+    std::cout << pp << std::endl;
     return process([&]() {
 	return sample(a, pp, interp);
 	}, 0);
