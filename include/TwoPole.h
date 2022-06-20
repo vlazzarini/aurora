@@ -85,7 +85,7 @@ public:
      f: frequency \n
      d: damping factor (Q reciprocal) \n
      drv: overdrive amount \n
-     S: output type (0 - 4: LP(0), HP(1), BP(1), BR(3))
+     m: output type (0 - 2: LP(0), HP(1), BP(2))
   */
   const std::vector<S> &operator()(const std::vector<S> &in, S f, S d,
                                    S drv = 0, S m = 0) {
@@ -105,7 +105,7 @@ public:
      f: frequency \n
      d: damping factor (Q reciprocal) \n
      drv: overdrive amount \n
-     S: output type (0 - 2: LP(0), HP(1), BP(2))
+     m: output type (0 - 2: LP(0), HP(1), BP(2))
   */
   const std::vector<S> &operator()(const std::vector<S> &in,
                                    const std::vector<S> &f, S d, S drv = 0,
