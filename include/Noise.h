@@ -53,7 +53,8 @@ class Noise : public SndBase<S> {
       {
       S nv = FN(a);
       p = pp;
-      incr = (nv - ov)/p;
+      if(p)
+       incr = (nv - ov)/p;
       t = 0;
       if(!interp) ov = nv;
      }
