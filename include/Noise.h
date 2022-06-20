@@ -67,7 +67,7 @@ class Noise : public SndBase<S> {
   : SndBase<S>(vsize), fs(sr), incr(0), ov(0), t(0) { }
 
   const std::vector<S> & operator()(S a, S f, bool interp = false) {
-    std::size_t pp = fs/(f > 0 ? f : 0.001);
+    std::size_t pp = fs/(f > 0 ? f : 0.000001);
     return process([&]() {
 	return sample(a, pp, interp);
 	}, 0);
