@@ -265,41 +265,58 @@ public:
   
 };
 
+/** Tap class \n
+    Taps a delay line \n
+    S: sample type
+*/
 template <typename S, S (*FN)(S, std::size_t, const std::vector<S> &,
-                              std::vector<S> *) = fixed_delay>
+                              std::vector<S> *) = vdelay>
 class Tap : public SndBase<S> {
    using SndBase<S>::process;
    S fs;
 
   S tap(S dt, const std::vector<S> &del, std::size_t p) {
-    if(p < 0) p += del.size();
     return FN(dt, p, del, nullptr);
   }
 
  public:
+  /** Constructor \n
+      sr: sampling rate \n
+      vsize: vector size
+  */
   Tap(S sr = def_sr, std::size_t vsize = def_vsize)
    : SndBase<S>(vsize), fs(sr) { };
    
 
+
+  /** Tap \n
+      del: delay line object \n
+      dt: delay time \n
+  */ 
    const std::vector<S> &operator()(const Del<S> &del,
                                    const std::vector<S> &dt) {
-    std::size_t n = 0, p = del.write_pos();
-    std::size_t j = del.vsize();
+     std::size_t n = 0;
+     int64_t pp = del.write_pos() - del.vsize() - 1;
+     auto &d = del.delayline();
     return process(
         [&]() {
-          auto s = tap(dt[n++] * fs, del.delayline(), p-n);
-	  n--;
-	  return s;
+	  pp = pp >= -1 ? pp + 1 : pp + 1 + d.size();
+          return tap(dt[n++] * fs, d, pp);
         }, dt.vsize());
   }
-   
+
+   /** Tap \n
+      del: delay line object \n
+      dt: delay time \n
+  */ 
    const std::vector<S> &operator()(const Del<S> &del, S dt) {
-    std::size_t p = del.write_pos();
-    std::size_t n = del.vsize();
-    return process([&]() {
-	auto s = tap(dt*fs,del.delayline(),p-n); n--; return s; },
-                   del.vsize());
-  }
+     int64_t pp = del.write_pos() - del.vsize() - 1;
+     auto &d = del.delayline();
+     return process([&]() {
+	 pp = pp >= -1 ? pp + 1 : pp + 1 + d.size();
+	 return tap(dt*fs,d, pp); },
+       del.vsize());
+   }
 
   void reset(S sr) {
     fs = sr;
