@@ -1,7 +1,6 @@
 // Del.h
 // Generic delay line and associated functions
 //
-//
 // (c) V Lazzarini, 2021
 //
 // Redistribution and use in source and binary forms, with or without
@@ -253,7 +252,61 @@ public:
     del.clear();
     del.resize(fs * maxdt);
   }
+
+
+  std::size_t write_pos() const {
+    return wp;
+  }
+
+  const std::vector<S> &delayline() const {
+    return del;
+  }
+
+  
 };
+
+template <typename S, S (*FN)(S, std::size_t, const std::vector<S> &,
+                              std::vector<S> *) = fixed_delay>
+class Tap : public SndBase<S> {
+   using SndBase<S>::process;
+   S fs;
+
+  S tap(S dt, const std::vector<S> &del, std::size_t p) {
+    if(p < 0) p += del.size();
+    return FN(dt, p, del, nullptr);
+  }
+
+ public:
+  Tap(S sr = def_sr, std::size_t vsize = def_vsize)
+   : SndBase<S>(vsize), fs(sr) { };
+   
+
+   const std::vector<S> &operator()(const Del<S> &del,
+                                   const std::vector<S> &dt) {
+    std::size_t n = 0, p = del.write_pos();
+    std::size_t j = del.vsize();
+    return process(
+        [&]() {
+          auto s = tap(dt[n++] * fs, del.delayline(), p-n);
+	  n--;
+	  return s;
+        }, dt.vsize());
+  }
+   
+   const std::vector<S> &operator()(const Del<S> &del, S dt) {
+    std::size_t p = del.write_pos();
+    std::size_t n = del.vsize();
+    return process([&]() {
+	auto s = tap(dt*fs,del.delayline(),p-n); n--; return s; },
+                   del.vsize());
+  }
+
+  void reset(S sr) {
+    fs = sr;
+  }
+
+};
+ 
 
 } // namespace Aurora
 #endif // _AURORA_DEL_
