@@ -170,6 +170,12 @@ public:
     resize(src.size(), fs);
     fourier(src, fs);
   }
+
+  void set_guardpoint() {
+    for (auto &w : waves)
+      w.push_back(w[0]);
+  }   
+
 };
 
 /** BlOsc class \n
