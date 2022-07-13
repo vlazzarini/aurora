@@ -193,12 +193,14 @@ namespace Aurora {
     }
 				   
     const std::vector<S> &tone(std::size_t note, S amp) {
+      if(note < 128) {
       tread.set_ratio(freq[note]/freq[note%12]);
       tread.set_table(&waveset->func(freq[note]));
       auto &tmp = lookup(phs[note%12]);
       std::size_t n = 0;
       for(auto &s : mix) s += tmp[n++]*amp;
       return tmp;
+      } else return mix;
     }
 
     void reset(S fs, int type = SAW) {

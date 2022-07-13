@@ -157,7 +157,7 @@ public:
    */
   void reset(uint32_t type, S fs, std::size_t len = def_ftlen) {
     resize(len, fs);
-    create(std::vector<S>(tlen / 2), fs, type);
+    create(fs, type);
   }
   /** reset the table set \n
      src: source wave table \n
