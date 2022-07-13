@@ -198,7 +198,7 @@ const SqrTab<S> Tonegen<S>::sqtab;
       mix.resize(vsize);
       tread.vsize(vsize);
       std::fill(mix.begin(), mix.end(), 0);
-      run(vsize,detune);
+      run(vsize,detun);
       return mix;
     }
 				   
