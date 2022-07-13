@@ -74,11 +74,11 @@ namespace Aurora {
       }
     }
 
-    const std::vector<S> &operator() (const std::vector<S> &phs, S offs = 0) {
+    const std::vector<S> &operator() (const std::vector<S> &phs) {
       std::size_t n  = 0;
       return process(
 		     [&]() {
-		       return lookup((phs[n++]+offs)*fac);
+		       return lookup(phs[n++]*fac);
 		     },
 		     phs.size());
     }
