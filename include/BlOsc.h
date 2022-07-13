@@ -171,7 +171,7 @@ public:
     fourier(src, fs);
   }
 
-  void set_guardpoint() {
+  void guardpoint() {
     for (auto &w : waves)
       w.push_back(w[0]);
   }   
