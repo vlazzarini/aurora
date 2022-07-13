@@ -186,6 +186,7 @@ const SqrTab<S> Tonegen<S>::sqtab;
        float base = 8.175798915643707;
        for(auto &f : freq) 
 	 f = base*pow(2,n++/12.);
+        waveset.guardpoint();
     }
 
     const std::vector<S> &operator()(std::size_t vsize, S detun = 1.f) {
@@ -209,6 +210,7 @@ const SqrTab<S> Tonegen<S>::sqtab;
 
     void reset(S fs, int type = SAW) {
       waveset.reset(type, fs);
+      waveset.guardpoint();
       for(auto &p : phs) p.reset(fs);
     } 
   };
