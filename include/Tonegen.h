@@ -52,113 +52,117 @@ namespace Aurora {
     }
 
   public:
-  Lookup(const std::vector<S> *w = NULL,
-	 std::size_t vsize = def_vsize) : SndBase<S>(vsize),
-      tab(w), fac(maxlen), lobits(0) {
+  Lookup(const std::vector<S> *w = NULL, S ratio = 1,
+	    std::size_t vsize = def_vsize) : SndBase<S>(vsize),
+      tab(w), fac(ratio*maxlen), lobits(0) {
       if(w) {
-	for(int64_t t = tab->size()-1; (t & maxlen) == 0; t <<= 1) 
-	  lobits += 1;
-	lomask = (1 << lobits) - 1;
-	lofac = 1.f/(lomask + 1);
+      for(int64_t t = tab->size()-1; (t & maxlen) == 0; t <<= 1) 
+	lobits += 1;
+      lomask = (1 << lobits) - 1;
+      lofac = 1.f/(lomask + 1);
       }    
     }
 
     void set_ratio(S r) { fac = r*maxlen; }
     void set_table(const std::vector<S> *w) {
       tab = w;
-      if(tab->size() != w->size()) {
-	for(int64_t t = tab->size()-1; (t & maxlen) == 0; t <<= 1) 
-	  lobits += 1;
-	lomask = (1 << lobits) - 1;
-	lofac = 1.f/(lomask + 1);
-      }
+      for(int64_t t = tab->size()-1; (t & maxlen) == 0; t <<= 1) 
+	lobits += 1;
+      lomask = (1 << lobits) - 1;
+      lofac = 1.f/(lomask + 1);
     }
 
     const std::vector<S> &operator() (const std::vector<S> &phs) {
       std::size_t n  = 0;
       return process(
-		     [&]() {
-		       return lookup(phs[n++]*fac);
-		     },
-		     phs.size());
+        [&]() {
+          return lookup((phs[n++]*fac));
+        },
+        phs.size());
     }
   };
 
-  template <typename S>
-    struct SineTab {
-      std::vector<S> tab;
-    SineTab() : tab(pow(2,14)+1) {
-      std::size_t n = 0;
-      for(auto &s : tab)
-	s = std::sin((n++)*twopi/(tab.size()-1));
+template <typename S>
+struct SineTab {
+  std::vector<S> tab;
+  SineTab() : tab(pow(2,14)+1) {
+    std::size_t n = 0;
+    for(auto &s : tab)
+      s = std::sin((n++)*twopi/(tab.size()-1));
+  }
+};
+
+
+template <typename S>
+struct SqrTab {
+  std::vector<S> tab;
+  SqrTab() : tab(pow(2,14)+1) {
+    std::size_t n = 0;
+    for(auto &s : tab) {
+      s = std::sin((n)*twopi/(tab.size()-1));
+      s += std::sin(3*(n)*twopi/(tab.size()-1))/3;
+      s += std::sin(5*(n++)*twopi/(tab.size()-1))/5;
     }
-    };
+    S max = 0;
+    for(auto &s : tab) if(fabs(s) > max) max  = fabs(s);
+    for(auto &s : tab) s *= 1/max;
+  }
+}; 
 
+template <typename S>
+class Tonegen {
+  const static SineTab<S> stab;
+  const static SqrTab<S>  sqtab;
+  std::vector<Lookup<S>> wheels;
+  std::vector<Osc<S,phase>> phs;
+  S ffs[12];
 
-  template <typename S>
-    struct SqrTab {
-      std::vector<S> tab;
-    SqrTab() : tab(pow(2,14)+1) {
-      std::size_t n = 0;
-      for(auto &s : tab) {
-	s = std::sin((n)*twopi/(tab.size()-1));
-	s += std::sin(3*(n)*twopi/(tab.size()-1))/3;
-	s += std::sin(5*(n++)*twopi/(tab.size()-1))/5;
-      }
-      S max = 0;
-      for(auto &s : tab) if(fabs(s) > max) max  = fabs(s);
-      for(auto &s : tab) s *= 1/max;
+  void run(std::size_t vsiz) {
+    std::size_t n = 0;
+    for(auto &p : phs) {
+      p.vsize(vsiz);
+      p(1,ffs[n++]);
     }
-    }; 
+    n = 0;
+    for(auto &w : wheels) {
+      w(phs[n%12].vector());
+      n++;
+     }
+  }
 
-  template <typename S>
-    class Tonegen {
-    const static SineTab<S> stab;
-    const static SqrTab<S>  sqtab;
-    std::vector<Lookup<S>> wheels;
-    std::vector<Osc<S,phase>> phs;
-    S ffs[12];
-
-    void run(std::size_t vsiz) {
-      std::size_t n = 0;
-      for(auto &p : phs) {
-	p.vsize(vsiz);
-	p(1,ffs[n++]);
+ public:
+ Tonegen() : wheels(91), phs(12), ffs{0.817307692,0.865853659,0.917808219,
+       0.972222222,1.03,1.090909091,1.15625,1.225,1.297297297,1.375,
+       1.456521739,1.542857143}
+       {
+    for(std::size_t n = 0; n < wheels.size(); n++) {
+      if(n < 12) {
+	wheels[n].set_table(&(sqtab.tab));
+        ffs[n] *= 40; // 2 teeth @ 20 rev/s 
       }
-      n = 0;
-      for(auto &w : wheels) {
-	w(phs[n%12].vector());
-	n++;
-      }
+      else wheels[n].set_table(&(stab.tab));
+      wheels[n].set_ratio(pow(2,n/12));
     }
-
-  public:
-  Tonegen() : wheels(91), phs(12), ffs{0.817307692,0.865853659,0.917808219,
-	0.972222222,1.03,1.090909091,1.15625,1.225,1.297297297,1.375,
-	1.456521739,1.542857143}
-    {
-      for(std::size_t n = 0; n < wheels.size(); n++) {
-	if(n < 12) {
-	  wheels[n].set_table(&(sqtab.tab));
-	  ffs[n] *= 40; // 2 teeth @ 20 rev/s 
-	}
-	else wheels[n].set_table(&(stab.tab));
-	wheels[n].set_ratio(pow(2,n/12));
-      }
  
-    }
+  }
 
-    void operator()(std::size_t vsize) { run(vsize); }
-    const std::vector<S> &wheel(std::size_t num) {
-      return wheels[num].vector();
-    }
+  void operator()(std::size_t vsize) { run(vsize); }
+  const std::vector<S> &wheel(std::size_t num) {
+    return wheels[num].vector();
+  }
 
-    void reset(S fs) {
-      for(auto &p : phs) p.reset(fs);
-    }
+  void reset(S fs) {
+    for(auto &p : phs) p.reset(fs);
+  }
  
   };
 
+template <typename S>
+const SineTab<S> Tonegen<S>::stab;
+
+template <typename S>
+const SqrTab<S> Tonegen<S>::sqtab;
+ 
   template <typename S>
    class Wavegen  {
     TableSet<S> waveset;
@@ -210,11 +214,6 @@ namespace Aurora {
   };
 
 
-  template <typename S>
-    const SineTab<S> Tonegen<S>::stab;
-
-  template <typename S>
-    const SqrTab<S> Tonegen<S>::sqtab;
 }
 
 #endif
