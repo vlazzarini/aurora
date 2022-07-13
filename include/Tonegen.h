@@ -46,7 +46,7 @@ namespace Aurora {
     S lookup(int64_t phs) {
       auto &t = *tab;
       float frac = (phs & lomask)*lofac; // frac part of index
-      int64_t ndx = (phs & phmsk) >> lobits;  // index 
+      int64_t ndx = (phs & phmsk) >> lobits;  // index
       S s = t[ndx] + frac*(t[ndx+1] - t[ndx]);  // lookup
       return s;
     }
@@ -55,7 +55,7 @@ namespace Aurora {
   Lookup(const std::vector<S> *w = NULL, S ratio = 1,
 	    std::size_t vsize = def_vsize) : SndBase<S>(vsize),
       tab(w), fac(ratio*maxlen), lobits(0) {
-      if(w) {
+      if(w) {	
       for(int64_t t = tab->size()-1; (t & maxlen) == 0; t <<= 1) 
 	lobits += 1;
       lomask = (1 << lobits) - 1;
@@ -66,12 +66,16 @@ namespace Aurora {
     void set_ratio(S r) { fac = r*maxlen; }
     void set_table(const std::vector<S> *w) {
       tab = w;
+      lobits = 0;
       for(int64_t t = tab->size()-1; (t & maxlen) == 0; t <<= 1) 
 	lobits += 1;
       lomask = (1 << lobits) - 1;
       lofac = 1.f/(lomask + 1);
     }
 
+
+    void swap_table(const std::vector<S> *w) { tab = w; }
+      
     const std::vector<S> &operator() (const std::vector<S> &phs) {
       std::size_t n  = 0;
       return process(
@@ -187,6 +191,7 @@ const SqrTab<S> Tonegen<S>::sqtab;
        for(auto &f : freq) 
 	 f = base*pow(2,n++/12.);
         waveset.guardpoint();
+	tread.set_table(&waveset.func(freq[0]));
     }
 
     const std::vector<S> &operator()(std::size_t vsize, S detun = 1.f) {
@@ -200,7 +205,7 @@ const SqrTab<S> Tonegen<S>::sqtab;
     const std::vector<S> &tone(std::size_t note, S amp) {
       if(note < 128) {
       tread.set_ratio(freq[note]/freq[note%12]);
-      tread.set_table(&waveset.func(freq[note]));
+      tread.swap_table(&waveset.func(freq[note]));      
       auto &tmp = tread(phs[note%12].vector());
       std::size_t n = 0;
       for(auto &s : mix) s += tmp[n++]*amp;
@@ -210,7 +215,8 @@ const SqrTab<S> Tonegen<S>::sqtab;
 
     void reset(S fs, int type = SAW) {
       waveset.reset(type, fs);
-      waveset.guardpoint();
+           waveset.guardpoint();   
+      tread.set_table(&waveset.func(freq[0]));
       for(auto &p : phs) p.reset(fs);
     } 
   };

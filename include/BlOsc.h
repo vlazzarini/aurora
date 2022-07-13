@@ -113,10 +113,11 @@ template <typename S> class TableSet {
 
   void resize(std::size_t len, S fs) {
     tlen = len;
-    waves.resize((int)std::log2(fs / base));
     waves.clear();
-    for (auto &w : waves)
+    waves.resize((int)std::log2(fs / base));
+    for (auto &w : waves) {
       w = std::vector<S>(tlen);
+    }
   }
 
 public:
