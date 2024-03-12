@@ -37,7 +37,7 @@ namespace Aurora {
   /** IR class \n
       Impulse response table
   */
-  template <typename S> class IR {
+  template <typename S = float> class IR {
     std::vector<std::vector<std::complex<S>>> parts;
 
     void create(const std::vector<S> &s, std::size_t psize) {
@@ -103,7 +103,7 @@ namespace Aurora {
   /** Conv class \n
       Partitioned convolution
   */
-  template <typename S> class Conv : public SndBase<S> {
+  template <typename S = float> class Conv : public SndBase<S> {
     using SndBase<S>::process;
     using SndBase<S>::vector;
     const IR<S> *ir;

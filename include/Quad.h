@@ -56,7 +56,7 @@ namespace Aurora {
       Quadrature filter \n
       S: sample type
   */
-  template <typename S> class Quad : public SndBase<S> {
+  template <typename S = float> class Quad : public SndBase<S> {
     using SndBase<S>::get_sig;
     double d1[6], d2[6];
     double c1[6], c2[6];

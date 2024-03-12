@@ -31,13 +31,13 @@
 
 int main(int argc, const char *argv[]) {
   if (argc > 3) {
-    double sr = argc > 5 ? std::atof(argv[5]) : Aurora::def_sr;
+    float sr = argc > 5 ? std::atof(argv[5]) : Aurora::def_sr;
     uint32_t ty = argc > 4 ? std::atoi(argv[4]) : Aurora::SAW;
     auto dur = std::atof(argv[1]);
     auto a = std::atof(argv[2]);
     auto f = std::atof(argv[3]);
-    Aurora::TableSet<double> wave(ty);
-    Aurora::BlOsc<double> osc(&wave, sr);
+    Aurora::TableSet wave(ty);
+    Aurora::BlOsc osc(&wave, sr);
     for (int n = 0; n < osc.fs() * dur; n += osc.vsize())
       for (auto s : osc(a, f, 0.5))
         std::cout << s << std::endl;

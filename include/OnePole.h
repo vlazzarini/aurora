@@ -36,7 +36,7 @@ namespace Aurora {
     First-order lowpass filter \n
     S: sample type
 */
-template <typename S> class OnePole : public SndBase<S> {
+template <typename S = float> class OnePole : public SndBase<S> {
   using SndBase<S>::process;
   double D;
   double A, G;

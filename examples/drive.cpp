@@ -59,7 +59,7 @@ struct Synth {
       std::size_t n = 0;
       wave.resize(def_ftlen);
       for (auto &s : wave) {
-        s = sin<float>((1. / wave.size()) * n++);
+        s = Aurora::sin<float>((float)(1.f / wave.size()) * n++);
       }
     }
     if (sigmoid.size() == 0) {

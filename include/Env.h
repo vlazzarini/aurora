@@ -92,7 +92,7 @@ std::function<S(double, S, S)> ads_gen(const S &a, const S &d, const S &s) {
     S: sample type \n
     FN: envelope function
 */
-template <typename S, S (*FN)(S, S, S, double, S, S) = ads>
+template <typename S = float, S (*FN)(S, S, S, double, S, S) = ads>
 class Env : public SndBase<S> {
   using SndBase<S>::process;
   std::function<S(double, S, S)> fun;

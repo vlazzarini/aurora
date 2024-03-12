@@ -37,7 +37,7 @@ namespace Aurora {
     4-pole lowpass filter \n
     S: sample type
 */
-template <typename S> class FourPole : public SndBase<S> {
+template <typename S = float> class FourPole : public SndBase<S> {
   using SndBase<S>::process;
   double D[4];
   double A, G[4];

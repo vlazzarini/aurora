@@ -45,7 +45,7 @@ namespace Aurora {
   /** Spectral Data Type \n
       S: sample type
    */
-  template <typename S> class specdata {
+  template <typename S = float> class specdata {
     std::complex<S>  bin;
 
   public:
@@ -155,7 +155,7 @@ namespace Aurora {
      Spectral base class \n
      S: sample type
   */  
-  template <typename S>
+  template <typename S = float>
    class SpecBase { 
       std::vector<specdata<S>> spec;
       std::size_t hs;
@@ -192,7 +192,7 @@ namespace Aurora {
     /** Ceps class \n
       Spectral envelope extraction
   */
-  template <typename S>
+  template <typename S = float>
     class Ceps : public SndBase<S>  {
     using SndBase<S>::get_sig;
     std::vector<std::complex<S>> spec;

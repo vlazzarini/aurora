@@ -36,6 +36,7 @@
 #include <vector>
 
 using namespace Aurora;
+
 struct StereoChorus {
   static float ofs(float a, float b) { return a + b; }
   std::vector<float> out;
@@ -46,7 +47,7 @@ struct StereoChorus {
 
   StereoChorus(float sr, std::size_t vsize = def_vsize)
     :    out(vsize*2),
-        lfo{Osc<float>(sr, vsize), Osc<float>(sr, vsize)},
+        lfo{Osc(sr, vsize), Osc(sr, vsize)},
         delay{Del<float, vdelayi>(0.1, sr, vsize),
               Del<float, vdelayi>(0.1, sr, vsize)},
         offs(vsize){};

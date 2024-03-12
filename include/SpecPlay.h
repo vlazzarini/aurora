@@ -34,7 +34,7 @@ namespace Aurora {
       spectral function table \n
       S - sample type
   */
-  template <typename S> 
+  template <typename S = float> 
     class SpecTable {
     const std::vector<S> &win;
     std::vector<std::vector<Aurora::specdata<S>>> tab;
@@ -121,7 +121,7 @@ namespace Aurora {
       spectral function table player \n
       S - sample type
   */  
-  template <typename S> class SpecPlay {
+  template <typename S = float> class SpecPlay {
     SpecShift<S> shift;
     S sr;
     S rp;

@@ -36,7 +36,7 @@ namespace Aurora {
     spectral pitch tracker\n
     S: sample type
 */     
-template <typename S> class SpecPitch {
+template <typename S = float> class SpecPitch {
   std::vector<S> peaks;
   std::vector<S> ifacts;
   std::size_t framecount;

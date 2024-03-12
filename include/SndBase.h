@@ -48,7 +48,7 @@ const double twopi = 2 * M_PI;
     Aurora Library base class \n
     S: sample type
 */
-template <typename S> class SndBase {
+template <typename S = float> class SndBase {
   std::vector<S> sig;
   
 protected:
@@ -169,12 +169,14 @@ public:
   }
 };
 
+template<typename S> S nop(S a, S b) { return (S) 0; }
+ 
 /** BinOp class \n
     Binary operations \n
     OP: binary operation function \n
     S: sample type
 */
-template <typename S, S (*OP)(S, S)> class BinOp : public SndBase<S> {
+ template <typename S, S (*OP)(S, S)> class BinOp : public SndBase<S> {
   using SndBase<S>::process;
 
 public:
@@ -225,7 +227,7 @@ public:
     n-signal mixer \n
     S: sample type
 */
-template <typename S> class Mix : public SndBase<S> {
+template <typename S = float> class Mix : public SndBase<S> {
   using SndBase<S>::process;
   using SndBase<S>::get_sig;
 

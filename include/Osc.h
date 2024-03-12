@@ -100,7 +100,7 @@ template <typename S> inline S phase(double ph, const std::vector<S> *t = 0) {
     S: sample type \n
     FN: oscillator function
 */
-template <typename S, S (*FN)(double, const std::vector<S> *) = cos>
+template <typename S = float, S (*FN)(double, const std::vector<S> *) = cos>
 class Osc : public SndBase<S> {
   using SndBase<S>::process;
 

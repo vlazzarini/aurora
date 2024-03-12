@@ -32,7 +32,7 @@ namespace Aurora {
     Parametric equaliser
     s: sample type
  */
-template <typename S> class Eq : SndBase<S> {
+template <typename S = float> class Eq : SndBase<S> {
   using SndBase<S>::process;
   double z[2];
   double d, a;

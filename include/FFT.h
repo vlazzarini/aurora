@@ -65,7 +65,7 @@ static inline uint32_t np2(uint32_t n) {
     Radix-2 fast Fourier transform \n
     S: sample type
 */
-template <typename S> class FFT {
+template <typename S = float> class FFT {
   std::vector<std::complex<S>> c;
   bool pckd;
   std::size_t sz;

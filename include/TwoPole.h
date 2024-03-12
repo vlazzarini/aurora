@@ -43,7 +43,7 @@ template <typename S> inline S id(S s, S dr) {
     2-pole state-variable filter \n
     S: sample type
 */
-template <typename S, S (*FN)(S, S) = id> class TwoPole : public SndBase<S> {
+template <typename S = float, S (*FN)(S, S) = id> class TwoPole : public SndBase<S> {
   using SndBase<S>::process;
   S Y[2];
   double D[2];

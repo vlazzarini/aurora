@@ -152,7 +152,7 @@ inline S fir(S nop, std::size_t wp, const std::vector<S> &del,
     Generic templated delay line \n
     S: sample type
 */
-template <typename S, S (*FN)(S, std::size_t, const std::vector<S> &,
+template <typename S = float, S (*FN)(S, std::size_t, const std::vector<S> &,
                               std::vector<S> *) = fixed_delay>
 class Del : public SndBase<S> {
   using SndBase<S>::process;
@@ -269,7 +269,7 @@ public:
     Taps a delay line \n
     S: sample type
 */
-template <typename S, S (*FN)(S, std::size_t, const std::vector<S> &,
+template <typename S = float, S (*FN)(S, std::size_t, const std::vector<S> &,
                               std::vector<S> *) = vdelay>
 class Tap : public SndBase<S> {
    using SndBase<S>::process;

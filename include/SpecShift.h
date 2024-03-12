@@ -37,7 +37,7 @@ namespace Aurora {
       Spectral shift \n
       S: sample type
   */    
-  template <typename S>
+  template <typename S = float>
     class SpecShift : public SpecBase<S> {
     using SpecBase<S>::get_spec;
     using SpecBase<S>::fcount_incr;

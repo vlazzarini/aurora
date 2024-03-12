@@ -40,7 +40,7 @@ namespace Aurora {
     S: sample type \n
     FN: noise function
 */
-template <typename S, S (*FN)(S) = white>
+template <typename S = float, S (*FN)(S) = white>
 class Noise : public SndBase<S> {
   using SndBase<S>::process;
   S fs;

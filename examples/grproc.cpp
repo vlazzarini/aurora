@@ -45,7 +45,7 @@ int main(int argc, const char **argv) {
         float p = atof(argv[4]);
         float t = atof(argv[5]) * def_vsize / double(sfinfo_in.samplerate);
         float gdur = atof(argv[6]);
-        float ol = atof(argv[7]) ;
+        float ol = atof(argv[7]);
         int dm = argc > 8 ? atoi(argv[8]) : def_vsize;
         double ts = t >= 0 ? 0.f : sfinfo_in.frames / double(sfinfo_in.samplerate);
         std::vector<float> wave(sfinfo_in.frames);

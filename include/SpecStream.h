@@ -38,7 +38,7 @@ namespace Aurora {
       Spectral stream \n
       S: sample type
   */    
-  template <typename S>
+  template <typename S = float>
     class SpecStream : public SpecBase<S> {
     using SpecBase<S>::get_spec;
     using SpecBase<S>::fcount_incr;
@@ -130,7 +130,7 @@ namespace Aurora {
       STFT resynthesis \n
       S: sample type
   */    
-  template <typename S>
+  template <typename S = float>
     class SpecSynth : public SndBase<S> {
     using SndBase<S>::get_sig;
     std::vector<std::vector<S>> buffers;

@@ -40,7 +40,7 @@ const double def_base = 16.;
     Creates a set of tables for BlOsc. \n
     S: sample type
 */
-template <typename S> class TableSet {
+template <typename S = float> class TableSet {
   std::size_t tlen;
   std::vector<std::vector<S>> waves;
   S base;
@@ -184,7 +184,7 @@ public:
     S: sample type \n
     FN: oscillator function
 */
-template <typename S, S (*FN)(double, const std::vector<S> *) = lookupi<S>>
+template <typename S = float, S (*FN)(double, const std::vector<S> *) = lookupi<S>>
 class BlOsc : public Osc<S, FN> {
   using Osc<S, FN>::ph;
   using Osc<S, FN>::ts;

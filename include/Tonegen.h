@@ -32,7 +32,7 @@
 #include "BlOsc.h"
 
 namespace Aurora {
-  template <typename S>
+  template <typename S = float>
     struct Lookup : public SndBase<S> {
     static constexpr int32_t maxlen = 0x40000000; // max tab len 2^30
     static constexpr int32_t phmsk = maxlen - 1;
@@ -86,7 +86,7 @@ namespace Aurora {
     }
   };
 
-template <typename S>
+template <typename S = float>
 struct SineTab {
   std::vector<S> tab;
   SineTab() : tab(pow(2,14)+1) {
@@ -97,7 +97,7 @@ struct SineTab {
 };
 
 
-template <typename S>
+template <typename S = float>
 struct SqrTab {
   std::vector<S> tab;
   SqrTab() : tab(pow(2,14)+1) {
@@ -113,7 +113,7 @@ struct SqrTab {
   }
 }; 
 
-template <typename S>
+template <typename S = float>
 class Tonegen {
   const static SineTab<S> stab;
   const static SqrTab<S>  sqtab;
@@ -161,13 +161,13 @@ class Tonegen {
  
   };
 
-template <typename S>
+template <typename S = float>
 const SineTab<S> Tonegen<S>::stab;
 
-template <typename S>
+template <typename S = float>
 const SqrTab<S> Tonegen<S>::sqtab;
  
-  template <typename S>
+  template <typename S = float>
    class Wavegen  {
     TableSet<S> waveset;
     std::vector<Osc<S,phase>> phs;
