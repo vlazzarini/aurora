@@ -1,7 +1,6 @@
-// drive.cpp:
-// Nonlinear distortion example
+
 //
-// (c) V Lazzarini, 2021
+// (c) V Lazzarini, 2025
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
@@ -37,8 +36,7 @@ using namespace Aurora;
 struct Synth {
   inline static const float smax = 8.f;
   inline static std::vector<float> sigmoid{std::vector<float>(0)};
-  //inline static std::vector<float> wave{std::vector<float>(0)};
-  inline static TableSet wave{SAW};
+  inline static TableSet<float> wave{SAW};
 
 
   static float sat(float a) {
@@ -57,13 +55,6 @@ struct Synth {
       : att(0.1f), dec(0.3f), sus(0.7f),
         env(ads_gen(att, dec, sus), rt, sr / def_vsize, 1), osc(&wave, sr),
         drive(), amp() {
-    /*if (wave.size() == 0) {
-      std::size_t n = 0;
-      wave.resize(def_ftlen);
-      for (auto &s : wave) {
-        s = Aurora::sin<float>((float)(1.f / wave.size()) * n++);
-        }
-    }*/
     if (sigmoid.size() == 0) {
       std::size_t n = 0;
       sigmoid.resize(def_ftlen);
@@ -85,25 +76,30 @@ struct Synth {
 
 int main(int argc, const char *argv[]) {
   if (argc > 4) {
-    double sr = argc > 5 ? std::atof(argv[5]) : def_sr;
+    double sr = argc > 6 ? std::atof(argv[6]) : def_sr;
     auto dur = std::atof(argv[1]);
-    auto a = std::atof(argv[2]);
-    auto f = std::atof(argv[3]);
-    auto dr = std::atof(argv[4]);
+    auto a = std::atof(argv[2])*0.5;
+    auto f1 = std::atof(argv[3]);
+    auto f2 = std::atof(argv[4]);
+    auto dr = std::atof(argv[5]);
     float rel = 0.1;
 
     std::vector<Synth> sy;
+    std::vector<float> sig(def_vsize);
     sy.push_back(Synth(rel, sr));
     sy.push_back(Synth(rel, sr));
     bool gate = 1;
     for (int n = 0; n < sr * dur; n += def_vsize) {
+      int i = 0;
+      std::fill(sig.begin(), sig.end(), 0.f);
       if (n > sr * (dur - rel))
         gate = 0;
-      for (auto s : sy[1](a, f, dr, gate))
-        std::cout << s << std::endl;
+      auto &s1 = sy[0](a, f1, dr, gate);
+      for (auto s : sy[1](a, f2, dr, gate)) 
+        std::cout << s + s1[i++] << std::endl;
     }
   } else
-    std::cout << "usage: " << argv[0] << " dur(s) amp freq(Hz) drive [sr]"
+    std::cout << "usage: " << argv[0] << " dur(s) amp freq1(Hz) freq2(Hz) drive [sr]"
               << std::endl;
   return 0;
 }

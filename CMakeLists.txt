@@ -54,6 +54,7 @@ add_program(pwm)
 add_program(noise)
 add_program(buffer)
 add_program(grsynth)
+add_program(objvec)
 
 # these have libsndfile dependency
 if(LIBSNDFILE_LIBRARY)

@@ -148,7 +148,7 @@ namespace Aurora {
       for(auto &s : spec) {
 	bin = in[n];
         bin.freq(bin.fromcps(n*c, fac));
-	ph[n] = bin.integ(ph[n]);
+	ph[n] = unwrap(bin.integ(ph[n]));
 	s = bin;
 	n++;
       }
